@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "event_id": "event-key-reuse",
+  "identity_id": "alice",
+  "sequence": 2,
+  "previous_state_hash": "f58c5c9e39d20a256f8e32c8729b930fd76631cea0f366b01856f5dbb4098919",
+  "event_type": "enroll",
+  "subject_device_id": "device-b",
+  "verified_authorizers": [
+    {
+      "type": "device",
+      "id": "device-a"
+    }
+  ],
+  "new_key_generation": 1,
+  "new_signing_key": {
+    "key_id": "device-a-sign-1",
+    "algorithm_id": "ALG-ED25519",
+    "public_key_fingerprint": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "new_agreement_key": {
+    "key_id": "device-b-agree-1",
+    "algorithm_id": "ALG-X25519",
+    "public_key_fingerprint": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  }
+}
