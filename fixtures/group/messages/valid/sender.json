@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "group_id": "group-alpha",
+  "profile_ref": "group-sender-key-aead@0.1.0",
+  "epoch": 8,
+  "message_id": "group-message-sender",
+  "sender_device_id": "alice-phone",
+  "current_member_device_ids": [
+    "alice-phone",
+    "bob-phone",
+    "carol-phone"
+  ],
+  "recipient_device_ids": [
+    "bob-phone",
+    "carol-phone"
+  ],
+  "replay_status": "fresh",
+  "authenticated": true,
+  "server_plaintext_access": false,
+  "ciphertext_count": 1,
+  "mls_application_message": false,
+  "sender_chain_advanced": true,
+  "sender_message_key_deleted": true,
+  "sender_signature_verified": true,
+  "skipped_sender_message_keys_retained": 3,
+  "all_pairwise_sessions_valid": false
+}
