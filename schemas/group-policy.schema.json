@@ -1,0 +1,37 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/group-policy.schema.json",
+  "title":"E2EESA group E2EE policy",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","policy_id","profile_ref","protocol_registry_version","protocol_id",
+    "mls_cipher_suite_id","pairwise_profile_ref",
+    "sender_kdf_algorithm_id","sender_aead_algorithm_id","sender_signature_algorithm_id",
+    "require_authenticated_membership_changes","require_epoch_advance_on_membership_change",
+    "require_removed_member_exclusion","require_new_member_history_exclusion",
+    "prohibit_server_membership_authorization","require_device_revocation_rekey",
+    "max_group_devices","max_sender_skipped_message_keys"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "policy_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"type":"string","pattern":"^group-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "protocol_registry_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "protocol_id":{"type":"string","pattern":"^GROUP-[A-Z0-9-]+$"},
+    "mls_cipher_suite_id":{"oneOf":[{"type":"null"},{"type":"string","pattern":"^0x[0-9A-Fa-f]{4}$"}]},
+    "pairwise_profile_ref":{"oneOf":[{"type":"null"},{"type":"string","pattern":"^pairwise-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"}]},
+    "sender_kdf_algorithm_id":{"oneOf":[{"type":"null"},{"type":"string","minLength":1}]},
+    "sender_aead_algorithm_id":{"oneOf":[{"type":"null"},{"type":"string","minLength":1}]},
+    "sender_signature_algorithm_id":{"oneOf":[{"type":"null"},{"type":"string","minLength":1}]},
+    "require_authenticated_membership_changes":{"const":true},
+    "require_epoch_advance_on_membership_change":{"const":true},
+    "require_removed_member_exclusion":{"const":true},
+    "require_new_member_history_exclusion":{"const":true},
+    "prohibit_server_membership_authorization":{"const":true},
+    "require_device_revocation_rekey":{"const":true},
+    "max_group_devices":{"type":"integer","minimum":2},
+    "max_sender_skipped_message_keys":{"oneOf":[{"type":"null"},{"type":"integer","minimum":0}]},
+    "notes":{"type":"string"}
+  }
+}
