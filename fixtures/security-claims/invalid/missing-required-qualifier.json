@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1",
+  "property_id": "SP-POST-COMPROMISE-SECURITY",
+  "state": "provided",
+  "scope": "Invalid PCS example",
+  "assets": ["future message plaintext"],
+  "threat_ids": ["TM-ENDPOINT-STATE"],
+  "composite_scenario_ids": [],
+  "temporal_phases": ["post-healing"],
+  "assumptions": [],
+  "limitations": [],
+  "conditions": []
+}
