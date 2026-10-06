@@ -1,0 +1,37 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/group-protocol-registry.schema.json",
+  "title":"E2EESA group protocol registry",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","registry_version","standard_version","protocols","mls_cipher_suites"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "registry_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "standard_version":{"type":"string","minLength":1},
+    "protocols":{"type":"array","minItems":1,"items":{
+      "type":"object","additionalProperties":false,
+      "required":["id","name","status","architecture","specification","reference_uri","security_notes"],
+      "properties":{
+        "id":{"type":"string","pattern":"^GROUP-[A-Z0-9-]+$"},
+        "name":{"type":"string","minLength":1},
+        "status":{"enum":["recommended","allowed","provisional","experimental","legacy","deprecated","prohibited"]},
+        "architecture":{"enum":["tree-group-key-agreement","sender-key","pairwise-fanout"]},
+        "specification":{"type":"string","minLength":1},
+        "reference_uri":{"type":"string","pattern":"^https://"},
+        "security_notes":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}}
+      }
+    }},
+    "mls_cipher_suites":{"type":"array","minItems":1,"items":{
+      "type":"object","additionalProperties":false,
+      "required":["id","name","status","specification","reference_uri"],
+      "properties":{
+        "id":{"type":"string","pattern":"^0x[0-9A-Fa-f]{4}$"},
+        "name":{"type":"string","minLength":1},
+        "status":{"enum":["recommended","allowed","provisional","experimental","legacy","deprecated","prohibited"]},
+        "specification":{"type":"string","minLength":1},
+        "reference_uri":{"type":"string","pattern":"^https://"}
+      }
+    }}
+  }
+}
