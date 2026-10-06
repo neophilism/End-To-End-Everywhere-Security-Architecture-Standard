@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "identity_id": "bob",
+  "identity_profile_ref": "identity-account-root@0.1.0",
+  "account_root_key_fingerprint": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "active_devices": [
+    {
+      "device_id": "bob-phone",
+      "key_generation": 1,
+      "signing_key_fingerprint": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "agreement_key_fingerprint": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "device_id": "bob-laptop",
+      "key_generation": 1,
+      "signing_key_fingerprint": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "agreement_key_fingerprint": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    }
+  ]
+}
