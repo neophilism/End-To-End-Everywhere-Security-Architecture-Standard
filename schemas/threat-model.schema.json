@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/threat-model.schema.json",
+  "title": "E2EESA Threat Model Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "threats", "composite_scenarios"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "threats": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "category", "description", "capabilities"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^TM-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+          },
+          "name": {"type": "string", "minLength": 1},
+          "category": {
+            "type": "string",
+            "enum": ["network", "service", "identity", "endpoint", "physical", "insider", "software-supply-chain", "recovery", "storage", "hardware", "directory", "metadata", "availability", "state", "cryptographic-environment", "quantum"]
+          },
+          "description": {"type": "string", "minLength": 1},
+          "capabilities": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "composite_scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "threat_ids", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CS-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+          },
+          "name": {"type": "string", "minLength": 1},
+          "threat_ids": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "pattern": "^TM-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+            },
+            "uniqueItems": true
+          },
+          "description": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
