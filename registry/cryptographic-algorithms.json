@@ -502,7 +502,7 @@
     {
       "id": "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
       "name": "HPKE X25519 / HKDF-SHA256 / AES-128-GCM",
-      "status": "recommended",
+      "status": "allowed",
       "protocol": "HPKE",
       "specification": "RFC 9180",
       "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
@@ -514,7 +514,7 @@
       "constraints": [
         "HPKE mode, authentication semantics, associated data, and application context MUST be selected by the consuming profile."
       ],
-      "notes": "Standardized HPKE suite assembled only from registry-approved components."
+      "notes": "Standardized HPKE suite assembled only from registry-approved components. Lifecycle is allowed because AES-128-GCM is an allowed, rather than recommended, registry component."
     },
     {
       "id": "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
