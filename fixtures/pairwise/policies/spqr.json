@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "protocol_registry_version": "0.1.0",
+  "ec_algorithm_id": "ALG-X25519",
+  "kdf_algorithm_id": "ALG-HKDF-SHA256",
+  "aead_algorithm_id": "ALG-CHACHA20-POLY1305",
+  "application_info": "E2EESA-PW-01",
+  "require_identity_binding": true,
+  "require_associated_data_identity_binding": true,
+  "require_one_time_prekey_when_available": true,
+  "require_replay_protection": true,
+  "require_message_key_deletion": true,
+  "require_old_ratchet_state_deletion": true,
+  "max_skipped_message_keys": 2000,
+  "policy_id": "pairwise-spqr",
+  "profile_ref": "pairwise-pqxdh-spqr@0.1.0",
+  "initialization_protocol_id": "PROTO-PQXDH-R3-2024",
+  "ratchet_protocol_id": "PROTO-SPQR-MLKEM-BRAID-R4",
+  "pq_kem_algorithm_id": "ALG-ML-KEM-768"
+}

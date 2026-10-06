@@ -17,6 +17,7 @@ import profile_engine
 import crypto_registry
 import negotiation_engine
 import identity_device_engine
+import pairwise_session_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -32,6 +33,8 @@ REQUIRED_PATHS = [
     "spec/cryptographic-registry.md",
     "spec/negotiation-downgrade.md",
     "spec/identity-device-architecture.md",
+    "spec/pairwise-e2ee.md",
+    "adr/0005-pairwise-e2ee-profiles.md",
     "adr/0004-identity-device-architecture.md",
     "adr/0000-template.md",
     "profiles/README.md",
@@ -48,20 +51,29 @@ REQUIRED_PATHS = [
     "schemas/identity-policy.schema.json",
     "schemas/identity-state.schema.json",
     "schemas/identity-event.schema.json",
+    "schemas/pairwise-protocol-registry.schema.json",
+    "schemas/pairwise-policy.schema.json",
+    "schemas/pairwise-handshake-evidence.schema.json",
+    "schemas/pairwise-message-checkpoint.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
     "registry/cryptographic-algorithms.json",
+    "registry/pairwise-protocols.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
     "scripts/negotiation_engine.py",
     "scripts/identity_device_engine.py",
+    "scripts/pairwise_session_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
     "fixtures/identity/states/cross-signing.json",
     "fixtures/identity/valid/cross-sign-enroll.json",
+    "fixtures/pairwise/policies/triple.json",
+    "fixtures/pairwise/handshakes/valid/triple.json",
+    "fixtures/pairwise/checkpoints/valid/triple.json",
 ]
 
 VALID_STATUSES = {
@@ -754,6 +766,10 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/identity-policy.schema.json",
         "schemas/identity-state.schema.json",
         "schemas/identity-event.schema.json",
+        "schemas/pairwise-protocol-registry.schema.json",
+        "schemas/pairwise-policy.schema.json",
+        "schemas/pairwise-handshake-evidence.schema.json",
+        "schemas/pairwise-message-checkpoint.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -904,6 +920,24 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in identity_spec:
                 errors.append(f"identity-device-architecture.md missing required marker: {required_text}")
 
+    pairwise_spec_path = root / "spec/pairwise-e2ee.md"
+    if pairwise_spec_path.is_file():
+        pairwise_spec = pairwise_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Scope and invariant",
+            "## 4. Prekey publication and verification",
+            "pairwise-x3dh-double-ratchet@0.1.0",
+            "pairwise-pqxdh-double-ratchet@0.1.0",
+            "pairwise-pqxdh-spqr@0.1.0",
+            "pairwise-pqxdh-triple-ratchet@0.1.0",
+            "## 13. Downgrade resistance",
+            "## 15. Conformance evidence",
+            "SP-PQ-AUTHENTICATION",
+        ):
+            if required_text not in pairwise_spec:
+                errors.append(f"pairwise-e2ee.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -921,6 +955,26 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             profile_engine.validate_catalog(
                 profile_catalog,
                 known_property_ids=known_property_ids_for_catalog,
+            )
+        )
+
+    pairwise_protocol_registry_path = root / "registry/pairwise-protocols.json"
+    pairwise_protocol_registry = (
+        load_json(pairwise_protocol_registry_path)
+        if pairwise_protocol_registry_path.is_file()
+        else {}
+    )
+    if pairwise_protocol_registry:
+        known_pairwise_property_ids = {
+            prop.get("id")
+            for prop in property_registry.get("properties", [])
+            if isinstance(prop, dict) and isinstance(prop.get("id"), str)
+        }
+        errors.extend(
+            pairwise_session_engine.validate_protocol_registry(
+                pairwise_protocol_registry,
+                known_property_ids=known_pairwise_property_ids,
+                source="registry/pairwise-protocols.json",
             )
         )
 
@@ -995,6 +1049,83 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 errors.append(f"fixtures/identity/{event_rel}: valid identity transition failed: " + "; ".join(result))
             if not should_pass and not result:
                 errors.append(f"fixtures/identity/{event_rel}: invalid identity transition unexpectedly passed")
+
+    if pairwise_protocol_registry and crypto_registry_data and profile_catalog:
+        pairwise_policy_names = ("classical", "pq-init", "spqr", "triple")
+        for name in pairwise_policy_names:
+            policy_path = root / "fixtures/pairwise/policies" / f"{name}.json"
+            handshake_path = root / "fixtures/pairwise/handshakes/valid" / f"{name}.json"
+            checkpoint_path = root / "fixtures/pairwise/checkpoints/valid" / f"{name}.json"
+            if not (policy_path.is_file() and handshake_path.is_file() and checkpoint_path.is_file()):
+                errors.append(f"missing valid pairwise fixture set: {name}")
+                continue
+            result = pairwise_session_engine.validate_pairwise_case(
+                load_json(policy_path),
+                load_json(handshake_path),
+                load_json(checkpoint_path),
+                pairwise_protocol_registry,
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid pairwise fixture set {name} failed: " + "; ".join(result)
+                )
+
+        for invalid_policy_name in (
+            "invalid-classical-pq-kem",
+            "invalid-triple-downgrade",
+        ):
+            path = root / "fixtures/pairwise/policies" / f"{invalid_policy_name}.json"
+            if path.is_file():
+                result = pairwise_session_engine.validate_policy(
+                    load_json(path),
+                    pairwise_protocol_registry,
+                    crypto_registry_data,
+                    profile_catalog,
+                )
+                if not result:
+                    errors.append(
+                        f"fixtures/pairwise/policies/{invalid_policy_name}.json: "
+                        "invalid policy unexpectedly passed"
+                    )
+
+        invalid_handshake_cases = (
+            ("triple", "replay"),
+            ("triple", "one-time-not-consumed"),
+            ("triple", "pq-prekey-unverified"),
+            ("classical", "classical-pq-fields"),
+        )
+        for policy_name, fixture_name in invalid_handshake_cases:
+            path = root / "fixtures/pairwise/handshakes/invalid" / f"{fixture_name}.json"
+            if path.is_file():
+                result = pairwise_session_engine.validate_handshake_evidence(
+                    load_json(root / "fixtures/pairwise/policies" / f"{policy_name}.json"),
+                    load_json(path),
+                )
+                if not result:
+                    errors.append(
+                        f"fixtures/pairwise/handshakes/invalid/{fixture_name}.json: "
+                        "invalid handshake unexpectedly passed"
+                    )
+
+        for fixture_name in (
+            "message-key-not-deleted",
+            "triple-pq-component-off",
+            "skipped-bound-exceeded",
+            "replay",
+        ):
+            path = root / "fixtures/pairwise/checkpoints/invalid" / f"{fixture_name}.json"
+            if path.is_file():
+                result = pairwise_session_engine.validate_message_checkpoint(
+                    load_json(root / "fixtures/pairwise/policies/triple.json"),
+                    load_json(path),
+                )
+                if not result:
+                    errors.append(
+                        f"fixtures/pairwise/checkpoints/invalid/{fixture_name}.json: "
+                        "invalid checkpoint unexpectedly passed"
+                    )
 
     known_property_ids = {
         prop.get("id")
