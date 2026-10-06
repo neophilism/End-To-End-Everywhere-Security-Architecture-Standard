@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "group_id": "group-alpha",
+  "profile_ref": "group-mls-rfc9420@0.1.0",
+  "epoch": 8,
+  "message_id": "group-message-server-plaintext",
+  "sender_device_id": "alice-phone",
+  "current_member_device_ids": [
+    "alice-phone",
+    "bob-phone",
+    "carol-phone"
+  ],
+  "recipient_device_ids": [
+    "bob-phone",
+    "carol-phone"
+  ],
+  "replay_status": "fresh",
+  "authenticated": true,
+  "server_plaintext_access": true,
+  "ciphertext_count": 1,
+  "mls_application_message": true,
+  "sender_chain_advanced": false,
+  "sender_message_key_deleted": false,
+  "sender_signature_verified": false,
+  "skipped_sender_message_keys_retained": 0,
+  "all_pairwise_sessions_valid": false
+}
