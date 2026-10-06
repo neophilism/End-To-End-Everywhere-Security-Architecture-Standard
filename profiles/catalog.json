@@ -19,6 +19,12 @@
       "name": "Example add-ons",
       "cardinality": "many",
       "description": "Illustrative independently composable capability family."
+    },
+    {
+      "family_id": "identity-architecture",
+      "name": "Identity and device authorization architecture",
+      "cardinality": "at-most-one",
+      "description": "Versioned alternatives for authorizing devices that can receive end-to-end protected content. Product conformance requires one when identity/device management is in scope."
     }
   ],
   "profiles": [
@@ -29,7 +35,11 @@
       "family_id": "foundation",
       "status": "recommended",
       "decision_class": "invariant",
-      "security_properties": ["SP-CONFIDENTIALITY", "SP-INTEGRITY", "SP-DOWNGRADE-RESISTANCE"],
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Resolver fixture only; not a production cryptographic architecture."
@@ -41,7 +51,9 @@
       "family_id": "example-architecture",
       "status": "recommended",
       "decision_class": "profile-choice",
-      "security_properties": ["SP-CONFIDENTIALITY"],
+      "security_properties": [
+        "SP-CONFIDENTIALITY"
+      ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Illustrative profile only."
@@ -53,7 +65,9 @@
       "family_id": "example-architecture",
       "status": "allowed",
       "decision_class": "profile-choice",
-      "security_properties": ["SP-CONFIDENTIALITY"],
+      "security_properties": [
+        "SP-CONFIDENTIALITY"
+      ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Illustrative profile only."
@@ -65,7 +79,10 @@
       "family_id": "example-architecture",
       "status": "provisional",
       "decision_class": "profile-choice",
-      "security_properties": ["SP-CONFIDENTIALITY", "SP-KEY-CONSISTENCY"],
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-KEY-CONSISTENCY"
+      ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Illustrates exact version pinning and provisional opt-in."
@@ -77,8 +94,12 @@
       "family_id": "example-addons",
       "status": "allowed",
       "decision_class": "capability",
-      "security_properties": ["SP-REPLAY-RESISTANCE"],
-      "requires_profile_refs": ["example-choice-a@0.1.0"],
+      "security_properties": [
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [
+        "example-choice-a@0.1.0"
+      ],
       "incompatible_profile_refs": [],
       "notes": "Illustrates deterministic dependency expansion."
     },
@@ -89,9 +110,13 @@
       "family_id": "example-addons",
       "status": "allowed",
       "decision_class": "capability",
-      "security_properties": ["SP-ROLLBACK-RESISTANCE"],
+      "security_properties": [
+        "SP-ROLLBACK-RESISTANCE"
+      ],
       "requires_profile_refs": [],
-      "incompatible_profile_refs": ["example-choice-a@0.1.0"],
+      "incompatible_profile_refs": [
+        "example-choice-a@0.1.0"
+      ],
       "notes": "Illustrates symmetric incompatibility semantics from a one-sided declaration."
     },
     {
@@ -101,7 +126,9 @@
       "family_id": "example-addons",
       "status": "experimental",
       "decision_class": "experimental",
-      "security_properties": ["SP-METADATA-MINIMIZATION"],
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Illustrates explicit experimental opt-in."
@@ -117,6 +144,63 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Illustrates a profile that can exist historically in the catalog but can never resolve as conformant."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "identity-account-root",
+      "profile_version": "0.1.0",
+      "family_id": "identity-architecture",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "identity-device-cross-signing@0.1.0",
+        "identity-threshold-quorum@0.1.0"
+      ],
+      "notes": "Stable client-controlled account cryptographic root authorizes device enrollment, rotation, and revocation."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "identity-device-cross-signing",
+      "profile_version": "0.1.0",
+      "family_id": "identity-architecture",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "identity-account-root@0.1.0",
+        "identity-threshold-quorum@0.1.0"
+      ],
+      "notes": "Existing active devices authorize device-set changes without a separate persistent account-root signing key."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "identity-threshold-quorum",
+      "profile_version": "0.1.0",
+      "family_id": "identity-architecture",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "identity-account-root@0.1.0",
+        "identity-device-cross-signing@0.1.0"
+      ],
+      "notes": "A strict majority of eligible active devices authorizes device-set changes."
     }
   ]
 }
