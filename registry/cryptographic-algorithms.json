@@ -1,0 +1,571 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "algorithms": [
+    {
+      "id": "ALG-X25519",
+      "name": "X25519",
+      "category": "key-agreement",
+      "status": "recommended",
+      "specification": "RFC 7748",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc7748.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "ephemeral key agreement",
+        "profile-authorized static key agreement"
+      ],
+      "constraints": [
+        "A consuming protocol MUST define public-key handling, transcript binding, and contributory-behavior requirements.",
+        "X25519 alone does not authenticate a peer."
+      ]
+    },
+    {
+      "id": "ALG-ECDH-P256",
+      "name": "ECDH over NIST P-256",
+      "category": "key-agreement",
+      "status": "allowed",
+      "specification": "NIST SP 800-56A Rev. 3",
+      "reference_uri": "https://csrc.nist.gov/pubs/sp/800/56/a/r3/final",
+      "pq_characteristic": "classical",
+      "uses": [
+        "ephemeral key agreement",
+        "interoperability"
+      ],
+      "constraints": [
+        "A consuming protocol MUST define point validation, key confirmation where required, and transcript binding."
+      ]
+    },
+    {
+      "id": "ALG-ECDH-P384",
+      "name": "ECDH over NIST P-384",
+      "category": "key-agreement",
+      "status": "allowed",
+      "specification": "NIST SP 800-56A Rev. 3",
+      "reference_uri": "https://csrc.nist.gov/pubs/sp/800/56/a/r3/final",
+      "pq_characteristic": "classical",
+      "uses": [
+        "ephemeral key agreement",
+        "higher classical security margin",
+        "interoperability"
+      ],
+      "constraints": [
+        "A consuming protocol MUST define point validation, key confirmation where required, and transcript binding."
+      ]
+    },
+    {
+      "id": "ALG-HPKE-DHKEM-X25519-HKDF-SHA256",
+      "name": "HPKE DHKEM(X25519, HKDF-SHA256)",
+      "category": "kem",
+      "status": "recommended",
+      "specification": "RFC 9180 KEM 0x0020",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "HPKE"
+      ],
+      "constraints": [
+        "MUST be used with HPKE semantics rather than treated as raw X25519 key agreement."
+      ]
+    },
+    {
+      "id": "ALG-HPKE-DHKEM-P256-HKDF-SHA256",
+      "name": "HPKE DHKEM(P-256, HKDF-SHA256)",
+      "category": "kem",
+      "status": "allowed",
+      "specification": "RFC 9180 KEM 0x0010",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "HPKE",
+        "interoperability"
+      ],
+      "constraints": [
+        "MUST be used with HPKE semantics and the P-256 encoding defined by RFC 9180."
+      ]
+    },
+    {
+      "id": "ALG-HPKE-DHKEM-P384-HKDF-SHA384",
+      "name": "HPKE DHKEM(P-384, HKDF-SHA384)",
+      "category": "kem",
+      "status": "allowed",
+      "specification": "RFC 9180 KEM 0x0011",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "HPKE",
+        "higher classical security margin"
+      ],
+      "constraints": [
+        "MUST be used with HPKE semantics and the P-384 encoding defined by RFC 9180."
+      ]
+    },
+    {
+      "id": "ALG-ML-KEM-512",
+      "name": "ML-KEM-512",
+      "category": "kem",
+      "status": "allowed",
+      "specification": "FIPS 203",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/203/final",
+      "pq_characteristic": "post-quantum",
+      "uses": [
+        "post-quantum key establishment"
+      ],
+      "constraints": [
+        "A consuming profile MUST define protocol binding, key-combination rules when hybridized, and exact FIPS 203 behavior including applicable errata."
+      ]
+    },
+    {
+      "id": "ALG-ML-KEM-768",
+      "name": "ML-KEM-768",
+      "category": "kem",
+      "status": "recommended",
+      "specification": "FIPS 203",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/203/final",
+      "pq_characteristic": "post-quantum",
+      "uses": [
+        "post-quantum key establishment"
+      ],
+      "constraints": [
+        "A consuming profile MUST define protocol binding, key-combination rules when hybridized, and exact FIPS 203 behavior including applicable errata."
+      ]
+    },
+    {
+      "id": "ALG-ML-KEM-1024",
+      "name": "ML-KEM-1024",
+      "category": "kem",
+      "status": "allowed",
+      "specification": "FIPS 203",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/203/final",
+      "pq_characteristic": "post-quantum",
+      "uses": [
+        "post-quantum key establishment",
+        "higher post-quantum security margin"
+      ],
+      "constraints": [
+        "A consuming profile MUST define protocol binding, key-combination rules when hybridized, and exact FIPS 203 behavior including applicable errata."
+      ]
+    },
+    {
+      "id": "ALG-ED25519",
+      "name": "Ed25519",
+      "category": "signature",
+      "status": "recommended",
+      "specification": "RFC 8032",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc8032.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "digital signatures",
+        "identity authentication",
+        "software signing when profile-authorized"
+      ],
+      "constraints": [
+        "A consuming profile MUST define signature context, key identity, serialization, and domain separation requirements."
+      ]
+    },
+    {
+      "id": "ALG-ED448",
+      "name": "Ed448",
+      "category": "signature",
+      "status": "allowed",
+      "specification": "RFC 8032",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc8032.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "digital signatures",
+        "higher classical security margin"
+      ],
+      "constraints": [
+        "A consuming profile MUST define signature context, key identity, serialization, and domain separation requirements."
+      ]
+    },
+    {
+      "id": "ALG-ECDSA-P256-SHA256",
+      "name": "ECDSA P-256 with SHA-256",
+      "category": "signature",
+      "status": "allowed",
+      "specification": "FIPS 186-5",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/186-5/final",
+      "pq_characteristic": "classical",
+      "uses": [
+        "digital signatures",
+        "interoperability"
+      ],
+      "constraints": [
+        "Nonce generation, key validation, encoding, and signature malleability handling MUST be defined by the consuming profile."
+      ]
+    },
+    {
+      "id": "ALG-ECDSA-P384-SHA384",
+      "name": "ECDSA P-384 with SHA-384",
+      "category": "signature",
+      "status": "allowed",
+      "specification": "FIPS 186-5",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/186-5/final",
+      "pq_characteristic": "classical",
+      "uses": [
+        "digital signatures",
+        "higher classical security margin",
+        "interoperability"
+      ],
+      "constraints": [
+        "Nonce generation, key validation, encoding, and signature malleability handling MUST be defined by the consuming profile."
+      ]
+    },
+    {
+      "id": "ALG-ML-DSA-44",
+      "name": "ML-DSA-44",
+      "category": "signature",
+      "status": "allowed",
+      "specification": "FIPS 204",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/204/final",
+      "pq_characteristic": "post-quantum",
+      "uses": [
+        "post-quantum digital signatures"
+      ],
+      "constraints": [
+        "A consuming profile MUST define exact signature context and account for applicable FIPS 204 errata."
+      ]
+    },
+    {
+      "id": "ALG-ML-DSA-65",
+      "name": "ML-DSA-65",
+      "category": "signature",
+      "status": "recommended",
+      "specification": "FIPS 204",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/204/final",
+      "pq_characteristic": "post-quantum",
+      "uses": [
+        "post-quantum digital signatures"
+      ],
+      "constraints": [
+        "A consuming profile MUST define exact signature context and account for applicable FIPS 204 errata."
+      ]
+    },
+    {
+      "id": "ALG-ML-DSA-87",
+      "name": "ML-DSA-87",
+      "category": "signature",
+      "status": "allowed",
+      "specification": "FIPS 204",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/204/final",
+      "pq_characteristic": "post-quantum",
+      "uses": [
+        "post-quantum digital signatures",
+        "higher post-quantum security margin"
+      ],
+      "constraints": [
+        "A consuming profile MUST define exact signature context and account for applicable FIPS 204 errata."
+      ]
+    },
+    {
+      "id": "ALG-SHA256",
+      "name": "SHA-256",
+      "category": "hash",
+      "status": "recommended",
+      "specification": "FIPS 180-4",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "cryptographic hashing",
+        "transcript hashing",
+        "KDF input where profile-authorized"
+      ],
+      "constraints": [
+        "The consuming construction MUST define domain separation and encoding where relevant."
+      ]
+    },
+    {
+      "id": "ALG-SHA384",
+      "name": "SHA-384",
+      "category": "hash",
+      "status": "recommended",
+      "specification": "FIPS 180-4",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "cryptographic hashing",
+        "transcript hashing",
+        "KDF input where profile-authorized"
+      ],
+      "constraints": [
+        "The consuming construction MUST define domain separation and encoding where relevant."
+      ]
+    },
+    {
+      "id": "ALG-SHA512",
+      "name": "SHA-512",
+      "category": "hash",
+      "status": "recommended",
+      "specification": "FIPS 180-4",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "cryptographic hashing",
+        "transcript hashing",
+        "KDF input where profile-authorized"
+      ],
+      "constraints": [
+        "The consuming construction MUST define domain separation and encoding where relevant."
+      ]
+    },
+    {
+      "id": "ALG-SHA3-256",
+      "name": "SHA3-256",
+      "category": "hash",
+      "status": "allowed",
+      "specification": "FIPS 202",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/202/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "cryptographic hashing",
+        "transcript hashing where profile-authorized"
+      ],
+      "constraints": [
+        "The consuming construction MUST define domain separation and encoding where relevant."
+      ]
+    },
+    {
+      "id": "ALG-SHA3-384",
+      "name": "SHA3-384",
+      "category": "hash",
+      "status": "allowed",
+      "specification": "FIPS 202",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/202/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "cryptographic hashing",
+        "transcript hashing where profile-authorized"
+      ],
+      "constraints": [
+        "The consuming construction MUST define domain separation and encoding where relevant."
+      ]
+    },
+    {
+      "id": "ALG-SHA3-512",
+      "name": "SHA3-512",
+      "category": "hash",
+      "status": "allowed",
+      "specification": "FIPS 202",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/202/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "cryptographic hashing",
+        "transcript hashing where profile-authorized"
+      ],
+      "constraints": [
+        "The consuming construction MUST define domain separation and encoding where relevant."
+      ]
+    },
+    {
+      "id": "ALG-HKDF-SHA256",
+      "name": "HKDF-SHA256",
+      "category": "kdf",
+      "status": "recommended",
+      "specification": "RFC 5869",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc5869.html",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "key derivation",
+        "key schedule"
+      ],
+      "constraints": [
+        "A consuming profile MUST define salt, input keying material, info/domain separation, output lengths, and key-separation rules."
+      ]
+    },
+    {
+      "id": "ALG-HKDF-SHA384",
+      "name": "HKDF-SHA384",
+      "category": "kdf",
+      "status": "recommended",
+      "specification": "RFC 5869",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc5869.html",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "key derivation",
+        "key schedule"
+      ],
+      "constraints": [
+        "A consuming profile MUST define salt, input keying material, info/domain separation, output lengths, and key-separation rules."
+      ]
+    },
+    {
+      "id": "ALG-HKDF-SHA512",
+      "name": "HKDF-SHA512",
+      "category": "kdf",
+      "status": "allowed",
+      "specification": "RFC 5869",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc5869.html",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "key derivation",
+        "key schedule"
+      ],
+      "constraints": [
+        "A consuming profile MUST define salt, input keying material, info/domain separation, output lengths, and key-separation rules."
+      ]
+    },
+    {
+      "id": "ALG-AES-128-GCM",
+      "name": "AES-128-GCM",
+      "category": "aead",
+      "status": "allowed",
+      "specification": "NIST SP 800-38D",
+      "reference_uri": "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "authenticated encryption"
+      ],
+      "constraints": [
+        "Nonce uniqueness requirements MUST be enforced by the consuming protocol; tag truncation is prohibited unless a later profile explicitly analyzes and permits it."
+      ]
+    },
+    {
+      "id": "ALG-AES-256-GCM",
+      "name": "AES-256-GCM",
+      "category": "aead",
+      "status": "recommended",
+      "specification": "NIST SP 800-38D",
+      "reference_uri": "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "authenticated encryption"
+      ],
+      "constraints": [
+        "Nonce uniqueness requirements MUST be enforced by the consuming protocol; tag truncation is prohibited unless a later profile explicitly analyzes and permits it."
+      ]
+    },
+    {
+      "id": "ALG-CHACHA20-POLY1305",
+      "name": "ChaCha20-Poly1305",
+      "category": "aead",
+      "status": "recommended",
+      "specification": "RFC 8439",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc8439.html",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "authenticated encryption"
+      ],
+      "constraints": [
+        "Nonce uniqueness requirements MUST be enforced by the consuming protocol."
+      ]
+    },
+    {
+      "id": "ALG-AES-256-GCM-SIV",
+      "name": "AES-256-GCM-SIV",
+      "category": "aead",
+      "status": "allowed",
+      "specification": "RFC 8452",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc8452.html",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "nonce-misuse-resistant authenticated encryption"
+      ],
+      "constraints": [
+        "MUST NOT be substituted for AES-GCM under the same algorithm identifier or wire format; consuming profiles MUST explicitly select it."
+      ]
+    },
+    {
+      "id": "ALG-MD5",
+      "name": "MD5",
+      "category": "hash",
+      "status": "prohibited",
+      "status_reason": "Cryptographically broken collision resistance and unsuitable for E2EESA security claims.",
+      "specification": "RFC 1321 (historical)",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc1321.html",
+      "pq_characteristic": "classical",
+      "uses": [
+        "historical parsing only"
+      ],
+      "constraints": [
+        "MUST NOT be used to provide a cryptographic security property in a conformant E2EESA configuration."
+      ]
+    },
+    {
+      "id": "ALG-SHA1",
+      "name": "SHA-1",
+      "category": "hash",
+      "status": "prohibited",
+      "status_reason": "Collision resistance is insufficient for new E2EESA cryptographic constructions.",
+      "specification": "FIPS 180-4 historical algorithm",
+      "reference_uri": "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+      "pq_characteristic": "classical",
+      "uses": [
+        "historical parsing only"
+      ],
+      "constraints": [
+        "MUST NOT be used to provide a cryptographic security property in a conformant E2EESA configuration."
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
+      "name": "HPKE X25519 / HKDF-SHA256 / AES-128-GCM",
+      "status": "recommended",
+      "protocol": "HPKE",
+      "specification": "RFC 9180",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "algorithm_ids": [
+        "ALG-HPKE-DHKEM-X25519-HKDF-SHA256",
+        "ALG-HKDF-SHA256",
+        "ALG-AES-128-GCM"
+      ],
+      "constraints": [
+        "HPKE mode, authentication semantics, associated data, and application context MUST be selected by the consuming profile."
+      ],
+      "notes": "Standardized HPKE suite assembled only from registry-approved components."
+    },
+    {
+      "id": "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
+      "name": "HPKE X25519 / HKDF-SHA256 / ChaCha20-Poly1305",
+      "status": "recommended",
+      "protocol": "HPKE",
+      "specification": "RFC 9180",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "algorithm_ids": [
+        "ALG-HPKE-DHKEM-X25519-HKDF-SHA256",
+        "ALG-HKDF-SHA256",
+        "ALG-CHACHA20-POLY1305"
+      ],
+      "constraints": [
+        "HPKE mode, authentication semantics, associated data, and application context MUST be selected by the consuming profile."
+      ],
+      "notes": "Software-friendly HPKE suite."
+    },
+    {
+      "id": "SUITE-HPKE-P256-HKDF-SHA256-AES128GCM",
+      "name": "HPKE P-256 / HKDF-SHA256 / AES-128-GCM",
+      "status": "allowed",
+      "protocol": "HPKE",
+      "specification": "RFC 9180",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "algorithm_ids": [
+        "ALG-HPKE-DHKEM-P256-HKDF-SHA256",
+        "ALG-HKDF-SHA256",
+        "ALG-AES-128-GCM"
+      ],
+      "constraints": [
+        "HPKE mode, authentication semantics, associated data, and application context MUST be selected by the consuming profile."
+      ],
+      "notes": "Interoperability-oriented HPKE alternative."
+    },
+    {
+      "id": "SUITE-HPKE-P384-HKDF-SHA384-AES256GCM",
+      "name": "HPKE P-384 / HKDF-SHA384 / AES-256-GCM",
+      "status": "allowed",
+      "protocol": "HPKE",
+      "specification": "RFC 9180",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9180.html",
+      "algorithm_ids": [
+        "ALG-HPKE-DHKEM-P384-HKDF-SHA384",
+        "ALG-HKDF-SHA384",
+        "ALG-AES-256-GCM"
+      ],
+      "constraints": [
+        "HPKE mode, authentication semantics, associated data, and application context MUST be selected by the consuming profile."
+      ],
+      "notes": "Higher classical security-margin HPKE alternative."
+    }
+  ]
+}
