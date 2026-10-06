@@ -16,6 +16,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 import profile_engine
 import crypto_registry
 import negotiation_engine
+import identity_device_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -30,6 +31,8 @@ REQUIRED_PATHS = [
     "spec/profile-configuration.md",
     "spec/cryptographic-registry.md",
     "spec/negotiation-downgrade.md",
+    "spec/identity-device-architecture.md",
+    "adr/0004-identity-device-architecture.md",
     "adr/0000-template.md",
     "profiles/README.md",
     "schemas/profile.schema.json",
@@ -42,6 +45,9 @@ REQUIRED_PATHS = [
     "schemas/cryptographic-algorithm-registry.schema.json",
     "schemas/negotiation-policy.schema.json",
     "schemas/negotiation-evidence.schema.json",
+    "schemas/identity-policy.schema.json",
+    "schemas/identity-state.schema.json",
+    "schemas/identity-event.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -50,8 +56,12 @@ REQUIRED_PATHS = [
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
     "scripts/negotiation_engine.py",
+    "scripts/identity_device_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
+    "fixtures/identity/policies/cross-signing.json",
+    "fixtures/identity/states/cross-signing.json",
+    "fixtures/identity/valid/cross-sign-enroll.json",
 ]
 
 VALID_STATUSES = {
@@ -741,6 +751,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/cryptographic-algorithm-registry.schema.json",
         "schemas/negotiation-policy.schema.json",
         "schemas/negotiation-evidence.schema.json",
+        "schemas/identity-policy.schema.json",
+        "schemas/identity-state.schema.json",
+        "schemas/identity-event.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -874,6 +887,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in negotiation_spec:
                 errors.append(f"negotiation-downgrade.md missing required marker: {required_text}")
 
+    identity_spec_path = root / "spec/identity-device-architecture.md"
+    if identity_spec_path.is_file():
+        identity_spec = identity_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Core invariant",
+            "## 4. Enrollment",
+            "## 5. Key rotation",
+            "## 6. Revocation",
+            "identity-account-root@0.1.0",
+            "identity-device-cross-signing@0.1.0",
+            "identity-threshold-quorum@0.1.0",
+            "## 14. Conformance",
+        ):
+            if required_text not in identity_spec:
+                errors.append(f"identity-device-architecture.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -934,6 +964,37 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 errors.append(
                     f"{path.relative_to(root)}: invalid negotiation evidence unexpectedly passed validation"
                 )
+
+    identity_cases = [
+        ("account-root", "account-root", "valid/account-root-enroll.json", True),
+        ("cross-signing", "cross-signing", "valid/cross-sign-enroll.json", True),
+        ("cross-signing", "cross-signing", "valid/cross-sign-rotate.json", True),
+        ("threshold", "threshold", "valid/threshold-enroll.json", True),
+        ("cross-signing", "cross-signing", "invalid/server-only.json", False),
+        ("cross-signing", "cross-signing", "invalid/stale-state-hash.json", False),
+        ("threshold", "threshold", "invalid/insufficient-threshold.json", False),
+        ("cross-signing", "cross-signing", "invalid/key-reuse.json", False),
+        ("cross-signing", "cross-signing", "invalid/unknown-authorizer.json", False),
+    ]
+    if crypto_registry_data and profile_catalog:
+        for policy_name, state_name, event_rel, should_pass in identity_cases:
+            policy_path = root / "fixtures/identity/policies" / f"{policy_name}.json"
+            state_path = root / "fixtures/identity/states" / f"{state_name}.json"
+            event_path = root / "fixtures/identity" / event_rel
+            if not (policy_path.is_file() and state_path.is_file() and event_path.is_file()):
+                errors.append(f"missing identity fixture for {event_rel}")
+                continue
+            result = identity_device_engine.validate_transition(
+                load_json(policy_path),
+                load_json(state_path),
+                load_json(event_path),
+                profile_catalog,
+                crypto_registry_data,
+            )
+            if should_pass and result:
+                errors.append(f"fixtures/identity/{event_rel}: valid identity transition failed: " + "; ".join(result))
+            if not should_pass and not result:
+                errors.append(f"fixtures/identity/{event_rel}: invalid identity transition unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")

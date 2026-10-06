@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "threshold-policy",
+  "profile_ref": "identity-threshold-quorum@0.1.0",
+  "require_state_hash_binding": true,
+  "require_monotonic_sequence": true,
+  "prohibit_server_authorization": true
+}

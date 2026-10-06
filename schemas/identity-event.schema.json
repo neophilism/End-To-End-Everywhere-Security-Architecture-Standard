@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/identity-event.schema.json",
+  "title":"E2EESA identity and device transition event",
+  "type":"object",
+  "additionalProperties":false,
+  "$defs":{
+    "key":{"type":"object","additionalProperties":false,"required":["key_id","algorithm_id","public_key_fingerprint"],"properties":{"key_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"algorithm_id":{"type":"string","minLength":1},"public_key_fingerprint":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}}},
+    "authorizer":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"enum":["device","account-root","server"]},"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}}}
+  },
+  "required":["schema_version","event_id","identity_id","sequence","previous_state_hash","event_type","subject_device_id","verified_authorizers"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "event_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "identity_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "sequence":{"type":"integer","minimum":1},
+    "previous_state_hash":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "event_type":{"enum":["enroll","rotate","revoke"]},
+    "subject_device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "verified_authorizers":{"type":"array","minItems":1,"items":{"$ref":"#/$defs/authorizer"}},
+    "new_key_generation":{"type":"integer","minimum":1},
+    "new_signing_key":{"$ref":"#/$defs/key"},
+    "new_agreement_key":{"$ref":"#/$defs/key"}
+  }
+}

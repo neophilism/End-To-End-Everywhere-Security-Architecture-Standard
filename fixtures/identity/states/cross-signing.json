@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1",
+  "identity_id": "alice",
+  "sequence": 1,
+  "account_root_key": null,
+  "devices": [
+    {
+      "device_id": "device-a",
+      "status": "active",
+      "key_generation": 1,
+      "signing_key": {
+        "key_id": "device-a-sign-1",
+        "algorithm_id": "ALG-ED25519",
+        "public_key_fingerprint": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "agreement_key": {
+        "key_id": "device-a-agree-1",
+        "algorithm_id": "ALG-X25519",
+        "public_key_fingerprint": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  ],
+  "retired_key_ids": []
+}

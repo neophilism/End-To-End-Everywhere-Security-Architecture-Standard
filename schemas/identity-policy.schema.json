@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/identity-policy.schema.json",
+  "title": "E2EESA identity and device policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","policy_id","profile_ref","require_state_hash_binding","require_monotonic_sequence","prohibit_server_authorization"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "policy_id": {"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref": {"type":"string","pattern":"^identity-(?:account-root|device-cross-signing|threshold-quorum)@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "require_state_hash_binding": {"const": true},
+    "require_monotonic_sequence": {"const": true},
+    "prohibit_server_authorization": {"const": true},
+    "account_root_key_id": {"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "notes": {"type":"string"}
+  }
+}

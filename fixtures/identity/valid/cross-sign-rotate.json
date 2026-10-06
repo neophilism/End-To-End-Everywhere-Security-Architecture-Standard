@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "event_id": "event-cross-sign-rotate",
+  "identity_id": "alice",
+  "sequence": 2,
+  "previous_state_hash": "f58c5c9e39d20a256f8e32c8729b930fd76631cea0f366b01856f5dbb4098919",
+  "event_type": "rotate",
+  "subject_device_id": "device-a",
+  "verified_authorizers": [
+    {
+      "type": "device",
+      "id": "device-a"
+    }
+  ],
+  "new_key_generation": 2,
+  "new_signing_key": {
+    "key_id": "device-a-sign-2",
+    "algorithm_id": "ALG-ED25519",
+    "public_key_fingerprint": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "new_agreement_key": {
+    "key_id": "device-a-agree-2",
+    "algorithm_id": "ALG-X25519",
+    "public_key_fingerprint": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  }
+}

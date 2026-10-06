@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "event_id": "event-account-root-enroll",
+  "identity_id": "alice",
+  "sequence": 2,
+  "previous_state_hash": "014552cd2f362f61f7612d7228899fa493c1ecf009f56bed3136aaf3e325609b",
+  "event_type": "enroll",
+  "subject_device_id": "device-b",
+  "verified_authorizers": [
+    {
+      "type": "account-root",
+      "id": "root-signing-1"
+    }
+  ],
+  "new_key_generation": 1,
+  "new_signing_key": {
+    "key_id": "device-b-sign-1",
+    "algorithm_id": "ALG-ED25519",
+    "public_key_fingerprint": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "new_agreement_key": {
+    "key_id": "device-b-agree-1",
+    "algorithm_id": "ALG-X25519",
+    "public_key_fingerprint": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  }
+}
