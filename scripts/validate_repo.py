@@ -9,6 +9,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+import profile_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -20,6 +25,7 @@ REQUIRED_PATHS = [
     "spec/terminology.md",
     "spec/threat-model.md",
     "spec/security-properties.md",
+    "spec/profile-configuration.md",
     "adr/0000-template.md",
     "profiles/README.md",
     "schemas/profile.schema.json",
@@ -27,9 +33,13 @@ REQUIRED_PATHS = [
     "schemas/threat-model.schema.json",
     "schemas/security-properties.schema.json",
     "schemas/security-property-claim.schema.json",
+    "schemas/profile-catalog.schema.json",
+    "schemas/configuration.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
+    "profiles/catalog.json",
+    "scripts/profile_engine.py",
 ]
 
 VALID_STATUSES = {
@@ -189,9 +199,12 @@ def validate_profile(
         "schema_version",
         "profile_id",
         "profile_version",
+        "family_id",
         "status",
         "decision_class",
         "security_properties",
+        "requires_profile_refs",
+        "incompatible_profile_refs",
     }
     missing = sorted(required - data.keys())
     if missing:
@@ -207,6 +220,10 @@ def validate_profile(
     version = data.get("profile_version")
     if not isinstance(version, str) or not SEMVER.fullmatch(version):
         errors.append(f"{source}: invalid profile_version")
+
+    family_id = data.get("family_id")
+    if not isinstance(family_id, str) or not PROFILE_ID.fullmatch(family_id):
+        errors.append(f"{source}: invalid family_id")
 
     if data.get("status") not in VALID_STATUSES:
         errors.append(f"{source}: invalid status")
@@ -224,14 +241,19 @@ def validate_profile(
             elif known_property_ids is not None and property_id not in known_property_ids:
                 errors.append(f"{source}: unknown security property id: {property_id}")
 
-    allowed = required | {"requires", "incompatible_with", "notes"}
+    for field_name in ("requires_profile_refs", "incompatible_profile_refs"):
+        values = data.get(field_name)
+        if not validate_string_list(values):
+            errors.append(f"{source}: {field_name} must be a unique array of non-empty strings")
+        elif isinstance(values, list):
+            for value in values:
+                if profile_engine.parse_profile_ref(value) is None:
+                    errors.append(f"{source}: malformed exact profile reference in {field_name}: {value}")
+
+    allowed = required | {"notes"}
     extras = sorted(set(data) - allowed)
     if extras:
         errors.append(f"{source}: unknown fields: {', '.join(extras)}")
-
-    for name in ("requires", "incompatible_with"):
-        if not validate_string_list(data.get(name, [])):
-            errors.append(f"{source}: {name} must be a unique array of non-empty strings")
 
     if "notes" in data and not isinstance(data["notes"], str):
         errors.append(f"{source}: notes must be a string")
@@ -702,6 +724,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/threat-model.schema.json",
         "schemas/security-properties.schema.json",
         "schemas/security-property-claim.schema.json",
+        "schemas/profile-catalog.schema.json",
+        "schemas/configuration.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -797,11 +821,51 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     if property_registry:
         errors.extend(validate_security_properties(property_registry, "registry/security-properties.json"))
 
+    profile_catalog_path = root / "profiles/catalog.json"
+    profile_catalog = load_json(profile_catalog_path) if profile_catalog_path.is_file() else {}
+    if profile_catalog:
+        known_property_ids_for_catalog = {
+            prop.get("id")
+            for prop in property_registry.get("properties", [])
+            if isinstance(prop, dict) and isinstance(prop.get("id"), str)
+        }
+        errors.extend(
+            profile_engine.validate_catalog(
+                profile_catalog,
+                known_property_ids=known_property_ids_for_catalog,
+            )
+        )
+
     known_property_ids = {
         prop.get("id")
         for prop in property_registry.get("properties", [])
         if isinstance(prop, dict) and isinstance(prop.get("id"), str)
     }
+
+    valid_config_dir = root / "fixtures/configurations/valid"
+    for path in sorted(valid_config_dir.glob("*.json")) if valid_config_dir.exists() else []:
+        result = profile_engine.resolve_configuration(
+            profile_catalog,
+            load_json(path),
+            known_property_ids=known_property_ids,
+        )
+        if not result.valid:
+            errors.append(
+                f"{path.relative_to(root)}: valid configuration failed resolution: "
+                + "; ".join(result.errors)
+            )
+
+    invalid_config_dir = root / "fixtures/configurations/invalid"
+    for path in sorted(invalid_config_dir.glob("*.json")) if invalid_config_dir.exists() else []:
+        result = profile_engine.resolve_configuration(
+            profile_catalog,
+            load_json(path),
+            known_property_ids=known_property_ids,
+        )
+        if result.valid:
+            errors.append(
+                f"{path.relative_to(root)}: invalid configuration unexpectedly resolved"
+            )
 
     valid_dir = root / "fixtures/profiles/valid"
     for path in sorted(valid_dir.glob("*.json")) if valid_dir.exists() else []:
