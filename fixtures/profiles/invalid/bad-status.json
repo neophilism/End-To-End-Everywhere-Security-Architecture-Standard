@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.1",
+  "profile_id": "bad-status-example",
+  "profile_version": "0.1.0",
+  "status": "totally-secure",
+  "decision_class": "experimental",
+  "security_properties": ["example-only"]
+}

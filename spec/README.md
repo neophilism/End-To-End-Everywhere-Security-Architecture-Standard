@@ -1,0 +1,26 @@
+# Specification
+
+This directory contains E2EESA specification material.
+
+## Document classes
+
+- **Normative** — requirements necessary for conformance.
+- **Informative** — rationale, examples, guidance, and explanatory material.
+- **Provisional** — material tied to an external specification that is not yet stable enough to be treated as final.
+- **Experimental** — research material that MUST NOT be treated as production-recommended merely because it appears in this repository.
+
+Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and sparingly.
+
+## Planned top-level specification areas
+
+1. terminology;
+2. threat model;
+3. security properties;
+4. profile model and compatibility;
+5. cryptographic registry and lifecycle;
+6. identity, messaging, recovery, metadata, media, transport, and client profiles;
+7. secure development and verification;
+8. certification;
+9. vulnerability handling;
+10. observatory/evidence provenance;
+11. research promotion and emergency migration.
