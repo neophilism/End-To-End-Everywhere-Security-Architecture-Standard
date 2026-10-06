@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/negotiation-evidence.schema.json",
+  "title": "E2EESA Negotiation Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "protocol_id",
+    "cryptographic_registry_version",
+    "initiator_offered_versions",
+    "responder_supported_versions",
+    "initiator_offered_suites",
+    "responder_supported_suites",
+    "selected_version",
+    "selected_suite_id",
+    "effective_profile_refs",
+    "transcript_bound_fields",
+    "authenticated_transcript",
+    "initiator_nonce_hex",
+    "responder_nonce_hex",
+    "fallback_retry"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "protocol_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "cryptographic_registry_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "initiator_offered_versions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "responder_supported_versions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "initiator_offered_suites": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SUITE-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+      }
+    },
+    "responder_supported_suites": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SUITE-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+      }
+    },
+    "selected_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_suite_id": {
+      "type": "string",
+      "pattern": "^SUITE-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+    },
+    "effective_profile_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "transcript_bound_fields": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "authenticated_transcript": {
+      "type": "boolean",
+      "const": true
+    },
+    "initiator_nonce_hex": {
+      "type": "string",
+      "pattern": "^[0-9a-f]+$"
+    },
+    "responder_nonce_hex": {
+      "type": "string",
+      "pattern": "^[0-9a-f]+$"
+    },
+    "fallback_retry": {
+      "type": "boolean",
+      "const": false
+    }
+  }
+}
