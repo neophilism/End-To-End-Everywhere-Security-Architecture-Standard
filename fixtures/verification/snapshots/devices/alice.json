@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "identity_id": "alice",
+  "identity_profile_ref": "identity-device-cross-signing@0.1.0",
+  "account_root_key_fingerprint": null,
+  "active_devices": [
+    {
+      "device_id": "alice-phone",
+      "key_generation": 1,
+      "signing_key_fingerprint": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "agreement_key_fingerprint": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+    }
+  ]
+}
