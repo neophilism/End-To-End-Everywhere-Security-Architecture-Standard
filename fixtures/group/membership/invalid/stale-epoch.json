@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "group_id": "group-alpha",
+  "identity_state_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "previous_epoch": 7,
+  "new_epoch": 7,
+  "previous_member_device_ids": [
+    "alice-phone",
+    "bob-phone"
+  ],
+  "added_member_device_ids": [
+    "carol-phone"
+  ],
+  "removed_member_device_ids": [],
+  "new_member_device_ids": [
+    "alice-phone",
+    "bob-phone",
+    "carol-phone"
+  ],
+  "verified_membership_authorizers": [
+    {
+      "type": "device",
+      "id": "alice-phone"
+    }
+  ],
+  "membership_transcript_authenticated": true,
+  "future_content_rebound_to_new_membership": true,
+  "added_members_prior_epoch_access": false,
+  "removed_members_new_epoch_access": false,
+  "event_id": "event-stale-epoch",
+  "profile_ref": "group-mls-rfc9420@0.1.0",
+  "mls_commit_authenticated": true,
+  "mls_update_path_present": true,
+  "mls_welcome_count": 1,
+  "mls_key_packages_single_use": true,
+  "sender_keys_rotated_for_all_active_senders": false,
+  "sender_key_distribution_covers_current_members": false,
+  "pairwise_recipient_set_updated": false
+}

@@ -31,6 +31,12 @@
       "name": "Pairwise end-to-end encryption",
       "cardinality": "at-most-one",
       "description": "Complete asynchronous one-to-one session profiles combining a published prekey initialization protocol with a ratcheting protocol. Product conformance requires one when pairwise E2EE is in scope."
+    },
+    {
+      "family_id": "group-e2ee",
+      "name": "Group end-to-end encryption",
+      "cardinality": "at-most-one",
+      "description": "Complete group-messaging architecture profiles for asynchronous multi-device groups. Product conformance requires one when group E2EE is in scope."
     }
   ],
   "profiles": [
@@ -310,6 +316,78 @@
         "pairwise-pqxdh-spqr@0.1.0"
       ],
       "notes": "Recommended hybrid profile: PQXDH Revision 3 plus Triple Ratchet Revision 4, combining the classical Double Ratchet and SPQR/ML-KEM Braid. Does not claim post-quantum authentication because current PQXDH authentication remains classical."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "group-mls-rfc9420",
+      "profile_version": "0.1.0",
+      "family_id": "group-e2ee",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "group-sender-key-aead@0.1.0",
+        "group-pairwise-fanout@0.1.0"
+      ],
+      "notes": "Recommended standards-based group profile using MLS 1.0 (RFC 9420), with authenticated membership epochs, forward secrecy, and post-compromise security."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "group-sender-key-aead",
+      "profile_version": "0.1.0",
+      "family_id": "group-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-FORWARD-SECRECY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "group-mls-rfc9420@0.1.0",
+        "group-pairwise-fanout@0.1.0"
+      ],
+      "notes": "Efficient Sender-Keys-style group profile using pairwise E2EE to distribute per-sender chain state, registered KDF/AEAD/signature algorithms, and mandatory full rotation on membership changes. Does not claim automatic PCS."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "group-pairwise-fanout",
+      "profile_version": "0.1.0",
+      "family_id": "group-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "group-mls-rfc9420@0.1.0",
+        "group-sender-key-aead@0.1.0"
+      ],
+      "notes": "Simple O(n) group architecture that encrypts each group message independently to every current recipient device using a selected E2EESA pairwise profile; no shared group content key."
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "protocol_registry_version": "0.1.0",
+  "require_authenticated_membership_changes": true,
+  "require_epoch_advance_on_membership_change": true,
+  "require_removed_member_exclusion": true,
+  "require_new_member_history_exclusion": true,
+  "prohibit_server_membership_authorization": true,
+  "require_device_revocation_rekey": true,
+  "max_group_devices": 1000,
+  "policy_id": "group-sender-key",
+  "profile_ref": "group-sender-key-aead@0.1.0",
+  "protocol_id": "GROUP-SENDER-KEY-AEAD-1",
+  "mls_cipher_suite_id": null,
+  "pairwise_profile_ref": "pairwise-pqxdh-triple-ratchet@0.1.0",
+  "sender_kdf_algorithm_id": "ALG-HKDF-SHA256",
+  "sender_aead_algorithm_id": "ALG-CHACHA20-POLY1305",
+  "sender_signature_algorithm_id": "ALG-ED25519",
+  "max_sender_skipped_message_keys": 2000
+}

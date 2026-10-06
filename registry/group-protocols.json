@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "protocols": [
+    {
+      "id": "GROUP-MLS-1-RFC9420",
+      "name": "Messaging Layer Security 1.0",
+      "status": "recommended",
+      "architecture": "tree-group-key-agreement",
+      "specification": "RFC 9420",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9420.html",
+      "security_notes": [
+        "Provides efficient asynchronous group key establishment with forward secrecy and post-compromise security.",
+        "E2EESA 0.1 permits MLS cipher suites 0x0001 and 0x0003 and requires exact pinning.",
+        "Application membership authorization remains an application policy and MUST be authenticated into accepted group state."
+      ]
+    },
+    {
+      "id": "GROUP-SENDER-KEY-AEAD-1",
+      "name": "E2EESA Sender-Keys-style AEAD group profile",
+      "status": "allowed",
+      "architecture": "sender-key",
+      "specification": "E2EESA group profile based on the deployed Sender Keys architecture",
+      "reference_uri": "https://engineering.fb.com/wp-content/uploads/2023/12/MessengerEnd-to-EndEncryptionOverview_12-6-2023.pdf",
+      "security_notes": [
+        "Each sender maintains a one-way symmetric chain and distributes sender state over authenticated pairwise E2EE sessions.",
+        "E2EESA uses registry-approved KDF, AEAD, and signature algorithms rather than claiming wire compatibility with a specific deployed Sender Keys implementation.",
+        "Membership changes require complete sender-key rotation and redistribution to the new current membership.",
+        "The profile claims forward secrecy from one-way chain advancement but does not claim automatic post-compromise security."
+      ]
+    },
+    {
+      "id": "GROUP-PAIRWISE-FANOUT-1",
+      "name": "Pairwise ciphertext fanout",
+      "status": "allowed",
+      "architecture": "pairwise-fanout",
+      "specification": "E2EESA composition of pairwise E2EE sessions",
+      "reference_uri": "https://signal.org/docs/",
+      "security_notes": [
+        "Each group message is independently encrypted to each current recipient device using the selected E2EESA pairwise profile.",
+        "No shared group content key exists.",
+        "Bandwidth and encryption work grow linearly with recipient devices."
+      ]
+    }
+  ],
+  "mls_cipher_suites": [
+    {
+      "id": "0x0001",
+      "name": "MLS_128_DHKEMX25519_AES128GCM_SHA256_Ed25519",
+      "status": "recommended",
+      "specification": "RFC 9420 Section 17.1",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9420.html#section-17.1"
+    },
+    {
+      "id": "0x0003",
+      "name": "MLS_128_DHKEMX25519_CHACHA20POLY1305_SHA256_Ed25519",
+      "status": "allowed",
+      "specification": "RFC 9420 Section 17.1",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9420.html#section-17.1"
+    }
+  ]
+}
