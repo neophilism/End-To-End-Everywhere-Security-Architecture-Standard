@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "configuration_id": "family-conflict",
+  "standard_version": "0.1.0-dev",
+  "selected_profiles": [
+    "foundation-baseline@0.1.0",
+    "example-choice-a@0.1.0",
+    "example-choice-b@0.1.0"
+  ],
+  "accepted_nondefault_statuses": []
+}
