@@ -38,6 +38,18 @@ class ProfileValidationTests(unittest.TestCase):
         errors = validate_repo.validate_profile(data)
         self.assertTrue(any("unknown fields" in error for error in errors))
 
+    def test_security_properties_must_be_array(self) -> None:
+        data = self.load("fixtures/profiles/valid/minimal-profile.json")
+        data["security_properties"] = "not-an-array"
+        errors = validate_repo.validate_profile(data)
+        self.assertTrue(any("security_properties" in error for error in errors))
+
+    def test_duplicate_security_properties_fail(self) -> None:
+        data = self.load("fixtures/profiles/valid/minimal-profile.json")
+        data["security_properties"] = ["duplicate", "duplicate"]
+        errors = validate_repo.validate_profile(data)
+        self.assertTrue(any("security_properties" in error for error in errors))
+
     def test_repository_passes(self) -> None:
         self.assertEqual(validate_repo.validate_repository(ROOT), [])
 
