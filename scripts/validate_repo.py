@@ -19,6 +19,7 @@ import negotiation_engine
 import identity_device_engine
 import pairwise_session_engine
 import group_e2ee_engine
+import key_verification_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -36,6 +37,8 @@ REQUIRED_PATHS = [
     "spec/identity-device-architecture.md",
     "spec/pairwise-e2ee.md",
     "spec/group-e2ee.md",
+    "spec/key-verification.md",
+    "adr/0007-key-verification.md",
     "adr/0006-group-e2ee-profiles.md",
     "adr/0005-pairwise-e2ee-profiles.md",
     "adr/0004-identity-device-architecture.md",
@@ -62,6 +65,9 @@ REQUIRED_PATHS = [
     "schemas/group-policy.schema.json",
     "schemas/group-membership-event.schema.json",
     "schemas/group-message-checkpoint.schema.json",
+    "schemas/key-verification-policy.schema.json",
+    "schemas/key-verification-snapshot.schema.json",
+    "schemas/key-verification-record.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -75,6 +81,7 @@ REQUIRED_PATHS = [
     "scripts/identity_device_engine.py",
     "scripts/pairwise_session_engine.py",
     "scripts/group_e2ee_engine.py",
+    "scripts/key_verification_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -86,6 +93,12 @@ REQUIRED_PATHS = [
     "fixtures/group/policies/mls.json",
     "fixtures/group/membership/valid/mls.json",
     "fixtures/group/messages/valid/mls.json",
+    "fixtures/verification/policies/account.json",
+    "fixtures/verification/policies/devices.json",
+    "fixtures/verification/snapshots/account/alice.json",
+    "fixtures/verification/snapshots/account/bob.json",
+    "fixtures/verification/snapshots/devices/alice.json",
+    "fixtures/verification/snapshots/devices/bob.json",
 ]
 
 VALID_STATUSES = {
@@ -786,6 +799,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/group-policy.schema.json",
         "schemas/group-membership-event.schema.json",
         "schemas/group-message-checkpoint.schema.json",
+        "schemas/key-verification-policy.schema.json",
+        "schemas/key-verification-snapshot.schema.json",
+        "schemas/key-verification-record.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -969,6 +985,22 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         ):
             if required_text not in group_spec:
                 errors.append(f"group-e2ee.md missing required marker: {required_text}")
+
+    verification_spec_path = root / "spec/key-verification.md"
+    if verification_spec_path.is_file():
+        verification_spec = verification_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Core invariant",
+            "verify-account-root@0.1.0",
+            "verify-device-set@0.1.0",
+            "## 9. Change handling",
+            "## 11. Automatic verification and transparency boundary",
+            "## 13. Conformance",
+            "real-world identity",
+        ):
+            if required_text not in verification_spec:
+                errors.append(f"key-verification.md missing required marker: {required_text}")
 
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
@@ -1236,6 +1268,98 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                         f"fixtures/group/messages/invalid/{fixture_name}.json: "
                         "invalid group message unexpectedly passed"
                     )
+
+    if crypto_registry_data and profile_catalog:
+        verification_policy_account = root / "fixtures/verification/policies/account.json"
+        verification_policy_devices = root / "fixtures/verification/policies/devices.json"
+        account_alice = root / "fixtures/verification/snapshots/account/alice.json"
+        account_bob = root / "fixtures/verification/snapshots/account/bob.json"
+        account_bob_added = root / "fixtures/verification/snapshots/account/bob-device-added.json"
+        account_bob_root_changed = root / "fixtures/verification/snapshots/account/bob-root-changed.json"
+        devices_alice = root / "fixtures/verification/snapshots/devices/alice.json"
+        devices_bob = root / "fixtures/verification/snapshots/devices/bob.json"
+        devices_bob_added = root / "fixtures/verification/snapshots/devices/bob-device-added.json"
+        devices_bob_rotated = root / "fixtures/verification/snapshots/devices/bob-key-rotated.json"
+
+        verification_paths = (
+            verification_policy_account,
+            verification_policy_devices,
+            account_alice,
+            account_bob,
+            account_bob_added,
+            account_bob_root_changed,
+            devices_alice,
+            devices_bob,
+            devices_bob_added,
+            devices_bob_rotated,
+        )
+        missing_verification = [str(path.relative_to(root)) for path in verification_paths if not path.is_file()]
+        if missing_verification:
+            errors.append("missing key verification fixtures: " + ", ".join(missing_verification))
+        else:
+            account_policy = load_json(verification_policy_account)
+            devices_policy = load_json(verification_policy_devices)
+            account_record = key_verification_engine.create_manual_record(
+                record_id="validator-account-record",
+                verification_method="qr",
+                user_confirmed=True,
+                policy=account_policy,
+                first_snapshot=load_json(account_alice),
+                second_snapshot=load_json(account_bob),
+                crypto_registry=crypto_registry_data,
+                profile_catalog=profile_catalog,
+            )
+            if key_verification_engine.verification_status(
+                account_record,
+                account_policy,
+                load_json(account_alice),
+                load_json(account_bob_added),
+                crypto_registry_data,
+                profile_catalog,
+            )["status"] != "verified":
+                errors.append("account-root verification must survive subordinate device addition")
+            if key_verification_engine.verification_status(
+                account_record,
+                account_policy,
+                load_json(account_alice),
+                load_json(account_bob_root_changed),
+                crypto_registry_data,
+                profile_catalog,
+            )["status"] != "invalidated":
+                errors.append("account-root verification must invalidate after root change")
+
+            devices_record = key_verification_engine.create_manual_record(
+                record_id="validator-device-record",
+                verification_method="numeric",
+                user_confirmed=True,
+                policy=devices_policy,
+                first_snapshot=load_json(devices_alice),
+                second_snapshot=load_json(devices_bob),
+                crypto_registry=crypto_registry_data,
+                profile_catalog=profile_catalog,
+            )
+            for changed_path, label in (
+                (devices_bob_added, "device addition"),
+                (devices_bob_rotated, "device key rotation"),
+            ):
+                if key_verification_engine.verification_status(
+                    devices_record,
+                    devices_policy,
+                    load_json(devices_alice),
+                    load_json(changed_path),
+                    crypto_registry_data,
+                    profile_catalog,
+                )["status"] != "invalidated":
+                    errors.append(f"device-set verification must invalidate after {label}")
+
+            if not key_verification_engine.compare_qr(
+                devices_record, devices_record["qr_payload"]
+            ):
+                errors.append("key verification QR self-comparison failed")
+            if not key_verification_engine.compare_numeric(
+                devices_record, devices_record["numeric_safety_number"]
+            ):
+                errors.append("key verification numeric self-comparison failed")
 
     known_property_ids = {
         prop.get("id")
