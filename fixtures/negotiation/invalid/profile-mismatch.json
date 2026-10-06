@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "baseline-negotiation",
+  "protocol_id": "e2eesa-example-handshake",
+  "cryptographic_registry_version": "0.1.0",
+  "initiator_offered_versions": [
+    "3",
+    "2"
+  ],
+  "responder_supported_versions": [
+    "3",
+    "2"
+  ],
+  "initiator_offered_suites": [
+    "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
+    "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM"
+  ],
+  "responder_supported_suites": [
+    "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
+    "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305"
+  ],
+  "selected_version": "3",
+  "selected_suite_id": "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
+  "effective_profile_refs": [
+    "foundation-baseline@0.1.0"
+  ],
+  "transcript_bound_fields": [
+    "policy_id",
+    "protocol_id",
+    "cryptographic_registry_version",
+    "initiator_offered_versions",
+    "responder_supported_versions",
+    "initiator_offered_suites",
+    "responder_supported_suites",
+    "selected_version",
+    "selected_suite_id",
+    "effective_profile_refs",
+    "initiator_nonce_hex",
+    "responder_nonce_hex"
+  ],
+  "authenticated_transcript": true,
+  "initiator_nonce_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+  "responder_nonce_hex": "2222222222222222222222222222222222222222222222222222222222222222",
+  "fallback_retry": false
+}
