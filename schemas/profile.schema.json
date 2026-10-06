@@ -4,11 +4,12 @@
   "title": "E2EESA Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "profile_id", "profile_version", "status", "decision_class", "security_properties"],
+  "required": ["schema_version", "profile_id", "profile_version", "family_id", "status", "decision_class", "security_properties", "requires_profile_refs", "incompatible_profile_refs"],
   "properties": {
     "schema_version": {"type": "string", "const": "0.1"},
     "profile_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "profile_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "family_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "status": {"type": "string", "enum": ["recommended", "allowed", "legacy", "deprecated", "prohibited", "provisional", "experimental"]},
     "decision_class": {"type": "string", "enum": ["invariant", "profile-choice", "capability", "experimental"]},
     "security_properties": {
@@ -16,17 +17,15 @@
       "items": {"type": "string", "pattern": "^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
       "uniqueItems": true
     },
-    "requires": {
+    "requires_profile_refs": {
       "type": "array",
-      "items": {"type": "string", "minLength": 1},
-      "uniqueItems": true,
-      "default": []
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+      "uniqueItems": true
     },
-    "incompatible_with": {
+    "incompatible_profile_refs": {
       "type": "array",
-      "items": {"type": "string", "minLength": 1},
-      "uniqueItems": true,
-      "default": []
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+      "uniqueItems": true
     },
     "notes": {"type": "string"}
   }
