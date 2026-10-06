@@ -50,6 +50,14 @@ def load_json(path: Path) -> dict:
     return value
 
 
+def validate_string_list(value: object) -> bool:
+    return (
+        isinstance(value, list)
+        and all(isinstance(item, str) and bool(item) for item in value)
+        and len(value) == len(set(value))
+    )
+
+
 def validate_profile(data: dict, source: str = "<profile>") -> list[str]:
     errors: list[str] = []
     required = {
@@ -81,12 +89,7 @@ def validate_profile(data: dict, source: str = "<profile>") -> list[str]:
     if data.get("decision_class") not in VALID_DECISION_CLASSES:
         errors.append(f"{source}: invalid decision_class")
 
-    props = data.get("security_properties")
-    if (
-        not isinstance(props, list)
-        or any(not isinstance(item, str) or not item for item in props)
-        or len(props) != len(set(props)) if isinstance(props, list) else False
-    ):
+    if not validate_string_list(data.get("security_properties")):
         errors.append(f"{source}: security_properties must be a unique array of non-empty strings")
 
     allowed = required | {"requires", "incompatible_with", "notes"}
@@ -95,11 +98,8 @@ def validate_profile(data: dict, source: str = "<profile>") -> list[str]:
         errors.append(f"{source}: unknown fields: {', '.join(extras)}")
 
     for name in ("requires", "incompatible_with"):
-        value = data.get(name, [])
-        if not isinstance(value, list) or any(not isinstance(item, str) or not item for item in value):
-            errors.append(f"{source}: {name} must be an array of non-empty strings")
-        elif len(value) != len(set(value)):
-            errors.append(f"{source}: {name} must not contain duplicates")
+        if not validate_string_list(data.get(name, [])):
+            errors.append(f"{source}: {name} must be a unique array of non-empty strings")
 
     if "notes" in data and not isinstance(data["notes"], str):
         errors.append(f"{source}: notes must be a string")
