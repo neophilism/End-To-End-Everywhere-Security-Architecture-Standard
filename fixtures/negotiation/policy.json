@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "baseline-negotiation",
+  "protocol_id": "e2eesa-example-handshake",
+  "protocol_versions": [
+    "1",
+    "2",
+    "3"
+  ],
+  "minimum_protocol_version": "2",
+  "cryptographic_registry_version": "0.1.0",
+  "permitted_suite_ids": [
+    "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
+    "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM"
+  ],
+  "effective_profile_refs": [
+    "foundation-baseline@0.1.0",
+    "example-choice-b@0.1.0"
+  ],
+  "required_transcript_fields": [
+    "policy_id",
+    "protocol_id",
+    "cryptographic_registry_version",
+    "initiator_offered_versions",
+    "responder_supported_versions",
+    "initiator_offered_suites",
+    "responder_supported_suites",
+    "selected_version",
+    "selected_suite_id",
+    "effective_profile_refs",
+    "initiator_nonce_hex",
+    "responder_nonce_hex"
+  ],
+  "require_highest_mutual_version": true,
+  "prohibit_fallback_retry": true,
+  "nonce_bytes": 32
+}
