@@ -15,6 +15,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 import profile_engine
 import crypto_registry
+import negotiation_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -28,6 +29,7 @@ REQUIRED_PATHS = [
     "spec/security-properties.md",
     "spec/profile-configuration.md",
     "spec/cryptographic-registry.md",
+    "spec/negotiation-downgrade.md",
     "adr/0000-template.md",
     "profiles/README.md",
     "schemas/profile.schema.json",
@@ -38,6 +40,8 @@ REQUIRED_PATHS = [
     "schemas/profile-catalog.schema.json",
     "schemas/configuration.schema.json",
     "schemas/cryptographic-algorithm-registry.schema.json",
+    "schemas/negotiation-policy.schema.json",
+    "schemas/negotiation-evidence.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -45,6 +49,9 @@ REQUIRED_PATHS = [
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
+    "scripts/negotiation_engine.py",
+    "fixtures/negotiation/policy.json",
+    "fixtures/negotiation/valid/baseline.json",
 ]
 
 VALID_STATUSES = {
@@ -732,6 +739,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/profile-catalog.schema.json",
         "schemas/configuration.schema.json",
         "schemas/cryptographic-algorithm-registry.schema.json",
+        "schemas/negotiation-policy.schema.json",
+        "schemas/negotiation-evidence.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -823,10 +832,11 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         errors.extend(validate_threat_model(threat_registry, "registry/threat-model.json"))
 
     crypto_registry_path = root / "registry/cryptographic-algorithms.json"
-    if crypto_registry_path.is_file():
+    crypto_registry_data = load_json(crypto_registry_path) if crypto_registry_path.is_file() else {}
+    if crypto_registry_data:
         errors.extend(
             crypto_registry.validate_registry(
-                load_json(crypto_registry_path),
+                crypto_registry_data,
                 "registry/cryptographic-algorithms.json",
             )
         )
@@ -847,6 +857,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in crypto_spec:
                 errors.append(f"cryptographic-registry.md missing required marker: {required_text}")
 
+    negotiation_spec_path = root / "spec/negotiation-downgrade.md"
+    if negotiation_spec_path.is_file():
+        negotiation_spec = negotiation_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Core invariant",
+            "## 2. Explicit version ordering",
+            "## 3. Exact suite pinning",
+            "## 4. Transcript binding",
+            "## 6. No automatic weaker fallback",
+            "## 7. Freshness and replay",
+            "## 12. Conformance",
+            "SP-DOWNGRADE-RESISTANCE",
+        ):
+            if required_text not in negotiation_spec:
+                errors.append(f"negotiation-downgrade.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -866,6 +893,47 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 known_property_ids=known_property_ids_for_catalog,
             )
         )
+
+    negotiation_policy_path = root / "fixtures/negotiation/policy.json"
+    negotiation_policy = load_json(negotiation_policy_path) if negotiation_policy_path.is_file() else {}
+    if negotiation_policy and crypto_registry_data and profile_catalog:
+        errors.extend(
+            negotiation_engine.validate_policy(
+                negotiation_policy,
+                crypto_registry_data,
+                profile_catalog,
+                "fixtures/negotiation/policy.json",
+            )
+        )
+
+        valid_negotiation_dir = root / "fixtures/negotiation/valid"
+        for path in sorted(valid_negotiation_dir.glob("*.json")) if valid_negotiation_dir.exists() else []:
+            result = negotiation_engine.validate_evidence(
+                negotiation_policy,
+                load_json(path),
+                crypto_registry_data,
+                profile_catalog,
+                str(path.relative_to(root)),
+            )
+            if result:
+                errors.append(
+                    f"{path.relative_to(root)}: valid negotiation evidence failed: "
+                    + "; ".join(result)
+                )
+
+        invalid_negotiation_dir = root / "fixtures/negotiation/invalid"
+        for path in sorted(invalid_negotiation_dir.glob("*.json")) if invalid_negotiation_dir.exists() else []:
+            result = negotiation_engine.validate_evidence(
+                negotiation_policy,
+                load_json(path),
+                crypto_registry_data,
+                profile_catalog,
+                str(path.relative_to(root)),
+            )
+            if not result:
+                errors.append(
+                    f"{path.relative_to(root)}: invalid negotiation evidence unexpectedly passed validation"
+                )
 
     known_property_ids = {
         prop.get("id")
