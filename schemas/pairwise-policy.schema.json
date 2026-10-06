@@ -1,0 +1,37 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/pairwise-policy.schema.json",
+  "title":"E2EESA pairwise session policy",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","policy_id","profile_ref","protocol_registry_version",
+    "initialization_protocol_id","ratchet_protocol_id","ec_algorithm_id",
+    "pq_kem_algorithm_id","kdf_algorithm_id","aead_algorithm_id","application_info",
+    "require_identity_binding","require_associated_data_identity_binding",
+    "require_one_time_prekey_when_available","require_replay_protection",
+    "require_message_key_deletion","require_old_ratchet_state_deletion",
+    "max_skipped_message_keys"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "policy_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"type":"string","pattern":"^pairwise-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "protocol_registry_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "initialization_protocol_id":{"type":"string","pattern":"^PROTO-[A-Z0-9-]+$"},
+    "ratchet_protocol_id":{"type":"string","pattern":"^PROTO-[A-Z0-9-]+$"},
+    "ec_algorithm_id":{"type":"string","minLength":1},
+    "pq_kem_algorithm_id":{"oneOf":[{"type":"null"},{"type":"string","minLength":1}]},
+    "kdf_algorithm_id":{"type":"string","minLength":1},
+    "aead_algorithm_id":{"type":"string","minLength":1},
+    "application_info":{"type":"string","minLength":8},
+    "require_identity_binding":{"const":true},
+    "require_associated_data_identity_binding":{"const":true},
+    "require_one_time_prekey_when_available":{"const":true},
+    "require_replay_protection":{"const":true},
+    "require_message_key_deletion":{"const":true},
+    "require_old_ratchet_state_deletion":{"const":true},
+    "max_skipped_message_keys":{"type":"integer","minimum":0},
+    "notes":{"type":"string"}
+  }
+}
