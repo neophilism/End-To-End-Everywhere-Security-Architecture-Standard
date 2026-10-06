@@ -1,0 +1,33 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/pairwise-protocol-registry.schema.json",
+  "title":"E2EESA pairwise protocol registry",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","registry_version","standard_version","protocols"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "registry_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "standard_version":{"type":"string","minLength":1},
+    "protocols":{
+      "type":"array","minItems":1,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["id","name","role","status","specification","revision","published_or_updated","reference_uri","quantum_characteristic","security_properties","constraints"],
+        "properties":{
+          "id":{"type":"string","pattern":"^PROTO-[A-Z0-9-]+$"},
+          "name":{"type":"string","minLength":1},
+          "role":{"enum":["initialization","ratchet","session-management"]},
+          "status":{"enum":["recommended","allowed","provisional","experimental","legacy","deprecated","prohibited"]},
+          "specification":{"type":"string","minLength":1},
+          "revision":{"type":"string","minLength":1},
+          "published_or_updated":{"type":"string","pattern":"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+          "reference_uri":{"type":"string","pattern":"^https://"},
+          "quantum_characteristic":{"enum":["classical","post-quantum","hybrid","protocol-agnostic"]},
+          "security_properties":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$"}},
+          "constraints":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}}
+        }
+      }
+    }
+  }
+}
