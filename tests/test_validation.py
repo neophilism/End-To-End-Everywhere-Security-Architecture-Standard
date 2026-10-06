@@ -95,6 +95,59 @@ class TerminologyValidationTests(unittest.TestCase):
         self.assertTrue(any("unknown fields" in error for error in errors))
 
 
+class ThreatModelValidationTests(unittest.TestCase):
+    def load_registry(self) -> dict:
+        return json.loads((ROOT / "registry/threat-model.json").read_text(encoding="utf-8"))
+
+    def test_registry_passes(self) -> None:
+        self.assertEqual(validate_repo.validate_threat_model(self.load_registry()), [])
+
+    def test_duplicate_threat_ids_fail(self) -> None:
+        data = self.load_registry()
+        duplicate = copy.deepcopy(data["threats"][0])
+        duplicate["name"] = "Different threat name"
+        data["threats"].append(duplicate)
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("duplicate threat id" in error for error in errors))
+
+    def test_invalid_threat_category_fails(self) -> None:
+        data = self.load_registry()
+        data["threats"][0]["category"] = "mystery"
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("invalid category" in error for error in errors))
+
+    def test_empty_capabilities_fail(self) -> None:
+        data = self.load_registry()
+        data["threats"][0]["capabilities"] = []
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("capabilities must" in error for error in errors))
+
+    def test_missing_baseline_threat_fails(self) -> None:
+        data = self.load_registry()
+        data["threats"] = [t for t in data["threats"] if t["id"] != "TM-ENDPOINT-LIVE"]
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("missing baseline threat ids" in error for error in errors))
+
+    def test_unknown_composite_reference_fails(self) -> None:
+        data = self.load_registry()
+        data["composite_scenarios"][0]["threat_ids"][0] = "TM-NOT-DEFINED"
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("unknown threat reference" in error for error in errors))
+
+    def test_duplicate_composite_references_fail(self) -> None:
+        data = self.load_registry()
+        first = data["composite_scenarios"][0]["threat_ids"][0]
+        data["composite_scenarios"][0]["threat_ids"] = [first, first]
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("threat_ids must be a unique array" in error for error in errors))
+
+    def test_unknown_threat_fields_fail_closed(self) -> None:
+        data = self.load_registry()
+        data["threats"][0]["surprise"] = True
+        errors = validate_repo.validate_threat_model(data)
+        self.assertTrue(any("unknown fields" in error for error in errors))
+
+
 class RepositoryValidationTests(unittest.TestCase):
     def test_repository_passes(self) -> None:
         self.assertEqual(validate_repo.validate_repository(ROOT), [])
