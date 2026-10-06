@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "identity_id": "alice",
+  "identity_profile_ref": "identity-account-root@0.1.0",
+  "account_root_key_fingerprint": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "active_devices": [
+    {
+      "device_id": "alice-phone",
+      "key_generation": 1,
+      "signing_key_fingerprint": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "agreement_key_fingerprint": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ]
+}
