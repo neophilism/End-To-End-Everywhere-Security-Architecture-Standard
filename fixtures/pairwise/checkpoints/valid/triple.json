@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "session_id": "session-triple",
+  "profile_ref": "pairwise-pqxdh-triple-ratchet@0.1.0",
+  "ratchet_protocol_id": "PROTO-TRIPLE-RATCHET-R4",
+  "message_id": "message-1",
+  "message_number": 1,
+  "replay_status": "fresh",
+  "associated_data_authenticated": true,
+  "message_key_unique": true,
+  "message_key_deleted": true,
+  "superseded_key_material_deleted": true,
+  "skipped_message_keys_retained": 2,
+  "ec_ratchet_component_active": true,
+  "pq_ratchet_component_active": true
+}
