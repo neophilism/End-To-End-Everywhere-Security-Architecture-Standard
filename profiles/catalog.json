@@ -25,6 +25,12 @@
       "name": "Identity and device authorization architecture",
       "cardinality": "at-most-one",
       "description": "Versioned alternatives for authorizing devices that can receive end-to-end protected content. Product conformance requires one when identity/device management is in scope."
+    },
+    {
+      "family_id": "pairwise-e2ee",
+      "name": "Pairwise end-to-end encryption",
+      "cardinality": "at-most-one",
+      "description": "Complete asynchronous one-to-one session profiles combining a published prekey initialization protocol with a ratcheting protocol. Product conformance requires one when pairwise E2EE is in scope."
     }
   ],
   "profiles": [
@@ -201,6 +207,109 @@
         "identity-device-cross-signing@0.1.0"
       ],
       "notes": "A strict majority of eligible active devices authorizes device-set changes."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-x3dh-double-ratchet",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ],
+      "notes": "Classical asynchronous X3DH Revision 1 initialization followed by Double Ratchet Revision 4. Does not claim post-quantum confidentiality."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-pqxdh-double-ratchet",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ],
+      "notes": "Transitional PQXDH Revision 3 initialization with classical Double Ratchet Revision 4. PQ confidentiality claims are limited by the declared quantum threat model and do not imply post-quantum authentication or post-quantum PCS."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-pqxdh-spqr",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ],
+      "notes": "PQXDH Revision 3 followed by the Sparse Post-Quantum Ratchet with ML-KEM Braid from Double Ratchet Revision 4. Provides a pure PQ ratchet option without the classical Double Ratchet hedge."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-pqxdh-triple-ratchet",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0"
+      ],
+      "notes": "Recommended hybrid profile: PQXDH Revision 3 plus Triple Ratchet Revision 4, combining the classical Double Ratchet and SPQR/ML-KEM Braid. Does not claim post-quantum authentication because current PQXDH authentication remains classical."
     }
   ]
 }
