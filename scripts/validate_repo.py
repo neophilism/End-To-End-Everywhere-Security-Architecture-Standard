@@ -19,13 +19,17 @@ REQUIRED_PATHS = [
     "spec/normative-language.md",
     "spec/terminology.md",
     "spec/threat-model.md",
+    "spec/security-properties.md",
     "adr/0000-template.md",
     "profiles/README.md",
     "schemas/profile.schema.json",
     "schemas/terminology.schema.json",
     "schemas/threat-model.schema.json",
+    "schemas/security-properties.schema.json",
+    "schemas/security-property-claim.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
+    "registry/security-properties.json",
 ]
 
 VALID_STATUSES = {
@@ -56,6 +60,42 @@ THREAT_CATEGORIES = {
     "cryptographic-environment",
     "quantum",
 }
+SECURITY_PROPERTY_CATEGORIES = {
+    "content",
+    "identity",
+    "protocol",
+    "state",
+    "evidence",
+    "metadata",
+    "availability",
+    "recovery",
+    "storage",
+    "software-supply-chain",
+    "post-quantum",
+}
+CLAIM_DIMENSIONS = {
+    "scope",
+    "assets",
+    "threats",
+    "composite_scenarios",
+    "temporal_phases",
+    "assumptions",
+    "limitations",
+    "conditions",
+    "identity_granularity",
+    "healing_event",
+    "exposure_window",
+    "evidence_model",
+}
+CLAIM_STATES = {"provided", "conditional", "not-claimed", "not-applicable"}
+TEMPORAL_PHASES = {
+    "steady-state",
+    "pre-compromise",
+    "during-compromise",
+    "post-compromise-pre-healing",
+    "post-healing",
+}
+
 REQUIRED_THREAT_IDS = {
     "TM-NET-PASSIVE",
     "TM-NET-ACTIVE",
@@ -82,10 +122,36 @@ REQUIRED_THREAT_IDS = {
     "TM-QUANTUM-HARVEST",
     "TM-QUANTUM-ACTIVE",
 }
+REQUIRED_SECURITY_PROPERTY_IDS = {
+    "SP-CONFIDENTIALITY",
+    "SP-INTEGRITY",
+    "SP-MESSAGE-AUTHENTICITY",
+    "SP-PEER-AUTHENTICATION",
+    "SP-AUTHORIZATION-INTEGRITY",
+    "SP-FORWARD-SECRECY",
+    "SP-POST-COMPROMISE-SECURITY",
+    "SP-KEY-CONSISTENCY",
+    "SP-DOWNGRADE-RESISTANCE",
+    "SP-REPLAY-RESISTANCE",
+    "SP-ROLLBACK-RESISTANCE",
+    "SP-DENIABILITY",
+    "SP-NON-REPUDIATION",
+    "SP-METADATA-MINIMIZATION",
+    "SP-METADATA-CONFIDENTIALITY",
+    "SP-UNLINKABILITY",
+    "SP-AVAILABILITY",
+    "SP-RECOVERY-CONFIDENTIALITY",
+    "SP-BACKUP-CONFIDENTIALITY",
+    "SP-SOFTWARE-INTEGRITY",
+    "SP-BUILD-PROVENANCE",
+    "SP-PQ-CONFIDENTIALITY",
+    "SP-PQ-AUTHENTICATION",
+}
 
 PROFILE_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 THREAT_ID = re.compile(r"^TM-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 COMPOSITE_ID = re.compile(r"^CS-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
+PROPERTY_ID = re.compile(r"^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 SEMVER = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$")
 DEV_VERSION = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+-dev$")
 
@@ -113,7 +179,11 @@ def validate_string_list(value: object, *, min_items: int = 0) -> bool:
     )
 
 
-def validate_profile(data: dict, source: str = "<profile>") -> list[str]:
+def validate_profile(
+    data: dict,
+    source: str = "<profile>",
+    known_property_ids: set[str] | None = None,
+) -> list[str]:
     errors: list[str] = []
     required = {
         "schema_version",
@@ -144,8 +214,15 @@ def validate_profile(data: dict, source: str = "<profile>") -> list[str]:
     if data.get("decision_class") not in VALID_DECISION_CLASSES:
         errors.append(f"{source}: invalid decision_class")
 
-    if not validate_string_list(data.get("security_properties")):
+    properties = data.get("security_properties")
+    if not validate_string_list(properties):
         errors.append(f"{source}: security_properties must be a unique array of non-empty strings")
+    elif isinstance(properties, list):
+        for property_id in properties:
+            if not PROPERTY_ID.fullmatch(property_id):
+                errors.append(f"{source}: invalid security property id: {property_id}")
+            elif known_property_ids is not None and property_id not in known_property_ids:
+                errors.append(f"{source}: unknown security property id: {property_id}")
 
     allowed = required | {"requires", "incompatible_with", "notes"}
     extras = sorted(set(data) - allowed)
@@ -352,6 +429,260 @@ def validate_threat_model(data: dict, source: str = "<threat-model>") -> list[st
     return errors
 
 
+def validate_security_properties(data: dict, source: str = "<security-properties>") -> list[str]:
+    errors: list[str] = []
+    allowed_top = {"schema_version", "properties"}
+    extras = sorted(set(data) - allowed_top)
+    if extras:
+        errors.append(f"{source}: unknown top-level fields: {', '.join(extras)}")
+
+    if data.get("schema_version") != "0.1":
+        errors.append(f"{source}: schema_version must be 0.1")
+
+    properties = data.get("properties")
+    if not isinstance(properties, list) or not properties:
+        errors.append(f"{source}: properties must be a non-empty array")
+        return errors
+
+    seen_ids: set[str] = set()
+    seen_names: set[str] = set()
+    allowed_fields = {"id", "name", "category", "definition", "required_claim_dimensions", "notes"}
+
+    for index, prop in enumerate(properties):
+        prefix = f"{source}: properties[{index}]"
+        if not isinstance(prop, dict):
+            errors.append(f"{prefix}: property entry must be an object")
+            continue
+
+        missing = sorted({"id", "name", "category", "definition", "required_claim_dimensions"} - prop.keys())
+        if missing:
+            errors.append(f"{prefix}: missing required fields: {', '.join(missing)}")
+
+        entry_extras = sorted(set(prop) - allowed_fields)
+        if entry_extras:
+            errors.append(f"{prefix}: unknown fields: {', '.join(entry_extras)}")
+
+        property_id = prop.get("id")
+        if not isinstance(property_id, str) or not PROPERTY_ID.fullmatch(property_id):
+            errors.append(f"{prefix}: invalid property id")
+        elif property_id in seen_ids:
+            errors.append(f"{prefix}: duplicate property id: {property_id}")
+        else:
+            seen_ids.add(property_id)
+
+        name = prop.get("name")
+        if not isinstance(name, str) or not name.strip():
+            errors.append(f"{prefix}: name must be a non-empty string")
+        else:
+            folded = name.casefold()
+            if folded in seen_names:
+                errors.append(f"{prefix}: duplicate property name: {name}")
+            else:
+                seen_names.add(folded)
+
+        if prop.get("category") not in SECURITY_PROPERTY_CATEGORIES:
+            errors.append(f"{prefix}: invalid category")
+
+        definition = prop.get("definition")
+        if not isinstance(definition, str) or not definition.strip():
+            errors.append(f"{prefix}: definition must be a non-empty string")
+
+        dimensions = prop.get("required_claim_dimensions")
+        if not validate_string_list(dimensions, min_items=1):
+            errors.append(f"{prefix}: required_claim_dimensions must be a unique non-empty array")
+        elif isinstance(dimensions, list):
+            unknown_dimensions = sorted(set(dimensions) - CLAIM_DIMENSIONS)
+            if unknown_dimensions:
+                errors.append(f"{prefix}: unknown claim dimensions: {', '.join(unknown_dimensions)}")
+            for baseline_dimension in ("scope", "assets", "threats"):
+                if baseline_dimension not in dimensions:
+                    errors.append(f"{prefix}: required_claim_dimensions must include {baseline_dimension}")
+
+        if "notes" in prop and not isinstance(prop["notes"], str):
+            errors.append(f"{prefix}: notes must be a string")
+
+    missing_baseline = sorted(REQUIRED_SECURITY_PROPERTY_IDS - seen_ids)
+    if missing_baseline:
+        errors.append(f"{source}: missing baseline security property ids: {', '.join(missing_baseline)}")
+
+    return errors
+
+
+def validate_security_claim(
+    data: dict,
+    property_registry: dict,
+    threat_registry: dict,
+    source: str = "<security-claim>",
+) -> list[str]:
+    errors: list[str] = []
+    required = {
+        "schema_version",
+        "property_id",
+        "state",
+        "scope",
+        "assets",
+        "threat_ids",
+        "temporal_phases",
+        "assumptions",
+        "limitations",
+    }
+    allowed = required | {
+        "composite_scenario_ids",
+        "conditions",
+        "identity_granularity",
+        "healing_event",
+        "exposure_window",
+        "evidence_model",
+        "notes",
+    }
+
+    missing = sorted(required - data.keys())
+    if missing:
+        errors.append(f"{source}: missing required fields: {', '.join(missing)}")
+
+    extras = sorted(set(data) - allowed)
+    if extras:
+        errors.append(f"{source}: unknown fields: {', '.join(extras)}")
+
+    if data.get("schema_version") != "0.1":
+        errors.append(f"{source}: schema_version must be 0.1")
+
+    properties = {
+        prop.get("id"): prop
+        for prop in property_registry.get("properties", [])
+        if isinstance(prop, dict) and isinstance(prop.get("id"), str)
+    }
+    threats = {
+        threat.get("id")
+        for threat in threat_registry.get("threats", [])
+        if isinstance(threat, dict) and isinstance(threat.get("id"), str)
+    }
+    scenarios = {
+        scenario.get("id")
+        for scenario in threat_registry.get("composite_scenarios", [])
+        if isinstance(scenario, dict) and isinstance(scenario.get("id"), str)
+    }
+
+    property_id = data.get("property_id")
+    if not isinstance(property_id, str) or not PROPERTY_ID.fullmatch(property_id):
+        errors.append(f"{source}: invalid property_id")
+        prop = None
+    else:
+        prop = properties.get(property_id)
+        if prop is None:
+            errors.append(f"{source}: unknown property_id: {property_id}")
+
+    state = data.get("state")
+    if state not in CLAIM_STATES:
+        errors.append(f"{source}: invalid claim state")
+
+    scope = data.get("scope")
+    if not isinstance(scope, str) or not scope.strip():
+        errors.append(f"{source}: scope must be a non-empty string")
+
+    assets = data.get("assets")
+    if not validate_string_list(assets, min_items=1):
+        errors.append(f"{source}: assets must be a unique non-empty array of non-empty strings")
+
+    threat_ids = data.get("threat_ids")
+    minimum_threats = 1 if state in {"provided", "conditional", "not-claimed"} else 0
+    if not validate_string_list(threat_ids, min_items=minimum_threats):
+        errors.append(f"{source}: threat_ids must be a unique array with the required threat coverage")
+    elif isinstance(threat_ids, list):
+        for threat_id in threat_ids:
+            if not THREAT_ID.fullmatch(threat_id):
+                errors.append(f"{source}: invalid threat reference: {threat_id}")
+            elif threat_id not in threats:
+                errors.append(f"{source}: unknown threat reference: {threat_id}")
+
+    composite_ids = data.get("composite_scenario_ids", [])
+    if not validate_string_list(composite_ids):
+        errors.append(f"{source}: composite_scenario_ids must be a unique array of non-empty strings")
+    elif isinstance(composite_ids, list):
+        for scenario_id in composite_ids:
+            if not COMPOSITE_ID.fullmatch(scenario_id):
+                errors.append(f"{source}: invalid composite scenario reference: {scenario_id}")
+            elif scenario_id not in scenarios:
+                errors.append(f"{source}: unknown composite scenario reference: {scenario_id}")
+
+    temporal_phases = data.get("temporal_phases")
+    if not validate_string_list(temporal_phases, min_items=1):
+        errors.append(f"{source}: temporal_phases must be a unique non-empty array")
+    elif isinstance(temporal_phases, list):
+        unknown_phases = sorted(set(temporal_phases) - TEMPORAL_PHASES)
+        if unknown_phases:
+            errors.append(f"{source}: unknown temporal phases: {', '.join(unknown_phases)}")
+
+    for list_field in ("assumptions", "limitations", "conditions"):
+        if list_field in data and not validate_string_list(data.get(list_field, [])):
+            errors.append(f"{source}: {list_field} must be a unique array of non-empty strings")
+
+    if state == "conditional" and not validate_string_list(data.get("conditions"), min_items=1):
+        errors.append(f"{source}: conditional claim must include at least one condition")
+
+    for field in ("identity_granularity", "healing_event", "exposure_window", "evidence_model"):
+        if field in data:
+            value = data[field]
+            if not isinstance(value, str) or not value.strip():
+                errors.append(f"{source}: {field} must be a non-empty string")
+
+    if "notes" in data and not isinstance(data["notes"], str):
+        errors.append(f"{source}: notes must be a string")
+
+    if prop is not None and state in {"provided", "conditional"}:
+        dimensions = prop.get("required_claim_dimensions", [])
+        dimension_to_field = {
+            "scope": "scope",
+            "assets": "assets",
+            "threats": "threat_ids",
+            "composite_scenarios": "composite_scenario_ids",
+            "temporal_phases": "temporal_phases",
+            "assumptions": "assumptions",
+            "limitations": "limitations",
+            "conditions": "conditions",
+            "identity_granularity": "identity_granularity",
+            "healing_event": "healing_event",
+            "exposure_window": "exposure_window",
+            "evidence_model": "evidence_model",
+        }
+        for dimension in dimensions:
+            field = dimension_to_field.get(dimension)
+            if field is None:
+                errors.append(f"{source}: property requires unsupported claim dimension: {dimension}")
+                continue
+            if field not in data:
+                errors.append(f"{source}: property {property_id} requires claim field: {field}")
+                continue
+            value = data[field]
+            if dimension in {"scope", "identity_granularity", "healing_event", "exposure_window", "evidence_model"}:
+                if not isinstance(value, str) or not value.strip():
+                    errors.append(f"{source}: property {property_id} requires non-empty {field}")
+            elif dimension in {"assets", "threats", "composite_scenarios", "temporal_phases", "conditions"}:
+                if not validate_string_list(value, min_items=1):
+                    errors.append(f"{source}: property {property_id} requires non-empty {field}")
+            elif dimension in {"assumptions", "limitations"}:
+                if not validate_string_list(value):
+                    errors.append(f"{source}: property {property_id} requires explicit {field} array")
+
+    if property_id in {"SP-FORWARD-SECRECY", "SP-POST-COMPROMISE-SECURITY"} and isinstance(temporal_phases, list):
+        if temporal_phases == ["steady-state"]:
+            errors.append(f"{source}: {property_id} requires compromise-aware temporal phases")
+
+    if property_id == "SP-POST-COMPROMISE-SECURITY" and state in {"provided", "conditional"}:
+        if isinstance(temporal_phases, list) and "post-healing" not in temporal_phases:
+            errors.append(f"{source}: PCS claim must include post-healing temporal phase")
+
+    if property_id == "SP-PQ-CONFIDENTIALITY" and state in {"provided", "conditional"}:
+        if isinstance(threat_ids, list) and not ({"TM-QUANTUM-HARVEST", "TM-QUANTUM-ACTIVE"} & set(threat_ids)):
+            errors.append(f"{source}: post-quantum confidentiality must cover a quantum threat")
+
+    if property_id == "SP-PQ-AUTHENTICATION" and state in {"provided", "conditional"}:
+        if isinstance(threat_ids, list) and "TM-QUANTUM-ACTIVE" not in threat_ids:
+            errors.append(f"{source}: post-quantum authentication must cover TM-QUANTUM-ACTIVE")
+
+    return errors
+
+
 def validate_repository(root: Path = ROOT) -> list[str]:
     errors: list[str] = []
 
@@ -369,6 +700,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/profile.schema.json",
         "schemas/terminology.schema.json",
         "schemas/threat-model.schema.json",
+        "schemas/security-properties.schema.json",
+        "schemas/security-property-claim.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -432,23 +765,85 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in threat_model:
                 errors.append(f"threat-model.md missing required marker: {required_text}")
 
+    security_properties_path = root / "spec/security-properties.md"
+    if security_properties_path.is_file():
+        security_properties = security_properties_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Claim model",
+            "## 3. Temporal phases",
+            "SP-CONFIDENTIALITY",
+            "SP-FORWARD-SECRECY",
+            "SP-POST-COMPROMISE-SECURITY",
+            "SP-METADATA-CONFIDENTIALITY",
+            "SP-PQ-CONFIDENTIALITY",
+            "## 5. Relationships between properties",
+            "## 12. Fail-closed interpretation",
+        ):
+            if required_text not in security_properties:
+                errors.append(f"security-properties.md missing required marker: {required_text}")
+
     terminology_registry_path = root / "registry/terminology.json"
     if terminology_registry_path.is_file():
         errors.extend(validate_terminology(load_json(terminology_registry_path), "registry/terminology.json"))
 
     threat_registry_path = root / "registry/threat-model.json"
-    if threat_registry_path.is_file():
-        errors.extend(validate_threat_model(load_json(threat_registry_path), "registry/threat-model.json"))
+    threat_registry = load_json(threat_registry_path) if threat_registry_path.is_file() else {}
+    if threat_registry:
+        errors.extend(validate_threat_model(threat_registry, "registry/threat-model.json"))
+
+    property_registry_path = root / "registry/security-properties.json"
+    property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
+    if property_registry:
+        errors.extend(validate_security_properties(property_registry, "registry/security-properties.json"))
+
+    known_property_ids = {
+        prop.get("id")
+        for prop in property_registry.get("properties", [])
+        if isinstance(prop, dict) and isinstance(prop.get("id"), str)
+    }
 
     valid_dir = root / "fixtures/profiles/valid"
     for path in sorted(valid_dir.glob("*.json")) if valid_dir.exists() else []:
-        errors.extend(validate_profile(load_json(path), str(path.relative_to(root))))
+        errors.extend(
+            validate_profile(
+                load_json(path),
+                str(path.relative_to(root)),
+                known_property_ids=known_property_ids,
+            )
+        )
 
     invalid_dir = root / "fixtures/profiles/invalid"
     for path in sorted(invalid_dir.glob("*.json")) if invalid_dir.exists() else []:
-        result = validate_profile(load_json(path), str(path.relative_to(root)))
+        result = validate_profile(
+            load_json(path),
+            str(path.relative_to(root)),
+            known_property_ids=known_property_ids,
+        )
         if not result:
             errors.append(f"{path.relative_to(root)}: invalid fixture unexpectedly passed validation")
+
+    valid_claim_dir = root / "fixtures/security-claims/valid"
+    for path in sorted(valid_claim_dir.glob("*.json")) if valid_claim_dir.exists() else []:
+        errors.extend(
+            validate_security_claim(
+                load_json(path),
+                property_registry,
+                threat_registry,
+                str(path.relative_to(root)),
+            )
+        )
+
+    invalid_claim_dir = root / "fixtures/security-claims/invalid"
+    for path in sorted(invalid_claim_dir.glob("*.json")) if invalid_claim_dir.exists() else []:
+        result = validate_security_claim(
+            load_json(path),
+            property_registry,
+            threat_registry,
+            str(path.relative_to(root)),
+        )
+        if not result:
+            errors.append(f"{path.relative_to(root)}: invalid security claim fixture unexpectedly passed validation")
 
     return errors
 

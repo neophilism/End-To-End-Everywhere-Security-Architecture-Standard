@@ -6,29 +6,14 @@
   "additionalProperties": false,
   "required": ["schema_version", "profile_id", "profile_version", "status", "decision_class", "security_properties"],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "const": "0.1"
-    },
-    "profile_id": {
-      "type": "string",
-      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
-    },
-    "profile_version": {
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
-    },
-    "status": {
-      "type": "string",
-      "enum": ["recommended", "allowed", "legacy", "deprecated", "prohibited", "provisional", "experimental"]
-    },
-    "decision_class": {
-      "type": "string",
-      "enum": ["invariant", "profile-choice", "capability", "experimental"]
-    },
+    "schema_version": {"type": "string", "const": "0.1"},
+    "profile_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "status": {"type": "string", "enum": ["recommended", "allowed", "legacy", "deprecated", "prohibited", "provisional", "experimental"]},
+    "decision_class": {"type": "string", "enum": ["invariant", "profile-choice", "capability", "experimental"]},
     "security_properties": {
       "type": "array",
-      "items": {"type": "string", "minLength": 1},
+      "items": {"type": "string", "pattern": "^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
       "uniqueItems": true
     },
     "requires": {
@@ -43,8 +28,6 @@
       "uniqueItems": true,
       "default": []
     },
-    "notes": {
-      "type": "string"
-    }
+    "notes": {"type": "string"}
   }
 }

@@ -16,6 +16,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 1. [Normative Language](normative-language.md) — requirement keywords, scope, configuration, claims, conflicts, external specifications, and experimental status.
 2. [Terminology](terminology.md) — core actor, trust-boundary, cryptographic, E2EE, identity, compromise, recovery, group, assurance, and threat-model terms.
 3. [Unified Threat Model](threat-model.md) — protected assets, adversary capabilities, compromise classes, composite scenarios, temporal compromise, service/endpoint assumptions, recovery and hardware assumptions, and post-quantum threat scope.
+4. [Security Properties Model](security-properties.md) — machine-readable security claims, claim states, temporal phases, property definitions, property independence, threat coverage, assumptions, limitations, and fail-closed interpretation.
 
 ## Planned top-level specification areas
 

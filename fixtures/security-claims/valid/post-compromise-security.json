@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "property_id": "SP-POST-COMPROMISE-SECURITY",
+  "state": "provided",
+  "scope": "Example message confidentiality after endpoint-state compromise ends",
+  "assets": ["future message plaintext"],
+  "threat_ids": ["TM-ENDPOINT-STATE"],
+  "composite_scenario_ids": ["CS-ENDPOINT-HEALING"],
+  "temporal_phases": ["post-compromise-pre-healing", "post-healing"],
+  "assumptions": ["adversary no longer controls the endpoint after the compromise event"],
+  "limitations": ["no protection is claimed during continuing live endpoint compromise"],
+  "conditions": [],
+  "healing_event": "fresh authenticated protocol evolution incorporates secret material unavailable to the former adversary",
+  "exposure_window": "from compromise until the defined healing event completes",
+  "notes": "Validation fixture only; not a production protocol claim."
+}

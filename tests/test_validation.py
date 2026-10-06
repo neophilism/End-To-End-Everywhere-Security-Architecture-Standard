@@ -19,9 +19,16 @@ class ProfileValidationTests(unittest.TestCase):
     def load(self, rel: str) -> dict:
         return json.loads((ROOT / rel).read_text(encoding="utf-8"))
 
+    def known_property_ids(self) -> set[str]:
+        registry = self.load("registry/security-properties.json")
+        return {item["id"] for item in registry["properties"]}
+
     def test_valid_fixture_passes(self) -> None:
         data = self.load("fixtures/profiles/valid/minimal-profile.json")
-        self.assertEqual(validate_repo.validate_profile(data), [])
+        self.assertEqual(
+            validate_repo.validate_profile(data, known_property_ids=self.known_property_ids()),
+            [],
+        )
 
     def test_bad_status_fails(self) -> None:
         data = self.load("fixtures/profiles/invalid/bad-status.json")
@@ -47,9 +54,15 @@ class ProfileValidationTests(unittest.TestCase):
 
     def test_duplicate_security_properties_fail(self) -> None:
         data = self.load("fixtures/profiles/valid/minimal-profile.json")
-        data["security_properties"] = ["duplicate", "duplicate"]
+        data["security_properties"] = ["SP-CONFIDENTIALITY", "SP-CONFIDENTIALITY"]
         errors = validate_repo.validate_profile(data)
         self.assertTrue(any("security_properties" in error for error in errors))
+
+    def test_unknown_security_property_fails_when_registry_is_in_scope(self) -> None:
+        data = self.load("fixtures/profiles/valid/minimal-profile.json")
+        data["security_properties"] = ["SP-NOT-REGISTERED"]
+        errors = validate_repo.validate_profile(data, known_property_ids=self.known_property_ids())
+        self.assertTrue(any("unknown security property id" in error for error in errors))
 
 
 class TerminologyValidationTests(unittest.TestCase):
@@ -146,6 +159,112 @@ class ThreatModelValidationTests(unittest.TestCase):
         data["threats"][0]["surprise"] = True
         errors = validate_repo.validate_threat_model(data)
         self.assertTrue(any("unknown fields" in error for error in errors))
+
+
+class SecurityPropertyValidationTests(unittest.TestCase):
+    def load_registry(self) -> dict:
+        return json.loads((ROOT / "registry/security-properties.json").read_text(encoding="utf-8"))
+
+    def test_registry_passes(self) -> None:
+        self.assertEqual(validate_repo.validate_security_properties(self.load_registry()), [])
+
+    def test_duplicate_property_ids_fail(self) -> None:
+        data = self.load_registry()
+        duplicate = copy.deepcopy(data["properties"][0])
+        duplicate["name"] = "Different property name"
+        data["properties"].append(duplicate)
+        errors = validate_repo.validate_security_properties(data)
+        self.assertTrue(any("duplicate property id" in error for error in errors))
+
+    def test_invalid_property_category_fails(self) -> None:
+        data = self.load_registry()
+        data["properties"][0]["category"] = "magic"
+        errors = validate_repo.validate_security_properties(data)
+        self.assertTrue(any("invalid category" in error for error in errors))
+
+    def test_unknown_claim_dimension_fails(self) -> None:
+        data = self.load_registry()
+        data["properties"][0]["required_claim_dimensions"].append("mystery-dimension")
+        errors = validate_repo.validate_security_properties(data)
+        self.assertTrue(any("unknown claim dimensions" in error for error in errors))
+
+    def test_missing_baseline_property_fails(self) -> None:
+        data = self.load_registry()
+        data["properties"] = [
+            item for item in data["properties"] if item["id"] != "SP-CONFIDENTIALITY"
+        ]
+        errors = validate_repo.validate_security_properties(data)
+        self.assertTrue(any("missing baseline security property ids" in error for error in errors))
+
+
+class SecurityClaimValidationTests(unittest.TestCase):
+    def load(self, rel: str) -> dict:
+        return json.loads((ROOT / rel).read_text(encoding="utf-8"))
+
+    def registries(self) -> tuple[dict, dict]:
+        return (
+            self.load("registry/security-properties.json"),
+            self.load("registry/threat-model.json"),
+        )
+
+    def validate(self, data: dict) -> list[str]:
+        properties, threats = self.registries()
+        return validate_repo.validate_security_claim(data, properties, threats)
+
+    def test_confidentiality_fixture_passes(self) -> None:
+        data = self.load("fixtures/security-claims/valid/confidentiality.json")
+        self.assertEqual(self.validate(data), [])
+
+    def test_post_compromise_security_fixture_passes(self) -> None:
+        data = self.load("fixtures/security-claims/valid/post-compromise-security.json")
+        self.assertEqual(self.validate(data), [])
+
+    def test_unknown_property_fails(self) -> None:
+        data = self.load("fixtures/security-claims/invalid/unknown-property.json")
+        errors = self.validate(data)
+        self.assertTrue(any("unknown property_id" in error for error in errors))
+
+    def test_conditional_claim_requires_condition(self) -> None:
+        data = self.load("fixtures/security-claims/invalid/conditional-without-condition.json")
+        errors = self.validate(data)
+        self.assertTrue(any("conditional claim must include" in error for error in errors))
+
+    def test_property_specific_qualifiers_are_required(self) -> None:
+        data = self.load("fixtures/security-claims/invalid/missing-required-qualifier.json")
+        errors = self.validate(data)
+        self.assertTrue(any("requires claim field: healing_event" in error for error in errors))
+        self.assertTrue(any("requires claim field: exposure_window" in error for error in errors))
+
+    def test_unknown_threat_reference_fails(self) -> None:
+        data = self.load("fixtures/security-claims/valid/confidentiality.json")
+        data["threat_ids"] = ["TM-NOT-DEFINED"]
+        errors = self.validate(data)
+        self.assertTrue(any("unknown threat reference" in error for error in errors))
+
+    def test_unknown_composite_reference_fails(self) -> None:
+        data = self.load("fixtures/security-claims/valid/confidentiality.json")
+        data["composite_scenario_ids"] = ["CS-NOT-DEFINED"]
+        errors = self.validate(data)
+        self.assertTrue(any("unknown composite scenario reference" in error for error in errors))
+
+    def test_assets_cannot_be_empty(self) -> None:
+        data = self.load("fixtures/security-claims/valid/confidentiality.json")
+        data["assets"] = []
+        errors = self.validate(data)
+        self.assertTrue(any("assets must be" in error for error in errors))
+
+    def test_pcs_requires_post_healing_phase(self) -> None:
+        data = self.load("fixtures/security-claims/valid/post-compromise-security.json")
+        data["temporal_phases"] = ["post-compromise-pre-healing"]
+        errors = self.validate(data)
+        self.assertTrue(any("PCS claim must include post-healing" in error for error in errors))
+
+    def test_post_quantum_confidentiality_requires_quantum_threat(self) -> None:
+        data = self.load("fixtures/security-claims/valid/confidentiality.json")
+        data["property_id"] = "SP-PQ-CONFIDENTIALITY"
+        data["threat_ids"] = ["TM-NET-PASSIVE"]
+        errors = self.validate(data)
+        self.assertTrue(any("must cover a quantum threat" in error for error in errors))
 
 
 class RepositoryValidationTests(unittest.TestCase):
