@@ -1,0 +1,30 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/pairwise-message-checkpoint.schema.json",
+  "title":"E2EESA pairwise message checkpoint",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","session_id","profile_ref","ratchet_protocol_id",
+    "message_id","message_number","replay_status","associated_data_authenticated",
+    "message_key_unique","message_key_deleted","superseded_key_material_deleted",
+    "skipped_message_keys_retained","ec_ratchet_component_active",
+    "pq_ratchet_component_active"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "session_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"type":"string","minLength":1},
+    "ratchet_protocol_id":{"type":"string","pattern":"^PROTO-[A-Z0-9-]+$"},
+    "message_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "message_number":{"type":"integer","minimum":0},
+    "replay_status":{"enum":["fresh","replay"]},
+    "associated_data_authenticated":{"type":"boolean"},
+    "message_key_unique":{"type":"boolean"},
+    "message_key_deleted":{"type":"boolean"},
+    "superseded_key_material_deleted":{"type":"boolean"},
+    "skipped_message_keys_retained":{"type":"integer","minimum":0},
+    "ec_ratchet_component_active":{"type":"boolean"},
+    "pq_ratchet_component_active":{"type":"boolean"}
+  }
+}
