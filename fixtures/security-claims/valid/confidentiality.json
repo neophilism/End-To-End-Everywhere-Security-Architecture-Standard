@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "property_id": "SP-CONFIDENTIALITY",
+  "state": "provided",
+  "scope": "Example protected message content between authorized endpoints",
+  "assets": ["message plaintext"],
+  "threat_ids": ["TM-NET-PASSIVE", "TM-SERVICE-READ"],
+  "composite_scenario_ids": [],
+  "temporal_phases": ["steady-state"],
+  "assumptions": ["authorized endpoints are not live-compromised"],
+  "limitations": ["does not claim metadata confidentiality"],
+  "conditions": [],
+  "notes": "Validation fixture only; not a production profile."
+}
