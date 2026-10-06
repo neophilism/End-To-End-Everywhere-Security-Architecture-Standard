@@ -11,6 +11,11 @@ This directory contains E2EESA specification material.
 
 Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and sparingly.
 
+## Current normative documents
+
+1. [Normative Language](normative-language.md) — requirement keywords, scope, configuration, claims, conflicts, external specifications, and experimental status.
+2. [Terminology](terminology.md) — core actor, trust-boundary, cryptographic, E2EE, identity, compromise, recovery, group, assurance, and threat-model terms.
+
 ## Planned top-level specification areas
 
 1. terminology;

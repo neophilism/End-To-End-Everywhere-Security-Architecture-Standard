@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1",
+  "terms": [
+    {
+      "id": "account",
+      "term": "Account",
+      "definition": "A logical service identity used to associate a user with one or more devices, credentials, settings, or service-side records. An account is not necessarily a cryptographic identity."
+    },
+    {
+      "id": "device",
+      "term": "Device",
+      "definition": "A physical or virtual computing environment controlled by or acting for a user and capable of hosting one or more endpoints."
+    },
+    {
+      "id": "endpoint",
+      "term": "Endpoint",
+      "definition": "The trusted software-and-key boundary at which protected content is encrypted before leaving the sender side and decrypted after reaching an intended recipient side."
+    },
+    {
+      "id": "end-to-end-encryption",
+      "term": "End-to-end encryption (E2EE)",
+      "definition": "A communication or storage architecture in which protected content is encrypted at an authorized endpoint and can be decrypted only by intended recipient endpoints, subject to explicitly defined recovery or export capabilities."
+    },
+    {
+      "id": "metadata",
+      "term": "Metadata",
+      "definition": "Information about communication, storage, identity, devices, relationships, timing, size, routing, group membership, access patterns, or other context that is not itself the protected content payload."
+    },
+    {
+      "id": "forward-secrecy",
+      "term": "Forward secrecy",
+      "definition": "The property that compromise of designated current or long-term secret key material does not compromise designated past protected content beyond the exposure allowed by the applicable profile."
+    },
+    {
+      "id": "post-compromise-security",
+      "term": "Post-compromise security (PCS)",
+      "definition": "The property that, after specified secret state is compromised, subsequent protocol evolution can restore protection for later communications once the adversary no longer controls the required endpoint or state, according to the applicable threat model."
+    },
+    {
+      "id": "key-transparency",
+      "term": "Key transparency",
+      "definition": "A mechanism that makes identity-to-key bindings auditable so that inconsistent, substituted, or selectively presented bindings can be detected according to the mechanism's security model."
+    },
+    {
+      "id": "recovery",
+      "term": "Recovery",
+      "definition": "A process by which a user regains access to an account, cryptographic identity, encrypted backup, protected content, or cryptographic capability after loss of ordinary credentials, keys, or devices."
+    },
+    {
+      "id": "security-profile",
+      "term": "Security profile",
+      "definition": "A named and versioned set of requirements and architectural choices that satisfies E2EESA invariants for a defined use case or security model."
+    },
+    {
+      "id": "security-invariant",
+      "term": "Security invariant",
+      "definition": "A security requirement that every conformant configuration within its scope must satisfy and that a profile is not permitted to disable."
+    },
+    {
+      "id": "conformance",
+      "term": "Conformance",
+      "definition": "Satisfaction of all applicable normative requirements for a declared E2EESA version, profiles, capabilities, and assurance scope."
+    }
+  ]
+}

@@ -16,9 +16,13 @@ REQUIRED_PATHS = [
     "CONTRIBUTING.md",
     "SECURITY.md",
     "spec/README.md",
+    "spec/normative-language.md",
+    "spec/terminology.md",
     "adr/0000-template.md",
     "profiles/README.md",
     "schemas/profile.schema.json",
+    "schemas/terminology.schema.json",
+    "registry/terminology.json",
 ]
 
 VALID_STATUSES = {
@@ -107,6 +111,70 @@ def validate_profile(data: dict, source: str = "<profile>") -> list[str]:
     return errors
 
 
+def validate_terminology(data: dict, source: str = "<terminology>") -> list[str]:
+    errors: list[str] = []
+    allowed_top = {"schema_version", "terms"}
+    extras = sorted(set(data) - allowed_top)
+    if extras:
+        errors.append(f"{source}: unknown top-level fields: {', '.join(extras)}")
+
+    if data.get("schema_version") != "0.1":
+        errors.append(f"{source}: schema_version must be 0.1")
+
+    terms = data.get("terms")
+    if not isinstance(terms, list) or not terms:
+        errors.append(f"{source}: terms must be a non-empty array")
+        return errors
+
+    seen_ids: set[str] = set()
+    seen_terms: set[str] = set()
+    allowed_fields = {"id", "term", "definition", "aliases", "notes"}
+
+    for index, entry in enumerate(terms):
+        prefix = f"{source}: terms[{index}]"
+        if not isinstance(entry, dict):
+            errors.append(f"{prefix}: term entry must be an object")
+            continue
+
+        missing = sorted({"id", "term", "definition"} - entry.keys())
+        if missing:
+            errors.append(f"{prefix}: missing required fields: {', '.join(missing)}")
+
+        entry_extras = sorted(set(entry) - allowed_fields)
+        if entry_extras:
+            errors.append(f"{prefix}: unknown fields: {', '.join(entry_extras)}")
+
+        term_id = entry.get("id")
+        if not isinstance(term_id, str) or not PROFILE_ID.fullmatch(term_id):
+            errors.append(f"{prefix}: invalid id")
+        elif term_id in seen_ids:
+            errors.append(f"{prefix}: duplicate id: {term_id}")
+        else:
+            seen_ids.add(term_id)
+
+        term = entry.get("term")
+        if not isinstance(term, str) or not term.strip():
+            errors.append(f"{prefix}: term must be a non-empty string")
+        else:
+            folded = term.casefold()
+            if folded in seen_terms:
+                errors.append(f"{prefix}: duplicate term label: {term}")
+            else:
+                seen_terms.add(folded)
+
+        definition = entry.get("definition")
+        if not isinstance(definition, str) or not definition.strip():
+            errors.append(f"{prefix}: definition must be a non-empty string")
+
+        if "aliases" in entry and not validate_string_list(entry["aliases"]):
+            errors.append(f"{prefix}: aliases must be a unique array of non-empty strings")
+
+        if "notes" in entry and not isinstance(entry["notes"], str):
+            errors.append(f"{prefix}: notes must be a string")
+
+    return errors
+
+
 def validate_repository(root: Path = ROOT) -> list[str]:
     errors: list[str] = []
 
@@ -120,13 +188,14 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if not DEV_VERSION.fullmatch(version):
             errors.append("VERSION must use x.y.z-dev during pre-1.0 foundation development")
 
-    schema_path = root / "schemas/profile.schema.json"
-    if schema_path.is_file():
-        schema = load_json(schema_path)
-        if schema.get("$schema") != "https://json-schema.org/draft/2020-12/schema":
-            errors.append("profile schema must declare JSON Schema Draft 2020-12")
-        if schema.get("additionalProperties") is not False:
-            errors.append("profile schema must reject unknown properties")
+    for schema_rel in ("schemas/profile.schema.json", "schemas/terminology.schema.json"):
+        schema_path = root / schema_rel
+        if schema_path.is_file():
+            schema = load_json(schema_path)
+            if schema.get("$schema") != "https://json-schema.org/draft/2020-12/schema":
+                errors.append(f"{schema_rel}: must declare JSON Schema Draft 2020-12")
+            if schema.get("additionalProperties") is not False:
+                errors.append(f"{schema_rel}: must reject unknown top-level properties")
 
     adr_path = root / "adr/0000-template.md"
     if adr_path.is_file():
@@ -142,6 +211,31 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         ):
             if heading not in adr:
                 errors.append(f"ADR template missing heading: {heading}")
+
+    normative_path = root / "spec/normative-language.md"
+    if normative_path.is_file():
+        normative = normative_path.read_text(encoding="utf-8")
+        for required_text in ("**Status:** Normative", "RFC 2119", "RFC 8174", "MUST", "SHOULD", "MAY"):
+            if required_text not in normative:
+                errors.append(f"normative-language.md missing required marker: {required_text}")
+
+    terminology_path = root / "spec/terminology.md"
+    if terminology_path.is_file():
+        terminology = terminology_path.read_text(encoding="utf-8")
+        for heading in (
+            "## 1. Actors and system boundaries",
+            "## 3. End-to-end encryption",
+            "## 5. Security properties",
+            "## 6. Compromise and recovery",
+            "## 8. Assurance and lifecycle",
+            "## 9. Threat-model terms",
+        ):
+            if heading not in terminology:
+                errors.append(f"terminology.md missing required section: {heading}")
+
+    registry_path = root / "registry/terminology.json"
+    if registry_path.is_file():
+        errors.extend(validate_terminology(load_json(registry_path), "registry/terminology.json"))
 
     valid_dir = root / "fixtures/profiles/valid"
     for path in sorted(valid_dir.glob("*.json")) if valid_dir.exists() else []:

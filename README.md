@@ -13,11 +13,16 @@ The standard separates:
 
 - `spec/` — normative and informative specification material
 - `schemas/` — machine-readable configuration/evidence schemas
+- `registry/` — machine-readable standard terminology and future registries
 - `profiles/` — versioned standard profiles
 - `fixtures/` — valid and invalid conformance examples
 - `adr/` — architecture decision records
 - `scripts/` — repository validation tooling
 - `tests/` — validation tests
+
+## Normative foundation
+
+E2EESA defines its requirement language in `spec/normative-language.md` and its core vocabulary in `spec/terminology.md`. Implementations and later profiles must use those definitions consistently rather than silently redefining security terms.
 
 ## Development rule
 
