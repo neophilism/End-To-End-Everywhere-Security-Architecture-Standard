@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1",
+  "property_id": "SP-MAGICAL-SECURITY",
+  "state": "provided",
+  "scope": "Invalid example",
+  "assets": ["example asset"],
+  "threat_ids": ["TM-NET-PASSIVE"],
+  "composite_scenario_ids": [],
+  "temporal_phases": ["steady-state"],
+  "assumptions": [],
+  "limitations": [],
+  "conditions": []
+}
