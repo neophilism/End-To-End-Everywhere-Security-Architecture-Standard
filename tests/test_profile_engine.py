@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import importlib.util
 import json
+import sys
 from pathlib import Path
 import unittest
 
@@ -12,6 +13,7 @@ ENGINE_PATH = ROOT / "scripts" / "profile_engine.py"
 spec = importlib.util.spec_from_file_location("profile_engine", ENGINE_PATH)
 profile_engine = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
+sys.modules[spec.name] = profile_engine
 spec.loader.exec_module(profile_engine)
 
 
