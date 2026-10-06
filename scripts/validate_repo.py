@@ -18,6 +18,7 @@ import crypto_registry
 import negotiation_engine
 import identity_device_engine
 import pairwise_session_engine
+import group_e2ee_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -34,6 +35,8 @@ REQUIRED_PATHS = [
     "spec/negotiation-downgrade.md",
     "spec/identity-device-architecture.md",
     "spec/pairwise-e2ee.md",
+    "spec/group-e2ee.md",
+    "adr/0006-group-e2ee-profiles.md",
     "adr/0005-pairwise-e2ee-profiles.md",
     "adr/0004-identity-device-architecture.md",
     "adr/0000-template.md",
@@ -55,17 +58,23 @@ REQUIRED_PATHS = [
     "schemas/pairwise-policy.schema.json",
     "schemas/pairwise-handshake-evidence.schema.json",
     "schemas/pairwise-message-checkpoint.schema.json",
+    "schemas/group-protocol-registry.schema.json",
+    "schemas/group-policy.schema.json",
+    "schemas/group-membership-event.schema.json",
+    "schemas/group-message-checkpoint.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
     "registry/cryptographic-algorithms.json",
     "registry/pairwise-protocols.json",
+    "registry/group-protocols.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
     "scripts/negotiation_engine.py",
     "scripts/identity_device_engine.py",
     "scripts/pairwise_session_engine.py",
+    "scripts/group_e2ee_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -74,6 +83,9 @@ REQUIRED_PATHS = [
     "fixtures/pairwise/policies/triple.json",
     "fixtures/pairwise/handshakes/valid/triple.json",
     "fixtures/pairwise/checkpoints/valid/triple.json",
+    "fixtures/group/policies/mls.json",
+    "fixtures/group/membership/valid/mls.json",
+    "fixtures/group/messages/valid/mls.json",
 ]
 
 VALID_STATUSES = {
@@ -770,6 +782,10 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/pairwise-policy.schema.json",
         "schemas/pairwise-handshake-evidence.schema.json",
         "schemas/pairwise-message-checkpoint.schema.json",
+        "schemas/group-protocol-registry.schema.json",
+        "schemas/group-policy.schema.json",
+        "schemas/group-membership-event.schema.json",
+        "schemas/group-message-checkpoint.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -938,6 +954,22 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in pairwise_spec:
                 errors.append(f"pairwise-e2ee.md missing required marker: {required_text}")
 
+    group_spec_path = root / "spec/group-e2ee.md"
+    if group_spec_path.is_file():
+        group_spec = group_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Common group invariant",
+            "group-mls-rfc9420@0.1.0",
+            "group-sender-key-aead@0.1.0",
+            "group-pairwise-fanout@0.1.0",
+            "## 13. Downgrade resistance",
+            "## 15. Conformance evidence",
+            "UpdatePath",
+        ):
+            if required_text not in group_spec:
+                errors.append(f"group-e2ee.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -975,6 +1007,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 pairwise_protocol_registry,
                 known_property_ids=known_pairwise_property_ids,
                 source="registry/pairwise-protocols.json",
+            )
+        )
+
+    group_protocol_registry_path = root / "registry/group-protocols.json"
+    group_protocol_registry = (
+        load_json(group_protocol_registry_path)
+        if group_protocol_registry_path.is_file()
+        else {}
+    )
+    if group_protocol_registry:
+        errors.extend(
+            group_e2ee_engine.validate_protocol_registry(
+                group_protocol_registry,
+                source="registry/group-protocols.json",
             )
         )
 
@@ -1125,6 +1171,70 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                     errors.append(
                         f"fixtures/pairwise/checkpoints/invalid/{fixture_name}.json: "
                         "invalid checkpoint unexpectedly passed"
+                    )
+
+    if group_protocol_registry and crypto_registry_data and profile_catalog:
+        for name in ("mls", "sender", "pairwise"):
+            policy_path = root / "fixtures/group/policies" / f"{name}.json"
+            membership_path = root / "fixtures/group/membership/valid" / f"{name}.json"
+            message_path = root / "fixtures/group/messages/valid" / f"{name}.json"
+            if not (policy_path.is_file() and membership_path.is_file() and message_path.is_file()):
+                errors.append(f"missing valid group fixture set: {name}")
+                continue
+            result = group_e2ee_engine.validate_group_case(
+                load_json(policy_path),
+                load_json(membership_path),
+                load_json(message_path),
+                group_protocol_registry,
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid group fixture set {name} failed: " + "; ".join(result)
+                )
+
+        invalid_membership_cases = (
+            ("mls", "server-authorizer"),
+            ("mls", "stale-epoch"),
+            ("mls", "new-member-history"),
+            ("mls", "mls-missing-update-path"),
+            ("sender", "sender-not-rotated"),
+            ("pairwise", "pairwise-recipient-set-not-updated"),
+        )
+        for policy_name, fixture_name in invalid_membership_cases:
+            path = root / "fixtures/group/membership/invalid" / f"{fixture_name}.json"
+            if path.is_file():
+                result = group_e2ee_engine.validate_membership_event(
+                    load_json(root / "fixtures/group/policies" / f"{policy_name}.json"),
+                    load_json(path),
+                )
+                if not result:
+                    errors.append(
+                        f"fixtures/group/membership/invalid/{fixture_name}.json: "
+                        "invalid membership event unexpectedly passed"
+                    )
+
+        invalid_message_cases = (
+            ("mls", "replay"),
+            ("mls", "nonmember-recipient"),
+            ("mls", "server-plaintext"),
+            ("sender", "sender-key-not-deleted"),
+            ("sender", "sender-skipped-overflow"),
+            ("pairwise", "pairwise-count-mismatch"),
+            ("pairwise", "pairwise-session-invalid"),
+        )
+        for policy_name, fixture_name in invalid_message_cases:
+            path = root / "fixtures/group/messages/invalid" / f"{fixture_name}.json"
+            if path.is_file():
+                result = group_e2ee_engine.validate_message_checkpoint(
+                    load_json(root / "fixtures/group/policies" / f"{policy_name}.json"),
+                    load_json(path),
+                )
+                if not result:
+                    errors.append(
+                        f"fixtures/group/messages/invalid/{fixture_name}.json: "
+                        "invalid group message unexpectedly passed"
                     )
 
     known_property_ids = {
