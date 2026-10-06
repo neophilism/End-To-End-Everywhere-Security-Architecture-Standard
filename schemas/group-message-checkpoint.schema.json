@@ -1,0 +1,35 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/group-message-checkpoint.schema.json",
+  "title":"E2EESA group message checkpoint",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","group_id","profile_ref","epoch","message_id","sender_device_id",
+    "current_member_device_ids","recipient_device_ids","replay_status",
+    "authenticated","server_plaintext_access","ciphertext_count",
+    "mls_application_message","sender_chain_advanced","sender_message_key_deleted",
+    "sender_signature_verified","skipped_sender_message_keys_retained",
+    "all_pairwise_sessions_valid"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "group_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"type":"string","minLength":1},
+    "epoch":{"type":"integer","minimum":0},
+    "message_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "sender_device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "current_member_device_ids":{"type":"array","minItems":2,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "recipient_device_ids":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "replay_status":{"enum":["fresh","replay"]},
+    "authenticated":{"type":"boolean"},
+    "server_plaintext_access":{"type":"boolean"},
+    "ciphertext_count":{"type":"integer","minimum":1},
+    "mls_application_message":{"type":"boolean"},
+    "sender_chain_advanced":{"type":"boolean"},
+    "sender_message_key_deleted":{"type":"boolean"},
+    "sender_signature_verified":{"type":"boolean"},
+    "skipped_sender_message_keys_retained":{"type":"integer","minimum":0},
+    "all_pairwise_sessions_valid":{"type":"boolean"}
+  }
+}
