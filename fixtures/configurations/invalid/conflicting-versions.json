@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "configuration_id": "conflicting-versions",
+  "standard_version": "0.1.0-dev",
+  "selected_profiles": [
+    "foundation-baseline@0.1.0",
+    "example-choice-a@0.1.0",
+    "example-choice-a@0.2.0"
+  ],
+  "accepted_nondefault_statuses": ["provisional"]
+}

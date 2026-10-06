@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/configuration.schema.json",
+  "title": "E2EESA Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "configuration_id", "standard_version", "selected_profiles", "accepted_nondefault_statuses"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "0.1"},
+    "configuration_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "standard_version": {"type": "string", "minLength": 1},
+    "selected_profiles": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+      "uniqueItems": true
+    },
+    "accepted_nondefault_statuses": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["provisional", "experimental", "legacy", "deprecated"]},
+      "uniqueItems": true
+    },
+    "notes": {"type": "string"}
+  }
+}

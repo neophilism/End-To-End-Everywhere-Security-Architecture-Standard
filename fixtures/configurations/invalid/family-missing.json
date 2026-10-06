@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "configuration_id": "family-missing",
+  "standard_version": "0.1.0-dev",
+  "selected_profiles": [
+    "example-choice-b@0.1.0"
+  ],
+  "accepted_nondefault_statuses": []
+}
