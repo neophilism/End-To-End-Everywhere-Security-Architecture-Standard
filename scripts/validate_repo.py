@@ -14,6 +14,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 import profile_engine
+import crypto_registry
 
 REQUIRED_PATHS = [
     "README.md",
@@ -26,6 +27,7 @@ REQUIRED_PATHS = [
     "spec/threat-model.md",
     "spec/security-properties.md",
     "spec/profile-configuration.md",
+    "spec/cryptographic-registry.md",
     "adr/0000-template.md",
     "profiles/README.md",
     "schemas/profile.schema.json",
@@ -35,11 +37,14 @@ REQUIRED_PATHS = [
     "schemas/security-property-claim.schema.json",
     "schemas/profile-catalog.schema.json",
     "schemas/configuration.schema.json",
+    "schemas/cryptographic-algorithm-registry.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
+    "registry/cryptographic-algorithms.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
+    "scripts/crypto_registry.py",
 ]
 
 VALID_STATUSES = {
@@ -726,6 +731,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/security-property-claim.schema.json",
         "schemas/profile-catalog.schema.json",
         "schemas/configuration.schema.json",
+        "schemas/cryptographic-algorithm-registry.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -815,6 +821,31 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     threat_registry = load_json(threat_registry_path) if threat_registry_path.is_file() else {}
     if threat_registry:
         errors.extend(validate_threat_model(threat_registry, "registry/threat-model.json"))
+
+    crypto_registry_path = root / "registry/cryptographic-algorithms.json"
+    if crypto_registry_path.is_file():
+        errors.extend(
+            crypto_registry.validate_registry(
+                load_json(crypto_registry_path),
+                "registry/cryptographic-algorithms.json",
+            )
+        )
+
+    crypto_spec_path = root / "spec/cryptographic-registry.md"
+    if crypto_spec_path.is_file():
+        crypto_spec = crypto_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "## 1. Closed-world rule",
+            "## 2. No new cryptographic primitives",
+            "## 3. Lifecycle status",
+            "## 6. Post-quantum scope",
+            "## 10. Fail-closed interpretation",
+            "ML-KEM",
+            "ML-DSA",
+        ):
+            if required_text not in crypto_spec:
+                errors.append(f"cryptographic-registry.md missing required marker: {required_text}")
 
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
