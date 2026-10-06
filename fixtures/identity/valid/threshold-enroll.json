@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1",
+  "event_id": "event-threshold-enroll",
+  "identity_id": "alice",
+  "sequence": 3,
+  "previous_state_hash": "fc0ff32574b0f2c9a4b7db078af38b6a5012162b167fc37534a5a50962eb01df",
+  "event_type": "enroll",
+  "subject_device_id": "device-c",
+  "verified_authorizers": [
+    {
+      "type": "device",
+      "id": "device-a"
+    },
+    {
+      "type": "device",
+      "id": "device-b"
+    }
+  ],
+  "new_key_generation": 1,
+  "new_signing_key": {
+    "key_id": "device-c-sign-1",
+    "algorithm_id": "ALG-ED25519",
+    "public_key_fingerprint": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "new_agreement_key": {
+    "key_id": "device-c-agree-1",
+    "algorithm_id": "ALG-X25519",
+    "public_key_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
