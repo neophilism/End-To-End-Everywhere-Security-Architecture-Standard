@@ -1,0 +1,139 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "protocols": [
+    {
+      "id": "PROTO-X3DH-R1",
+      "name": "X3DH",
+      "role": "initialization",
+      "status": "allowed",
+      "specification": "Signal X3DH Revision 1",
+      "revision": "1",
+      "published_or_updated": "2016-11-04",
+      "reference_uri": "https://signal.org/docs/specifications/x3dh/",
+      "quantum_characteristic": "classical",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY"
+      ],
+      "constraints": [
+        "The prekey bundle and identity binding MUST be verified as specified by X3DH.",
+        "A used one-time prekey private key MUST be deleted after successful session establishment.",
+        "The post-X3DH protocol MUST randomize the responder's encryption key before responder encrypted data is sent, preventing catastrophic key reuse after replay."
+      ]
+    },
+    {
+      "id": "PROTO-PQXDH-R3-2024",
+      "name": "PQXDH",
+      "role": "initialization",
+      "status": "recommended",
+      "specification": "Signal PQXDH Revision 3",
+      "revision": "3 (last updated 2024-01-23)",
+      "published_or_updated": "2024-01-23",
+      "reference_uri": "https://signal.org/docs/specifications/pqxdh/",
+      "quantum_characteristic": "hybrid",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "constraints": [
+        "A post-quantum KEM with IND-CCA post-quantum security MUST be selected by the consuming profile.",
+        "The prekey bundle, signatures, identity binding, and KEM re-encapsulation mitigations MUST follow PQXDH.",
+        "Current PQXDH authentication is classical and MUST NOT be represented as post-quantum authentication.",
+        "A used one-time prekey private key and any applicable one-time post-quantum prekey private key MUST be deleted as specified."
+      ]
+    },
+    {
+      "id": "PROTO-DOUBLE-RATCHET-R4",
+      "name": "Double Ratchet",
+      "role": "ratchet",
+      "status": "allowed",
+      "specification": "Signal Double Ratchet Revision 4",
+      "revision": "4",
+      "published_or_updated": "2025-11-04",
+      "reference_uri": "https://signal.org/docs/specifications/doubleratchet/",
+      "quantum_characteristic": "classical",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "constraints": [
+        "Message keys and superseded chain or ratchet state MUST be deleted according to the specification.",
+        "Skipped message keys MUST be bounded to prevent unbounded storage or denial-of-service.",
+        "The initialization shared secret and associated data MUST be bound according to the selected initialization protocol."
+      ]
+    },
+    {
+      "id": "PROTO-SPQR-MLKEM-BRAID-R4",
+      "name": "Sparse Post-Quantum Ratchet with ML-KEM Braid",
+      "role": "ratchet",
+      "status": "allowed",
+      "specification": "Signal Double Ratchet Revision 4, Section 5 with ML-KEM Braid",
+      "revision": "4",
+      "published_or_updated": "2025-11-04",
+      "reference_uri": "https://signal.org/docs/specifications/doubleratchet/",
+      "quantum_characteristic": "post-quantum",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "constraints": [
+        "The SCKA instantiation MUST be ML-KEM Braid when this registry identifier is selected.",
+        "Past epoch state and message keys MUST be deleted according to the specification.",
+        "Implementations MUST account for the effect of dropped messages on post-compromise healing."
+      ]
+    },
+    {
+      "id": "PROTO-TRIPLE-RATCHET-R4",
+      "name": "Triple Ratchet",
+      "role": "ratchet",
+      "status": "recommended",
+      "specification": "Signal Double Ratchet Revision 4, Section 6",
+      "revision": "4",
+      "published_or_updated": "2025-11-04",
+      "reference_uri": "https://signal.org/docs/specifications/doubleratchet/",
+      "quantum_characteristic": "hybrid",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "constraints": [
+        "The classical Double Ratchet and Sparse Post-Quantum Ratchet MUST both run and their message-key outputs MUST be combined as specified.",
+        "The SCKA component MUST be ML-KEM Braid for the E2EESA 0.1 profile.",
+        "Removing either ratchet component changes the protocol and MUST require a different profile identifier."
+      ]
+    },
+    {
+      "id": "PROTO-SESAME-R2",
+      "name": "Sesame",
+      "role": "session-management",
+      "status": "allowed",
+      "specification": "Signal Sesame Revision 2",
+      "revision": "2",
+      "published_or_updated": "2017-04-14",
+      "reference_uri": "https://signal.org/docs/specifications/sesame/",
+      "quantum_characteristic": "protocol-agnostic",
+      "security_properties": [
+        "SP-REPLAY-RESISTANCE",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "constraints": [
+        "Session-management use MUST remain subordinate to the selected pairwise encryption profile and current authorized device set.",
+        "A session manager MUST NOT re-authorize a device revoked by the identity architecture."
+      ]
+    }
+  ]
+}
