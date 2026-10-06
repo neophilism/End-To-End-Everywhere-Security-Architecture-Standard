@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/key-verification-policy.schema.json",
+  "title":"E2EESA key verification policy",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","policy_id","profile_ref","hash_algorithm_id",
+    "numeric_group_count","numeric_group_width",
+    "require_out_of_band_confirmation","invalidate_on_subject_change",
+    "block_silent_reverification"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "policy_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["verify-account-root@0.1.0","verify-device-set@0.1.0"]},
+    "hash_algorithm_id":{"type":"string","minLength":1},
+    "numeric_group_count":{"const":12},
+    "numeric_group_width":{"const":5},
+    "require_out_of_band_confirmation":{"const":true},
+    "invalidate_on_subject_change":{"const":true},
+    "block_silent_reverification":{"const":true},
+    "notes":{"type":"string"}
+  }
+}
