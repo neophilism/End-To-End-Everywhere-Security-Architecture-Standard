@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/security-property-claim.schema.json",
+  "title": "E2EESA Security Property Claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "property_id", "state", "scope", "assets", "threat_ids", "temporal_phases", "assumptions", "limitations"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "0.1"},
+    "property_id": {"type": "string", "pattern": "^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "state": {"type": "string", "enum": ["provided", "conditional", "not-claimed", "not-applicable"]},
+    "scope": {"type": "string", "minLength": 1},
+    "assets": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "threat_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^TM-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+      "uniqueItems": true
+    },
+    "composite_scenario_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^CS-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "temporal_phases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "enum": ["steady-state", "pre-compromise", "during-compromise", "post-compromise-pre-healing", "post-healing"]},
+      "uniqueItems": true
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "limitations": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "conditions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true,
+      "default": []
+    },
+    "notes": {"type": "string"}
+  }
+}
