@@ -48,6 +48,28 @@
       "uniqueItems": true,
       "default": []
     },
+    "identity_granularity": {"type": "string", "minLength": 1},
+    "healing_event": {"type": "string", "minLength": 1},
+    "exposure_window": {"type": "string", "minLength": 1},
+    "evidence_model": {"type": "string", "minLength": 1},
     "notes": {"type": "string"}
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"enum": ["provided", "conditional"]}}},
+      "then": {
+        "properties": {
+          "assets": {"minItems": 1},
+          "threat_ids": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"state": {"const": "conditional"}}},
+      "then": {
+        "required": ["conditions"],
+        "properties": {"conditions": {"minItems": 1}}
+      }
+    }
+  ]
 }
