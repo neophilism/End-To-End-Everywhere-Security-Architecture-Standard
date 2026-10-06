@@ -1,0 +1,27 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/key-verification-record.schema.json",
+  "title":"E2EESA manual key verification record",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","record_id","profile_ref","hash_algorithm_id",
+    "party_identity_ids","subject_digest_hex","numeric_safety_number",
+    "qr_payload","verification_method","user_confirmed",
+    "status","transparency_evidence_ref"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "record_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["verify-account-root@0.1.0","verify-device-set@0.1.0"]},
+    "hash_algorithm_id":{"type":"string","minLength":1},
+    "party_identity_ids":{"type":"array","minItems":2,"maxItems":2,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "subject_digest_hex":{"type":"string","pattern":"^[0-9a-f]+$"},
+    "numeric_safety_number":{"type":"string","pattern":"^(?:[0-9]{5} ){11}[0-9]{5}$"},
+    "qr_payload":{"type":"string","pattern":"^e2eesa-kv1:[A-Za-z0-9_-]+$"},
+    "verification_method":{"enum":["numeric","qr"]},
+    "user_confirmed":{"const":true},
+    "status":{"enum":["verified","invalidated"]},
+    "transparency_evidence_ref":{"oneOf":[{"type":"null"},{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}]}
+  }
+}
