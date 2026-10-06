@@ -2,10 +2,11 @@
   "schema_version": "0.1",
   "profile_id": "foundation-example",
   "profile_version": "0.1.0",
+  "family_id": "foundation",
   "status": "experimental",
   "decision_class": "experimental",
   "security_properties": ["SP-CONFIDENTIALITY"],
-  "requires": [],
-  "incompatible_with": [],
+  "requires_profile_refs": [],
+  "incompatible_profile_refs": [],
   "notes": "Repository-foundation fixture; not a production security profile."
 }
