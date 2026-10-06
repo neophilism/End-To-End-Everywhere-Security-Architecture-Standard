@@ -37,6 +37,12 @@
       "name": "Group end-to-end encryption",
       "cardinality": "at-most-one",
       "description": "Complete group-messaging architecture profiles for asynchronous multi-device groups. Product conformance requires one when group E2EE is in scope."
+    },
+    {
+      "family_id": "key-verification",
+      "name": "Manual key verification",
+      "cardinality": "at-most-one",
+      "description": "Versioned manual verification profiles that bind an out-of-band safety number/QR representation either to stable account-root identities or to the complete active device-key sets."
     }
   ],
   "profiles": [
@@ -388,6 +394,40 @@
         "group-sender-key-aead@0.1.0"
       ],
       "notes": "Simple O(n) group architecture that encrypts each group message independently to every current recipient device using a selected E2EESA pairwise profile; no shared group content key."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verify-account-root",
+      "profile_version": "0.1.0",
+      "family_id": "key-verification",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verify-device-set@0.1.0"
+      ],
+      "notes": "Manual verification binds a canonical safety digest to the two client-controlled account-root public keys. Device changes authorized beneath an unchanged verified root do not automatically invalidate the root verification."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verify-device-set",
+      "profile_version": "0.1.0",
+      "family_id": "key-verification",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verify-account-root@0.1.0"
+      ],
+      "notes": "Manual verification binds a canonical safety digest to the complete active device-key sets for both parties. Any active-device or verified key-set change invalidates the prior verification."
     }
   ]
 }

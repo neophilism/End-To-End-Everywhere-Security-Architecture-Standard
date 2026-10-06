@@ -1,0 +1,30 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/key-verification-snapshot.schema.json",
+  "title":"E2EESA key verification identity snapshot",
+  "type":"object",
+  "additionalProperties":false,
+  "$defs":{
+    "device":{
+      "type":"object","additionalProperties":false,
+      "required":["device_id","key_generation","signing_key_fingerprint","agreement_key_fingerprint"],
+      "properties":{
+        "device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "key_generation":{"type":"integer","minimum":1},
+        "signing_key_fingerprint":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+        "agreement_key_fingerprint":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "required":[
+    "schema_version","identity_id","identity_profile_ref",
+    "account_root_key_fingerprint","active_devices"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "identity_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "identity_profile_ref":{"type":"string","pattern":"^identity-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "account_root_key_fingerprint":{"oneOf":[{"type":"null"},{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}]},
+    "active_devices":{"type":"array","minItems":1,"items":{"$ref":"#/$defs/device"}}
+  }
+}

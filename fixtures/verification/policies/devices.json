@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "verify-device-set",
+  "profile_ref": "verify-device-set@0.1.0",
+  "hash_algorithm_id": "ALG-SHA256",
+  "numeric_group_count": 12,
+  "numeric_group_width": 5,
+  "require_out_of_band_confirmation": true,
+  "invalidate_on_subject_change": true,
+  "block_silent_reverification": true
+}
