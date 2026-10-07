@@ -103,6 +103,12 @@
       "name": "Server trust minimization",
       "cardinality": "at-most-one",
       "description": "Server trust minimization. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "telemetry",
+      "name": "Privacy-preserving telemetry",
+      "cardinality": "at-most-one",
+      "description": "Privacy-preserving telemetry. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -948,6 +954,57 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Relays, queues, object stores, backups, KMS and subprocessors cannot decrypt application E2EE or independently authorize recipients."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-none",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-minimized-diagnostics@0.1.0",
+        "telemetry-dp-aggregate@0.1.0"
+      ],
+      "notes": "No exported telemetry or durable diagnostics; local manual debugging is separate."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-minimized-diagnostics",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-none@0.1.0",
+        "telemetry-dp-aggregate@0.1.0"
+      ],
+      "notes": "Explicit opt-in bounded diagnostic codes; no content, keys, identifiers, pseudonyms or raw crash dumps."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-dp-aggregate",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-none@0.1.0",
+        "telemetry-minimized-diagnostics@0.1.0"
+      ],
+      "notes": "Pure central-Laplace aggregate counts with user-lifetime adjacency, contribution bounds and cumulative privacy-budget evidence; collector access remains explicit."
     }
   ]
 }

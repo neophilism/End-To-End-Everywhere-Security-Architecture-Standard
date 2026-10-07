@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "telemetry-none",
+  "profile_ref": "telemetry-none@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "all-clients",
+  "policy_digest": "sha256:84bab7e244b6734fb6f41af72db7aa00f89621ff5023a929d441479a930149c3",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "mode": "none",
+  "max_durable_age_seconds": 0,
+  "events": [],
+  "dp": null,
+  "collector_enabled": false,
+  "consent_granted": false,
+  "export_authenticated_encrypted": false,
+  "ip_stripped_before_collection": false,
+  "no_plaintext_or_secrets": true,
+  "no_personal_identifiers": true,
+  "no_raw_crash_dumps": true,
+  "withdrawal_honored": true,
+  "privacy_controls_tested": true,
+  "stable_pseudonyms": false,
+  "cross_product_joining": false,
+  "claims_network_anonymity": false
+}

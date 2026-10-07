@@ -54,3 +54,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 20. [Native and Web Client Security](native-web-client-security.md) — signed native, hardened web, and independently verified web-bootstrap profiles with release manifest binding, transparency witnesses, rollback/freeze controls, origin hardening, and explicit execution trust assumptions.
 
 21. [Server Trust Minimization](server-trust-minimization.md) — ciphertext-only service infrastructure with exhaustive component/key inventory, client-authorized recipient sets, bounded retention, encrypted derivatives and explicit routing/availability limitations.
+
+22. [Privacy-Preserving Telemetry](privacy-preserving-telemetry.md) — no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.

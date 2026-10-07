@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/telemetry-evidence.schema.json",
+  "title": "E2EESA telemetry-evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "policy_digest",
+    "assessor_id",
+    "observed_at",
+    "report_refs",
+    "mode",
+    "max_durable_age_seconds",
+    "events",
+    "dp",
+    "collector_enabled",
+    "consent_granted",
+    "export_authenticated_encrypted",
+    "ip_stripped_before_collection",
+    "no_plaintext_or_secrets",
+    "no_personal_identifiers",
+    "no_raw_crash_dumps",
+    "withdrawal_honored",
+    "privacy_controls_tested",
+    "stable_pseudonyms",
+    "cross_product_joining",
+    "claims_network_anonymity"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "assessor_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "report_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "none",
+        "diagnostics",
+        "dp-aggregate"
+      ]
+    },
+    "max_durable_age_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event_code",
+          "platform_class",
+          "release_major",
+          "value_bucket"
+        ],
+        "properties": {
+          "event_code": {
+            "type": "string",
+            "enum": [
+              "startup-failure",
+              "delivery-latency",
+              "protocol-error"
+            ]
+          },
+          "platform_class": {
+            "type": "string",
+            "enum": [
+              "desktop",
+              "mobile",
+              "browser"
+            ]
+          },
+          "release_major": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "value_bucket": {
+            "type": "string",
+            "enum": [
+              "zero",
+              "one",
+              "two-to-ten",
+              "over-ten"
+            ]
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "dp": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "mechanism",
+        "privacy_unit",
+        "adjacency",
+        "accounting_domain",
+        "ledger_digest",
+        "previous_release_count",
+        "releases",
+        "accountant_continuity_verified",
+        "all_prior_releases_included",
+        "randomness_independently_tested",
+        "raw_inputs_access_controlled",
+        "raw_inputs_purged",
+        "claims_collector_cannot_observe_inputs",
+        "budget_reset_on_update"
+      ],
+      "properties": {
+        "mechanism": {
+          "type": "string",
+          "const": "central-laplace-count"
+        },
+        "privacy_unit": {
+          "type": "string",
+          "const": "user-lifetime"
+        },
+        "adjacency": {
+          "type": "string",
+          "const": "add-remove-user"
+        },
+        "accounting_domain": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "ledger_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "previous_release_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "releases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "release_id",
+              "metric_id",
+              "epsilon_micros",
+              "delta_ppb",
+              "noise_scale_numerator",
+              "noise_scale_denominator",
+              "distinct_users",
+              "published_at",
+              "published_result",
+              "sensitivity",
+              "contribution_lower",
+              "contribution_upper",
+              "contributions_clipped",
+              "distinct_user_count_verified",
+              "fresh_noise",
+              "noise_mechanism_verified"
+            ],
+            "properties": {
+              "release_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "metric_id": {
+                "type": "string",
+                "enum": [
+                  "startup-failure",
+                  "delivery-latency",
+                  "protocol-error"
+                ]
+              },
+              "epsilon_micros": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000000
+              },
+              "delta_ppb": {
+                "type": "integer",
+                "const": 0
+              },
+              "noise_scale_numerator": {
+                "type": "integer",
+                "const": 1000000
+              },
+              "noise_scale_denominator": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000000
+              },
+              "distinct_users": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "published_at": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+              },
+              "published_result": {
+                "type": "integer"
+              },
+              "sensitivity": {
+                "type": "integer",
+                "const": 1
+              },
+              "contribution_lower": {
+                "type": "integer",
+                "const": 0
+              },
+              "contribution_upper": {
+                "type": "integer",
+                "const": 1
+              },
+              "contributions_clipped": {
+                "type": "boolean"
+              },
+              "distinct_user_count_verified": {
+                "type": "boolean"
+              },
+              "fresh_noise": {
+                "type": "boolean"
+              },
+              "noise_mechanism_verified": {
+                "type": "boolean"
+              }
+            }
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "accountant_continuity_verified": {
+          "type": "boolean"
+        },
+        "all_prior_releases_included": {
+          "type": "boolean"
+        },
+        "randomness_independently_tested": {
+          "type": "boolean"
+        },
+        "raw_inputs_access_controlled": {
+          "type": "boolean"
+        },
+        "raw_inputs_purged": {
+          "type": "boolean"
+        },
+        "claims_collector_cannot_observe_inputs": {
+          "type": "boolean"
+        },
+        "budget_reset_on_update": {
+          "type": "boolean"
+        }
+      }
+    },
+    "collector_enabled": {
+      "type": "boolean"
+    },
+    "consent_granted": {
+      "type": "boolean"
+    },
+    "export_authenticated_encrypted": {
+      "type": "boolean"
+    },
+    "ip_stripped_before_collection": {
+      "type": "boolean"
+    },
+    "no_plaintext_or_secrets": {
+      "type": "boolean"
+    },
+    "no_personal_identifiers": {
+      "type": "boolean"
+    },
+    "no_raw_crash_dumps": {
+      "type": "boolean"
+    },
+    "withdrawal_honored": {
+      "type": "boolean"
+    },
+    "privacy_controls_tested": {
+      "type": "boolean"
+    },
+    "stable_pseudonyms": {
+      "type": "boolean"
+    },
+    "cross_product_joining": {
+      "type": "boolean"
+    },
+    "claims_network_anonymity": {
+      "type": "boolean"
+    }
+  }
+}
