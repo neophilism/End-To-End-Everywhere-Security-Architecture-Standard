@@ -1,0 +1,37 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/attachment-key-distribution-evidence.schema.json",
+  "title":"E2EESA attachment key distribution evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","event_id","profile_ref","attachment_id",
+    "parent_message_id","parent_message_e2ee_profile_ref",
+    "recipient_count","manifest_delivered_inside_authenticated_e2ee",
+    "recipient_device_set_authorized","attachment_key_fresh",
+    "attachment_key_reused","service_observed_attachment_key",
+    "attachment_key_in_url","attachment_key_in_storage_metadata",
+    "automatic_history_share_to_new_group_members",
+    "removed_member_received_new_attachment_key",
+    "manifest_context_digest_matches"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "event_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"const":"attachment-chunked-aead@0.1.0"},
+    "attachment_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "parent_message_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "parent_message_e2ee_profile_ref":{"type":"string","pattern":"^(pairwise|group)-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "recipient_count":{"type":"integer","minimum":1},
+    "manifest_delivered_inside_authenticated_e2ee":{"type":"boolean"},
+    "recipient_device_set_authorized":{"type":"boolean"},
+    "attachment_key_fresh":{"type":"boolean"},
+    "attachment_key_reused":{"type":"boolean"},
+    "service_observed_attachment_key":{"type":"boolean"},
+    "attachment_key_in_url":{"type":"boolean"},
+    "attachment_key_in_storage_metadata":{"type":"boolean"},
+    "automatic_history_share_to_new_group_members":{"type":"boolean"},
+    "removed_member_received_new_attachment_key":{"type":"boolean"},
+    "manifest_context_digest_matches":{"type":"boolean"}
+  }
+}
