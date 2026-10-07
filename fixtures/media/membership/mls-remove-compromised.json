@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "event_id": "media-remove-bob",
+  "session_id": "call-mls-alpha",
+  "profile_ref": "media-sframe-mls@0.1.0",
+  "event_type": "remove-compromised",
+  "previous_media_epoch": 7,
+  "new_media_epoch": 8,
+  "changed_device_id": "bob-phone",
+  "previous_participant_device_ids": [
+    "alice-phone",
+    "bob-phone",
+    "carol-phone"
+  ],
+  "new_participant_device_ids": [
+    "alice-phone",
+    "carol-phone"
+  ],
+  "identity_authorization_verified": true,
+  "keys_rotated_before_media_resume": true,
+  "departed_devices_excluded_from_new_keys": true,
+  "new_joiner_received_prior_epoch_keys": false,
+  "all_active_senders_rotated": true,
+  "new_sender_keys_distributed_over_e2ee": false,
+  "mls_commit_authenticated": true,
+  "mls_epoch_advanced": true,
+  "rejoining_device_reused_old_sender_key": false
+}

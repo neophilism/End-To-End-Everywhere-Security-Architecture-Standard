@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "session_id": "call-sender-alpha",
+  "sender_device_id": "alice-phone",
+  "media_epoch": 1,
+  "kid": 101,
+  "max_ctr": 41,
+  "base_key_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}
