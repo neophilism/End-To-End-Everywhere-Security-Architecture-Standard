@@ -73,6 +73,12 @@
       "name": "Attachments and file encryption",
       "cardinality": "at-most-one",
       "description": "Chunked authenticated file-encryption architecture for E2EE attachments, including key distribution, streaming/range verification, substitution/replay resistance, and deletion semantics."
+    },
+    {
+      "family_id": "real-time-media",
+      "name": "Real-time media",
+      "cardinality": "at-most-one",
+      "description": "End-to-end encrypted real-time audio/video profiles using RFC 9605 SFrame with either sender-key distribution over an existing E2E control channel or MLS-derived conference keys."
     }
   ],
   "profiles": [
@@ -690,6 +696,47 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305 recommended, AES-256-GCM-SIV allowed; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "media-sframe-sender-keys",
+      "profile_version": "0.1.0",
+      "family_id": "real-time-media",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-FORWARD-SECRECY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "media-sframe-mls@0.1.0"
+      ],
+      "notes": "RFC 9605 SFrame with a fresh sender-owned base key distributed over a pre-existing authenticated E2EE control channel. Best fit for 1:1 and smaller groups; every active sender rotates on membership changes."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "media-sframe-mls",
+      "profile_version": "0.1.0",
+      "family_id": "real-time-media",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY"
+      ],
+      "requires_profile_refs": [
+        "group-mls-rfc9420@0.1.0"
+      ],
+      "incompatible_profile_refs": [
+        "media-sframe-sender-keys@0.1.0"
+      ],
+      "notes": "RFC 9605 SFrame using its MLS exporter/KID construction over the E2EESA RFC 9420 group profile. Recommended for multiparty conferences and membership churn."
     }
   ]
 }

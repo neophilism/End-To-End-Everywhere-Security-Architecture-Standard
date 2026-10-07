@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "session_id": "call-sender-alpha",
+  "profile_ref": "media-sframe-sender-keys@0.1.0",
+  "cipher_suite_id": "0x0005",
+  "participant_device_ids": [
+    "alice-phone",
+    "bob-phone"
+  ],
+  "media_epoch": 1,
+  "control_profile_ref": "pairwise-x3dh-double-ratchet@0.1.0",
+  "hop_by_hop_transport_encryption_verified": true,
+  "sframe_e2ee_enabled": true,
+  "sfu_present": true,
+  "sfu_observed_media_plaintext": false,
+  "sfu_observed_base_keys": false,
+  "sfu_can_modify_media_without_detection": false,
+  "sfu_visible_metadata": [
+    "kid",
+    "ctr",
+    "ssrc",
+    "codec",
+    "frame-size",
+    "timing",
+    "rtcp-feedback"
+  ],
+  "recording_bot_present": false,
+  "recording_bot_authorized_participant": false
+}

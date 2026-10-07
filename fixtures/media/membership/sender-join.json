@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "event_id": "media-join-carol",
+  "session_id": "call-sender-alpha",
+  "profile_ref": "media-sframe-sender-keys@0.1.0",
+  "event_type": "join",
+  "previous_media_epoch": 1,
+  "new_media_epoch": 2,
+  "changed_device_id": "carol-phone",
+  "previous_participant_device_ids": [
+    "alice-phone",
+    "bob-phone"
+  ],
+  "new_participant_device_ids": [
+    "alice-phone",
+    "bob-phone",
+    "carol-phone"
+  ],
+  "identity_authorization_verified": true,
+  "keys_rotated_before_media_resume": true,
+  "departed_devices_excluded_from_new_keys": true,
+  "new_joiner_received_prior_epoch_keys": false,
+  "all_active_senders_rotated": true,
+  "new_sender_keys_distributed_over_e2ee": true,
+  "mls_commit_authenticated": false,
+  "mls_epoch_advanced": false,
+  "rejoining_device_reused_old_sender_key": false
+}

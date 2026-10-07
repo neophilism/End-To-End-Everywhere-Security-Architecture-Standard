@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "session_id": "call-mls-alpha",
+  "sender_device_id": "bob-phone",
+  "media_epoch": 7,
+  "kid": 65543,
+  "max_ctr": 199,
+  "base_key_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

@@ -1,0 +1,38 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/real-time-media-membership-event.schema.json",
+  "title":"E2EESA real-time media membership change evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","event_id","session_id","profile_ref","event_type",
+    "previous_media_epoch","new_media_epoch","changed_device_id",
+    "previous_participant_device_ids","new_participant_device_ids",
+    "identity_authorization_verified","keys_rotated_before_media_resume",
+    "departed_devices_excluded_from_new_keys","new_joiner_received_prior_epoch_keys",
+    "all_active_senders_rotated","new_sender_keys_distributed_over_e2ee",
+    "mls_commit_authenticated","mls_epoch_advanced",
+    "rejoining_device_reused_old_sender_key"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "event_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "session_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["media-sframe-sender-keys@0.1.0","media-sframe-mls@0.1.0"]},
+    "event_type":{"enum":["join","leave","remove-compromised","rejoin"]},
+    "previous_media_epoch":{"type":"integer","minimum":0},
+    "new_media_epoch":{"type":"integer","minimum":1},
+    "changed_device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "previous_participant_device_ids":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "new_participant_device_ids":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "identity_authorization_verified":{"type":"boolean"},
+    "keys_rotated_before_media_resume":{"type":"boolean"},
+    "departed_devices_excluded_from_new_keys":{"type":"boolean"},
+    "new_joiner_received_prior_epoch_keys":{"type":"boolean"},
+    "all_active_senders_rotated":{"type":"boolean"},
+    "new_sender_keys_distributed_over_e2ee":{"type":"boolean"},
+    "mls_commit_authenticated":{"type":"boolean"},
+    "mls_epoch_advanced":{"type":"boolean"},
+    "rejoining_device_reused_old_sender_key":{"type":"boolean"}
+  }
+}

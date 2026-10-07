@@ -1,0 +1,41 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/real-time-media-frame-evidence.schema.json",
+  "title":"E2EESA SFrame media frame evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","event_id","session_id","profile_ref","media_epoch",
+    "sender_device_id","sender_index","group_size","mls_context",
+    "kid","ctr","base_key_fingerprint","cipher_suite_id",
+    "sender_authorized_for_epoch","base_key_reused_by_multiple_senders",
+    "kid_ctr_previously_seen","sframe_authentication_verified",
+    "replay_detected","plaintext_released_before_authentication",
+    "sfu_observed_media_plaintext","sfu_observed_base_key",
+    "hop_by_hop_transport_verified"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "event_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "session_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["media-sframe-sender-keys@0.1.0","media-sframe-mls@0.1.0"]},
+    "media_epoch":{"type":"integer","minimum":0},
+    "sender_device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "sender_index":{"oneOf":[{"type":"null"},{"type":"integer","minimum":0}]},
+    "group_size":{"oneOf":[{"type":"null"},{"type":"integer","minimum":2}]},
+    "mls_context":{"oneOf":[{"type":"null"},{"type":"integer","minimum":0}]},
+    "kid":{"type":"integer","minimum":0,"maximum":18446744073709551615},
+    "ctr":{"type":"integer","minimum":0,"maximum":18446744073709551615},
+    "base_key_fingerprint":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "cipher_suite_id":{"enum":["0x0001","0x0002","0x0004","0x0005"]},
+    "sender_authorized_for_epoch":{"type":"boolean"},
+    "base_key_reused_by_multiple_senders":{"type":"boolean"},
+    "kid_ctr_previously_seen":{"type":"boolean"},
+    "sframe_authentication_verified":{"type":"boolean"},
+    "replay_detected":{"type":"boolean"},
+    "plaintext_released_before_authentication":{"type":"boolean"},
+    "sfu_observed_media_plaintext":{"type":"boolean"},
+    "sfu_observed_base_key":{"type":"boolean"},
+    "hop_by_hop_transport_verified":{"type":"boolean"}
+  }
+}

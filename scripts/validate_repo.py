@@ -25,6 +25,7 @@ import backup_recovery_engine
 import metadata_privacy_engine
 import contact_discovery_engine
 import attachment_encryption_engine
+import real_time_media_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -48,6 +49,8 @@ REQUIRED_PATHS = [
     "spec/metadata-privacy.md",
     "spec/contact-discovery.md",
     "spec/attachments-file-encryption.md",
+    "spec/real-time-media.md",
+    "adr/0013-real-time-media.md",
     "adr/0012-attachments-file-encryption.md",
     "adr/0011-contact-discovery.md",
     "adr/0010-metadata-privacy.md",
@@ -102,6 +105,12 @@ REQUIRED_PATHS = [
     "schemas/attachment-key-distribution-evidence.schema.json",
     "schemas/attachment-chunk-evidence.schema.json",
     "schemas/attachment-deletion-evidence.schema.json",
+    "schemas/real-time-media-registry.schema.json",
+    "schemas/real-time-media-policy.schema.json",
+    "schemas/real-time-media-session-evidence.schema.json",
+    "schemas/real-time-media-membership-event.schema.json",
+    "schemas/real-time-media-frame-evidence.schema.json",
+    "schemas/real-time-media-sender-checkpoint.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -111,6 +120,7 @@ REQUIRED_PATHS = [
     "registry/key-transparency-protocols.json",
     "registry/metadata-privacy-mechanisms.json",
     "registry/contact-discovery-mechanisms.json",
+    "registry/real-time-media.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
@@ -124,6 +134,7 @@ REQUIRED_PATHS = [
     "scripts/metadata_privacy_engine.py",
     "scripts/contact_discovery_engine.py",
     "scripts/attachment_encryption_engine.py",
+    "scripts/real_time_media_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -175,6 +186,16 @@ REQUIRED_PATHS = [
     "fixtures/attachments/chunk-zero.json",
     "fixtures/attachments/chunk-final.json",
     "fixtures/attachments/deletion.json",
+    "fixtures/media/policies/sender-keys.json",
+    "fixtures/media/policies/mls.json",
+    "fixtures/media/sessions/sender-keys.json",
+    "fixtures/media/sessions/mls.json",
+    "fixtures/media/membership/sender-join.json",
+    "fixtures/media/membership/mls-remove-compromised.json",
+    "fixtures/media/frames/sender.json",
+    "fixtures/media/frames/mls.json",
+    "fixtures/media/checkpoints/sender.json",
+    "fixtures/media/checkpoints/mls.json",
 ]
 
 VALID_STATUSES = {
@@ -897,6 +918,12 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/attachment-key-distribution-evidence.schema.json",
         "schemas/attachment-chunk-evidence.schema.json",
         "schemas/attachment-deletion-evidence.schema.json",
+        "schemas/real-time-media-registry.schema.json",
+        "schemas/real-time-media-policy.schema.json",
+        "schemas/real-time-media-session-evidence.schema.json",
+        "schemas/real-time-media-membership-event.schema.json",
+        "schemas/real-time-media-frame-evidence.schema.json",
+        "schemas/real-time-media-sender-checkpoint.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1182,6 +1209,22 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                     f"attachments-file-encryption.md missing required marker: {required_text}"
                 )
 
+    media_spec_path = root / "spec/real-time-media.md"
+    if media_spec_path.is_file():
+        media_spec = media_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "media-sframe-sender-keys@0.1.0",
+            "media-sframe-mls@0.1.0",
+            "RFC 9605",
+            "KID = (context << (S + E)) + (sender_index << E) + (epoch mod 2^E)",
+            "## 10. Replay and counter rollback",
+            "## 13. Recording bots and server recording",
+            "## 21. Conformance evidence",
+        ):
+            if required_text not in media_spec:
+                errors.append(f"real-time-media.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -1275,6 +1318,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             contact_discovery_engine.validate_registry(
                 contact_registry,
                 source="registry/contact-discovery-mechanisms.json",
+            )
+        )
+
+    media_registry_path = root / "registry/real-time-media.json"
+    media_registry = (
+        load_json(media_registry_path)
+        if media_registry_path.is_file()
+        else {}
+    )
+    if media_registry:
+        errors.extend(
+            real_time_media_engine.validate_registry(
+                media_registry,
+                source="registry/real-time-media.json",
             )
         )
 
@@ -1996,6 +2053,124 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             attachment_policy, false_recall
         ):
             errors.append("false global attachment recall claim unexpectedly passed")
+
+    if media_registry and profile_catalog:
+        media_policies = {
+            "sender-keys": load_json(root / "fixtures/media/policies/sender-keys.json"),
+            "mls": load_json(root / "fixtures/media/policies/mls.json"),
+        }
+
+        for name in ("sender-keys", "mls"):
+            result = real_time_media_engine.validate_session(
+                media_policies[name],
+                load_json(root / "fixtures/media/sessions" / f"{name}.json"),
+                media_registry,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid real-time media session {name} failed: "
+                    + "; ".join(result)
+                )
+
+        membership_cases = (
+            ("sender-keys", "sender-join"),
+            ("mls", "mls-remove-compromised"),
+        )
+        for policy_name, event_name in membership_cases:
+            result = real_time_media_engine.validate_membership_event(
+                media_policies[policy_name],
+                load_json(root / "fixtures/media/membership" / f"{event_name}.json"),
+                media_registry,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid real-time membership event {event_name} failed: "
+                    + "; ".join(result)
+                )
+
+        frame_cases = (
+            ("sender-keys", "sender"),
+            ("mls", "mls"),
+        )
+        for policy_name, frame_name in frame_cases:
+            result = real_time_media_engine.validate_frame(
+                media_policies[policy_name],
+                load_json(root / "fixtures/media/frames" / f"{frame_name}.json"),
+                media_registry,
+                profile_catalog,
+                load_json(root / "fixtures/media/checkpoints" / f"{frame_name}.json"),
+            )
+            if result:
+                errors.append(
+                    f"valid real-time media frame {frame_name} failed: "
+                    + "; ".join(result)
+                )
+
+        replay = load_json(root / "fixtures/media/frames/sender.json")
+        replay["ctr"] = 41
+        if not real_time_media_engine.validate_frame(
+            media_policies["sender-keys"],
+            replay,
+            media_registry,
+            profile_catalog,
+            load_json(root / "fixtures/media/checkpoints/sender.json"),
+        ):
+            errors.append("real-time media CTR replay unexpectedly passed")
+
+        wrong_mls_kid = load_json(root / "fixtures/media/frames/mls.json")
+        wrong_mls_kid["kid"] += 1
+        if not real_time_media_engine.validate_frame(
+            media_policies["mls"],
+            wrong_mls_kid,
+            media_registry,
+            profile_catalog,
+        ):
+            errors.append("real-time media frame with wrong RFC 9605 MLS KID unexpectedly passed")
+
+        sfu_plaintext = load_json(root / "fixtures/media/sessions/mls.json")
+        sfu_plaintext["sfu_observed_media_plaintext"] = True
+        if not real_time_media_engine.validate_session(
+            media_policies["mls"],
+            sfu_plaintext,
+            media_registry,
+            profile_catalog,
+        ):
+            errors.append("real-time media session with SFU plaintext access unexpectedly passed")
+
+        no_rekey = load_json(root / "fixtures/media/membership/sender-join.json")
+        no_rekey["keys_rotated_before_media_resume"] = False
+        if not real_time_media_engine.validate_membership_event(
+            media_policies["sender-keys"],
+            no_rekey,
+            media_registry,
+            profile_catalog,
+        ):
+            errors.append("real-time media membership change without rekey unexpectedly passed")
+
+        compromised_not_excluded = load_json(
+            root / "fixtures/media/membership/mls-remove-compromised.json"
+        )
+        compromised_not_excluded["departed_devices_excluded_from_new_keys"] = False
+        if not real_time_media_engine.validate_membership_event(
+            media_policies["mls"],
+            compromised_not_excluded,
+            media_registry,
+            profile_catalog,
+        ):
+            errors.append("compromised media participant retained in new keying unexpectedly passed")
+
+        hidden_recorder = load_json(root / "fixtures/media/sessions/mls.json")
+        hidden_recorder["recording_bot_present"] = True
+        hidden_recorder["recording_bot_authorized_participant"] = False
+        if not real_time_media_engine.validate_session(
+            media_policies["mls"],
+            hidden_recorder,
+            media_registry,
+            profile_catalog,
+        ):
+            errors.append("unauthorized real-time media recording bot unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")

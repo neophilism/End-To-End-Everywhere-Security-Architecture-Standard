@@ -1,0 +1,40 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/real-time-media-policy.schema.json",
+  "title":"E2EESA real-time media policy",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","policy_id","profile_ref","registry_version","protocol_id",
+    "cipher_suite_id","key_management_mode","control_profile_ref",
+    "require_hop_by_hop_transport_encryption","require_sfu_no_plaintext",
+    "require_sfu_no_base_keys","require_unique_sender_key_space",
+    "require_membership_rekey","require_replay_rejection",
+    "require_persistent_ctr_before_encrypt","maximum_key_lifetime_seconds",
+    "maximum_frames_per_sender_key","maximum_epoch_overlap",
+    "mls_epoch_bits","allow_media_recording_bot"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "policy_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["media-sframe-sender-keys@0.1.0","media-sframe-mls@0.1.0"]},
+    "registry_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "protocol_id":{"const":"SFRAME-RFC9605"},
+    "cipher_suite_id":{"enum":["0x0001","0x0002","0x0004","0x0005"]},
+    "key_management_mode":{"enum":["sender-keys","mls"]},
+    "control_profile_ref":{"type":"string","minLength":1},
+    "require_hop_by_hop_transport_encryption":{"const":true},
+    "require_sfu_no_plaintext":{"const":true},
+    "require_sfu_no_base_keys":{"const":true},
+    "require_unique_sender_key_space":{"const":true},
+    "require_membership_rekey":{"const":true},
+    "require_replay_rejection":{"const":true},
+    "require_persistent_ctr_before_encrypt":{"const":true},
+    "maximum_key_lifetime_seconds":{"type":"integer","minimum":60,"maximum":86400},
+    "maximum_frames_per_sender_key":{"type":"integer","minimum":1,"maximum":4294967295},
+    "maximum_epoch_overlap":{"type":"integer","minimum":0,"maximum":8},
+    "mls_epoch_bits":{"oneOf":[{"type":"null"},{"type":"integer","minimum":4,"maximum":32}]},
+    "allow_media_recording_bot":{"type":"boolean"},
+    "notes":{"type":"string"}
+  }
+}

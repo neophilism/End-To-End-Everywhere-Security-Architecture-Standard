@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "media-mls",
+  "profile_ref": "media-sframe-mls@0.1.0",
+  "registry_version": "0.1.0",
+  "protocol_id": "SFRAME-RFC9605",
+  "cipher_suite_id": "0x0005",
+  "key_management_mode": "mls",
+  "control_profile_ref": "group-mls-rfc9420@0.1.0",
+  "require_hop_by_hop_transport_encryption": true,
+  "require_sfu_no_plaintext": true,
+  "require_sfu_no_base_keys": true,
+  "require_unique_sender_key_space": true,
+  "require_membership_rekey": true,
+  "require_replay_rejection": true,
+  "require_persistent_ctr_before_encrypt": true,
+  "maximum_key_lifetime_seconds": 3600,
+  "maximum_frames_per_sender_key": 1000000,
+  "maximum_epoch_overlap": 2,
+  "mls_epoch_bits": 16,
+  "allow_media_recording_bot": false
+}
