@@ -59,3 +59,7 @@ PR 15 introduces the `contact-discovery` family with exact-handle/invite discove
 ## Attachment encryption profile
 
 PR 16 introduces the `attachment-encryption` family with `attachment-chunked-aead@0.1.0`: one fresh 256-bit key per file, independently authenticated fixed-size chunks, a four-byte random nonce prefix plus 64-bit chunk counter, E2EE-only private-manifest/key distribution, and explicit storage-deletion versus recipient-recall semantics. AES-256-GCM and ChaCha20-Poly1305 are recommended; AES-256-GCM-SIV is allowed.
+
+## Real-time media profiles
+
+PR 17 introduces the `real-time-media` family with RFC 9605 SFrame sender-key and MLS alternatives. Both require hop-by-hop transport encryption plus media-payload E2EE, unique per-sender key space, replay/CTR continuity, and membership-triggered rekeying. The MLS profile requires the RFC 9420 group profile and uses the RFC 9605 MLS exporter/KID construction.

@@ -44,3 +44,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 15. [Contact Discovery Profiles](contact-discovery.md) — exact-handle/invite discovery, RFC 9497 VOPRF private membership, and attested confidential-compute private-set discovery with normalization, discoverability, enumeration, and side-channel boundaries.
 
 16. [Attachments and File Encryption](attachments-file-encryption.md) — fresh-key chunked AEAD attachments with exact nonce/AAD construction, authenticated private manifests, safe streaming/range retrieval, E2EE key distribution, substitution/replay protection, and non-misleading deletion semantics.
+
+17. [Real-Time Media](real-time-media.md) — RFC 9605 SFrame voice/video E2EE with sender-key and MLS key-management profiles, exact MLS KID derivation, membership/compromise rekeying, replay/CTR state, SFU trust boundaries, and explicit recording-participant semantics.
