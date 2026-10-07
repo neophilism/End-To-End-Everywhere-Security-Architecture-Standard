@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "event_id": "attachment-key-dist-alpha",
+  "profile_ref": "attachment-chunked-aead@0.1.0",
+  "attachment_id": "attachment-alpha",
+  "parent_message_id": "message-alpha",
+  "parent_message_e2ee_profile_ref": "pairwise-x3dh-double-ratchet@0.1.0",
+  "recipient_count": 1,
+  "manifest_delivered_inside_authenticated_e2ee": true,
+  "recipient_device_set_authorized": true,
+  "attachment_key_fresh": true,
+  "attachment_key_reused": false,
+  "service_observed_attachment_key": false,
+  "attachment_key_in_url": false,
+  "attachment_key_in_storage_metadata": false,
+  "automatic_history_share_to_new_group_members": false,
+  "removed_member_received_new_attachment_key": false,
+  "manifest_context_digest_matches": true
+}
