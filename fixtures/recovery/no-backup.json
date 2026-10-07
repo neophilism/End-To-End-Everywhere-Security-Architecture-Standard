@@ -1,0 +1,10 @@
+{
+  "schema_version": "0.1",
+  "profile_ref": "backup-none@0.1.0",
+  "identity_id": "alice",
+  "recoverable_protected_content_outside_active_endpoints": false,
+  "recoverable_content_key_material_outside_active_endpoints": false,
+  "server_backup_present": false,
+  "server_can_recover_historical_plaintext": false,
+  "authorized_device_to_device_transfer_permitted": true
+}
