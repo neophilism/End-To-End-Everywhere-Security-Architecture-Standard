@@ -79,3 +79,7 @@ PR 20 introduces signed native, hardened web, and independently verified web-boo
 ## Server Trust Minimization
 
 PR 21 introduces ciphertext-only service infrastructure with exhaustive component/key inventory, client-authorized recipient sets, bounded retention, encrypted derivatives and explicit routing/availability limitations.
+
+## Privacy-Preserving Telemetry
+
+PR 22 introduces no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.

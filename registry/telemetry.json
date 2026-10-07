@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "profile_refs": [
+    "telemetry-none@0.1.0",
+    "telemetry-minimized-diagnostics@0.1.0",
+    "telemetry-dp-aggregate@0.1.0"
+  ],
+  "privacy_reference": "RFC 6973",
+  "dp_reference": "NIST SP 800-226 (2025 final)",
+  "event_codes": [
+    "startup-failure",
+    "delivery-latency",
+    "protocol-error"
+  ]
+}

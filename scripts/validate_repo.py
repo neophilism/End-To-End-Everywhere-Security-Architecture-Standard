@@ -28,10 +28,20 @@ import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
 import transport_security_engine
+import telemetry_engine
 import server_trust_engine
 import client_security_engine
 
 REQUIRED_PATHS = [
+    'scripts/telemetry_engine.py',
+    'registry/telemetry.json',
+    'schemas/telemetry-policy.schema.json',
+    'schemas/telemetry-evidence.schema.json',
+    'schemas/telemetry-registry.schema.json',
+    'spec/privacy-preserving-telemetry.md',
+    'adr/0018-privacy-preserving-telemetry.md',
+    'tests/test_telemetry_engine.py',
+    'fixtures/telemetry/cases.json',
     'scripts/server_trust_engine.py',
     'registry/server-trust-boundaries.json',
     'schemas/server-trust-policy.schema.json',
@@ -2541,6 +2551,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     errors.extend(client_security_engine.validate_repository(root, profile_catalog))
 
     errors.extend(server_trust_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(telemetry_engine.validate_repository(root, profile_catalog))
 
     return errors
 

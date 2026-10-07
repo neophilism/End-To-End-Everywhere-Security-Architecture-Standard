@@ -1,0 +1,62 @@
+[
+  {
+    "name": "none",
+    "policy": "policies/none.json",
+    "evidence": "evidence/none.json",
+    "valid": true
+  },
+  {
+    "name": "diagnostics",
+    "policy": "policies/diagnostics.json",
+    "evidence": "evidence/diagnostics.json",
+    "valid": true
+  },
+  {
+    "name": "dp-aggregate",
+    "policy": "policies/dp-aggregate.json",
+    "evidence": "evidence/dp-aggregate.json",
+    "valid": true
+  },
+  {
+    "name": "secret-leak",
+    "policy": "policies/diagnostics.json",
+    "evidence": "invalid/secret-leak.json",
+    "valid": false
+  },
+  {
+    "name": "unconsented",
+    "policy": "policies/diagnostics.json",
+    "evidence": "invalid/unconsented.json",
+    "valid": false
+  },
+  {
+    "name": "linkable-id",
+    "policy": "policies/diagnostics.json",
+    "evidence": "invalid/linkable-id.json",
+    "valid": false
+  },
+  {
+    "name": "export-when-disabled",
+    "policy": "policies/none.json",
+    "evidence": "invalid/export-when-disabled.json",
+    "valid": false
+  },
+  {
+    "name": "budget-reset",
+    "policy": "policies/dp-aggregate.json",
+    "evidence": "invalid/budget-reset.json",
+    "valid": false
+  },
+  {
+    "name": "small-cohort",
+    "policy": "policies/dp-aggregate.json",
+    "evidence": "invalid/small-cohort.json",
+    "valid": false
+  },
+  {
+    "name": "budget-exhausted",
+    "policy": "policies/dp-aggregate.json",
+    "evidence": "invalid/budget-exhausted.json",
+    "valid": false
+  }
+]
