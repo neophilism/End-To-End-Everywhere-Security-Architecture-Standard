@@ -109,6 +109,12 @@
       "name": "Privacy-preserving telemetry",
       "cardinality": "at-most-one",
       "description": "Privacy-preserving telemetry. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "secure-development",
+      "name": "Secure development standard",
+      "cardinality": "at-most-one",
+      "description": "Secure development standard. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -1005,6 +1011,21 @@
         "telemetry-minimized-diagnostics@0.1.0"
       ],
       "notes": "Pure central-Laplace aggregate counts with user-lifetime adjacency, contribution bounds and cumulative privacy-budget evidence; collector access remains explicit."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "development-ssdf-baseline",
+      "profile_version": "0.1.0",
+      "family_id": "secure-development",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "SSDF 1.1 aligned development controls with independent review, exact-source test/scanning gates and time-bounded risk handling; no high/critical release waivers."
     }
   ]
 }

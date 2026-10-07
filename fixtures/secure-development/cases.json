@@ -1,0 +1,56 @@
+[
+  {
+    "name": "clean",
+    "policy": "policies/clean.json",
+    "evidence": "evidence/clean.json",
+    "valid": true
+  },
+  {
+    "name": "remediated",
+    "policy": "policies/remediated.json",
+    "evidence": "evidence/remediated.json",
+    "valid": true
+  },
+  {
+    "name": "self-review",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/self-review.json",
+    "valid": false
+  },
+  {
+    "name": "skipped-fuzz",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/skipped-fuzz.json",
+    "valid": false
+  },
+  {
+    "name": "stale-tests",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/stale-tests.json",
+    "valid": false
+  },
+  {
+    "name": "no-crypto-review",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/no-crypto-review.json",
+    "valid": false
+  },
+  {
+    "name": "waived-control",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/waived-control.json",
+    "valid": false
+  },
+  {
+    "name": "wrong-review-source",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/wrong-review-source.json",
+    "valid": false
+  },
+  {
+    "name": "high-risk-waiver",
+    "policy": "policies/clean.json",
+    "evidence": "invalid/high-risk-waiver.json",
+    "valid": false
+  }
+]
