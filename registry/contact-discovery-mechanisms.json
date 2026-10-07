@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "mechanisms": [
+    {
+      "id": "CONTACT-EXACT-HANDLE-1",
+      "name": "Exact handle or invite discovery",
+      "status": "allowed",
+      "mechanism_type": "exact-handle",
+      "specification": "E2EESA contact discovery profile",
+      "reference_uri": "https://signal.org/support/",
+      "notes": [
+        "The client does not upload or privately test its address book; a user supplies an exact handle, QR code, invite link, or equivalent discovery token.",
+        "The service may learn the exact queried handle unless another transport/privacy profile conceals it.",
+        "The profile minimizes address-book exposure rather than hiding each explicit lookup."
+      ]
+    },
+    {
+      "id": "CONTACT-VOPRF-RFC9497",
+      "name": "RFC 9497 VOPRF private membership discovery",
+      "status": "recommended",
+      "mechanism_type": "voprf-membership",
+      "specification": "RFC 9497 modeVOPRF with ristretto255-SHA512",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9497.html",
+      "notes": [
+        "The server evaluates blinded normalized identifiers and learns neither client inputs nor VOPRF outputs from the VOPRF execution.",
+        "The client verifies the VOPRF proof against a pinned public key for the selected directory epoch.",
+        "Directory membership is represented by authenticated/versioned pseudorandom tags derived from VOPRF outputs.",
+        "Online evaluation limits are required because low-entropy identifier spaces remain enumerable by an authorized client."
+      ]
+    },
+    {
+      "id": "CONTACT-ATTESTED-PRIVATE-SET-1",
+      "name": "Attested confidential-compute contact intersection",
+      "status": "allowed",
+      "mechanism_type": "confidential-compute",
+      "specification": "E2EESA attested private-set architecture",
+      "reference_uri": "https://signal.org/blog/private-contact-discovery/",
+      "notes": [
+        "The client remotely attests the confidential-compute instance before sending encrypted contact identifiers.",
+        "Only measured code inside the trusted execution boundary receives plaintext query identifiers.",
+        "The untrusted host/service receives only ciphertext, coarse request metadata, and the permitted result shape.",
+        "Security depends on the selected TEE, attestation chain, measured implementation, and declared side-channel model."
+      ]
+    }
+  ],
+  "voprf_suites": [
+    {
+      "id": "VOPRF-RISTRETTO255-SHA512",
+      "mode": "VOPRF",
+      "mode_value": "0x01",
+      "ciphersuite_identifier": "ristretto255-SHA512",
+      "status": "recommended",
+      "specification": "RFC 9497",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9497.html"
+    }
+  ]
+}

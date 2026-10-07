@@ -23,6 +23,7 @@ import key_verification_engine
 import key_transparency_engine
 import backup_recovery_engine
 import metadata_privacy_engine
+import contact_discovery_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -44,6 +45,8 @@ REQUIRED_PATHS = [
     "spec/key-transparency.md",
     "spec/backup-recovery.md",
     "spec/metadata-privacy.md",
+    "spec/contact-discovery.md",
+    "adr/0011-contact-discovery.md",
     "adr/0010-metadata-privacy.md",
     "adr/0009-backup-recovery.md",
     "adr/0008-key-transparency.md",
@@ -88,6 +91,9 @@ REQUIRED_PATHS = [
     "schemas/metadata-privacy-registry.schema.json",
     "schemas/metadata-privacy-policy.schema.json",
     "schemas/metadata-delivery-evidence.schema.json",
+    "schemas/contact-discovery-registry.schema.json",
+    "schemas/contact-discovery-policy.schema.json",
+    "schemas/contact-discovery-evidence.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -96,6 +102,7 @@ REQUIRED_PATHS = [
     "registry/group-protocols.json",
     "registry/key-transparency-protocols.json",
     "registry/metadata-privacy-mechanisms.json",
+    "registry/contact-discovery-mechanisms.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
@@ -107,6 +114,7 @@ REQUIRED_PATHS = [
     "scripts/key_transparency_engine.py",
     "scripts/backup_recovery_engine.py",
     "scripts/metadata_privacy_engine.py",
+    "scripts/contact_discovery_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -146,6 +154,12 @@ REQUIRED_PATHS = [
     "fixtures/metadata/evidence/minimized.json",
     "fixtures/metadata/evidence/sender-hidden.json",
     "fixtures/metadata/evidence/relay.json",
+    "fixtures/contact-discovery/policies/exact.json",
+    "fixtures/contact-discovery/policies/voprf.json",
+    "fixtures/contact-discovery/policies/attested.json",
+    "fixtures/contact-discovery/evidence/exact.json",
+    "fixtures/contact-discovery/evidence/voprf.json",
+    "fixtures/contact-discovery/evidence/attested.json",
 ]
 
 VALID_STATUSES = {
@@ -860,6 +874,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/metadata-privacy-registry.schema.json",
         "schemas/metadata-privacy-policy.schema.json",
         "schemas/metadata-delivery-evidence.schema.json",
+        "schemas/contact-discovery-registry.schema.json",
+        "schemas/contact-discovery-policy.schema.json",
+        "schemas/contact-discovery-evidence.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1111,6 +1128,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in metadata_spec:
                 errors.append(f"metadata-privacy.md missing required marker: {required_text}")
 
+    contact_spec_path = root / "spec/contact-discovery.md"
+    if contact_spec_path.is_file():
+        contact_spec = contact_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "contact-exact-handle@0.1.0",
+            "contact-voprf-directory@0.1.0",
+            "contact-attested-private-set@0.1.0",
+            "RFC 9497",
+            "## 7. Enumeration resistance",
+            "## 11. Confidential-compute security boundary",
+            "## 15. Conformance evidence",
+            "raw address book",
+        ):
+            if required_text not in contact_spec:
+                errors.append(f"contact-discovery.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -1190,6 +1224,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             metadata_privacy_engine.validate_protocol_registry(
                 metadata_registry,
                 source="registry/metadata-privacy-mechanisms.json",
+            )
+        )
+
+    contact_registry_path = root / "registry/contact-discovery-mechanisms.json"
+    contact_registry = (
+        load_json(contact_registry_path)
+        if contact_registry_path.is_file()
+        else {}
+    )
+    if contact_registry:
+        errors.extend(
+            contact_discovery_engine.validate_registry(
+                contact_registry,
+                source="registry/contact-discovery-mechanisms.json",
             )
         )
 
@@ -1734,6 +1782,62 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             profile_catalog,
         ):
             errors.append("metadata profile with durable social graph unexpectedly passed")
+
+    if contact_registry and profile_catalog:
+        for name in ("exact", "voprf", "attested"):
+            policy_path = root / "fixtures/contact-discovery/policies" / f"{name}.json"
+            evidence_path = root / "fixtures/contact-discovery/evidence" / f"{name}.json"
+            result = contact_discovery_engine.validate_evidence(
+                load_json(policy_path),
+                load_json(evidence_path),
+                contact_registry,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid contact-discovery fixture {name} failed: "
+                    + "; ".join(result)
+                )
+
+        raw_upload = load_json(root / "fixtures/contact-discovery/evidence/voprf.json")
+        raw_upload["raw_address_book_sent_to_service"] = True
+        if not contact_discovery_engine.validate_evidence(
+            load_json(root / "fixtures/contact-discovery/policies/voprf.json"),
+            raw_upload,
+            contact_registry,
+            profile_catalog,
+        ):
+            errors.append("raw address-book contact discovery unexpectedly passed")
+
+        voprf_leak = load_json(root / "fixtures/contact-discovery/evidence/voprf.json")
+        voprf_leak["service_observed_query_identifiers"] = True
+        if not contact_discovery_engine.validate_evidence(
+            load_json(root / "fixtures/contact-discovery/policies/voprf.json"),
+            voprf_leak,
+            contact_registry,
+            profile_catalog,
+        ):
+            errors.append("VOPRF contact discovery with service-visible identifiers unexpectedly passed")
+
+        bad_attestation = load_json(root / "fixtures/contact-discovery/evidence/attested.json")
+        bad_attestation["attestation_verified"] = False
+        if not contact_discovery_engine.validate_evidence(
+            load_json(root / "fixtures/contact-discovery/policies/attested.json"),
+            bad_attestation,
+            contact_registry,
+            profile_catalog,
+        ):
+            errors.append("unverified attested contact discovery unexpectedly passed")
+
+        persistent_query = load_json(root / "fixtures/contact-discovery/evidence/attested.json")
+        persistent_query["query_persisted_after_completion"] = True
+        if not contact_discovery_engine.validate_evidence(
+            load_json(root / "fixtures/contact-discovery/policies/attested.json"),
+            persistent_query,
+            contact_registry,
+            profile_catalog,
+        ):
+            errors.append("contact discovery with persisted query identifiers unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")

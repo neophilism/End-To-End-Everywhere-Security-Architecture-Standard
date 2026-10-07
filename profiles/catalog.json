@@ -61,6 +61,12 @@
       "name": "Metadata privacy",
       "cardinality": "at-most-one",
       "description": "Complete metadata-privacy profiles ranging from strict collection/retention minimization through sender-hidden delivery to relay-partitioned sender-hidden submission."
+    },
+    {
+      "family_id": "contact-discovery",
+      "name": "Contact discovery",
+      "cardinality": "at-most-one",
+      "description": "Privacy-preserving discovery profiles for learning which known identifiers or exact handles correspond to discoverable E2EE users without exposing a client's address book to the service."
     }
   ],
   "profiles": [
@@ -608,6 +614,60 @@
         "metadata-sender-hidden@0.1.0"
       ],
       "notes": "Strongest E2EESA 0.1 messaging-metadata profile: sender-hidden application envelopes submitted through an independent Oblivious HTTP relay/gateway partition so the message service does not receive the client network address."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "contact-exact-handle",
+      "profile_version": "0.1.0",
+      "family_id": "contact-discovery",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "contact-voprf-directory@0.1.0",
+        "contact-attested-private-set@0.1.0"
+      ],
+      "notes": "No address-book discovery. Users connect only through exact user-supplied handles, QR codes, invite links, or equivalent discovery tokens. The service never receives the client's local contact set, but the explicit queried handle may be visible to the service."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "contact-voprf-directory",
+      "profile_version": "0.1.0",
+      "family_id": "contact-discovery",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY",
+        "SP-UNLINKABILITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "contact-exact-handle@0.1.0",
+        "contact-attested-private-set@0.1.0"
+      ],
+      "notes": "Recommended cryptographic private membership discovery using RFC 9497 VOPRF over normalized identifiers plus a versioned directory membership structure. The VOPRF server learns neither queried identifier inputs nor VOPRF outputs; online evaluation rate limits constrain enumeration."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "contact-attested-private-set",
+      "profile_version": "0.1.0",
+      "family_id": "contact-discovery",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "contact-exact-handle@0.1.0",
+        "contact-voprf-directory@0.1.0"
+      ],
+      "notes": "Confidential-compute discovery in which the complete contact set is encrypted to an attested enclave/TEE that computes the intersection and returns only results. The host/service must not observe plaintext query identifiers; assurance depends on attestation, implementation review, and the declared TEE side-channel model."
     }
   ]
 }
