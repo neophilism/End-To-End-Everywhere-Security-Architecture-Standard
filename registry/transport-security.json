@@ -1,0 +1,133 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "tls_protocol": {
+    "id": "TLS-1.3-RFC9846",
+    "version": "TLS1.3",
+    "status": "recommended",
+    "specification": "RFC 9846",
+    "reference_uri": "https://www.rfc-editor.org/rfc/rfc9846.html",
+    "notes": [
+      "RFC 9846 obsoletes RFC 8446 while retaining TLS version 1.3 and backward compatibility.",
+      "E2EESA transport profiles do not permit negotiating TLS 1.2 or earlier."
+    ]
+  },
+  "transport_modes": [
+    {
+      "id": "tls-stream",
+      "status": "recommended",
+      "specification": "RFC 9846",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9846.html"
+    },
+    {
+      "id": "quic",
+      "status": "allowed",
+      "specification": "RFC 9001 with QUIC v1/v2",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9001.html"
+    }
+  ],
+  "cipher_suites": [
+    {
+      "id": "TLS_AES_128_GCM_SHA256",
+      "iana_value": "0x1301",
+      "status": "allowed",
+      "specification": "RFC 9846"
+    },
+    {
+      "id": "TLS_AES_256_GCM_SHA384",
+      "iana_value": "0x1302",
+      "status": "recommended",
+      "specification": "RFC 9846"
+    },
+    {
+      "id": "TLS_CHACHA20_POLY1305_SHA256",
+      "iana_value": "0x1303",
+      "status": "recommended",
+      "specification": "RFC 9846"
+    }
+  ],
+  "groups": [
+    {
+      "id": "X25519",
+      "iana_value": 29,
+      "iana_hex": "0x001D",
+      "kind": "traditional",
+      "status": "recommended",
+      "classical_component": "X25519",
+      "pq_component": null,
+      "specification": "RFC 7748 / RFC 9846"
+    },
+    {
+      "id": "secp256r1",
+      "iana_value": 23,
+      "iana_hex": "0x0017",
+      "kind": "traditional",
+      "status": "allowed",
+      "classical_component": "P-256",
+      "pq_component": null,
+      "specification": "RFC 9846"
+    },
+    {
+      "id": "secp384r1",
+      "iana_value": 24,
+      "iana_hex": "0x0018",
+      "kind": "traditional",
+      "status": "allowed",
+      "classical_component": "P-384",
+      "pq_component": null,
+      "specification": "RFC 9846"
+    },
+    {
+      "id": "SecP256r1MLKEM768",
+      "iana_value": 4587,
+      "iana_hex": "0x11EB",
+      "kind": "hybrid",
+      "status": "allowed",
+      "classical_component": "P-256",
+      "pq_component": "ML-KEM-768",
+      "specification": "RFC 10024"
+    },
+    {
+      "id": "X25519MLKEM768",
+      "iana_value": 4588,
+      "iana_hex": "0x11EC",
+      "kind": "hybrid",
+      "status": "recommended",
+      "classical_component": "X25519",
+      "pq_component": "ML-KEM-768",
+      "specification": "RFC 10024"
+    },
+    {
+      "id": "SecP384r1MLKEM1024",
+      "iana_value": 4589,
+      "iana_hex": "0x11ED",
+      "kind": "hybrid",
+      "status": "allowed",
+      "classical_component": "P-384",
+      "pq_component": "ML-KEM-1024",
+      "specification": "RFC 10024"
+    }
+  ],
+  "obsoleted_groups": [
+    {
+      "id": "X25519Kyber768Draft00",
+      "iana_value": 25497,
+      "status": "deprecated",
+      "replacement": "X25519MLKEM768",
+      "specification": "RFC 10024"
+    },
+    {
+      "id": "SecP256r1Kyber768Draft00",
+      "iana_value": 25498,
+      "status": "deprecated",
+      "replacement": "SecP256r1MLKEM768",
+      "specification": "RFC 10024"
+    }
+  ],
+  "identity_verification": {
+    "specification": "RFC 9525",
+    "reference_uri": "https://www.rfc-editor.org/rfc/rfc9525.html",
+    "common_name_fallback": "prohibited"
+  }
+}
