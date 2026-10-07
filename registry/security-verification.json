@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "assessment_reference": "NIST SP 800-115 (2008 final)",
+  "profiles": [
+    {
+      "profile_ref": "verification-blackbox@0.1.0",
+      "required_methods": [
+        "adversarial",
+        "black-box",
+        "fuzz",
+        "property"
+      ]
+    },
+    {
+      "profile_ref": "verification-whitebox@0.1.0",
+      "required_methods": [
+        "adversarial",
+        "fuzz",
+        "property",
+        "protocol-model",
+        "white-box"
+      ]
+    },
+    {
+      "profile_ref": "verification-combined@0.1.0",
+      "required_methods": [
+        "adversarial",
+        "black-box",
+        "fuzz",
+        "property",
+        "protocol-model",
+        "white-box"
+      ]
+    }
+  ]
+}

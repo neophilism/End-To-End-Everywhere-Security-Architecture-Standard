@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/verification-evidence.schema.json",
+  "title": "E2EESA verification-evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "policy_digest",
+    "assessor_id",
+    "observed_at",
+    "report_refs",
+    "source_digest",
+    "artifact_digest",
+    "tested_profile_refs",
+    "assessor_ids",
+    "source_author_ids",
+    "suites",
+    "assessment_authenticated",
+    "tools_and_corpora_pinned",
+    "limitations_disclosed",
+    "regressions_retained",
+    "claims_no_unknown_vulnerabilities",
+    "claims_full_formal_verification"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "assessor_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "report_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "artifact_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "tested_profile_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "assessor_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "source_author_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "suites": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "suite_id",
+          "method",
+          "status",
+          "assessor_id",
+          "source_digest",
+          "artifact_digest",
+          "profile_refs",
+          "property_ids",
+          "threat_ids",
+          "report_ref",
+          "tool_digest",
+          "completed_at",
+          "test_cases",
+          "duration_seconds",
+          "failure_count",
+          "unresolved_counterexamples",
+          "corpus_digest",
+          "model"
+        ],
+        "properties": {
+          "suite_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "black-box",
+              "white-box",
+              "property",
+              "fuzz",
+              "adversarial",
+              "protocol-model"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "skipped",
+              "flaky",
+              "cancelled"
+            ]
+          },
+          "assessor_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "source_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "artifact_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "profile_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "maxItems": 1000,
+            "uniqueItems": true
+          },
+          "property_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^SP-[A-Z0-9-]+$"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          },
+          "threat_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^TM-[A-Z0-9-]+$"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          },
+          "report_ref": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "tool_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "completed_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+          },
+          "test_cases": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "failure_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "unresolved_counterexamples": {
+            "type": "boolean"
+          },
+          "corpus_digest": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "model": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "model_digest",
+              "specification_digest",
+              "standard_version",
+              "explored_states",
+              "claim_type"
+            ],
+            "properties": {
+              "model_digest": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "specification_digest": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "standard_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "explored_states": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "claim_type": {
+                "type": "string",
+                "const": "bounded-model"
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "assessment_authenticated": {
+      "type": "boolean"
+    },
+    "tools_and_corpora_pinned": {
+      "type": "boolean"
+    },
+    "limitations_disclosed": {
+      "type": "boolean"
+    },
+    "regressions_retained": {
+      "type": "boolean"
+    },
+    "claims_no_unknown_vulnerabilities": {
+      "type": "boolean"
+    },
+    "claims_full_formal_verification": {
+      "type": "boolean"
+    }
+  }
+}
