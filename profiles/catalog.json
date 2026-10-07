@@ -623,15 +623,14 @@
       "status": "allowed",
       "decision_class": "profile-choice",
       "security_properties": [
-        "SP-METADATA-MINIMIZATION",
-        "SP-UNLINKABILITY"
+        "SP-METADATA-MINIMIZATION"
       ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [
         "contact-voprf-directory@0.1.0",
         "contact-attested-private-set@0.1.0"
       ],
-      "notes": "No address-book discovery. Users connect only through exact user-supplied handles, QR codes, invite links, or equivalent high-entropy/shareable discovery tokens. The service never receives the client's local contact set."
+      "notes": "No address-book discovery. Users connect only through exact user-supplied handles, QR codes, invite links, or equivalent discovery tokens. The service never receives the client's local contact set, but the explicit queried handle may be visible to the service."
     },
     {
       "schema_version": "0.1",
