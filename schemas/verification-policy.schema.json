@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/verification-policy.schema.json",
+  "title": "E2EESA verification-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "configuration",
+    "required_property_ids",
+    "required_threat_ids",
+    "minimum_independent_assessors",
+    "minimum_property_cases",
+    "minimum_fuzz_inputs",
+    "minimum_fuzz_duration_seconds",
+    "maximum_evidence_age_hours",
+    "require_independent_assessment",
+    "require_no_unresolved_counterexamples"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "configuration_id",
+        "standard_version",
+        "selected_profiles",
+        "accepted_nondefault_statuses"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "0.1"
+        },
+        "configuration_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "standard_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_profiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "accepted_nondefault_statuses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "provisional",
+              "experimental",
+              "legacy",
+              "deprecated"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 1000,
+          "uniqueItems": true
+        }
+      }
+    },
+    "required_property_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^SP-[A-Z0-9-]+$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "required_threat_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^TM-[A-Z0-9-]+$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "minimum_independent_assessors": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "minimum_property_cases": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 1000000
+    },
+    "minimum_fuzz_inputs": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 10000000
+    },
+    "minimum_fuzz_duration_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 86400
+    },
+    "maximum_evidence_age_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 168
+    },
+    "require_independent_assessment": {
+      "type": "boolean"
+    },
+    "require_no_unresolved_counterexamples": {
+      "type": "boolean"
+    }
+  }
+}

@@ -39,7 +39,23 @@ This is the mechanism used later to represent multiple serious solutions to disp
 The profile engine expands exact dependencies, reports auto-added profiles, rejects unknown references, checks incompatible pairs, prevents multiple versions of the same profile, enforces family cardinality, and rejects lifecycle states that are not permitted by the configuration.
 
 See `spec/profile-configuration.md` for normative rules.
-\n## Identity architecture profiles\n\nPR 8 introduces the `identity-architecture` family with account-root, existing-device cross-signing, and threshold-quorum alternatives. The family is `at-most-one` during pre-1.0 foundation development so earlier resolver fixtures remain valid; product conformance requires one when identity/device management is in scope.\n\n## Pairwise E2EE profiles\n\nPR 9 introduces the `pairwise-e2ee` family with four complete asynchronous secure-messaging alternatives: X3DH + Double Ratchet, PQXDH + Double Ratchet, PQXDH + SPQR/ML-KEM Braid, and the recommended PQXDH + Triple Ratchet hybrid. The family remains `at-most-one` during pre-1.0 foundation development; a product implementing pairwise E2EE must select one applicable profile for conformance.\n\n## Group E2EE profiles\n\nPR 10 introduces the `group-e2ee` family with three complete alternatives: MLS 1.0 (recommended), Sender-Keys-style AEAD, and pairwise ciphertext fanout. The family remains `at-most-one` during pre-1.0 foundation development; products implementing group E2EE must select one profile when group messaging is in scope.\n\n## Key verification profiles\n\nPR 11 introduces the `key-verification` family with two manual verification subjects: `verify-account-root@0.1.0` for stable account-root verification and `verify-device-set@0.1.0` for direct verification of the complete active device-key set. Both render the same canonical subject through a 60-digit safety number and versioned QR payload, and both require explicit out-of-band confirmation.\n
+
+## Identity architecture profiles
+
+PR 8 introduces the `identity-architecture` family with account-root, existing-device cross-signing, and threshold-quorum alternatives. The family is `at-most-one` during pre-1.0 foundation development so earlier resolver fixtures remain valid; product conformance requires one when identity/device management is in scope.
+
+## Pairwise E2EE profiles
+
+PR 9 introduces the `pairwise-e2ee` family with four complete asynchronous secure-messaging alternatives: X3DH + Double Ratchet, PQXDH + Double Ratchet, PQXDH + SPQR/ML-KEM Braid, and the recommended PQXDH + Triple Ratchet hybrid. The family remains `at-most-one` during pre-1.0 foundation development; a product implementing pairwise E2EE must select one applicable profile for conformance.
+
+## Group E2EE profiles
+
+PR 10 introduces the `group-e2ee` family with three complete alternatives: MLS 1.0 (recommended), Sender-Keys-style AEAD, and pairwise ciphertext fanout. The family remains `at-most-one` during pre-1.0 foundation development; products implementing group E2EE must select one profile when group messaging is in scope.
+
+## Key verification profiles
+
+PR 11 introduces the `key-verification` family with two manual verification subjects: `verify-account-root@0.1.0` for stable account-root verification and `verify-device-set@0.1.0` for direct verification of the complete active device-key set. Both render the same canonical subject through a 60-digit safety number and versioned QR payload, and both require explicit out-of-band confirmation.
+
 ## Key transparency profiles
 
 PR 12 introduces the `key-transparency` family with Contact Monitoring, Third-Party Auditing, and Third-Party Management alternatives. The exact IETF protocol and architecture drafts are version-pinned, and every accepted transparency value binds to the PR #11 canonical verification subject digest.
@@ -91,3 +107,7 @@ PR 23 introduces SSDF-aligned process controls, independent exact-source review,
 ## Software Supply Chain
 
 PR 24 introduces immutable transitive inventories, SPDX/CycloneDX SBOM evidence, authenticated SLSA 1.2 build-provenance expectations and independent byte reproduction, plus a deterministic source-release builder.
+
+## Security Verification Framework
+
+PR 25 introduces black-box, white-box and combined assessment profiles with exact configuration/artifact binding, per-profile method/threat/property coverage, corpus/model evidence and bounded seeded reference security checks.

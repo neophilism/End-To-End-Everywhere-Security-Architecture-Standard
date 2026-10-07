@@ -28,6 +28,7 @@ import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
 import transport_security_engine
+import verification_engine
 import supply_chain_engine
 import secure_development_engine
 import telemetry_engine
@@ -35,6 +36,17 @@ import server_trust_engine
 import client_security_engine
 
 REQUIRED_PATHS = [
+    'scripts/verification_engine.py',
+    'scripts/run_reference_security_checks.py',
+    'registry/security-verification.json',
+    'schemas/verification-policy.schema.json',
+    'schemas/verification-evidence.schema.json',
+    'schemas/security-verification-registry.schema.json',
+    'spec/security-verification-framework.md',
+    'adr/0021-security-verification-framework.md',
+    'tests/test_verification_engine.py',
+    'tests/test_reference_security_checks.py',
+    'fixtures/verification/cases.json',
     'scripts/supply_chain_engine.py',
     'scripts/build_reference_release.py',
     'registry/software-supply-chain.json',
@@ -2580,6 +2592,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     errors.extend(secure_development_engine.validate_repository(root, profile_catalog))
 
     errors.extend(supply_chain_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(verification_engine.validate_repository(root, profile_catalog))
 
     return errors
 

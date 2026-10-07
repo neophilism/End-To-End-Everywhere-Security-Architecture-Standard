@@ -1,0 +1,207 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "verification-combined",
+  "profile_ref": "verification-combined@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "service",
+  "policy_digest": "sha256:e0c697131b95a7c3da600f8284ca5119653d1654e88e34557b81168f92c45777",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "tested_profile_refs": [
+    "server-ciphertext-only@0.1.0"
+  ],
+  "assessor_ids": [
+    "independent-lab"
+  ],
+  "source_author_ids": [
+    "product-team"
+  ],
+  "suites": [
+    {
+      "suite_id": "suite-adversarial",
+      "method": "adversarial",
+      "status": "passed",
+      "assessor_id": "independent-lab",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "profile_refs": [
+        "server-ciphertext-only@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "tool_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "test_cases": 1000,
+      "duration_seconds": 60,
+      "failure_count": 0,
+      "unresolved_counterexamples": true,
+      "corpus_digest": null,
+      "model": null
+    },
+    {
+      "suite_id": "suite-black-box",
+      "method": "black-box",
+      "status": "passed",
+      "assessor_id": "independent-lab",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "profile_refs": [
+        "server-ciphertext-only@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "tool_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "test_cases": 1000,
+      "duration_seconds": 60,
+      "failure_count": 0,
+      "unresolved_counterexamples": false,
+      "corpus_digest": null,
+      "model": null
+    },
+    {
+      "suite_id": "suite-fuzz",
+      "method": "fuzz",
+      "status": "passed",
+      "assessor_id": "independent-lab",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "profile_refs": [
+        "server-ciphertext-only@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "tool_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "test_cases": 1000,
+      "duration_seconds": 60,
+      "failure_count": 0,
+      "unresolved_counterexamples": false,
+      "corpus_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "model": null
+    },
+    {
+      "suite_id": "suite-property",
+      "method": "property",
+      "status": "passed",
+      "assessor_id": "independent-lab",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "profile_refs": [
+        "server-ciphertext-only@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "tool_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "test_cases": 1000,
+      "duration_seconds": 60,
+      "failure_count": 0,
+      "unresolved_counterexamples": false,
+      "corpus_digest": null,
+      "model": null
+    },
+    {
+      "suite_id": "suite-protocol-model",
+      "method": "protocol-model",
+      "status": "passed",
+      "assessor_id": "independent-lab",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "profile_refs": [
+        "server-ciphertext-only@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "tool_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "test_cases": 1000,
+      "duration_seconds": 60,
+      "failure_count": 0,
+      "unresolved_counterexamples": false,
+      "corpus_digest": null,
+      "model": {
+        "model_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "specification_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "standard_version": "0.1.0-dev",
+        "explored_states": 1000,
+        "claim_type": "bounded-model"
+      }
+    },
+    {
+      "suite_id": "suite-white-box",
+      "method": "white-box",
+      "status": "passed",
+      "assessor_id": "independent-lab",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "profile_refs": [
+        "server-ciphertext-only@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "tool_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "test_cases": 1000,
+      "duration_seconds": 60,
+      "failure_count": 0,
+      "unresolved_counterexamples": false,
+      "corpus_digest": null,
+      "model": null
+    }
+  ],
+  "assessment_authenticated": true,
+  "tools_and_corpora_pinned": true,
+  "limitations_disclosed": true,
+  "regressions_retained": true,
+  "claims_no_unknown_vulnerabilities": false,
+  "claims_full_formal_verification": false
+}

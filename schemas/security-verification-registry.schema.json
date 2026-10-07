@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/security-verification-registry.schema.json",
+  "title": "E2EESA security-verification-registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_version",
+    "profiles",
+    "assessment_reference"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "registry_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profile_ref",
+          "required_methods"
+        ],
+        "properties": {
+          "profile_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required_methods": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "black-box",
+                "white-box",
+                "property",
+                "fuzz",
+                "adversarial",
+                "protocol-model"
+              ]
+            },
+            "minItems": 4,
+            "maxItems": 6,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true
+    },
+    "assessment_reference": {
+      "type": "string",
+      "const": "NIST SP 800-115 (2008 final)"
+    }
+  }
+}

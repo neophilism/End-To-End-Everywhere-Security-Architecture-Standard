@@ -1,0 +1,62 @@
+[
+  {
+    "name": "blackbox",
+    "policy": "policies/blackbox.json",
+    "evidence": "evidence/blackbox.json",
+    "valid": true
+  },
+  {
+    "name": "whitebox",
+    "policy": "policies/whitebox.json",
+    "evidence": "evidence/whitebox.json",
+    "valid": true
+  },
+  {
+    "name": "combined",
+    "policy": "policies/combined.json",
+    "evidence": "evidence/combined.json",
+    "valid": true
+  },
+  {
+    "name": "self-assessment",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/self-assessment.json",
+    "valid": false
+  },
+  {
+    "name": "wrong-artifact",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/wrong-artifact.json",
+    "valid": false
+  },
+  {
+    "name": "skipped-test",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/skipped-test.json",
+    "valid": false
+  },
+  {
+    "name": "unresolved-counterexample",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/unresolved-counterexample.json",
+    "valid": false
+  },
+  {
+    "name": "false-proof",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/false-proof.json",
+    "valid": false
+  },
+  {
+    "name": "missing-profile",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/missing-profile.json",
+    "valid": false
+  },
+  {
+    "name": "missing-fuzz",
+    "policy": "policies/combined.json",
+    "evidence": "invalid/missing-fuzz.json",
+    "valid": false
+  }
+]

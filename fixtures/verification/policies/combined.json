@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "verification-combined",
+  "profile_ref": "verification-combined@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "service",
+  "configuration": {
+    "schema_version": "0.1",
+    "configuration_id": "verification-combined",
+    "standard_version": "0.1.0-dev",
+    "selected_profiles": [
+      "foundation-baseline@0.1.0",
+      "example-choice-a@0.1.0",
+      "server-ciphertext-only@0.1.0",
+      "verification-combined@0.1.0"
+    ],
+    "accepted_nondefault_statuses": []
+  },
+  "required_property_ids": [
+    "SP-CONFIDENTIALITY",
+    "SP-AUTHORIZATION-INTEGRITY"
+  ],
+  "required_threat_ids": [
+    "TM-SERVICE-READ",
+    "TM-SERVICE-ACTIVE"
+  ],
+  "minimum_independent_assessors": 1,
+  "minimum_property_cases": 100,
+  "minimum_fuzz_inputs": 1000,
+  "minimum_fuzz_duration_seconds": 60,
+  "maximum_evidence_age_hours": 24,
+  "require_independent_assessment": true,
+  "require_no_unresolved_counterexamples": true
+}

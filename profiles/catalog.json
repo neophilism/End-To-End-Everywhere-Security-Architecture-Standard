@@ -121,6 +121,12 @@
       "name": "Software supply chain",
       "cardinality": "at-most-one",
       "description": "Software supply chain. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "security-verification",
+      "name": "Security verification framework",
+      "cardinality": "at-most-one",
+      "description": "Security verification framework. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -1047,6 +1053,57 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Complete immutable dependency inventory, validated SBOM, authenticated SLSA build provenance, isolated signing and independently reproduced release bytes."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verification-blackbox",
+      "profile_version": "0.1.0",
+      "family_id": "security-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verification-whitebox@0.1.0",
+        "verification-combined@0.1.0"
+      ],
+      "notes": "Independent external-interface/property/fuzz/adversarial assessment, without internal software or key-lifecycle proof claims."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verification-whitebox",
+      "profile_version": "0.1.0",
+      "family_id": "security-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verification-blackbox@0.1.0",
+        "verification-combined@0.1.0"
+      ],
+      "notes": "Independent source/internal-state review with property, fuzz, adversarial and bounded protocol-model evidence."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verification-combined",
+      "profile_version": "0.1.0",
+      "family_id": "security-verification",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verification-blackbox@0.1.0",
+        "verification-whitebox@0.1.0"
+      ],
+      "notes": "Combined external and internal assessment with per-profile method/threat/property coverage and no unresolved counterexamples."
     }
   ]
 }
