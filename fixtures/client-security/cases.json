@@ -1,0 +1,56 @@
+[
+  {
+    "name": "native",
+    "policy": "policies/native.json",
+    "evidence": "evidence/native.json",
+    "valid": true
+  },
+  {
+    "name": "web",
+    "policy": "policies/web.json",
+    "evidence": "evidence/web.json",
+    "valid": true
+  },
+  {
+    "name": "verified-web",
+    "policy": "policies/verified-web.json",
+    "evidence": "evidence/verified-web.json",
+    "valid": true
+  },
+  {
+    "name": "release-rollback",
+    "policy": "policies/native.json",
+    "evidence": "invalid/release-rollback.json",
+    "valid": false
+  },
+  {
+    "name": "self-trusted-bootstrap",
+    "policy": "policies/verified-web.json",
+    "evidence": "invalid/self-trusted-bootstrap.json",
+    "valid": false
+  },
+  {
+    "name": "unsafe-csp",
+    "policy": "policies/web.json",
+    "evidence": "invalid/unsafe-csp.json",
+    "valid": false
+  },
+  {
+    "name": "false-origin-protection",
+    "policy": "policies/web.json",
+    "evidence": "invalid/false-origin-protection.json",
+    "valid": false
+  },
+  {
+    "name": "wrong-log-binding",
+    "policy": "policies/native.json",
+    "evidence": "invalid/wrong-log-binding.json",
+    "valid": false
+  },
+  {
+    "name": "signature-type-confusion",
+    "policy": "policies/native.json",
+    "evidence": "invalid/signature-type-confusion.json",
+    "valid": false
+  }
+]

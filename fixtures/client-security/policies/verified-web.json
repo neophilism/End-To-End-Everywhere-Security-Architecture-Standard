@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "client-verified-web",
+  "profile_ref": "client-web-verified-bootstrap@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "browser",
+  "registry_version": "0.1.0",
+  "origin": "https://client.example",
+  "origin_operator_id": "messenger-operator",
+  "trusted_release_signers": [
+    "offline-release-root"
+  ],
+  "minimum_release_sequence": 10,
+  "minimum_independent_witnesses": 1,
+  "claims_origin_independent_execution": true,
+  "claims_compromised_endpoint_protection": false
+}

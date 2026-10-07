@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "profile_refs": [
+    "client-native-signed@0.1.0",
+    "client-web-hardened@0.1.0",
+    "client-web-verified-bootstrap@0.1.0"
+  ],
+  "references": [
+    {
+      "id": "tuf",
+      "version": "1.0.36",
+      "status": "approved",
+      "url": "https://github.com/theupdateframework/specification/releases/tag/v1.0.36"
+    },
+    {
+      "id": "csp3",
+      "version": "2026-09-16",
+      "status": "working-draft",
+      "url": "https://www.w3.org/TR/2026/WD-CSP3-20260916/"
+    },
+    {
+      "id": "sri",
+      "version": "2016-06-23",
+      "status": "final",
+      "url": "https://www.w3.org/TR/2016/REC-SRI-20160623/"
+    }
+  ]
+}

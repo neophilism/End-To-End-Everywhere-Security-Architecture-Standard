@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "client-native",
+  "profile_ref": "client-native-signed@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "linux",
+  "policy_digest": "sha256:ff73b04c41c55bf805f65bcf012dd3372c648c831ec5c66494e65977380399b7",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "release": {
+    "artifact_digest": "sha256:edea5b5d97e80a988388b451d5e1d7f60de619187323950d1da0a59edb213bb3",
+    "manifest": {
+      "product_id": "example-messenger",
+      "version": "1.0.0",
+      "artifacts": [
+        {
+          "path": "app.bin",
+          "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "size_bytes": 1024
+        }
+      ]
+    },
+    "executable_paths": [
+      "app.bin"
+    ],
+    "signer_id": "offline-release-root",
+    "sequence": 10,
+    "previous_sequence": 9,
+    "signature_verified": true,
+    "all_executables_covered": true,
+    "trust_root_rotation_verified": true,
+    "update_metadata_verified": true,
+    "metadata_expires_at": "2026-10-08T22:40:20Z"
+  },
+  "transparency": {
+    "operator_id": "independent-log",
+    "log_id": "code-log",
+    "witness_ids": [
+      "independent-witness"
+    ],
+    "entry_digest": "sha256:edea5b5d97e80a988388b451d5e1d7f60de619187323950d1da0a59edb213bb3",
+    "checkpoint_sequence": 12,
+    "previous_checkpoint_sequence": 11,
+    "inclusion_verified": true,
+    "consistency_verified": true,
+    "equivocation_monitoring": true
+  },
+  "runtime": {
+    "mode": "native",
+    "web": null,
+    "authenticated_local_secret_storage": true,
+    "least_privilege": true,
+    "untrusted_content_isolated": true,
+    "no_unverified_dynamic_code": true,
+    "safe_update_failure": true,
+    "version_visible": true,
+    "platform_signature_verified": true,
+    "sandbox_enforced": true,
+    "debug_interfaces_disabled": true
+  }
+}

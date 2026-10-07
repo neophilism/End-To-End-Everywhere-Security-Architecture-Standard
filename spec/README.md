@@ -50,3 +50,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 18. [Secret Storage and Hardware Protection](secret-storage-hardware-protection.md) — OS keystore, Secure Enclave/StrongBox/TEE/TPM/HSM, external PKCS #11 token, and Argon2id software-vault profiles with non-exportability, attestation, rollback anchors, lifecycle rotation, and live-endpoint claim boundaries.
 
 19. [Transport Security Profiles](transport-security.md) — RFC 9846 TLS 1.3 classical and RFC 10024 ML-KEM/traditional hybrid profiles for stream TLS and QUIC, with RFC 9525 identity verification, mTLS service-to-service support, safe resumption, explicit 0-RTT replay controls, and E2EE-layer independence.
+
+20. [Native and Web Client Security](native-web-client-security.md) — signed native, hardened web, and independently verified web-bootstrap profiles with release manifest binding, transparency witnesses, rollback/freeze controls, origin hardening, and explicit execution trust assumptions.
