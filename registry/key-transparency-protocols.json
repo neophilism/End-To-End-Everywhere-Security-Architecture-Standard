@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "protocols": [
+    {
+      "id": "KEYTRANS-IETF-05",
+      "name": "IETF Key Transparency Protocol draft-ietf-keytrans-protocol-05",
+      "status": "provisional",
+      "specification": "draft-ietf-keytrans-protocol-05",
+      "published_or_updated": "2026-07-06",
+      "reference_uri": "https://datatracker.ietf.org/doc/html/draft-ietf-keytrans-protocol-05",
+      "architecture_specification": "draft-ietf-keytrans-architecture-09",
+      "architecture_reference_uri": "https://datatracker.ietf.org/doc/html/draft-ietf-keytrans-architecture-09",
+      "notes": [
+        "Pinned as work in progress; future draft revisions require a new E2EESA protocol identifier.",
+        "Uses a transparency log, prefix-tree searches, VRFs for label privacy, commitments for values, and combined proofs.",
+        "Supports Contact Monitoring, Third-Party Auditing, and Third-Party Management deployment modes."
+      ]
+    }
+  ],
+  "cipher_suites": [
+    {
+      "id": "0x0001",
+      "name": "KT_128_SHA256_P256",
+      "status": "allowed",
+      "hash": "SHA-256",
+      "signature": "ECDSA-P256-SHA256",
+      "vrf": "ECVRF-P256-SHA256-TAI",
+      "reference_uri": "https://datatracker.ietf.org/doc/html/draft-ietf-keytrans-protocol-05#section-17.1"
+    },
+    {
+      "id": "0x0002",
+      "name": "KT_128_SHA256_Ed25519",
+      "status": "recommended",
+      "hash": "SHA-256",
+      "signature": "Ed25519",
+      "vrf": "ECVRF-EDWARDS25519-SHA512-TAI-truncated-32",
+      "reference_uri": "https://datatracker.ietf.org/doc/html/draft-ietf-keytrans-protocol-05#section-17.1"
+    }
+  ]
+}
