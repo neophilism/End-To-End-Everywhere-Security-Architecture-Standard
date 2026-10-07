@@ -689,7 +689,7 @@
       ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
-      "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules."
+      "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305 recommended, AES-256-GCM-SIV allowed; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules."
     }
   ]
 }
