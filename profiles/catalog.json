@@ -67,6 +67,12 @@
       "name": "Contact discovery",
       "cardinality": "at-most-one",
       "description": "Privacy-preserving discovery profiles for learning which known identifiers or exact handles correspond to discoverable E2EE users without exposing a client's address book to the service."
+    },
+    {
+      "family_id": "attachment-encryption",
+      "name": "Attachments and file encryption",
+      "cardinality": "at-most-one",
+      "description": "Chunked authenticated file-encryption architecture for E2EE attachments, including key distribution, streaming/range verification, substitution/replay resistance, and deletion semantics."
     }
   ],
   "profiles": [
@@ -668,6 +674,22 @@
         "contact-voprf-directory@0.1.0"
       ],
       "notes": "Confidential-compute discovery in which the complete contact set is encrypted to an attested enclave/TEE that computes the intersection and returns only results. The host/service must not observe plaintext query identifiers; assurance depends on attestation, implementation review, and the declared TEE side-channel model."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "attachment-chunked-aead",
+      "profile_version": "0.1.0",
+      "family_id": "attachment-encryption",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules."
     }
   ]
 }
