@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "mechanisms": [
+    {
+      "id": "META-MINIMIZATION-1",
+      "name": "E2EESA metadata minimization baseline",
+      "status": "allowed",
+      "mechanism_type": "minimization",
+      "specification": "E2EESA metadata privacy profile",
+      "reference_uri": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard",
+      "notes": [
+        "Limits durable delivery metadata, social-graph construction, content-derived service metadata, and stable cross-service identifiers.",
+        "Does not by itself hide the sender identity or source network address from the messaging service."
+      ]
+    },
+    {
+      "id": "META-SENDER-HIDDEN-1",
+      "name": "Sender-hidden asynchronous delivery architecture",
+      "status": "recommended",
+      "mechanism_type": "sender-hiding",
+      "specification": "E2EESA sender-hidden architecture based on the deployed sealed-sender design pattern",
+      "reference_uri": "https://signal.org/blog/sealed-sender/",
+      "notes": [
+        "The recipient authenticates sender identity from credentials carried inside the recipient-decryptable envelope rather than from transport authentication visible to the service.",
+        "A recipient-scoped delivery capability supports abuse control without exposing the ordinary sender identity to the service.",
+        "This is an architecture profile and does not claim Signal wire compatibility."
+      ]
+    },
+    {
+      "id": "META-OHTTP-RFC9458",
+      "name": "Oblivious HTTP",
+      "status": "recommended",
+      "mechanism_type": "relay-partition",
+      "specification": "RFC 9458",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9458.html",
+      "notes": [
+        "The relay observes the client connection but not the encapsulated application request.",
+        "The gateway decapsulates the request without receiving the client's network connection directly.",
+        "Traffic analysis remains possible; padding and large anonymity sets improve but do not eliminate correlation risk."
+      ]
+    },
+    {
+      "id": "META-OHTTP-DISCOVERY-RFC9540",
+      "name": "Discovery of Oblivious Services via Service Binding Records",
+      "status": "allowed",
+      "mechanism_type": "configuration-privacy",
+      "specification": "RFC 9540",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9540.html",
+      "notes": [
+        "Provides discovery and key-configuration guidance for Oblivious HTTP deployments.",
+        "Clients must avoid personalized gateway key configurations that could become linkability identifiers."
+      ]
+    },
+    {
+      "id": "META-PRIVACY-PARTITION-RFC9614",
+      "name": "Partitioning as an Architecture for Privacy",
+      "status": "allowed",
+      "mechanism_type": "architecture-guidance",
+      "specification": "RFC 9614",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9614.html",
+      "notes": [
+        "Provides the architectural basis for separating parties so no single intermediary observes all privacy-sensitive dimensions.",
+        "Non-collusion and operational independence are explicit assumptions, not cryptographic guarantees."
+      ]
+    }
+  ]
+}
