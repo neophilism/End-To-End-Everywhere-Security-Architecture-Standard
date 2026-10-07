@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/key-transparency-evidence.schema.json",
+  "title": "E2EESA key transparency verification-cycle evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evidence_id",
+    "profile_ref",
+    "protocol_id",
+    "cipher_suite_id",
+    "subject_digest_hex",
+    "label_version",
+    "tree_size",
+    "tree_root_hash",
+    "tree_timestamp_ms",
+    "observed_at_ms",
+    "tree_head_signature_verified",
+    "vrf_proofs_verified",
+    "value_commitment_verified",
+    "search_proof_verified",
+    "greatest_version_verified",
+    "subject_digest_matches_value",
+    "first_observation",
+    "previous_tree_size",
+    "previous_tree_root_hash",
+    "consistency_from_previous_verified",
+    "checkpoint_persisted",
+    "owner_monitoring_verified",
+    "contact_monitor_required",
+    "contact_monitor_completed",
+    "fork_check_channel",
+    "fork_check_completed",
+    "fork_detected",
+    "rollback_detected",
+    "third_party_signatures_verified",
+    "auditor_lag_ms",
+    "service_update_signature_verified",
+    "service_fork_detection_active"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "enum": [
+        "kt-contact-monitoring@0.1.0",
+        "kt-third-party-auditing@0.1.0",
+        "kt-third-party-management@0.1.0"
+      ]
+    },
+    "protocol_id": {
+      "const": "KEYTRANS-IETF-05"
+    },
+    "cipher_suite_id": {
+      "enum": [
+        "0x0001",
+        "0x0002"
+      ]
+    },
+    "subject_digest_hex": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64,128}$"
+    },
+    "label_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tree_size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "tree_root_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "tree_timestamp_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tree_head_signature_verified": {
+      "type": "boolean"
+    },
+    "vrf_proofs_verified": {
+      "type": "boolean"
+    },
+    "value_commitment_verified": {
+      "type": "boolean"
+    },
+    "search_proof_verified": {
+      "type": "boolean"
+    },
+    "greatest_version_verified": {
+      "type": "boolean"
+    },
+    "subject_digest_matches_value": {
+      "type": "boolean"
+    },
+    "first_observation": {
+      "type": "boolean"
+    },
+    "previous_tree_size": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        }
+      ]
+    },
+    "previous_tree_root_hash": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      ]
+    },
+    "consistency_from_previous_verified": {
+      "type": "boolean"
+    },
+    "checkpoint_persisted": {
+      "type": "boolean"
+    },
+    "owner_monitoring_verified": {
+      "type": "boolean"
+    },
+    "contact_monitor_required": {
+      "type": "boolean"
+    },
+    "contact_monitor_completed": {
+      "type": "boolean"
+    },
+    "fork_check_channel": {
+      "enum": [
+        "none",
+        "anonymous-log",
+        "peer-gossip",
+        "third-party-auditor",
+        "third-party-manager",
+        "multiple"
+      ]
+    },
+    "fork_check_completed": {
+      "type": "boolean"
+    },
+    "fork_detected": {
+      "type": "boolean"
+    },
+    "rollback_detected": {
+      "type": "boolean"
+    },
+    "third_party_signatures_verified": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "auditor_lag_ms": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        }
+      ]
+    },
+    "service_update_signature_verified": {
+      "type": "boolean"
+    },
+    "service_fork_detection_active": {
+      "type": "boolean"
+    },
+    "observed_at_ms": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

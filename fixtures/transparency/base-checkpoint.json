@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "log_id": "primary-log",
+  "tree_size": 10,
+  "tree_root_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "tree_timestamp_ms": 1700000000000,
+  "subject_digest_hex": "997ab66341cf658c3baab81fee64f72fced13abcbb43b306a5b0cd86515b05d0",
+  "label_version": 3
+}

@@ -20,6 +20,7 @@ import identity_device_engine
 import pairwise_session_engine
 import group_e2ee_engine
 import key_verification_engine
+import key_transparency_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -38,6 +39,8 @@ REQUIRED_PATHS = [
     "spec/pairwise-e2ee.md",
     "spec/group-e2ee.md",
     "spec/key-verification.md",
+    "spec/key-transparency.md",
+    "adr/0008-key-transparency.md",
     "adr/0007-key-verification.md",
     "adr/0006-group-e2ee-profiles.md",
     "adr/0005-pairwise-e2ee-profiles.md",
@@ -68,12 +71,17 @@ REQUIRED_PATHS = [
     "schemas/key-verification-policy.schema.json",
     "schemas/key-verification-snapshot.schema.json",
     "schemas/key-verification-record.schema.json",
+    "schemas/key-transparency-protocol-registry.schema.json",
+    "schemas/key-transparency-policy.schema.json",
+    "schemas/key-transparency-evidence.schema.json",
+    "schemas/key-transparency-checkpoint.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
     "registry/cryptographic-algorithms.json",
     "registry/pairwise-protocols.json",
     "registry/group-protocols.json",
+    "registry/key-transparency-protocols.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
@@ -82,6 +90,7 @@ REQUIRED_PATHS = [
     "scripts/pairwise_session_engine.py",
     "scripts/group_e2ee_engine.py",
     "scripts/key_verification_engine.py",
+    "scripts/key_transparency_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -99,6 +108,13 @@ REQUIRED_PATHS = [
     "fixtures/verification/snapshots/account/bob.json",
     "fixtures/verification/snapshots/devices/alice.json",
     "fixtures/verification/snapshots/devices/bob.json",
+    "fixtures/transparency/policies/contact.json",
+    "fixtures/transparency/policies/audit.json",
+    "fixtures/transparency/policies/manager.json",
+    "fixtures/transparency/contact-first.json",
+    "fixtures/transparency/audit-first.json",
+    "fixtures/transparency/manager-first.json",
+    "fixtures/transparency/base-checkpoint.json",
 ]
 
 VALID_STATUSES = {
@@ -802,6 +818,10 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/key-verification-policy.schema.json",
         "schemas/key-verification-snapshot.schema.json",
         "schemas/key-verification-record.schema.json",
+        "schemas/key-transparency-protocol-registry.schema.json",
+        "schemas/key-transparency-policy.schema.json",
+        "schemas/key-transparency-evidence.schema.json",
+        "schemas/key-transparency-checkpoint.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1002,6 +1022,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in verification_spec:
                 errors.append(f"key-verification.md missing required marker: {required_text}")
 
+    transparency_spec_path = root / "spec/key-transparency.md"
+    if transparency_spec_path.is_file():
+        transparency_spec = transparency_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "KEYTRANS-IETF-05",
+            "draft-ietf-keytrans-protocol-05",
+            "draft-ietf-keytrans-architecture-09",
+            "kt-contact-monitoring@0.1.0",
+            "kt-third-party-auditing@0.1.0",
+            "kt-third-party-management@0.1.0",
+            "## 18. Failure behavior",
+            "## 19. Conformance evidence",
+        ):
+            if required_text not in transparency_spec:
+                errors.append(f"key-transparency.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -1053,6 +1090,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             group_e2ee_engine.validate_protocol_registry(
                 group_protocol_registry,
                 source="registry/group-protocols.json",
+            )
+        )
+
+    transparency_registry_path = root / "registry/key-transparency-protocols.json"
+    transparency_registry = (
+        load_json(transparency_registry_path)
+        if transparency_registry_path.is_file()
+        else {}
+    )
+    if transparency_registry:
+        errors.extend(
+            key_transparency_engine.validate_protocol_registry(
+                transparency_registry,
+                source="registry/key-transparency-protocols.json",
             )
         )
 
@@ -1360,6 +1411,94 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 devices_record, devices_record["numeric_safety_number"]
             ):
                 errors.append("key verification numeric self-comparison failed")
+
+    if transparency_registry and profile_catalog:
+        transparency_required = (
+            root / "fixtures/transparency/policies/contact.json",
+            root / "fixtures/transparency/policies/audit.json",
+            root / "fixtures/transparency/policies/manager.json",
+            root / "fixtures/transparency/contact-first.json",
+            root / "fixtures/transparency/audit-first.json",
+            root / "fixtures/transparency/manager-first.json",
+            root / "fixtures/transparency/contact-next.json",
+            root / "fixtures/transparency/base-checkpoint.json",
+        )
+        missing_transparency = [
+            str(path.relative_to(root))
+            for path in transparency_required
+            if not path.is_file()
+        ]
+        if missing_transparency:
+            errors.append(
+                "missing key transparency fixtures: " + ", ".join(missing_transparency)
+            )
+        else:
+            kv_policy = load_json(root / "fixtures/verification/policies/devices.json")
+            kv_alice = load_json(root / "fixtures/verification/snapshots/devices/alice.json")
+            kv_bob = load_json(root / "fixtures/verification/snapshots/devices/bob.json")
+            expected_digest = key_verification_engine.subject_digest(
+                kv_policy, kv_alice, kv_bob
+            ).hex()
+
+            for policy_name, evidence_name in (
+                ("contact", "contact-first"),
+                ("audit", "audit-first"),
+                ("manager", "manager-first"),
+            ):
+                result = key_transparency_engine.validate_evidence(
+                    load_json(root / "fixtures/transparency/policies" / f"{policy_name}.json"),
+                    load_json(root / "fixtures/transparency" / f"{evidence_name}.json"),
+                    transparency_registry,
+                    profile_catalog,
+                    expected_digest,
+                )
+                if result:
+                    errors.append(
+                        f"valid transparency fixture {evidence_name} failed: "
+                        + "; ".join(result)
+                    )
+
+            prior_checkpoint = load_json(
+                root / "fixtures/transparency/base-checkpoint.json"
+            )
+            result = key_transparency_engine.validate_evidence(
+                load_json(root / "fixtures/transparency/policies/contact.json"),
+                load_json(root / "fixtures/transparency/contact-next.json"),
+                transparency_registry,
+                profile_catalog,
+                expected_digest,
+                prior_checkpoint,
+            )
+            if result:
+                errors.append(
+                    "valid transparency continuity fixture failed: " + "; ".join(result)
+                )
+
+            invalid_transparency_cases = (
+                ("contact", "invalid-subject-mismatch", None),
+                ("contact", "invalid-contact-monitor-missed", None),
+                ("audit", "invalid-auditor-threshold", None),
+                ("audit", "invalid-auditor-lag", None),
+                ("manager", "invalid-manager-update-signature", None),
+                ("contact", "invalid-stale-tree-head", None),
+                ("contact", "invalid-same-size-fork", prior_checkpoint),
+                ("contact", "invalid-label-rollback", prior_checkpoint),
+            )
+            for policy_name, evidence_name, previous in invalid_transparency_cases:
+                path = root / "fixtures/transparency" / f"{evidence_name}.json"
+                result = key_transparency_engine.validate_evidence(
+                    load_json(root / "fixtures/transparency/policies" / f"{policy_name}.json"),
+                    load_json(path),
+                    transparency_registry,
+                    profile_catalog,
+                    expected_digest,
+                    previous,
+                )
+                if not result:
+                    errors.append(
+                        f"fixtures/transparency/{evidence_name}.json: "
+                        "invalid transparency evidence unexpectedly passed"
+                    )
 
     known_property_ids = {
         prop.get("id")

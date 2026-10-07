@@ -1,0 +1,39 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/key-transparency-policy.schema.json",
+  "title":"E2EESA key transparency policy",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","policy_id","profile_ref","protocol_registry_version","protocol_id",
+    "cipher_suite_id","deployment_mode","max_ahead_ms","max_behind_ms",
+    "reasonable_monitoring_window_ms","maximum_lifetime_ms",
+    "require_vrf_label_privacy","require_value_commitments","require_owner_monitoring",
+    "require_fork_detection","require_checkpoint_persistence",
+    "third_party_count","third_party_threshold","max_auditor_lag_ms",
+    "require_service_update_signature"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "policy_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["kt-contact-monitoring@0.1.0","kt-third-party-auditing@0.1.0","kt-third-party-management@0.1.0"]},
+    "protocol_registry_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "protocol_id":{"const":"KEYTRANS-IETF-05"},
+    "cipher_suite_id":{"enum":["0x0001","0x0002"]},
+    "deployment_mode":{"enum":["contact-monitoring","third-party-auditing","third-party-management"]},
+    "max_ahead_ms":{"type":"integer","minimum":0},
+    "max_behind_ms":{"type":"integer","minimum":0},
+    "reasonable_monitoring_window_ms":{"type":"integer","minimum":1},
+    "maximum_lifetime_ms":{"oneOf":[{"type":"null"},{"type":"integer","minimum":1}]},
+    "require_vrf_label_privacy":{"const":true},
+    "require_value_commitments":{"const":true},
+    "require_owner_monitoring":{"const":true},
+    "require_fork_detection":{"const":true},
+    "require_checkpoint_persistence":{"type":"boolean"},
+    "third_party_count":{"type":"integer","minimum":0},
+    "third_party_threshold":{"type":"integer","minimum":0},
+    "max_auditor_lag_ms":{"oneOf":[{"type":"null"},{"type":"integer","minimum":0}]},
+    "require_service_update_signature":{"type":"boolean"},
+    "notes":{"type":"string"}
+  }
+}

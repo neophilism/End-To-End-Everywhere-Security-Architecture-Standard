@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "protocol_registry_version": "0.1.0",
+  "protocol_id": "KEYTRANS-IETF-05",
+  "cipher_suite_id": "0x0002",
+  "max_ahead_ms": 300000,
+  "max_behind_ms": 86400000,
+  "reasonable_monitoring_window_ms": 86400000,
+  "maximum_lifetime_ms": 2592000000,
+  "require_vrf_label_privacy": true,
+  "require_value_commitments": true,
+  "require_owner_monitoring": true,
+  "require_fork_detection": true,
+  "policy_id": "kt-manager",
+  "profile_ref": "kt-third-party-management@0.1.0",
+  "deployment_mode": "third-party-management",
+  "require_checkpoint_persistence": false,
+  "third_party_count": 2,
+  "third_party_threshold": 2,
+  "max_auditor_lag_ms": null,
+  "require_service_update_signature": true
+}
