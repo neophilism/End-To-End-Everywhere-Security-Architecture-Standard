@@ -28,9 +28,19 @@ import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
 import transport_security_engine
+import server_trust_engine
 import client_security_engine
 
 REQUIRED_PATHS = [
+    'scripts/server_trust_engine.py',
+    'registry/server-trust-boundaries.json',
+    'schemas/server-trust-policy.schema.json',
+    'schemas/server-deployment-evidence.schema.json',
+    'schemas/server-trust-registry.schema.json',
+    'spec/server-trust-minimization.md',
+    'adr/0017-server-trust-minimization.md',
+    'tests/test_server_trust_engine.py',
+    'fixtures/server-trust/cases.json',
     'scripts/assurance_common.py',
     'scripts/client_security_engine.py',
     'registry/client-security.json',
@@ -2529,6 +2539,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             errors.append(f"{path.relative_to(root)}: invalid security claim fixture unexpectedly passed validation")
 
     errors.extend(client_security_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(server_trust_engine.validate_repository(root, profile_catalog))
 
     return errors
 
