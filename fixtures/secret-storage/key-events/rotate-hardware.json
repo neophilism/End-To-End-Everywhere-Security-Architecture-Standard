@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "event_id": "rotate-hardware-root",
+  "profile_ref": "secret-hardware-isolated@0.1.0",
+  "mechanism_id": "SECRET-TPM2-V185",
+  "device_id": "alice-phone",
+  "event_type": "rotate",
+  "old_key_id": "root-key-1",
+  "new_key_id": "root-key-2",
+  "new_key_non_exportable": true,
+  "new_key_hardware_isolated": true,
+  "old_key_invalidated": true,
+  "auth_policy_changed": true,
+  "vault_rewrapped_under_new_key": true,
+  "remote_copy_of_raw_root_key_exists": false
+}

@@ -63,3 +63,7 @@ PR 16 introduces the `attachment-encryption` family with `attachment-chunked-aea
 ## Real-time media profiles
 
 PR 17 introduces the `real-time-media` family with RFC 9605 SFrame sender-key and MLS alternatives. Both require hop-by-hop transport encryption plus media-payload E2EE, unique per-sender key space, replay/CTR continuity, and membership-triggered rekeying. The MLS profile requires the RFC 9420 group profile and uses the RFC 9605 MLS exporter/KID construction.
+
+## Secret storage profiles
+
+PR 18 introduces the `secret-storage` family with native platform-keystore, hardware-isolated, external-token, and software-vault choices. Hardware profiles protect a non-exportable root/wrapping key while mutable protocol state remains in an authenticated encrypted vault. Rollback resistance is only claimed when a separate monotonic hardware or independent-witness anchor advances with the vault generation.

@@ -26,6 +26,7 @@ import metadata_privacy_engine
 import contact_discovery_engine
 import attachment_encryption_engine
 import real_time_media_engine
+import secret_storage_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -50,6 +51,8 @@ REQUIRED_PATHS = [
     "spec/contact-discovery.md",
     "spec/attachments-file-encryption.md",
     "spec/real-time-media.md",
+    "spec/secret-storage-hardware-protection.md",
+    "adr/0014-secret-storage-hardware-protection.md",
     "adr/0013-real-time-media.md",
     "adr/0012-attachments-file-encryption.md",
     "adr/0011-contact-discovery.md",
@@ -111,6 +114,10 @@ REQUIRED_PATHS = [
     "schemas/real-time-media-membership-event.schema.json",
     "schemas/real-time-media-frame-evidence.schema.json",
     "schemas/real-time-media-sender-checkpoint.schema.json",
+    "schemas/secret-storage-registry.schema.json",
+    "schemas/secret-storage-policy.schema.json",
+    "schemas/secret-storage-state-evidence.schema.json",
+    "schemas/secret-storage-key-event.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -121,6 +128,7 @@ REQUIRED_PATHS = [
     "registry/metadata-privacy-mechanisms.json",
     "registry/contact-discovery-mechanisms.json",
     "registry/real-time-media.json",
+    "registry/secret-storage-mechanisms.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
@@ -135,6 +143,7 @@ REQUIRED_PATHS = [
     "scripts/contact_discovery_engine.py",
     "scripts/attachment_encryption_engine.py",
     "scripts/real_time_media_engine.py",
+    "scripts/secret_storage_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -196,6 +205,15 @@ REQUIRED_PATHS = [
     "fixtures/media/frames/mls.json",
     "fixtures/media/checkpoints/sender.json",
     "fixtures/media/checkpoints/mls.json",
+    "fixtures/secret-storage/policies/platform.json",
+    "fixtures/secret-storage/policies/hardware.json",
+    "fixtures/secret-storage/policies/token.json",
+    "fixtures/secret-storage/policies/software.json",
+    "fixtures/secret-storage/state/platform.json",
+    "fixtures/secret-storage/state/hardware.json",
+    "fixtures/secret-storage/state/token.json",
+    "fixtures/secret-storage/state/software.json",
+    "fixtures/secret-storage/key-events/rotate-hardware.json",
 ]
 
 VALID_STATUSES = {
@@ -924,6 +942,10 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/real-time-media-membership-event.schema.json",
         "schemas/real-time-media-frame-evidence.schema.json",
         "schemas/real-time-media-sender-checkpoint.schema.json",
+        "schemas/secret-storage-registry.schema.json",
+        "schemas/secret-storage-policy.schema.json",
+        "schemas/secret-storage-state-evidence.schema.json",
+        "schemas/secret-storage-key-event.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1225,6 +1247,26 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in media_spec:
                 errors.append(f"real-time-media.md missing required marker: {required_text}")
 
+    secret_storage_spec_path = root / "spec/secret-storage-hardware-protection.md"
+    if secret_storage_spec_path.is_file():
+        secret_storage_spec = secret_storage_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "secret-platform-keystore@0.1.0",
+            "secret-hardware-isolated@0.1.0",
+            "secret-external-token@0.1.0",
+            "secret-software-vault@0.1.0",
+            "TPM 2.0 Library Specification Version 185",
+            "PKCS #11 v3.2",
+            "## 12. Rollback protection",
+            "## 17. Live endpoint compromise boundary",
+            "## 21. Conformance evidence",
+        ):
+            if required_text not in secret_storage_spec:
+                errors.append(
+                    f"secret-storage-hardware-protection.md missing required marker: {required_text}"
+                )
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -1332,6 +1374,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             real_time_media_engine.validate_registry(
                 media_registry,
                 source="registry/real-time-media.json",
+            )
+        )
+
+    secret_storage_registry_path = root / "registry/secret-storage-mechanisms.json"
+    secret_storage_registry = (
+        load_json(secret_storage_registry_path)
+        if secret_storage_registry_path.is_file()
+        else {}
+    )
+    if secret_storage_registry:
+        errors.extend(
+            secret_storage_engine.validate_registry(
+                secret_storage_registry,
+                source="registry/secret-storage-mechanisms.json",
             )
         )
 
@@ -2171,6 +2227,79 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             profile_catalog,
         ):
             errors.append("unauthorized real-time media recording bot unexpectedly passed")
+
+    if secret_storage_registry and crypto_registry_data and profile_catalog:
+        secret_policies = {
+            name: load_json(root / "fixtures/secret-storage/policies" / f"{name}.json")
+            for name in ("platform", "hardware", "token", "software")
+        }
+        for name, policy in secret_policies.items():
+            result = secret_storage_engine.validate_state(
+                policy,
+                load_json(root / "fixtures/secret-storage/state" / f"{name}.json"),
+                secret_storage_registry,
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid secret-storage state {name} failed: " + "; ".join(result)
+                )
+
+        result = secret_storage_engine.validate_key_event(
+            secret_policies["hardware"],
+            load_json(root / "fixtures/secret-storage/key-events/rotate-hardware.json"),
+        )
+        if result:
+            errors.append(
+                "valid secret-storage key rotation failed: " + "; ".join(result)
+            )
+
+        hardware_export = load_json(root / "fixtures/secret-storage/state/hardware.json")
+        hardware_export["root_key_exported"] = True
+        if not secret_storage_engine.validate_state(
+            secret_policies["hardware"], hardware_export,
+            secret_storage_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("exported hardware root key unexpectedly passed")
+
+        fake_hardware = load_json(root / "fixtures/secret-storage/state/hardware.json")
+        fake_hardware["root_key_hardware_isolated"] = False
+        if not secret_storage_engine.validate_state(
+            secret_policies["hardware"], fake_hardware,
+            secret_storage_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("non-hardware key unexpectedly passed hardware-isolated profile")
+
+        rollback = load_json(root / "fixtures/secret-storage/state/hardware.json")
+        rollback["rollback_anchor_value"] = rollback["previous_rollback_anchor_value"]
+        if not secret_storage_engine.validate_state(
+            secret_policies["hardware"], rollback,
+            secret_storage_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("non-advancing rollback anchor unexpectedly passed")
+
+        weak_software = dict(secret_policies["software"])
+        weak_software["argon2_memory_kib"] = 32768
+        if not secret_storage_engine.validate_policy(
+            weak_software, secret_storage_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("weak software-vault Argon2 policy unexpectedly passed")
+
+        fake_nonexport = load_json(root / "fixtures/secret-storage/state/software.json")
+        fake_nonexport["root_key_non_exportable"] = True
+        if not secret_storage_engine.validate_state(
+            secret_policies["software"], fake_nonexport,
+            secret_storage_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("software vault falsely claiming non-exportability unexpectedly passed")
+
+        remote_root = load_json(root / "fixtures/secret-storage/key-events/rotate-hardware.json")
+        remote_root["remote_copy_of_raw_root_key_exists"] = True
+        if not secret_storage_engine.validate_key_event(
+            secret_policies["hardware"], remote_root
+        ):
+            errors.append("remote raw root-key copy unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")
