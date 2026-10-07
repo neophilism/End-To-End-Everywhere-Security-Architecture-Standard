@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "client-web",
+  "profile_ref": "client-web-hardened@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "browser",
+  "policy_digest": "sha256:cbbc1ad24c3b06b18ffe3032b30e691537ff6e59f3d2c216a26d7e0daffd0e5b",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "release": {
+    "artifact_digest": "sha256:1c346574e3d9723efe32850bada0c3fb4d26873478de8ba582675647b6162908",
+    "manifest": {
+      "product_id": "example-messenger",
+      "version": "1.0.0",
+      "artifacts": [
+        {
+          "path": "app.js",
+          "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "size_bytes": 1024
+        }
+      ]
+    },
+    "executable_paths": [
+      "app.js"
+    ],
+    "signer_id": "offline-release-root",
+    "sequence": 10,
+    "previous_sequence": 9,
+    "signature_verified": true,
+    "all_executables_covered": true,
+    "trust_root_rotation_verified": true,
+    "update_metadata_verified": true,
+    "metadata_expires_at": "2026-10-08T22:40:20Z"
+  },
+  "transparency": {
+    "operator_id": "independent-log",
+    "log_id": "code-log",
+    "witness_ids": [
+      "independent-witness"
+    ],
+    "entry_digest": "sha256:1c346574e3d9723efe32850bada0c3fb4d26873478de8ba582675647b6162908",
+    "checkpoint_sequence": 12,
+    "previous_checkpoint_sequence": 11,
+    "inclusion_verified": true,
+    "consistency_verified": true,
+    "equivocation_monitoring": true
+  },
+  "runtime": {
+    "mode": "web",
+    "web": {
+      "origin": "https://client.example",
+      "csp": "default-src 'none'; script-src 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='; script-src-attr 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; worker-src 'self'; connect-src https://api.example",
+      "bootstrap_trust_source": "origin",
+      "bootstrap_operator_id": "messenger-operator",
+      "secure_context": true,
+      "hsts": true,
+      "sri_checked": true,
+      "service_workers_manifest_bound": true,
+      "origin_checks": true,
+      "csrf_protection": true,
+      "dom_injection_defense": true,
+      "secret_storage_encrypted": true,
+      "extensions_risk_disclosed": true,
+      "plaintext_secrets_in_web_storage": false,
+      "third_party_code_in_secret_context": false,
+      "mixed_content": false,
+      "verification_before_execution": false,
+      "fail_closed_on_manifest_mismatch": false,
+      "claims_malicious_origin_prevention": false
+    },
+    "authenticated_local_secret_storage": true,
+    "least_privilege": true,
+    "untrusted_content_isolated": true,
+    "no_unverified_dynamic_code": true,
+    "safe_update_failure": true,
+    "version_visible": true,
+    "platform_signature_verified": true,
+    "sandbox_enforced": true,
+    "debug_interfaces_disabled": true
+  }
+}

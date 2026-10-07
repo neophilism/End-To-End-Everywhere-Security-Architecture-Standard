@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/client-security-policy.schema.json",
+  "title": "E2EESA client-security-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "registry_version",
+    "origin",
+    "origin_operator_id",
+    "trusted_release_signers",
+    "minimum_release_sequence",
+    "minimum_independent_witnesses",
+    "claims_origin_independent_execution",
+    "claims_compromised_endpoint_protection"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "registry_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "origin": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "minLength": 1
+    },
+    "origin_operator_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "trusted_release_signers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "minimum_release_sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "minimum_independent_witnesses": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "claims_origin_independent_execution": {
+      "type": "boolean"
+    },
+    "claims_compromised_endpoint_protection": {
+      "type": "boolean"
+    }
+  }
+}

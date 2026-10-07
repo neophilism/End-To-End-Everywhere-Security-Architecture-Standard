@@ -91,6 +91,12 @@
       "name": "Transport security",
       "cardinality": "at-most-one",
       "description": "TLS 1.3 transport profiles for ordinary authenticated transport and RFC 10024 post-quantum/traditional hybrid key agreement, usable over stream TLS or QUIC without weakening application-layer E2EE."
+    },
+    {
+      "family_id": "client-security",
+      "name": "Native and web client security",
+      "cardinality": "at-most-one",
+      "description": "Native and web client security. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -866,6 +872,60 @@
         "transport-tls13-classical@0.1.0"
       ],
       "notes": "RFC 9846 TLS 1.3 with an RFC 10024 PQ/traditional hybrid group. X25519MLKEM768 is the default; P-256/ML-KEM-768 and P-384/ML-KEM-1024 are available for deployments with FIPS-oriented requirements. This profile does not by itself claim PQ authentication."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "client-native-signed",
+      "profile_version": "0.1.0",
+      "family_id": "client-security",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "client-web-hardened@0.1.0",
+        "client-web-verified-bootstrap@0.1.0"
+      ],
+      "notes": "Independently installed signed releases, authenticated update metadata, artifact-bound code transparency and native isolation."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "client-web-hardened",
+      "profile_version": "0.1.0",
+      "family_id": "client-security",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "client-native-signed@0.1.0",
+        "client-web-verified-bootstrap@0.1.0"
+      ],
+      "notes": "CSP/SRI hardened browser delivery with independent transparency monitoring; origin still controls executable code. No malicious-origin prevention claim."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "client-web-verified-bootstrap",
+      "profile_version": "0.1.0",
+      "family_id": "client-security",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "client-native-signed@0.1.0",
+        "client-web-hardened@0.1.0"
+      ],
+      "notes": "An independently installed verifier authenticates the complete web executable closure before execution and rejects unapproved releases."
     }
   ]
 }

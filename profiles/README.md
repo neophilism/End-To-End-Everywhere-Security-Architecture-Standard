@@ -71,3 +71,7 @@ PR 18 introduces the `secret-storage` family with native platform-keystore, hard
 ## Transport security profiles
 
 PR 19 introduces the `transport-security` family with classical TLS 1.3 and recommended RFC 10024 hybrid PQ/traditional TLS. Both pin RFC 9846, require RFC 9525 service identity verification and fresh ephemeral key agreement, support stream TLS or QUIC, and keep application E2EE independent from transport termination. Hybrid conformance fails closed rather than silently falling back to traditional-only groups.
+
+## Native and Web Client Security
+
+PR 20 introduces signed native, hardened web, and independently verified web-bootstrap profiles with release manifest binding, transparency witnesses, rollback/freeze controls, origin hardening, and explicit execution trust assumptions.
