@@ -79,6 +79,12 @@
       "name": "Real-time media",
       "cardinality": "at-most-one",
       "description": "End-to-end encrypted real-time audio/video profiles using RFC 9605 SFrame with either sender-key distribution over an existing E2E control channel or MLS-derived conference keys."
+    },
+    {
+      "family_id": "secret-storage",
+      "name": "Secret storage and hardware protection",
+      "cardinality": "at-most-one",
+      "description": "Local protection profiles for device identity keys, protocol state, recovery material, and other E2EE secrets using OS keystores, hardware-isolated key managers, external hardware tokens, or an encrypted software fallback."
     }
   ],
   "profiles": [
@@ -737,6 +743,82 @@
         "media-sframe-sender-keys@0.1.0"
       ],
       "notes": "RFC 9605 SFrame using its MLS exporter/KID construction over the E2EESA RFC 9420 group profile. Recommended for multiparty conferences and membership churn."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-platform-keystore",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-hardware-isolated@0.1.0",
+        "secret-external-token@0.1.0",
+        "secret-software-vault@0.1.0"
+      ],
+      "notes": "Uses the native OS keystore/keychain to hold a non-exportable or OS-confined wrapping/private key and protects mutable E2EE secret state in an authenticated encrypted vault. Hardware backing is used when available but is not required or claimed by this profile."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-hardware-isolated",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-platform-keystore@0.1.0",
+        "secret-external-token@0.1.0",
+        "secret-software-vault@0.1.0"
+      ],
+      "notes": "Requires verified hardware-isolated non-exportable key material in Secure Enclave, StrongBox/TEE, TPM 2.0, HSM, or equivalent hardware. Secret state remains client encrypted; attestation and authorization evidence must prove the selected hardware boundary."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-external-token",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-platform-keystore@0.1.0",
+        "secret-hardware-isolated@0.1.0",
+        "secret-software-vault@0.1.0"
+      ],
+      "notes": "Uses an external hardware token/HSM exposed through PKCS #11 or an equivalent reviewed interface. The device vault is encrypted under key material that cannot be exported from the token and token removal can intentionally make local secrets unavailable."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-software-vault",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-platform-keystore@0.1.0",
+        "secret-hardware-isolated@0.1.0",
+        "secret-external-token@0.1.0"
+      ],
+      "notes": "Fallback for platforms without a trustworthy keystore. A high-entropy generated secret or Argon2id-hardened user secret protects the local encrypted vault. This profile does not claim non-exportability or protection against a fully compromised live endpoint."
     }
   ]
 }
