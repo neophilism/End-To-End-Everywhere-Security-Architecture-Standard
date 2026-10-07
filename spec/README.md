@@ -56,3 +56,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 21. [Server Trust Minimization](server-trust-minimization.md) — ciphertext-only service infrastructure with exhaustive component/key inventory, client-authorized recipient sets, bounded retention, encrypted derivatives and explicit routing/availability limitations.
 
 22. [Privacy-Preserving Telemetry](privacy-preserving-telemetry.md) — no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.
+
+23. [Secure Development Standard](secure-development-standard.md) — SSDF-aligned process controls, independent exact-source review, test/fuzz/scanning release gates, dependency/change control and checked remediation or limited expiring risk acceptance.

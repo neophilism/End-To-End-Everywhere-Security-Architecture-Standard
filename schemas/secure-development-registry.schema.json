@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/secure-development-registry.schema.json",
+  "title": "E2EESA secure-development-registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_version",
+    "reference",
+    "reference_url",
+    "controls"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "registry_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "reference": {
+      "type": "string",
+      "const": "NIST SP 800-218 SSDF 1.1 (2022 final)"
+    },
+    "reference_url": {
+      "type": "string",
+      "const": "https://csrc.nist.gov/pubs/sp/800/218/final"
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "control_id",
+          "ssdf_practice_id"
+        ],
+        "properties": {
+          "control_id": {
+            "type": "string",
+            "enum": [
+              "SD-REQUIREMENTS",
+              "SD-OWNERS",
+              "SD-TOOLS",
+              "SD-RELEASE-GATES",
+              "SD-ENVIRONMENT",
+              "SD-SOURCE-ACCESS",
+              "SD-RELEASE-AUTH",
+              "SD-ARCHIVE",
+              "SD-DESIGN",
+              "SD-DESIGN-REVIEW",
+              "SD-DEPENDENCIES",
+              "SD-SECURE-CODE",
+              "SD-BUILD-CONFIG",
+              "SD-CODE-REVIEW",
+              "SD-TESTING",
+              "SD-DEFAULTS",
+              "SD-INTAKE",
+              "SD-REMEDIATION",
+              "SD-ROOT-CAUSE"
+            ]
+          },
+          "ssdf_practice_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 19,
+      "maxItems": 19,
+      "uniqueItems": true
+    }
+  }
+}

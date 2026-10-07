@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/secure-development-policy.schema.json",
+  "title": "E2EESA secure-development-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "required_control_ids",
+    "required_gate_ids",
+    "minimum_independent_reviewers",
+    "max_check_age_hours",
+    "require_independent_review",
+    "require_critical_high_remediation"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_control_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "SD-REQUIREMENTS",
+          "SD-OWNERS",
+          "SD-TOOLS",
+          "SD-RELEASE-GATES",
+          "SD-ENVIRONMENT",
+          "SD-SOURCE-ACCESS",
+          "SD-RELEASE-AUTH",
+          "SD-ARCHIVE",
+          "SD-DESIGN",
+          "SD-DESIGN-REVIEW",
+          "SD-DEPENDENCIES",
+          "SD-SECURE-CODE",
+          "SD-BUILD-CONFIG",
+          "SD-CODE-REVIEW",
+          "SD-TESTING",
+          "SD-DEFAULTS",
+          "SD-INTAKE",
+          "SD-REMEDIATION",
+          "SD-ROOT-CAUSE"
+        ]
+      },
+      "minItems": 19,
+      "maxItems": 19,
+      "uniqueItems": true
+    },
+    "required_gate_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "adversarial-tests",
+          "dependency-scan",
+          "fuzz",
+          "secret-scan",
+          "static-analysis",
+          "unit-tests"
+        ]
+      },
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "minimum_independent_reviewers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "max_check_age_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 168
+    },
+    "require_independent_review": {
+      "type": "boolean"
+    },
+    "require_critical_high_remediation": {
+      "type": "boolean"
+    }
+  }
+}

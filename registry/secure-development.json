@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "reference": "NIST SP 800-218 SSDF 1.1 (2022 final)",
+  "reference_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+  "controls": [
+    {
+      "control_id": "SD-REQUIREMENTS",
+      "ssdf_practice_id": "PO.1"
+    },
+    {
+      "control_id": "SD-OWNERS",
+      "ssdf_practice_id": "PO.2"
+    },
+    {
+      "control_id": "SD-TOOLS",
+      "ssdf_practice_id": "PO.3"
+    },
+    {
+      "control_id": "SD-RELEASE-GATES",
+      "ssdf_practice_id": "PO.4"
+    },
+    {
+      "control_id": "SD-ENVIRONMENT",
+      "ssdf_practice_id": "PO.5"
+    },
+    {
+      "control_id": "SD-SOURCE-ACCESS",
+      "ssdf_practice_id": "PS.1"
+    },
+    {
+      "control_id": "SD-RELEASE-AUTH",
+      "ssdf_practice_id": "PS.2"
+    },
+    {
+      "control_id": "SD-ARCHIVE",
+      "ssdf_practice_id": "PS.3"
+    },
+    {
+      "control_id": "SD-DESIGN",
+      "ssdf_practice_id": "PW.1"
+    },
+    {
+      "control_id": "SD-DESIGN-REVIEW",
+      "ssdf_practice_id": "PW.2"
+    },
+    {
+      "control_id": "SD-DEPENDENCIES",
+      "ssdf_practice_id": "PW.4"
+    },
+    {
+      "control_id": "SD-SECURE-CODE",
+      "ssdf_practice_id": "PW.5"
+    },
+    {
+      "control_id": "SD-BUILD-CONFIG",
+      "ssdf_practice_id": "PW.6"
+    },
+    {
+      "control_id": "SD-CODE-REVIEW",
+      "ssdf_practice_id": "PW.7"
+    },
+    {
+      "control_id": "SD-TESTING",
+      "ssdf_practice_id": "PW.8"
+    },
+    {
+      "control_id": "SD-DEFAULTS",
+      "ssdf_practice_id": "PW.9"
+    },
+    {
+      "control_id": "SD-INTAKE",
+      "ssdf_practice_id": "RV.1"
+    },
+    {
+      "control_id": "SD-REMEDIATION",
+      "ssdf_practice_id": "RV.2"
+    },
+    {
+      "control_id": "SD-ROOT-CAUSE",
+      "ssdf_practice_id": "RV.3"
+    }
+  ]
+}

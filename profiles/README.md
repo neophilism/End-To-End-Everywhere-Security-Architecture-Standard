@@ -83,3 +83,7 @@ PR 21 introduces ciphertext-only service infrastructure with exhaustive componen
 ## Privacy-Preserving Telemetry
 
 PR 22 introduces no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.
+
+## Secure Development Standard
+
+PR 23 introduces SSDF-aligned process controls, independent exact-source review, test/fuzz/scanning release gates, dependency/change control and checked remediation or limited expiring risk acceptance.

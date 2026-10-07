@@ -28,11 +28,21 @@ import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
 import transport_security_engine
+import secure_development_engine
 import telemetry_engine
 import server_trust_engine
 import client_security_engine
 
 REQUIRED_PATHS = [
+    'scripts/secure_development_engine.py',
+    'registry/secure-development.json',
+    'schemas/secure-development-policy.schema.json',
+    'schemas/secure-development-evidence.schema.json',
+    'schemas/secure-development-registry.schema.json',
+    'spec/secure-development-standard.md',
+    'adr/0019-secure-development-standard.md',
+    'tests/test_secure_development_engine.py',
+    'fixtures/secure-development/cases.json',
     'scripts/telemetry_engine.py',
     'registry/telemetry.json',
     'schemas/telemetry-policy.schema.json',
@@ -2553,6 +2563,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     errors.extend(server_trust_engine.validate_repository(root, profile_catalog))
 
     errors.extend(telemetry_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(secure_development_engine.validate_repository(root, profile_catalog))
 
     return errors
 
