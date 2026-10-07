@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "minimum_tls_version": "TLS1.3",
+  "maximum_tls_version": "TLS1.3",
+  "allowed_cipher_suites": [
+    "TLS_AES_256_GCM_SHA384",
+    "TLS_CHACHA20_POLY1305_SHA256",
+    "TLS_AES_128_GCM_SHA256"
+  ],
+  "preferred_cipher_suite": "TLS_AES_256_GCM_SHA384",
+  "service_identity_verification": "RFC9525",
+  "require_certificate_chain_validation": true,
+  "require_reference_identifier_match": true,
+  "require_fresh_key_share": true,
+  "require_ephemeral_key_exchange_on_resumption": true,
+  "require_alpn": true,
+  "allow_0rtt": false,
+  "zero_rtt_application_profile": null,
+  "zero_rtt_replay_protection_required": false,
+  "require_fail_closed_on_transport_downgrade": true,
+  "require_no_common_name_fallback": true,
+  "require_e2ee_layer_independence": true,
+  "policy_id": "transport-hybrid-mtls",
+  "profile_ref": "transport-tls13-hybrid@0.1.0",
+  "transport_mode": "tls-stream",
+  "quic_version": null,
+  "allowed_group_ids": [
+    "SecP256r1MLKEM768"
+  ],
+  "preferred_group_id": "SecP256r1MLKEM768",
+  "require_hybrid_group": true,
+  "authentication_mode": "mutual-certificate",
+  "trust_model": "private-pki",
+  "allowed_alpns": [
+    "e2eesa-internal/1"
+  ],
+  "require_fail_closed_on_hybrid_downgrade": true
+}
