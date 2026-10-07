@@ -43,3 +43,7 @@ See `spec/profile-configuration.md` for normative rules.
 ## Key transparency profiles
 
 PR 12 introduces the `key-transparency` family with Contact Monitoring, Third-Party Auditing, and Third-Party Management alternatives. The exact IETF protocol and architecture drafts are version-pinned, and every accepted transparency value binds to the PR #11 canonical verification subject digest.
+
+## Backup and recovery profiles
+
+PR 13 introduces the `backup-recovery` family with three mutually exclusive architectures: no recoverable backup, user-secret recovery, and hardware/HSM-assisted recovery. Recoverable profiles use fresh per-generation backup data keys and never allow the storage service or hardware recovery layer to hold plaintext or an unwrapped backup data key.

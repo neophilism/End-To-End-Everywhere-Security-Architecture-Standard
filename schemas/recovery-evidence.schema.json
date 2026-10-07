@@ -1,0 +1,40 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/recovery-evidence.schema.json",
+  "title":"E2EESA recovery evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","recovery_id","backup_id","profile_ref","restoring_device_id",
+    "restoring_device_authorized","backup_generation","latest_known_generation",
+    "manifest_authenticated","ciphertext_authentication_verified",
+    "user_secret_supplied_locally","argon2_derived_locally",
+    "hardware_release_used","hardware_release_authenticated",
+    "hardware_release_rate_limited","hardware_attestation_verified",
+    "service_plaintext_access","service_unwrapped_backup_key_access",
+    "recovery_granted_device_authority","rollback_detected","recovery_success"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "recovery_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "backup_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["backup-user-secret@0.1.0","backup-hardware-assisted@0.1.0"]},
+    "restoring_device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "restoring_device_authorized":{"type":"boolean"},
+    "backup_generation":{"type":"integer","minimum":1},
+    "latest_known_generation":{"type":"integer","minimum":1},
+    "manifest_authenticated":{"type":"boolean"},
+    "ciphertext_authentication_verified":{"type":"boolean"},
+    "user_secret_supplied_locally":{"type":"boolean"},
+    "argon2_derived_locally":{"type":"boolean"},
+    "hardware_release_used":{"type":"boolean"},
+    "hardware_release_authenticated":{"type":"boolean"},
+    "hardware_release_rate_limited":{"type":"boolean"},
+    "hardware_attestation_verified":{"type":"boolean"},
+    "service_plaintext_access":{"type":"boolean"},
+    "service_unwrapped_backup_key_access":{"type":"boolean"},
+    "recovery_granted_device_authority":{"type":"boolean"},
+    "rollback_detected":{"type":"boolean"},
+    "recovery_success":{"type":"boolean"}
+  }
+}

@@ -496,6 +496,23 @@
       "constraints": [
         "MUST NOT be used to provide a cryptographic security property in a conformant E2EESA configuration."
       ]
+    },
+    {
+      "id": "ALG-ARGON2ID",
+      "name": "Argon2id",
+      "category": "kdf",
+      "status": "recommended",
+      "specification": "RFC 9106",
+      "reference_uri": "https://www.rfc-editor.org/rfc/rfc9106.html",
+      "pq_characteristic": "symmetric-or-hash",
+      "uses": [
+        "password-based key derivation",
+        "recovery-secret hardening"
+      ],
+      "constraints": [
+        "A consuming profile MUST define salt length, memory cost, time cost, parallelism, output length, and Argon2 version.",
+        "E2EESA recovery profiles MUST use Argon2id version 0x13 and MUST meet the profile minimum cost floor."
+      ]
     }
   ],
   "suites": [

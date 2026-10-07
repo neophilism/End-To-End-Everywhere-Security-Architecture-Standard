@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/no-backup-evidence.schema.json",
+  "title":"E2EESA no-backup conformance evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","profile_ref","identity_id",
+    "recoverable_protected_content_outside_active_endpoints",
+    "recoverable_content_key_material_outside_active_endpoints",
+    "server_backup_present","server_can_recover_historical_plaintext",
+    "authorized_device_to_device_transfer_permitted"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "profile_ref":{"const":"backup-none@0.1.0"},
+    "identity_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "recoverable_protected_content_outside_active_endpoints":{"const":false},
+    "recoverable_content_key_material_outside_active_endpoints":{"const":false},
+    "server_backup_present":{"const":false},
+    "server_can_recover_historical_plaintext":{"const":false},
+    "authorized_device_to_device_transfer_permitted":{"type":"boolean"}
+  }
+}

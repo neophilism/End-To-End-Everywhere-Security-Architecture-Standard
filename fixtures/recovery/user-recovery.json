@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "recovery_id": "recover-user",
+  "backup_id": "backup-alice",
+  "profile_ref": "backup-user-secret@0.1.0",
+  "restoring_device_id": "alice-new-phone",
+  "restoring_device_authorized": true,
+  "backup_generation": 2,
+  "latest_known_generation": 2,
+  "manifest_authenticated": true,
+  "ciphertext_authentication_verified": true,
+  "user_secret_supplied_locally": true,
+  "argon2_derived_locally": true,
+  "hardware_release_used": false,
+  "hardware_release_authenticated": false,
+  "hardware_release_rate_limited": false,
+  "hardware_attestation_verified": false,
+  "service_plaintext_access": false,
+  "service_unwrapped_backup_key_access": false,
+  "recovery_granted_device_authority": false,
+  "rollback_detected": false,
+  "recovery_success": true
+}

@@ -49,6 +49,12 @@
       "name": "Key transparency",
       "cardinality": "at-most-one",
       "description": "Versioned Key Transparency deployment profiles that detect inconsistent or rolled-back cryptographic identity-directory views."
+    },
+    {
+      "family_id": "backup-recovery",
+      "name": "Backup and recovery",
+      "cardinality": "at-most-one",
+      "description": "Mutually exclusive E2EE backup/recovery architectures covering no recoverable backup, user-secret recovery, and hardware/HSM-assisted recovery."
     }
   ],
   "profiles": [
@@ -488,6 +494,61 @@
         "kt-third-party-auditing@0.1.0"
       ],
       "notes": "Recommended where clients are ephemeral or vulnerable to state loss: an independent manager operates the log while the service operator authenticates label updates and detects forks."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "backup-none",
+      "profile_version": "0.1.0",
+      "family_id": "backup-recovery",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-BACKUP-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "backup-user-secret@0.1.0",
+        "backup-hardware-assisted@0.1.0"
+      ],
+      "notes": "No recoverable copy of protected content or content-decryption keying material is retained outside currently authorized E2EE endpoints. Maximizes confidentiality at the cost of recoverability."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "backup-user-secret",
+      "profile_version": "0.1.0",
+      "family_id": "backup-recovery",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "backup-none@0.1.0",
+        "backup-hardware-assisted@0.1.0"
+      ],
+      "notes": "Client-side encrypted backup with a fresh random backup data key protected by an Argon2id-hardened user-held recovery secret. Server storage alone cannot recover plaintext."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "backup-hardware-assisted",
+      "profile_version": "0.1.0",
+      "family_id": "backup-recovery",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "backup-none@0.1.0",
+        "backup-user-secret@0.1.0"
+      ],
+      "notes": "Defense-in-depth recovery: the Argon2id user-secret envelope is additionally protected by a non-exportable hardware/HSM wrapping key and authenticated, rate-limited release path. Hardware/service compromise alone remains insufficient to decrypt the backup."
     }
   ]
 }
