@@ -46,3 +46,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 16. [Attachments and File Encryption](attachments-file-encryption.md) — fresh-key chunked AEAD attachments with exact nonce/AAD construction, authenticated private manifests, safe streaming/range retrieval, E2EE key distribution, substitution/replay protection, and non-misleading deletion semantics.
 
 17. [Real-Time Media](real-time-media.md) — RFC 9605 SFrame voice/video E2EE with sender-key and MLS key-management profiles, exact MLS KID derivation, membership/compromise rekeying, replay/CTR state, SFU trust boundaries, and explicit recording-participant semantics.
+
+18. [Secret Storage and Hardware Protection](secret-storage-hardware-protection.md) — OS keystore, Secure Enclave/StrongBox/TEE/TPM/HSM, external PKCS #11 token, and Argon2id software-vault profiles with non-exportability, attestation, rollback anchors, lifecycle rotation, and live-endpoint claim boundaries.
