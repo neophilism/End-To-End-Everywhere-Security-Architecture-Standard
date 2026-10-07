@@ -36,3 +36,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 11. research promotion and emergency migration.
 
 12. [Key Transparency](key-transparency.md) — IETF Key Transparency deployment profiles for authenticated directory lookup, consistency, monitoring, split-view detection, third-party auditing/management, and PR #11 subject-digest binding.
+
+13. [Backup and Recovery Profiles](backup-recovery.md) — no-backup, Argon2id user-secret, and hardware/HSM-assisted recovery profiles with client-side encryption, fresh backup keys, rollback protection, and strict separation of restore from device authorization.

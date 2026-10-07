@@ -21,6 +21,7 @@ import pairwise_session_engine
 import group_e2ee_engine
 import key_verification_engine
 import key_transparency_engine
+import backup_recovery_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -40,6 +41,8 @@ REQUIRED_PATHS = [
     "spec/group-e2ee.md",
     "spec/key-verification.md",
     "spec/key-transparency.md",
+    "spec/backup-recovery.md",
+    "adr/0009-backup-recovery.md",
     "adr/0008-key-transparency.md",
     "adr/0007-key-verification.md",
     "adr/0006-group-e2ee-profiles.md",
@@ -75,6 +78,10 @@ REQUIRED_PATHS = [
     "schemas/key-transparency-policy.schema.json",
     "schemas/key-transparency-evidence.schema.json",
     "schemas/key-transparency-checkpoint.schema.json",
+    "schemas/backup-recovery-policy.schema.json",
+    "schemas/backup-envelope-evidence.schema.json",
+    "schemas/recovery-evidence.schema.json",
+    "schemas/no-backup-evidence.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -91,6 +98,7 @@ REQUIRED_PATHS = [
     "scripts/group_e2ee_engine.py",
     "scripts/key_verification_engine.py",
     "scripts/key_transparency_engine.py",
+    "scripts/backup_recovery_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -115,6 +123,15 @@ REQUIRED_PATHS = [
     "fixtures/transparency/audit-first.json",
     "fixtures/transparency/manager-first.json",
     "fixtures/transparency/base-checkpoint.json",
+    "fixtures/recovery/policies/none.json",
+    "fixtures/recovery/policies/user.json",
+    "fixtures/recovery/policies/hardware.json",
+    "fixtures/recovery/no-backup.json",
+    "fixtures/recovery/user-envelope-gen1.json",
+    "fixtures/recovery/user-envelope-gen2.json",
+    "fixtures/recovery/hardware-envelope.json",
+    "fixtures/recovery/user-recovery.json",
+    "fixtures/recovery/hardware-recovery.json",
 ]
 
 VALID_STATUSES = {
@@ -822,6 +839,10 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/key-transparency-policy.schema.json",
         "schemas/key-transparency-evidence.schema.json",
         "schemas/key-transparency-checkpoint.schema.json",
+        "schemas/backup-recovery-policy.schema.json",
+        "schemas/backup-envelope-evidence.schema.json",
+        "schemas/recovery-evidence.schema.json",
+        "schemas/no-backup-evidence.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1038,6 +1059,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         ):
             if required_text not in transparency_spec:
                 errors.append(f"key-transparency.md missing required marker: {required_text}")
+
+    recovery_spec_path = root / "spec/backup-recovery.md"
+    if recovery_spec_path.is_file():
+        recovery_spec = recovery_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "backup-none@0.1.0",
+            "backup-user-secret@0.1.0",
+            "backup-hardware-assisted@0.1.0",
+            "ALG-ARGON2ID",
+            "## 10. Rollback resistance",
+            "## 11. Restore sequence",
+            "## 16. Conformance evidence",
+            "MUST NOT",
+        ):
+            if required_text not in recovery_spec:
+                errors.append(f"backup-recovery.md missing required marker: {required_text}")
 
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
@@ -1499,6 +1537,95 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                         f"fixtures/transparency/{evidence_name}.json: "
                         "invalid transparency evidence unexpectedly passed"
                     )
+
+    if crypto_registry_data and profile_catalog:
+        recovery_policies = {
+            name: load_json(root / "fixtures/recovery/policies" / f"{name}.json")
+            for name in ("none", "user", "hardware")
+        }
+        for name, policy in recovery_policies.items():
+            result = backup_recovery_engine.validate_policy(
+                policy,
+                crypto_registry_data,
+                profile_catalog,
+                f"fixtures/recovery/policies/{name}.json",
+            )
+            if result:
+                errors.append(
+                    f"valid recovery policy {name} failed: " + "; ".join(result)
+                )
+
+        no_backup_result = backup_recovery_engine.validate_no_backup_evidence(
+            recovery_policies["none"],
+            load_json(root / "fixtures/recovery/no-backup.json"),
+        )
+        if no_backup_result:
+            errors.append(
+                "valid no-backup evidence failed: " + "; ".join(no_backup_result)
+            )
+
+        user_gen1 = load_json(root / "fixtures/recovery/user-envelope-gen1.json")
+        user_gen2 = load_json(root / "fixtures/recovery/user-envelope-gen2.json")
+        for policy_name, path_name in (
+            ("user", "user-envelope-gen1"),
+            ("hardware", "hardware-envelope"),
+        ):
+            result = backup_recovery_engine.validate_envelope(
+                recovery_policies[policy_name],
+                load_json(root / "fixtures/recovery" / f"{path_name}.json"),
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid recovery envelope {path_name} failed: " + "; ".join(result)
+                )
+
+        transition_result = backup_recovery_engine.validate_generation_transition(
+            user_gen1, user_gen2
+        )
+        if transition_result:
+            errors.append(
+                "valid backup generation transition failed: "
+                + "; ".join(transition_result)
+            )
+
+        for policy_name, path_name in (
+            ("user", "user-recovery"),
+            ("hardware", "hardware-recovery"),
+        ):
+            result = backup_recovery_engine.validate_recovery(
+                recovery_policies[policy_name],
+                load_json(root / "fixtures/recovery" / f"{path_name}.json"),
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid recovery evidence {path_name} failed: " + "; ".join(result)
+                )
+
+        weak_policy = dict(recovery_policies["user"])
+        weak_policy["argon2_memory_kib"] = 32768
+        if not backup_recovery_engine.validate_policy(
+            weak_policy, crypto_registry_data, profile_catalog
+        ):
+            errors.append("weak Argon2 recovery policy unexpectedly passed")
+
+        unauthorized = load_json(root / "fixtures/recovery/user-recovery.json")
+        unauthorized["restoring_device_authorized"] = False
+        if not backup_recovery_engine.validate_recovery(
+            recovery_policies["user"], unauthorized, crypto_registry_data, profile_catalog
+        ):
+            errors.append("unauthorized restoring device unexpectedly passed")
+
+        stale = load_json(root / "fixtures/recovery/user-recovery.json")
+        stale["backup_generation"] = 1
+        stale["latest_known_generation"] = 2
+        if not backup_recovery_engine.validate_recovery(
+            recovery_policies["user"], stale, crypto_registry_data, profile_catalog
+        ):
+            errors.append("stale backup generation unexpectedly passed rollback protection")
 
     known_property_ids = {
         prop.get("id")
