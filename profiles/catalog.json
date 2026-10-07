@@ -43,6 +43,12 @@
       "name": "Manual key verification",
       "cardinality": "at-most-one",
       "description": "Versioned manual verification profiles that bind an out-of-band safety number/QR representation either to stable account-root identities or to the complete active device-key sets."
+    },
+    {
+      "family_id": "key-transparency",
+      "name": "Key transparency",
+      "cardinality": "at-most-one",
+      "description": "Versioned Key Transparency deployment profiles that detect inconsistent or rolled-back cryptographic identity-directory views."
     }
   ],
   "profiles": [
@@ -428,6 +434,60 @@
         "verify-account-root@0.1.0"
       ],
       "notes": "Manual verification binds a canonical safety digest to the complete active device-key sets for both parties. Any active-device or verified key-set change invalidates the prior verification."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "kt-contact-monitoring",
+      "profile_version": "0.1.0",
+      "family_id": "key-transparency",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "kt-third-party-auditing@0.1.0",
+        "kt-third-party-management@0.1.0"
+      ],
+      "notes": "Single-party IETF Key Transparency deployment using durable client monitoring state plus anonymous or peer gossip/fork-detection channels."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "kt-third-party-auditing",
+      "profile_version": "0.1.0",
+      "family_id": "key-transparency",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "kt-contact-monitoring@0.1.0",
+        "kt-third-party-management@0.1.0"
+      ],
+      "notes": "Recommended stateful-client deployment using independent third-party auditor attestations, bounded auditor lag, owner monitoring, and client checkpoint continuity."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "kt-third-party-management",
+      "profile_version": "0.1.0",
+      "family_id": "key-transparency",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "kt-contact-monitoring@0.1.0",
+        "kt-third-party-auditing@0.1.0"
+      ],
+      "notes": "Recommended where clients are ephemeral or vulnerable to state loss: an independent manager operates the log while the service operator authenticates label updates and detects forks."
     }
   ]
 }
