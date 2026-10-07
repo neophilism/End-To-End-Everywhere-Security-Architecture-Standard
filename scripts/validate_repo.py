@@ -22,6 +22,7 @@ import group_e2ee_engine
 import key_verification_engine
 import key_transparency_engine
 import backup_recovery_engine
+import metadata_privacy_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -42,6 +43,8 @@ REQUIRED_PATHS = [
     "spec/key-verification.md",
     "spec/key-transparency.md",
     "spec/backup-recovery.md",
+    "spec/metadata-privacy.md",
+    "adr/0010-metadata-privacy.md",
     "adr/0009-backup-recovery.md",
     "adr/0008-key-transparency.md",
     "adr/0007-key-verification.md",
@@ -82,6 +85,9 @@ REQUIRED_PATHS = [
     "schemas/backup-envelope-evidence.schema.json",
     "schemas/recovery-evidence.schema.json",
     "schemas/no-backup-evidence.schema.json",
+    "schemas/metadata-privacy-registry.schema.json",
+    "schemas/metadata-privacy-policy.schema.json",
+    "schemas/metadata-delivery-evidence.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -89,6 +95,7 @@ REQUIRED_PATHS = [
     "registry/pairwise-protocols.json",
     "registry/group-protocols.json",
     "registry/key-transparency-protocols.json",
+    "registry/metadata-privacy-mechanisms.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
@@ -99,6 +106,7 @@ REQUIRED_PATHS = [
     "scripts/key_verification_engine.py",
     "scripts/key_transparency_engine.py",
     "scripts/backup_recovery_engine.py",
+    "scripts/metadata_privacy_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -132,6 +140,12 @@ REQUIRED_PATHS = [
     "fixtures/recovery/hardware-envelope.json",
     "fixtures/recovery/user-recovery.json",
     "fixtures/recovery/hardware-recovery.json",
+    "fixtures/metadata/policies/minimized.json",
+    "fixtures/metadata/policies/sender-hidden.json",
+    "fixtures/metadata/policies/relay.json",
+    "fixtures/metadata/evidence/minimized.json",
+    "fixtures/metadata/evidence/sender-hidden.json",
+    "fixtures/metadata/evidence/relay.json",
 ]
 
 VALID_STATUSES = {
@@ -1077,6 +1091,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             if required_text not in recovery_spec:
                 errors.append(f"backup-recovery.md missing required marker: {required_text}")
 
+    metadata_spec_path = root / "spec/metadata-privacy.md"
+    if metadata_spec_path.is_file():
+        metadata_spec = metadata_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "metadata-minimized@0.1.0",
+            "metadata-sender-hidden@0.1.0",
+            "metadata-relay-partitioned@0.1.0",
+            "RFC 9458",
+            "## 10. Replay protection",
+            "## 12. Traffic-analysis boundary",
+            "## 15. Conformance evidence",
+            "recipient routing identifier",
+        ):
+            if required_text not in metadata_spec:
+                errors.append(f"metadata-privacy.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -1142,6 +1173,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             key_transparency_engine.validate_protocol_registry(
                 transparency_registry,
                 source="registry/key-transparency-protocols.json",
+            )
+        )
+
+    metadata_registry_path = root / "registry/metadata-privacy-mechanisms.json"
+    metadata_registry = (
+        load_json(metadata_registry_path)
+        if metadata_registry_path.is_file()
+        else {}
+    )
+    if metadata_registry:
+        errors.extend(
+            metadata_privacy_engine.validate_protocol_registry(
+                metadata_registry,
+                source="registry/metadata-privacy-mechanisms.json",
             )
         )
 
@@ -1626,6 +1671,66 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             recovery_policies["user"], stale, crypto_registry_data, profile_catalog
         ):
             errors.append("stale backup generation unexpectedly passed rollback protection")
+
+    if metadata_registry and crypto_registry_data and profile_catalog:
+        for name in ("minimized", "sender-hidden", "relay"):
+            policy_path = root / "fixtures/metadata/policies" / f"{name}.json"
+            evidence_path = root / "fixtures/metadata/evidence" / f"{name}.json"
+            result = metadata_privacy_engine.validate_delivery_evidence(
+                load_json(policy_path),
+                load_json(evidence_path),
+                metadata_registry,
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid metadata fixture {name} failed: " + "; ".join(result)
+                )
+
+        sender_leak = load_json(root / "fixtures/metadata/evidence/sender-hidden.json")
+        sender_leak["sender_identity_visible_to_service"] = True
+        if not metadata_privacy_engine.validate_delivery_evidence(
+            load_json(root / "fixtures/metadata/policies/sender-hidden.json"),
+            sender_leak,
+            metadata_registry,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("sender-visible metadata evidence unexpectedly passed")
+
+        relay_ip_leak = load_json(root / "fixtures/metadata/evidence/relay.json")
+        relay_ip_leak["service_observed_client_network_address"] = True
+        if not metadata_privacy_engine.validate_delivery_evidence(
+            load_json(root / "fixtures/metadata/policies/relay.json"),
+            relay_ip_leak,
+            metadata_registry,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("relay profile with service-visible client IP unexpectedly passed")
+
+        relay_header_leak = load_json(root / "fixtures/metadata/evidence/relay.json")
+        relay_header_leak["relay_added_identifying_headers"] = True
+        if not metadata_privacy_engine.validate_delivery_evidence(
+            load_json(root / "fixtures/metadata/policies/relay.json"),
+            relay_header_leak,
+            metadata_registry,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("relay profile with identifying forwarding headers unexpectedly passed")
+
+        durable_graph = load_json(root / "fixtures/metadata/evidence/minimized.json")
+        durable_graph["durable_sender_recipient_mapping_written"] = True
+        if not metadata_privacy_engine.validate_delivery_evidence(
+            load_json(root / "fixtures/metadata/policies/minimized.json"),
+            durable_graph,
+            metadata_registry,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("metadata profile with durable social graph unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")
