@@ -55,6 +55,12 @@
       "name": "Backup and recovery",
       "cardinality": "at-most-one",
       "description": "Mutually exclusive E2EE backup/recovery architectures covering no recoverable backup, user-secret recovery, and hardware/HSM-assisted recovery."
+    },
+    {
+      "family_id": "metadata-privacy",
+      "name": "Metadata privacy",
+      "cardinality": "at-most-one",
+      "description": "Complete metadata-privacy profiles ranging from strict collection/retention minimization through sender-hidden delivery to relay-partitioned sender-hidden submission."
     }
   ],
   "profiles": [
@@ -549,6 +555,59 @@
         "backup-user-secret@0.1.0"
       ],
       "notes": "Defense-in-depth recovery: the Argon2id user-secret envelope is additionally protected by a non-exportable hardware/HSM wrapping key and authenticated, rate-limited release path. Hardware/service compromise alone remains insufficient to decrypt the backup."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "metadata-minimized",
+      "profile_version": "0.1.0",
+      "family_id": "metadata-privacy",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "metadata-sender-hidden@0.1.0",
+        "metadata-relay-partitioned@0.1.0"
+      ],
+      "notes": "Baseline metadata-minimization profile. Collect only delivery/abuse metadata that is explicitly required, keep retention bounded, and prohibit durable social-graph construction from ordinary message delivery records."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "metadata-sender-hidden",
+      "profile_version": "0.1.0",
+      "family_id": "metadata-privacy",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "metadata-minimized@0.1.0",
+        "metadata-relay-partitioned@0.1.0"
+      ],
+      "notes": "Adds sealed-sender-style delivery so the service routes to a recipient without learning the authenticated sender identity from ordinary message submission. Network source address remains visible to the service unless another transport hides it."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "metadata-relay-partitioned",
+      "profile_version": "0.1.0",
+      "family_id": "metadata-privacy",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "metadata-minimized@0.1.0",
+        "metadata-sender-hidden@0.1.0"
+      ],
+      "notes": "Strongest E2EESA 0.1 messaging-metadata profile: sender-hidden application envelopes submitted through an independent Oblivious HTTP relay/gateway partition so the message service does not receive the client network address."
     }
   ]
 }

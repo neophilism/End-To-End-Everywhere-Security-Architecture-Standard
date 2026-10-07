@@ -47,3 +47,7 @@ PR 12 introduces the `key-transparency` family with Contact Monitoring, Third-Pa
 ## Backup and recovery profiles
 
 PR 13 introduces the `backup-recovery` family with three mutually exclusive architectures: no recoverable backup, user-secret recovery, and hardware/HSM-assisted recovery. Recoverable profiles use fresh per-generation backup data keys and never allow the storage service or hardware recovery layer to hold plaintext or an unwrapped backup data key.
+
+## Metadata privacy profiles
+
+PR 14 introduces the `metadata-privacy` family with three complete choices: minimized service metadata, sender-hidden delivery, and relay-partitioned sender-hidden delivery. The strongest profile combines sender-hidden envelopes with RFC 9458 Oblivious HTTP, authenticated non-personalized gateway configuration, no identifying relay headers, independent relay/gateway operation, request padding, replay protection, and zero durable source-IP retention after request completion.
