@@ -857,6 +857,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/backup-envelope-evidence.schema.json",
         "schemas/recovery-evidence.schema.json",
         "schemas/no-backup-evidence.schema.json",
+        "schemas/metadata-privacy-registry.schema.json",
+        "schemas/metadata-privacy-policy.schema.json",
+        "schemas/metadata-delivery-evidence.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
