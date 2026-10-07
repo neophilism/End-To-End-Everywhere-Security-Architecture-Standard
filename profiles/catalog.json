@@ -97,6 +97,12 @@
       "name": "Native and web client security",
       "cardinality": "at-most-one",
       "description": "Native and web client security. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "server-trust",
+      "name": "Server trust minimization",
+      "cardinality": "at-most-one",
+      "description": "Server trust minimization. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -926,6 +932,22 @@
         "client-web-hardened@0.1.0"
       ],
       "notes": "An independently installed verifier authenticates the complete web executable closure before execution and rejects unapproved releases."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "server-ciphertext-only",
+      "profile_version": "0.1.0",
+      "family_id": "server-trust",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Relays, queues, object stores, backups, KMS and subprocessors cannot decrypt application E2EE or independently authorize recipients."
     }
   ]
 }

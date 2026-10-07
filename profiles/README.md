@@ -75,3 +75,7 @@ PR 19 introduces the `transport-security` family with classical TLS 1.3 and reco
 ## Native and Web Client Security
 
 PR 20 introduces signed native, hardened web, and independently verified web-bootstrap profiles with release manifest binding, transparency witnesses, rollback/freeze controls, origin hardening, and explicit execution trust assumptions.
+
+## Server Trust Minimization
+
+PR 21 introduces ciphertext-only service infrastructure with exhaustive component/key inventory, client-authorized recipient sets, bounded retention, encrypted derivatives and explicit routing/availability limitations.

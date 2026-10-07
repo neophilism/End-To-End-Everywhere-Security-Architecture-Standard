@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "ciphertext-service",
+  "profile_ref": "server-ciphertext-only@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "service",
+  "policy_digest": "sha256:eacad55d9148ac70cdbd72735997d30e5b0b4e921ab7e219353be6cec810e90f",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "deployment_id": "reference-deployment",
+  "assessed_component_ids": [
+    "ingress-relay",
+    "delivery-queue",
+    "attachment-store"
+  ],
+  "components": [
+    {
+      "component_id": "ingress-relay",
+      "role": "relay",
+      "service_keys": [
+        {
+          "key_id": "ingress-relay-tls",
+          "purpose": "tls-authentication",
+          "shared_with_application_e2ee": false
+        }
+      ],
+      "metadata_fields": [
+        "recipient-route",
+        "expiry"
+      ],
+      "application_plaintext_access": false,
+      "application_key_access": false,
+      "backup_recovery_key_access": false,
+      "can_authorize_e2ee_devices": false,
+      "logs_application_content": false,
+      "metadata_at_rest_encrypted": true,
+      "subprocessors_assessed": true
+    },
+    {
+      "component_id": "delivery-queue",
+      "role": "queue",
+      "service_keys": [
+        {
+          "key_id": "delivery-queue-tls",
+          "purpose": "tls-authentication",
+          "shared_with_application_e2ee": false
+        }
+      ],
+      "metadata_fields": [
+        "recipient-route",
+        "expiry"
+      ],
+      "application_plaintext_access": false,
+      "application_key_access": false,
+      "backup_recovery_key_access": false,
+      "can_authorize_e2ee_devices": false,
+      "logs_application_content": false,
+      "metadata_at_rest_encrypted": true,
+      "subprocessors_assessed": true
+    },
+    {
+      "component_id": "attachment-store",
+      "role": "object-store",
+      "service_keys": [
+        {
+          "key_id": "attachment-store-tls",
+          "purpose": "tls-authentication",
+          "shared_with_application_e2ee": false
+        }
+      ],
+      "metadata_fields": [
+        "recipient-route",
+        "expiry"
+      ],
+      "application_plaintext_access": false,
+      "application_key_access": false,
+      "backup_recovery_key_access": false,
+      "can_authorize_e2ee_devices": false,
+      "logs_application_content": false,
+      "metadata_at_rest_encrypted": true,
+      "subprocessors_assessed": true
+    }
+  ],
+  "objects": [
+    {
+      "object_id": "ciphertext-one",
+      "object_locator": "opaque-object-handle",
+      "component_id": "attachment-store",
+      "created_at": "2026-10-06T22:00:00Z",
+      "expires_at": "2026-10-07T22:00:00Z",
+      "deleted_at": null,
+      "recipient_device_ids": [
+        "device-one",
+        "device-two"
+      ],
+      "authorized_device_ids": [
+        "device-one",
+        "device-two"
+      ],
+      "authenticated_envelope": true,
+      "held_ciphertext_only": true,
+      "derivatives_encrypted": true,
+      "keys_in_locator": false,
+      "plaintext_search_index": false
+    }
+  ],
+  "client_envelope_validation": true,
+  "storage_credentials_separate_from_e2ee": true,
+  "compromise_test_completed": true
+}

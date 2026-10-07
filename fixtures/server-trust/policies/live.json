@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "ciphertext-service",
+  "profile_ref": "server-ciphertext-only@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "service",
+  "max_ciphertext_ttl_seconds": 86400,
+  "allowed_metadata_fields": [
+    "recipient-route",
+    "ciphertext-size",
+    "expiry",
+    "delivery-state"
+  ],
+  "allowed_service_key_purposes": [
+    "tls-authentication",
+    "metadata-at-rest"
+  ],
+  "require_client_recipient_authorization": true,
+  "require_no_application_key_access": true
+}
