@@ -24,6 +24,7 @@ import key_transparency_engine
 import backup_recovery_engine
 import metadata_privacy_engine
 import contact_discovery_engine
+import attachment_encryption_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -46,6 +47,8 @@ REQUIRED_PATHS = [
     "spec/backup-recovery.md",
     "spec/metadata-privacy.md",
     "spec/contact-discovery.md",
+    "spec/attachments-file-encryption.md",
+    "adr/0012-attachments-file-encryption.md",
     "adr/0011-contact-discovery.md",
     "adr/0010-metadata-privacy.md",
     "adr/0009-backup-recovery.md",
@@ -94,6 +97,11 @@ REQUIRED_PATHS = [
     "schemas/contact-discovery-registry.schema.json",
     "schemas/contact-discovery-policy.schema.json",
     "schemas/contact-discovery-evidence.schema.json",
+    "schemas/attachment-policy.schema.json",
+    "schemas/attachment-manifest.schema.json",
+    "schemas/attachment-key-distribution-evidence.schema.json",
+    "schemas/attachment-chunk-evidence.schema.json",
+    "schemas/attachment-deletion-evidence.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -115,6 +123,7 @@ REQUIRED_PATHS = [
     "scripts/backup_recovery_engine.py",
     "scripts/metadata_privacy_engine.py",
     "scripts/contact_discovery_engine.py",
+    "scripts/attachment_encryption_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -160,6 +169,12 @@ REQUIRED_PATHS = [
     "fixtures/contact-discovery/evidence/exact.json",
     "fixtures/contact-discovery/evidence/voprf.json",
     "fixtures/contact-discovery/evidence/attested.json",
+    "fixtures/attachments/policy.json",
+    "fixtures/attachments/manifest.json",
+    "fixtures/attachments/key-distribution.json",
+    "fixtures/attachments/chunk-zero.json",
+    "fixtures/attachments/chunk-final.json",
+    "fixtures/attachments/deletion.json",
 ]
 
 VALID_STATUSES = {
@@ -877,6 +892,11 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/contact-discovery-registry.schema.json",
         "schemas/contact-discovery-policy.schema.json",
         "schemas/contact-discovery-evidence.schema.json",
+        "schemas/attachment-policy.schema.json",
+        "schemas/attachment-manifest.schema.json",
+        "schemas/attachment-key-distribution-evidence.schema.json",
+        "schemas/attachment-chunk-evidence.schema.json",
+        "schemas/attachment-deletion-evidence.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1144,6 +1164,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         ):
             if required_text not in contact_spec:
                 errors.append(f"contact-discovery.md missing required marker: {required_text}")
+
+    attachment_spec_path = root / "spec/attachments-file-encryption.md"
+    if attachment_spec_path.is_file():
+        attachment_spec = attachment_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "attachment-chunked-aead@0.1.0",
+            "4-byte nonce_prefix || uint64_be(chunk_index)",
+            "## 8. Streaming and range retrieval",
+            "## 13. Deletion, expiry, and recall semantics",
+            "## 18. Conformance evidence",
+            "global cryptographic recall",
+        ):
+            if required_text not in attachment_spec:
+                errors.append(
+                    f"attachments-file-encryption.md missing required marker: {required_text}"
+                )
 
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
@@ -1838,6 +1875,127 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             profile_catalog,
         ):
             errors.append("contact discovery with persisted query identifiers unexpectedly passed")
+
+    if crypto_registry_data and profile_catalog:
+        attachment_policy = load_json(root / "fixtures/attachments/policy.json")
+        attachment_manifest = load_json(root / "fixtures/attachments/manifest.json")
+
+        result = attachment_encryption_engine.validate_manifest(
+            attachment_policy,
+            attachment_manifest,
+            crypto_registry_data,
+            profile_catalog,
+        )
+        if result:
+            errors.append(
+                "valid attachment manifest failed: " + "; ".join(result)
+            )
+
+        result = attachment_encryption_engine.validate_key_distribution(
+            attachment_policy,
+            attachment_manifest,
+            load_json(root / "fixtures/attachments/key-distribution.json"),
+            crypto_registry_data,
+            profile_catalog,
+        )
+        if result:
+            errors.append(
+                "valid attachment key distribution failed: " + "; ".join(result)
+            )
+
+        for chunk_name in ("chunk-zero", "chunk-final"):
+            result = attachment_encryption_engine.validate_chunk(
+                attachment_policy,
+                attachment_manifest,
+                load_json(root / "fixtures/attachments" / f"{chunk_name}.json"),
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid attachment {chunk_name} failed: " + "; ".join(result)
+                )
+
+        result = attachment_encryption_engine.validate_deletion(
+            attachment_policy,
+            load_json(root / "fixtures/attachments/deletion.json"),
+        )
+        if result:
+            errors.append(
+                "valid attachment deletion evidence failed: " + "; ".join(result)
+            )
+
+        bad_manifest = dict(attachment_manifest)
+        bad_manifest["filename"] = "substituted.pdf"
+        if not attachment_encryption_engine.validate_manifest(
+            attachment_policy,
+            bad_manifest,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("attachment manifest substitution unexpectedly passed")
+
+        bad_nonce = load_json(root / "fixtures/attachments/chunk-final.json")
+        bad_nonce["nonce_hex"] = "a1b2c3d40000000000000001"
+        if not attachment_encryption_engine.validate_chunk(
+            attachment_policy,
+            attachment_manifest,
+            bad_nonce,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("attachment chunk with wrong nonce unexpectedly passed")
+
+        bad_aad = load_json(root / "fixtures/attachments/chunk-zero.json")
+        bad_aad["aad_chunk_index"] = 1
+        if not attachment_encryption_engine.validate_chunk(
+            attachment_policy,
+            attachment_manifest,
+            bad_aad,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("attachment chunk with wrong AAD position unexpectedly passed")
+
+        early_plaintext = load_json(root / "fixtures/attachments/chunk-zero.json")
+        early_plaintext["plaintext_released_before_authentication"] = True
+        if not attachment_encryption_engine.validate_chunk(
+            attachment_policy,
+            attachment_manifest,
+            early_plaintext,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("attachment plaintext released before authentication unexpectedly passed")
+
+        key_leak = load_json(root / "fixtures/attachments/key-distribution.json")
+        key_leak["attachment_key_in_url"] = True
+        if not attachment_encryption_engine.validate_key_distribution(
+            attachment_policy,
+            attachment_manifest,
+            key_leak,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("attachment key-in-URL evidence unexpectedly passed")
+
+        history_share = load_json(root / "fixtures/attachments/key-distribution.json")
+        history_share["automatic_history_share_to_new_group_members"] = True
+        if not attachment_encryption_engine.validate_key_distribution(
+            attachment_policy,
+            attachment_manifest,
+            history_share,
+            crypto_registry_data,
+            profile_catalog,
+        ):
+            errors.append("automatic historical attachment-key sharing unexpectedly passed")
+
+        false_recall = load_json(root / "fixtures/attachments/deletion.json")
+        false_recall["remote_recipient_recall_guaranteed"] = True
+        if not attachment_encryption_engine.validate_deletion(
+            attachment_policy, false_recall
+        ):
+            errors.append("false global attachment recall claim unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")

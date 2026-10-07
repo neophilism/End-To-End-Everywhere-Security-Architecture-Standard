@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "event_id": "attachment-chunk-final",
+  "profile_ref": "attachment-chunked-aead@0.1.0",
+  "attachment_id": "attachment-alpha",
+  "chunk_index": 2,
+  "chunk_count": 3,
+  "plaintext_length_bytes": 402848,
+  "ciphertext_length_bytes": 402864,
+  "nonce_hex": "a1b2c3d40000000000000002",
+  "aad_attachment_id": "attachment-alpha",
+  "aad_manifest_context_digest_hex": "92e0a5b2fdc2a88d41c1e533577e4fd77a0c3bc442f5db1ad6e708d844654e9e",
+  "aad_chunk_index": 2,
+  "aad_chunk_count": 3,
+  "aad_plaintext_length_bytes": 402848,
+  "aead_verified": true,
+  "plaintext_released_before_authentication": false,
+  "storage_service_plaintext_access": false,
+  "service_observed_attachment_key": false
+}

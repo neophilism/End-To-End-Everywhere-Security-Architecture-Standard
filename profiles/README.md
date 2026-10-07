@@ -55,3 +55,7 @@ PR 14 introduces the `metadata-privacy` family with three complete choices: mini
 ## Contact discovery profiles
 
 PR 15 introduces the `contact-discovery` family with exact-handle/invite discovery, recommended RFC 9497 VOPRF private-membership discovery, and attested confidential-compute private-set discovery. All profiles prohibit raw address-book and ordinary identifier-hash upload, enforce target discoverability policy, and return only requested matches. PR 14 metadata-privacy transport can be composed when source-network metadata must also be hidden.
+
+## Attachment encryption profile
+
+PR 16 introduces the `attachment-encryption` family with `attachment-chunked-aead@0.1.0`: one fresh 256-bit key per file, independently authenticated fixed-size chunks, a four-byte random nonce prefix plus 64-bit chunk counter, E2EE-only private-manifest/key distribution, and explicit storage-deletion versus recipient-recall semantics. AES-256-GCM and ChaCha20-Poly1305 are recommended; AES-256-GCM-SIV is allowed.

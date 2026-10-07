@@ -1,0 +1,36 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/attachment-chunk-evidence.schema.json",
+  "title":"E2EESA attachment chunk verification evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","event_id","profile_ref","attachment_id",
+    "chunk_index","chunk_count","plaintext_length_bytes",
+    "ciphertext_length_bytes","nonce_hex",
+    "aad_attachment_id","aad_manifest_context_digest_hex",
+    "aad_chunk_index","aad_chunk_count","aad_plaintext_length_bytes",
+    "aead_verified","plaintext_released_before_authentication",
+    "storage_service_plaintext_access","service_observed_attachment_key"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "event_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"const":"attachment-chunked-aead@0.1.0"},
+    "attachment_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "chunk_index":{"type":"integer","minimum":0},
+    "chunk_count":{"type":"integer","minimum":1},
+    "plaintext_length_bytes":{"type":"integer","minimum":0},
+    "ciphertext_length_bytes":{"type":"integer","minimum":16},
+    "nonce_hex":{"type":"string","pattern":"^[0-9a-f]{24}$"},
+    "aad_attachment_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "aad_manifest_context_digest_hex":{"type":"string","pattern":"^[0-9a-f]+$"},
+    "aad_chunk_index":{"type":"integer","minimum":0},
+    "aad_chunk_count":{"type":"integer","minimum":1},
+    "aad_plaintext_length_bytes":{"type":"integer","minimum":0},
+    "aead_verified":{"type":"boolean"},
+    "plaintext_released_before_authentication":{"type":"boolean"},
+    "storage_service_plaintext_access":{"type":"boolean"},
+    "service_observed_attachment_key":{"type":"boolean"}
+  }
+}

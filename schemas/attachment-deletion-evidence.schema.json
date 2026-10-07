@@ -1,0 +1,32 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/attachment-deletion-evidence.schema.json",
+  "title":"E2EESA attachment deletion evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","deletion_id","profile_ref","attachment_id",
+    "deletion_status","storage_delete_requested","primary_storage_deleted",
+    "replica_delete_requested","replica_deletion_complete",
+    "documented_replica_retention_seconds",
+    "sender_local_key_deleted","sender_local_plaintext_deleted",
+    "remote_recipient_recall_guaranteed",
+    "remote_recipient_key_revocation_possible"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "deletion_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"const":"attachment-chunked-aead@0.1.0"},
+    "attachment_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "deletion_status":{"enum":["requested","storage-complete","sender-local-erasure"]},
+    "storage_delete_requested":{"type":"boolean"},
+    "primary_storage_deleted":{"type":"boolean"},
+    "replica_delete_requested":{"type":"boolean"},
+    "replica_deletion_complete":{"type":"boolean"},
+    "documented_replica_retention_seconds":{"type":"integer","minimum":0},
+    "sender_local_key_deleted":{"type":"boolean"},
+    "sender_local_plaintext_deleted":{"type":"boolean"},
+    "remote_recipient_recall_guaranteed":{"const":false},
+    "remote_recipient_key_revocation_possible":{"const":false}
+  }
+}

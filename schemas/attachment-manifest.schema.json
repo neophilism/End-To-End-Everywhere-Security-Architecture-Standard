@@ -1,0 +1,35 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/attachment-manifest.schema.json",
+  "title":"E2EESA private attachment manifest",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","format_version","profile_ref","attachment_id",
+    "parent_message_id","attachment_key_id","attachment_master_key_hex",
+    "content_aead_algorithm_id","hash_algorithm_id","nonce_prefix_hex",
+    "chunk_size_bytes","chunk_count","plaintext_size_bytes",
+    "filename","media_type","whole_plaintext_hash_hex",
+    "storage_object_id","manifest_context_digest_hex"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "format_version":{"const":"attachment-v1"},
+    "profile_ref":{"const":"attachment-chunked-aead@0.1.0"},
+    "attachment_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "parent_message_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "attachment_key_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "attachment_master_key_hex":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "content_aead_algorithm_id":{"enum":["ALG-AES-256-GCM","ALG-CHACHA20-POLY1305","ALG-AES-256-GCM-SIV"]},
+    "hash_algorithm_id":{"enum":["ALG-SHA256","ALG-SHA384","ALG-SHA512","ALG-SHA3-256","ALG-SHA3-384","ALG-SHA3-512"]},
+    "nonce_prefix_hex":{"type":"string","pattern":"^[0-9a-f]{8}$"},
+    "chunk_size_bytes":{"type":"integer","minimum":65536,"maximum":8388608},
+    "chunk_count":{"type":"integer","minimum":1,"maximum":4294967295},
+    "plaintext_size_bytes":{"type":"integer","minimum":0},
+    "filename":{"type":"string","maxLength":4096},
+    "media_type":{"type":"string","minLength":1,"maxLength":255},
+    "whole_plaintext_hash_hex":{"type":"string","pattern":"^[0-9a-f]+$"},
+    "storage_object_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "manifest_context_digest_hex":{"type":"string","pattern":"^[0-9a-f]+$"}
+  }
+}

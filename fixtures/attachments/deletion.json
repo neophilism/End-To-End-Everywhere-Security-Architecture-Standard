@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "deletion_id": "attachment-delete-alpha",
+  "profile_ref": "attachment-chunked-aead@0.1.0",
+  "attachment_id": "attachment-alpha",
+  "deletion_status": "storage-complete",
+  "storage_delete_requested": true,
+  "primary_storage_deleted": true,
+  "replica_delete_requested": true,
+  "replica_deletion_complete": true,
+  "documented_replica_retention_seconds": 0,
+  "sender_local_key_deleted": false,
+  "sender_local_plaintext_deleted": false,
+  "remote_recipient_recall_guaranteed": false,
+  "remote_recipient_key_revocation_possible": false
+}
