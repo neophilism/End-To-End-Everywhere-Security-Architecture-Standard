@@ -1,0 +1,56 @@
+[
+  {
+    "name": "live",
+    "policy": "policies/live.json",
+    "evidence": "evidence/live.json",
+    "valid": true
+  },
+  {
+    "name": "deleted",
+    "policy": "policies/deleted.json",
+    "evidence": "evidence/deleted.json",
+    "valid": true
+  },
+  {
+    "name": "server-holds-key",
+    "policy": "policies/live.json",
+    "evidence": "invalid/server-holds-key.json",
+    "valid": false
+  },
+  {
+    "name": "server-adds-recipient",
+    "policy": "policies/live.json",
+    "evidence": "invalid/server-adds-recipient.json",
+    "valid": false
+  },
+  {
+    "name": "missing-component",
+    "policy": "policies/live.json",
+    "evidence": "invalid/missing-component.json",
+    "valid": false
+  },
+  {
+    "name": "extra-recipient",
+    "policy": "policies/live.json",
+    "evidence": "invalid/extra-recipient.json",
+    "valid": false
+  },
+  {
+    "name": "key-in-locator",
+    "policy": "policies/live.json",
+    "evidence": "invalid/key-in-locator.json",
+    "valid": false
+  },
+  {
+    "name": "unencrypted-derivative",
+    "policy": "policies/live.json",
+    "evidence": "invalid/unencrypted-derivative.json",
+    "valid": false
+  },
+  {
+    "name": "expired-not-purged",
+    "policy": "policies/live.json",
+    "evidence": "invalid/expired-not-purged.json",
+    "valid": false
+  }
+]

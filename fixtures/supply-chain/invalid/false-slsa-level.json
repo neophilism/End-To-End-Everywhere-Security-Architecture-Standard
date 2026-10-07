@@ -1,0 +1,91 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "supply-chain-baseline",
+  "profile_ref": "supply-chain-attested-reproducible@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "linux",
+  "policy_digest": "sha256:91158006bc8f3e89c2738264fa4269add2121c4d8c3aea341462f90937ac381c",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "artifact_name": "messenger-source.tar.gz",
+  "artifact_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "builder_id": "https://builders.example/release",
+  "builder_operator_id": "release-operator",
+  "builder_assessment_report_ref": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "claimed_slsa_build_level": 3,
+  "verified_signer_ids": [
+    "release-root"
+  ],
+  "inventory": [
+    {
+      "component_id": "release-source",
+      "name": "messenger",
+      "version": "1.0.0",
+      "source_uri": "git+https://github.com/example/messenger@bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "scope": "source",
+      "dependency_ids": [
+        "python-toolchain"
+      ]
+    },
+    {
+      "component_id": "python-toolchain",
+      "name": "python",
+      "version": "3.13.7",
+      "source_uri": "pkg:generic/python@3.13.7",
+      "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "scope": "build",
+      "dependency_ids": []
+    }
+  ],
+  "sbom": {
+    "format": "SPDX-2.3",
+    "document_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "subject_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "component_ids": [
+      "release-source",
+      "python-toolchain"
+    ],
+    "inventory_digest": "sha256:71cbb470b51a24185a3ecf730c7b394d9916aa45a6406b850b7c1a573e295c58",
+    "format_validation_report_ref": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "provenance_envelope": {
+    "payloadType": "application/vnd.in-toto+json",
+    "payload": "eyJfdHlwZSI6ICJodHRwczovL2luLXRvdG8uaW8vU3RhdGVtZW50L3YxIiwgInN1YmplY3QiOiBbeyJuYW1lIjogIm1lc3Nlbmdlci1zb3VyY2UudGFyLmd6IiwgImRpZ2VzdCI6IHsic2hhMjU2IjogImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifX1dLCAicHJlZGljYXRlVHlwZSI6ICJodHRwczovL3Nsc2EuZGV2L3Byb3ZlbmFuY2UvdjEiLCAicHJlZGljYXRlIjogeyJidWlsZERlZmluaXRpb24iOiB7ImJ1aWxkVHlwZSI6ICJodHRwczovL2VuZHRvZW5kZXZlcnl3aGVyZS5vcmcvZTJlZXNhL2J1aWxkLXR5cGVzL3NvdXJjZS1hcmNoaXZlLzAuMS4wIiwgImV4dGVybmFsUGFyYW1ldGVycyI6IHsic291cmNlX3JlcG9zaXRvcnkiOiAiaHR0cHM6Ly9naXRodWIuY29tL2V4YW1wbGUvbWVzc2VuZ2VyIiwgInNvdXJjZV9jb21taXQiOiAiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYiJ9LCAiaW50ZXJuYWxQYXJhbWV0ZXJzIjoge30sICJyZXNvbHZlZERlcGVuZGVuY2llcyI6IFt7InVyaSI6ICJnaXQraHR0cHM6Ly9naXRodWIuY29tL2V4YW1wbGUvbWVzc2VuZ2VyQGJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIiLCAiZGlnZXN0IjogeyJzaGEyNTYiOiAiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYiJ9fSwgeyJ1cmkiOiAicGtnOmdlbmVyaWMvcHl0aG9uQDMuMTMuNyIsICJkaWdlc3QiOiB7InNoYTI1NiI6ICJjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjIn19XX0sICJydW5EZXRhaWxzIjogeyJidWlsZGVyIjogeyJpZCI6ICJodHRwczovL2J1aWxkZXJzLmV4YW1wbGUvcmVsZWFzZSJ9LCAibWV0YWRhdGEiOiB7Imludm9jYXRpb25JZCI6ICJleGFtcGxlLWJ1aWxkLTEiLCAic3RhcnRlZE9uIjogIjIwMjYtMTAtMDdUMjI6MTA6MDBaIiwgImZpbmlzaGVkT24iOiAiMjAyNi0xMC0wN1QyMjoyMDowMFoifX19fQ==",
+    "signatures": [
+      {
+        "keyid": "release-root",
+        "sig": "U1lOVEhFVElDLUZJWFRVUkUtTk9ULUEtU0lHTkFUVVJF"
+      }
+    ]
+  },
+  "reproduction": {
+    "builder_id": "https://independent.example/rebuild",
+    "operator_id": "independent-operator",
+    "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "artifact_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "byte_identical": true,
+    "inputs_verified": true,
+    "report_ref": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "signature_verified": true,
+  "artifact_digest_verified": true,
+  "sbom_format_verified": true,
+  "complete_transitive_inventory": true,
+  "inventory_projection_verified": true,
+  "hermetic_build": true,
+  "ephemeral_builder": true,
+  "signing_keys_isolated": true,
+  "provenance_authenticated": true,
+  "hosted_builder": true,
+  "platform_generated_provenance": true,
+  "isolated_builds": false,
+  "unforgeable_provenance": true,
+  "unrecorded_network_dependencies": false,
+  "unreviewed_build_parameters": false
+}

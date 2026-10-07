@@ -28,9 +28,52 @@ import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
 import transport_security_engine
+import supply_chain_engine
+import secure_development_engine
+import telemetry_engine
+import server_trust_engine
 import client_security_engine
 
 REQUIRED_PATHS = [
+    'scripts/supply_chain_engine.py',
+    'scripts/build_reference_release.py',
+    'registry/software-supply-chain.json',
+    'schemas/supply-chain-policy.schema.json',
+    'schemas/supply-chain-evidence.schema.json',
+    'schemas/slsa-build-statement.schema.json',
+    'schemas/software-supply-chain-registry.schema.json',
+    'spec/software-supply-chain.md',
+    'adr/0020-software-supply-chain.md',
+    'tests/test_supply_chain_engine.py',
+    'tests/test_build_reference_release.py',
+    'fixtures/supply-chain/cases.json',
+    'scripts/secure_development_engine.py',
+    'registry/secure-development.json',
+    'schemas/secure-development-policy.schema.json',
+    'schemas/secure-development-evidence.schema.json',
+    'schemas/secure-development-registry.schema.json',
+    'spec/secure-development-standard.md',
+    'adr/0019-secure-development-standard.md',
+    'tests/test_secure_development_engine.py',
+    'fixtures/secure-development/cases.json',
+    'scripts/telemetry_engine.py',
+    'registry/telemetry.json',
+    'schemas/telemetry-policy.schema.json',
+    'schemas/telemetry-evidence.schema.json',
+    'schemas/telemetry-registry.schema.json',
+    'spec/privacy-preserving-telemetry.md',
+    'adr/0018-privacy-preserving-telemetry.md',
+    'tests/test_telemetry_engine.py',
+    'fixtures/telemetry/cases.json',
+    'scripts/server_trust_engine.py',
+    'registry/server-trust-boundaries.json',
+    'schemas/server-trust-policy.schema.json',
+    'schemas/server-deployment-evidence.schema.json',
+    'schemas/server-trust-registry.schema.json',
+    'spec/server-trust-minimization.md',
+    'adr/0017-server-trust-minimization.md',
+    'tests/test_server_trust_engine.py',
+    'fixtures/server-trust/cases.json',
     'scripts/assurance_common.py',
     'scripts/client_security_engine.py',
     'registry/client-security.json',
@@ -2529,6 +2572,14 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             errors.append(f"{path.relative_to(root)}: invalid security claim fixture unexpectedly passed validation")
 
     errors.extend(client_security_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(server_trust_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(telemetry_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(secure_development_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(supply_chain_engine.validate_repository(root, profile_catalog))
 
     return errors
 

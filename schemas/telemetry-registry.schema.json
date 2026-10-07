@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/telemetry-registry.schema.json",
+  "title": "E2EESA telemetry-registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_version",
+    "profile_refs",
+    "privacy_reference",
+    "dp_reference",
+    "event_codes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "registry_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "profile_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true
+    },
+    "privacy_reference": {
+      "type": "string",
+      "const": "RFC 6973"
+    },
+    "dp_reference": {
+      "type": "string",
+      "const": "NIST SP 800-226 (2025 final)"
+    },
+    "event_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "startup-failure",
+          "delivery-latency",
+          "protocol-error"
+        ]
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true
+    }
+  }
+}

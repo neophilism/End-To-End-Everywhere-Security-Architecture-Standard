@@ -52,3 +52,11 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 19. [Transport Security Profiles](transport-security.md) — RFC 9846 TLS 1.3 classical and RFC 10024 ML-KEM/traditional hybrid profiles for stream TLS and QUIC, with RFC 9525 identity verification, mTLS service-to-service support, safe resumption, explicit 0-RTT replay controls, and E2EE-layer independence.
 
 20. [Native and Web Client Security](native-web-client-security.md) — signed native, hardened web, and independently verified web-bootstrap profiles with release manifest binding, transparency witnesses, rollback/freeze controls, origin hardening, and explicit execution trust assumptions.
+
+21. [Server Trust Minimization](server-trust-minimization.md) — ciphertext-only service infrastructure with exhaustive component/key inventory, client-authorized recipient sets, bounded retention, encrypted derivatives and explicit routing/availability limitations.
+
+22. [Privacy-Preserving Telemetry](privacy-preserving-telemetry.md) — no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.
+
+23. [Secure Development Standard](secure-development-standard.md) — SSDF-aligned process controls, independent exact-source review, test/fuzz/scanning release gates, dependency/change control and checked remediation or limited expiring risk acceptance.
+
+24. [Software Supply Chain](software-supply-chain.md) — immutable transitive inventories, SPDX/CycloneDX SBOM evidence, authenticated SLSA 1.2 build-provenance expectations and independent byte reproduction, plus a deterministic source-release builder.

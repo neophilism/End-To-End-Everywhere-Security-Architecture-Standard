@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "telemetry-dp-aggregate",
+  "profile_ref": "telemetry-dp-aggregate@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "all-clients",
+  "enabled_by_default": false,
+  "require_explicit_consent": true,
+  "retention_seconds": 86400,
+  "allowed_event_codes": [
+    "startup-failure",
+    "delivery-latency"
+  ],
+  "lifetime_epsilon_micros": 1000000,
+  "minimum_cohort_size": 20,
+  "accounting_domain": "messenger-lifetime"
+}

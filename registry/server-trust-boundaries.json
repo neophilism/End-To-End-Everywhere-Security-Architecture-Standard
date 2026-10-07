@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "profile_ref": "server-ciphertext-only@0.1.0",
+  "service_key_purposes": [
+    "tls-authentication",
+    "metadata-at-rest",
+    "abuse-control"
+  ],
+  "prohibited_server_holdings": [
+    "application-plaintext",
+    "application-e2ee-keys",
+    "backup-recovery-secrets",
+    "device-authorization-roots"
+  ]
+}

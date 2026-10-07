@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/supply-chain-policy.schema.json",
+  "title": "E2EESA supply-chain-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "source_repository",
+    "source_commit",
+    "build_type",
+    "trusted_builder_ids",
+    "trusted_signer_ids",
+    "minimum_verified_signatures",
+    "minimum_slsa_build_level",
+    "require_reproducibility",
+    "require_complete_sbom",
+    "require_immutable_dependencies"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_repository": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "build_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trusted_builder_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "trusted_signer_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "minimum_verified_signatures": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "minimum_slsa_build_level": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 3
+    },
+    "require_reproducibility": {
+      "type": "boolean"
+    },
+    "require_complete_sbom": {
+      "type": "boolean"
+    },
+    "require_immutable_dependencies": {
+      "type": "boolean"
+    }
+  }
+}

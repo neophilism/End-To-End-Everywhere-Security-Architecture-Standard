@@ -20,7 +20,7 @@ SCHEMA_KEYS = {
 }
 
 
-def load_json(path: Path):
+def parse_json(data: str):
     def pairs(items):
         value = {}
         for key, item in items:
@@ -28,8 +28,12 @@ def load_json(path: Path):
                 raise ValueError(f"duplicate JSON key: {key}")
             value[key] = item
         return value
-    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs,
+    return json.loads(data, object_pairs_hook=pairs,
                       parse_constant=lambda s: (_ for _ in ()).throw(ValueError(s)))
+
+
+def load_json(path: Path):
+    return parse_json(path.read_text(encoding="utf-8"))
 
 
 def digest(value) -> str:
@@ -88,8 +92,11 @@ def shape(value, schema: dict, source: str = "record") -> list[str]:
     if isinstance(value, str):
         if len(value) < schema.get("minLength", 0) or len(value) > schema.get("maxLength", len(value)):
             errors.append(f"{source}: invalid string length")
-        if "pattern" in schema and not re.search(schema["pattern"], value):
-            errors.append(f"{source}: invalid string format")
+        if "pattern" in schema:
+            pattern = schema["pattern"]
+            match = re.fullmatch(pattern, value) if pattern.startswith("^") and pattern.endswith("$") else re.search(pattern, value)
+            if not match:
+                errors.append(f"{source}: invalid string format")
     if type(value) is int:
         if value < schema.get("minimum", value) or value > schema.get("maximum", value):
             errors.append(f"{source}: out of bounds")

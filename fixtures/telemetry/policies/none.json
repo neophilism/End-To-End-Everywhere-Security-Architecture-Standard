@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "telemetry-none",
+  "profile_ref": "telemetry-none@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "all-clients",
+  "enabled_by_default": false,
+  "require_explicit_consent": false,
+  "retention_seconds": 0,
+  "allowed_event_codes": [],
+  "lifetime_epsilon_micros": 0,
+  "minimum_cohort_size": 20,
+  "accounting_domain": "messenger-lifetime"
+}

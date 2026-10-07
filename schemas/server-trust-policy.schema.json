@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/server-trust-policy.schema.json",
+  "title": "E2EESA server-trust-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "max_ciphertext_ttl_seconds",
+    "allowed_metadata_fields",
+    "allowed_service_key_purposes",
+    "require_client_recipient_authorization",
+    "require_no_application_key_access"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "max_ciphertext_ttl_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2592000
+    },
+    "allowed_metadata_fields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "recipient-route",
+          "ciphertext-size",
+          "expiry",
+          "delivery-state"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "allowed_service_key_purposes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "tls-authentication",
+          "metadata-at-rest",
+          "abuse-control"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "require_client_recipient_authorization": {
+      "type": "boolean"
+    },
+    "require_no_application_key_access": {
+      "type": "boolean"
+    }
+  }
+}

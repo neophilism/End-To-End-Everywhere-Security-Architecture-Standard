@@ -1,0 +1,246 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "development-baseline",
+  "profile_ref": "development-ssdf-baseline@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "all",
+  "policy_digest": "sha256:80521a684c1b0a36caffcd2d6d29d8c3c35d740a4663b495c20d02d54c047577",
+  "assessor_id": "fixture-assessor",
+  "observed_at": "2026-10-07T22:40:20Z",
+  "report_refs": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "reviewed_source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "author_ids": [
+    "contributor"
+  ],
+  "reviewer_ids": [
+    "security-reviewer"
+  ],
+  "release_authorizer_ids": [
+    "release-owner",
+    "security-reviewer"
+  ],
+  "controls": [
+    {
+      "control_id": "SD-REQUIREMENTS",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-OWNERS",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-TOOLS",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-RELEASE-GATES",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-ENVIRONMENT",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-SOURCE-ACCESS",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-RELEASE-AUTH",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-ARCHIVE",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-DESIGN",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-DESIGN-REVIEW",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-DEPENDENCIES",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-SECURE-CODE",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-BUILD-CONFIG",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-CODE-REVIEW",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-TESTING",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-DEFAULTS",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-INTAKE",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-REMEDIATION",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    },
+    {
+      "control_id": "SD-ROOT-CAUSE",
+      "status": "satisfied",
+      "owner_id": "security-owner",
+      "report_refs": [
+        "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "adversarial-tests",
+      "status": "passed",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "gate_id": "dependency-scan",
+      "status": "passed",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "gate_id": "fuzz",
+      "status": "passed",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "gate_id": "secret-scan",
+      "status": "passed",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "gate_id": "static-analysis",
+      "status": "passed",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "gate_id": "unit-tests",
+      "status": "passed",
+      "source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "completed_at": "2026-10-07T22:30:00Z",
+      "report_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "corrected-nonce-state",
+      "severity": "high",
+      "status": "accepted",
+      "remediation_source_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "retest_report_ref": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "accepted_by": "security-reviewer",
+      "acceptance_expires_at": "2026-10-08T00:00:00Z",
+      "rationale": "release pressure"
+    }
+  ],
+  "reviews_approved": true,
+  "source_access_reviewed": true,
+  "training_current": true,
+  "isolated_build_environments": true,
+  "release_archive_complete": true,
+  "two_person_release_authorization": true,
+  "threat_model_updated": true,
+  "security_change_classification_reviewed": true,
+  "cryptographic_change": true,
+  "qualified_crypto_review": true
+}

@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/secure-development-evidence.schema.json",
+  "title": "E2EESA secure-development-evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "policy_digest",
+    "assessor_id",
+    "observed_at",
+    "report_refs",
+    "source_digest",
+    "reviewed_source_digest",
+    "author_ids",
+    "reviewer_ids",
+    "release_authorizer_ids",
+    "controls",
+    "gates",
+    "findings",
+    "reviews_approved",
+    "source_access_reviewed",
+    "training_current",
+    "isolated_build_environments",
+    "release_archive_complete",
+    "two_person_release_authorization",
+    "threat_model_updated",
+    "security_change_classification_reviewed",
+    "cryptographic_change",
+    "qualified_crypto_review"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "assessor_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "report_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "reviewed_source_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "author_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "reviewer_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "release_authorizer_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 2,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "control_id",
+          "status",
+          "owner_id",
+          "report_refs"
+        ],
+        "properties": {
+          "control_id": {
+            "type": "string",
+            "enum": [
+              "SD-REQUIREMENTS",
+              "SD-OWNERS",
+              "SD-TOOLS",
+              "SD-RELEASE-GATES",
+              "SD-ENVIRONMENT",
+              "SD-SOURCE-ACCESS",
+              "SD-RELEASE-AUTH",
+              "SD-ARCHIVE",
+              "SD-DESIGN",
+              "SD-DESIGN-REVIEW",
+              "SD-DEPENDENCIES",
+              "SD-SECURE-CODE",
+              "SD-BUILD-CONFIG",
+              "SD-CODE-REVIEW",
+              "SD-TESTING",
+              "SD-DEFAULTS",
+              "SD-INTAKE",
+              "SD-REMEDIATION",
+              "SD-ROOT-CAUSE"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "satisfied",
+              "not-applicable",
+              "waived",
+              "failed"
+            ]
+          },
+          "owner_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "report_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            "minItems": 1,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gate_id",
+          "status",
+          "source_digest",
+          "completed_at",
+          "report_ref"
+        ],
+        "properties": {
+          "gate_id": {
+            "type": "string",
+            "enum": [
+              "adversarial-tests",
+              "dependency-scan",
+              "fuzz",
+              "secret-scan",
+              "static-analysis",
+              "unit-tests"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "skipped",
+              "cancelled"
+            ]
+          },
+          "source_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "completed_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+          },
+          "report_ref": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "severity",
+          "status",
+          "remediation_source_digest",
+          "retest_report_ref",
+          "accepted_by",
+          "acceptance_expires_at",
+          "rationale"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "fixed",
+              "accepted"
+            ]
+          },
+          "remediation_source_digest": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "retest_report_ref": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "accepted_by": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "acceptance_expires_at": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "reviews_approved": {
+      "type": "boolean"
+    },
+    "source_access_reviewed": {
+      "type": "boolean"
+    },
+    "training_current": {
+      "type": "boolean"
+    },
+    "isolated_build_environments": {
+      "type": "boolean"
+    },
+    "release_archive_complete": {
+      "type": "boolean"
+    },
+    "two_person_release_authorization": {
+      "type": "boolean"
+    },
+    "threat_model_updated": {
+      "type": "boolean"
+    },
+    "security_change_classification_reviewed": {
+      "type": "boolean"
+    },
+    "cryptographic_change": {
+      "type": "boolean"
+    },
+    "qualified_crypto_review": {
+      "type": "boolean"
+    }
+  }
+}

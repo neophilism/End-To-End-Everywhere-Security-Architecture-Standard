@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/telemetry-policy.schema.json",
+  "title": "E2EESA telemetry-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "enabled_by_default",
+    "require_explicit_consent",
+    "retention_seconds",
+    "allowed_event_codes",
+    "lifetime_epsilon_micros",
+    "minimum_cohort_size",
+    "accounting_domain"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "enabled_by_default": {
+      "type": "boolean"
+    },
+    "require_explicit_consent": {
+      "type": "boolean"
+    },
+    "retention_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 604800
+    },
+    "allowed_event_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "startup-failure",
+          "delivery-latency",
+          "protocol-error"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "lifetime_epsilon_micros": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "minimum_cohort_size": {
+      "type": "integer",
+      "minimum": 20,
+      "maximum": 1000000
+    },
+    "accounting_domain": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    }
+  }
+}

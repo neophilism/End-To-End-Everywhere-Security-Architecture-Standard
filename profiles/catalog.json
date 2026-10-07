@@ -97,6 +97,30 @@
       "name": "Native and web client security",
       "cardinality": "at-most-one",
       "description": "Native and web client security. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "server-trust",
+      "name": "Server trust minimization",
+      "cardinality": "at-most-one",
+      "description": "Server trust minimization. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "telemetry",
+      "name": "Privacy-preserving telemetry",
+      "cardinality": "at-most-one",
+      "description": "Privacy-preserving telemetry. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "secure-development",
+      "name": "Secure development standard",
+      "cardinality": "at-most-one",
+      "description": "Secure development standard. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "software-supply-chain",
+      "name": "Software supply chain",
+      "cardinality": "at-most-one",
+      "description": "Software supply chain. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -926,6 +950,103 @@
         "client-web-hardened@0.1.0"
       ],
       "notes": "An independently installed verifier authenticates the complete web executable closure before execution and rejects unapproved releases."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "server-ciphertext-only",
+      "profile_version": "0.1.0",
+      "family_id": "server-trust",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Relays, queues, object stores, backups, KMS and subprocessors cannot decrypt application E2EE or independently authorize recipients."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-none",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-minimized-diagnostics@0.1.0",
+        "telemetry-dp-aggregate@0.1.0"
+      ],
+      "notes": "No exported telemetry or durable diagnostics; local manual debugging is separate."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-minimized-diagnostics",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-none@0.1.0",
+        "telemetry-dp-aggregate@0.1.0"
+      ],
+      "notes": "Explicit opt-in bounded diagnostic codes; no content, keys, identifiers, pseudonyms or raw crash dumps."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-dp-aggregate",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-none@0.1.0",
+        "telemetry-minimized-diagnostics@0.1.0"
+      ],
+      "notes": "Pure central-Laplace aggregate counts with user-lifetime adjacency, contribution bounds and cumulative privacy-budget evidence; collector access remains explicit."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "development-ssdf-baseline",
+      "profile_version": "0.1.0",
+      "family_id": "secure-development",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "SSDF 1.1 aligned development controls with independent review, exact-source test/scanning gates and time-bounded risk handling; no high/critical release waivers."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "supply-chain-attested-reproducible",
+      "profile_version": "0.1.0",
+      "family_id": "software-supply-chain",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Complete immutable dependency inventory, validated SBOM, authenticated SLSA build provenance, isolated signing and independently reproduced release bytes."
     }
   ]
 }

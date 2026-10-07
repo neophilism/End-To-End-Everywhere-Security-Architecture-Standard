@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "development-baseline",
+  "profile_ref": "development-ssdf-baseline@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "all",
+  "required_control_ids": [
+    "SD-REQUIREMENTS",
+    "SD-OWNERS",
+    "SD-TOOLS",
+    "SD-RELEASE-GATES",
+    "SD-ENVIRONMENT",
+    "SD-SOURCE-ACCESS",
+    "SD-RELEASE-AUTH",
+    "SD-ARCHIVE",
+    "SD-DESIGN",
+    "SD-DESIGN-REVIEW",
+    "SD-DEPENDENCIES",
+    "SD-SECURE-CODE",
+    "SD-BUILD-CONFIG",
+    "SD-CODE-REVIEW",
+    "SD-TESTING",
+    "SD-DEFAULTS",
+    "SD-INTAKE",
+    "SD-REMEDIATION",
+    "SD-ROOT-CAUSE"
+  ],
+  "required_gate_ids": [
+    "adversarial-tests",
+    "dependency-scan",
+    "fuzz",
+    "secret-scan",
+    "static-analysis",
+    "unit-tests"
+  ],
+  "minimum_independent_reviewers": 1,
+  "max_check_age_hours": 24,
+  "require_independent_review": true,
+  "require_critical_high_remediation": true
+}

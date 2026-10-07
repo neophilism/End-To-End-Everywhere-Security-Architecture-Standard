@@ -75,3 +75,19 @@ PR 19 introduces the `transport-security` family with classical TLS 1.3 and reco
 ## Native and Web Client Security
 
 PR 20 introduces signed native, hardened web, and independently verified web-bootstrap profiles with release manifest binding, transparency witnesses, rollback/freeze controls, origin hardening, and explicit execution trust assumptions.
+
+## Server Trust Minimization
+
+PR 21 introduces ciphertext-only service infrastructure with exhaustive component/key inventory, client-authorized recipient sets, bounded retention, encrypted derivatives and explicit routing/availability limitations.
+
+## Privacy-Preserving Telemetry
+
+PR 22 introduces no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.
+
+## Secure Development Standard
+
+PR 23 introduces SSDF-aligned process controls, independent exact-source review, test/fuzz/scanning release gates, dependency/change control and checked remediation or limited expiring risk acceptance.
+
+## Software Supply Chain
+
+PR 24 introduces immutable transitive inventories, SPDX/CycloneDX SBOM evidence, authenticated SLSA 1.2 build-provenance expectations and independent byte reproduction, plus a deterministic source-release builder.

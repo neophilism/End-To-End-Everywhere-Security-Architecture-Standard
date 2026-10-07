@@ -1,0 +1,56 @@
+[
+  {
+    "name": "spdx",
+    "policy": "policies/spdx.json",
+    "evidence": "evidence/spdx.json",
+    "valid": true
+  },
+  {
+    "name": "cyclonedx",
+    "policy": "policies/cyclonedx.json",
+    "evidence": "evidence/cyclonedx.json",
+    "valid": true
+  },
+  {
+    "name": "wrong-builder",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/wrong-builder.json",
+    "valid": false
+  },
+  {
+    "name": "unsigned-provenance",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/unsigned-provenance.json",
+    "valid": false
+  },
+  {
+    "name": "different-rebuild",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/different-rebuild.json",
+    "valid": false
+  },
+  {
+    "name": "self-rebuild",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/self-rebuild.json",
+    "valid": false
+  },
+  {
+    "name": "incomplete-sbom",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/incomplete-sbom.json",
+    "valid": false
+  },
+  {
+    "name": "floating-dependency",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/floating-dependency.json",
+    "valid": false
+  },
+  {
+    "name": "false-slsa-level",
+    "policy": "policies/spdx.json",
+    "evidence": "invalid/false-slsa-level.json",
+    "valid": false
+  }
+]
