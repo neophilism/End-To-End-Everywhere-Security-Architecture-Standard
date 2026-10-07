@@ -115,6 +115,12 @@
       "name": "Secure development standard",
       "cardinality": "at-most-one",
       "description": "Secure development standard. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "software-supply-chain",
+      "name": "Software supply chain",
+      "cardinality": "at-most-one",
+      "description": "Software supply chain. Product conformance requires an applicable profile when this capability is in scope."
     }
   ],
   "profiles": [
@@ -1026,6 +1032,21 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "SSDF 1.1 aligned development controls with independent review, exact-source test/scanning gates and time-bounded risk handling; no high/critical release waivers."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "supply-chain-attested-reproducible",
+      "profile_version": "0.1.0",
+      "family_id": "software-supply-chain",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Complete immutable dependency inventory, validated SBOM, authenticated SLSA build provenance, isolated signing and independently reproduced release bytes."
     }
   ]
 }

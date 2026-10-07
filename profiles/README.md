@@ -87,3 +87,7 @@ PR 22 introduces no-export, opt-in minimized diagnostics and pure-DP aggregate a
 ## Secure Development Standard
 
 PR 23 introduces SSDF-aligned process controls, independent exact-source review, test/fuzz/scanning release gates, dependency/change control and checked remediation or limited expiring risk acceptance.
+
+## Software Supply Chain
+
+PR 24 introduces immutable transitive inventories, SPDX/CycloneDX SBOM evidence, authenticated SLSA 1.2 build-provenance expectations and independent byte reproduction, plus a deterministic source-release builder.

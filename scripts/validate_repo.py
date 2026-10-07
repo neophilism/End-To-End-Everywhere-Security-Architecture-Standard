@@ -28,12 +28,25 @@ import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
 import transport_security_engine
+import supply_chain_engine
 import secure_development_engine
 import telemetry_engine
 import server_trust_engine
 import client_security_engine
 
 REQUIRED_PATHS = [
+    'scripts/supply_chain_engine.py',
+    'scripts/build_reference_release.py',
+    'registry/software-supply-chain.json',
+    'schemas/supply-chain-policy.schema.json',
+    'schemas/supply-chain-evidence.schema.json',
+    'schemas/slsa-build-statement.schema.json',
+    'schemas/software-supply-chain-registry.schema.json',
+    'spec/software-supply-chain.md',
+    'adr/0020-software-supply-chain.md',
+    'tests/test_supply_chain_engine.py',
+    'tests/test_build_reference_release.py',
+    'fixtures/supply-chain/cases.json',
     'scripts/secure_development_engine.py',
     'registry/secure-development.json',
     'schemas/secure-development-policy.schema.json',
@@ -2565,6 +2578,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     errors.extend(telemetry_engine.validate_repository(root, profile_catalog))
 
     errors.extend(secure_development_engine.validate_repository(root, profile_catalog))
+
+    errors.extend(supply_chain_engine.validate_repository(root, profile_catalog))
 
     return errors
 

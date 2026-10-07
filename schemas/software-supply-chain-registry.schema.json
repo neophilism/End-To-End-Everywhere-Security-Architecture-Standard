@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/software-supply-chain-registry.schema.json",
+  "title": "E2EESA software-supply-chain-registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_version",
+    "profile_ref",
+    "slsa_spec_version",
+    "predicate_type",
+    "statement_type",
+    "sbom_formats"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "registry_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "profile_ref": {
+      "type": "string",
+      "const": "supply-chain-attested-reproducible@0.1.0"
+    },
+    "slsa_spec_version": {
+      "type": "string",
+      "const": "1.2"
+    },
+    "predicate_type": {
+      "type": "string",
+      "const": "https://slsa.dev/provenance/v1"
+    },
+    "statement_type": {
+      "type": "string",
+      "const": "https://in-toto.io/Statement/v1"
+    },
+    "sbom_formats": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "SPDX-2.3",
+          "CycloneDX-1.6"
+        ]
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true
+    }
+  }
+}

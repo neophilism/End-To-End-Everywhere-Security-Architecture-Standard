@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/supply-chain-evidence.schema.json",
+  "title": "E2EESA supply-chain-evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "policy_digest",
+    "assessor_id",
+    "observed_at",
+    "report_refs",
+    "artifact_name",
+    "artifact_digest",
+    "source_commit",
+    "builder_id",
+    "builder_operator_id",
+    "builder_assessment_report_ref",
+    "claimed_slsa_build_level",
+    "verified_signer_ids",
+    "inventory",
+    "sbom",
+    "provenance_envelope",
+    "reproduction",
+    "signature_verified",
+    "artifact_digest_verified",
+    "sbom_format_verified",
+    "complete_transitive_inventory",
+    "inventory_projection_verified",
+    "hermetic_build",
+    "ephemeral_builder",
+    "signing_keys_isolated",
+    "provenance_authenticated",
+    "unrecorded_network_dependencies",
+    "unreviewed_build_parameters",
+    "hosted_builder",
+    "platform_generated_provenance",
+    "isolated_builds",
+    "unforgeable_provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "assessor_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "report_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "artifact_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "builder_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "builder_operator_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "builder_assessment_report_ref": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "claimed_slsa_build_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "verified_signer_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "component_id",
+          "name",
+          "version",
+          "source_uri",
+          "artifact_digest",
+          "scope",
+          "dependency_ids"
+        ],
+        "properties": {
+          "component_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(?:[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?|[0-9a-f]{40})$"
+          },
+          "source_uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifact_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "source",
+              "runtime",
+              "build",
+              "ci"
+            ]
+          },
+          "dependency_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "sbom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "document_digest",
+        "subject_digest",
+        "component_ids",
+        "inventory_digest",
+        "format_validation_report_ref"
+      ],
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "SPDX-2.3",
+            "CycloneDX-1.6"
+          ]
+        },
+        "document_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "subject_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "component_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "inventory_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "format_validation_report_ref": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "provenance_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payloadType",
+        "payload",
+        "signatures"
+      ],
+      "properties": {
+        "payloadType": {
+          "type": "string",
+          "const": "application/vnd.in-toto+json"
+        },
+        "payload": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signatures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "keyid",
+              "sig"
+            ],
+            "properties": {
+              "keyid": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "sig": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        }
+      }
+    },
+    "reproduction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "builder_id",
+        "operator_id",
+        "source_commit",
+        "artifact_digest",
+        "byte_identical",
+        "inputs_verified",
+        "report_ref"
+      ],
+      "properties": {
+        "builder_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operator_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "source_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "artifact_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "byte_identical": {
+          "type": "boolean"
+        },
+        "inputs_verified": {
+          "type": "boolean"
+        },
+        "report_ref": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "signature_verified": {
+      "type": "boolean"
+    },
+    "artifact_digest_verified": {
+      "type": "boolean"
+    },
+    "sbom_format_verified": {
+      "type": "boolean"
+    },
+    "complete_transitive_inventory": {
+      "type": "boolean"
+    },
+    "inventory_projection_verified": {
+      "type": "boolean"
+    },
+    "hermetic_build": {
+      "type": "boolean"
+    },
+    "ephemeral_builder": {
+      "type": "boolean"
+    },
+    "signing_keys_isolated": {
+      "type": "boolean"
+    },
+    "provenance_authenticated": {
+      "type": "boolean"
+    },
+    "unrecorded_network_dependencies": {
+      "type": "boolean"
+    },
+    "unreviewed_build_parameters": {
+      "type": "boolean"
+    },
+    "hosted_builder": {
+      "type": "boolean"
+    },
+    "platform_generated_provenance": {
+      "type": "boolean"
+    },
+    "isolated_builds": {
+      "type": "boolean"
+    },
+    "unforgeable_provenance": {
+      "type": "boolean"
+    }
+  }
+}

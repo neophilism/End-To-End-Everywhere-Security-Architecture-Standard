@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "supply-chain-baseline",
+  "profile_ref": "supply-chain-attested-reproducible@0.1.0",
+  "product_id": "example-messenger",
+  "product_version": "1.0.0",
+  "platform": "linux",
+  "source_repository": "https://github.com/example/messenger",
+  "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "build_type": "https://endtoendeverywhere.org/e2eesa/build-types/source-archive/0.1.0",
+  "trusted_builder_ids": [
+    "https://builders.example/release"
+  ],
+  "trusted_signer_ids": [
+    "release-root"
+  ],
+  "minimum_verified_signatures": 1,
+  "minimum_slsa_build_level": 2,
+  "require_reproducibility": true,
+  "require_complete_sbom": true,
+  "require_immutable_dependencies": true
+}
