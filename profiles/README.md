@@ -51,3 +51,7 @@ PR 13 introduces the `backup-recovery` family with three mutually exclusive arch
 ## Metadata privacy profiles
 
 PR 14 introduces the `metadata-privacy` family with three complete choices: minimized service metadata, sender-hidden delivery, and relay-partitioned sender-hidden delivery. The strongest profile combines sender-hidden envelopes with RFC 9458 Oblivious HTTP, authenticated non-personalized gateway configuration, no identifying relay headers, independent relay/gateway operation, request padding, replay protection, and zero durable source-IP retention after request completion.
+
+## Contact discovery profiles
+
+PR 15 introduces the `contact-discovery` family with exact-handle discovery, RFC 9497 VOPRF private directory membership, and attested confidential-compute private set intersection. All profiles prohibit raw address-book and ordinary identifier-hash upload and require discoverability-policy enforcement.

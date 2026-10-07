@@ -623,8 +623,7 @@
       "status": "allowed",
       "decision_class": "profile-choice",
       "security_properties": [
-        "SP-METADATA-MINIMIZATION",
-        "SP-UNLINKABILITY"
+        "SP-METADATA-MINIMIZATION"
       ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [
