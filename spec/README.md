@@ -42,3 +42,5 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 14. [Metadata Privacy Profiles](metadata-privacy.md) — bounded metadata minimization, sender-hidden delivery, and RFC 9458 OHTTP relay partitioning with explicit source-address, recipient-routing, traffic-analysis, and non-collusion boundaries.
 
 15. [Contact Discovery Profiles](contact-discovery.md) — exact-handle/invite discovery, RFC 9497 VOPRF private membership, and attested confidential-compute private-set discovery with normalization, discoverability, enumeration, and side-channel boundaries.
+
+16. [Attachments and File Encryption](attachments-file-encryption.md) — fresh-key chunked AEAD attachments with exact nonce/AAD construction, authenticated private manifests, safe streaming/range retrieval, E2EE key distribution, substitution/replay protection, and non-misleading deletion semantics.
