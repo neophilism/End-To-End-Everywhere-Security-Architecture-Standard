@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "protocol": {
+    "id": "SFRAME-RFC9605",
+    "name": "Secure Frame (SFrame)",
+    "status": "recommended",
+    "specification": "RFC 9605",
+    "reference_uri": "https://www.rfc-editor.org/rfc/rfc9605.html",
+    "notes": [
+      "SFrame provides end-to-end encryption/authentication for real-time media while allowing SFUs to process routing metadata without media plaintext.",
+      "Key management is intentionally external to the media framing; E2EESA profiles select RFC 9605 sender-key or MLS key management.",
+      "Each (base_key, KID, CTR) combination may be used for at most one encryption operation."
+    ]
+  },
+  "cipher_suites": [
+    {
+      "id": "0x0001",
+      "name": "AES_128_CTR_HMAC_SHA256_80",
+      "status": "allowed",
+      "nh": 32,
+      "nka": 16,
+      "nk": 48,
+      "nn": 12,
+      "nt": 10,
+      "reference": "RFC 9605"
+    },
+    {
+      "id": "0x0002",
+      "name": "AES_128_CTR_HMAC_SHA256_64",
+      "status": "legacy",
+      "nh": 32,
+      "nka": 16,
+      "nk": 48,
+      "nn": 12,
+      "nt": 8,
+      "reference": "RFC 9605"
+    },
+    {
+      "id": "0x0003",
+      "name": "AES_128_CTR_HMAC_SHA256_32",
+      "status": "prohibited",
+      "nh": 32,
+      "nka": 16,
+      "nk": 48,
+      "nn": 12,
+      "nt": 4,
+      "reference": "RFC 9605",
+      "status_reason": "32-bit authentication tags are too short for new E2EESA real-time-media deployments."
+    },
+    {
+      "id": "0x0004",
+      "name": "AES_128_GCM_SHA256_128",
+      "status": "allowed",
+      "nh": 32,
+      "nka": null,
+      "nk": 16,
+      "nn": 12,
+      "nt": 16,
+      "reference": "RFC 9605"
+    },
+    {
+      "id": "0x0005",
+      "name": "AES_256_GCM_SHA512_128",
+      "status": "recommended",
+      "nh": 64,
+      "nka": null,
+      "nk": 32,
+      "nn": 12,
+      "nt": 16,
+      "reference": "RFC 9605"
+    }
+  ],
+  "pending_updates": [
+    {
+      "document": "draft-barnes-sframe-iana-256-06",
+      "status": "not-yet-normative-in-e2eesa-0.1",
+      "note": "May 2026 Internet-Draft adds AES-256-CTR/HMAC-SHA512 suites 0x0006-0x0008. E2EESA will not treat draft-only registrations as stable until standardized."
+    }
+  ]
+}

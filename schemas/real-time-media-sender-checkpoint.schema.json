@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/real-time-media-sender-checkpoint.schema.json",
+  "title":"E2EESA real-time media sender replay checkpoint",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","session_id","sender_device_id","media_epoch","kid","max_ctr","base_key_fingerprint"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "session_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "sender_device_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "media_epoch":{"type":"integer","minimum":0},
+    "kid":{"type":"integer","minimum":0,"maximum":18446744073709551615},
+    "max_ctr":{"type":"integer","minimum":0,"maximum":18446744073709551615},
+    "base_key_fingerprint":{"type":"string","pattern":"^[0-9a-f]{64}$"}
+  }
+}

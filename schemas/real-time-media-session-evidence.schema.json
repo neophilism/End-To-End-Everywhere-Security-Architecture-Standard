@@ -1,0 +1,33 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://e2eesa.example/schemas/real-time-media-session-evidence.schema.json",
+  "title":"E2EESA real-time media session evidence",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema_version","session_id","profile_ref","cipher_suite_id",
+    "participant_device_ids","media_epoch","control_profile_ref",
+    "hop_by_hop_transport_encryption_verified","sframe_e2ee_enabled",
+    "sfu_present","sfu_observed_media_plaintext","sfu_observed_base_keys",
+    "sfu_can_modify_media_without_detection","sfu_visible_metadata",
+    "recording_bot_present","recording_bot_authorized_participant"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "session_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "profile_ref":{"enum":["media-sframe-sender-keys@0.1.0","media-sframe-mls@0.1.0"]},
+    "cipher_suite_id":{"enum":["0x0001","0x0002","0x0004","0x0005"]},
+    "participant_device_ids":{"type":"array","minItems":2,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "media_epoch":{"type":"integer","minimum":0},
+    "control_profile_ref":{"type":"string","minLength":1},
+    "hop_by_hop_transport_encryption_verified":{"type":"boolean"},
+    "sframe_e2ee_enabled":{"type":"boolean"},
+    "sfu_present":{"type":"boolean"},
+    "sfu_observed_media_plaintext":{"type":"boolean"},
+    "sfu_observed_base_keys":{"type":"boolean"},
+    "sfu_can_modify_media_without_detection":{"type":"boolean"},
+    "sfu_visible_metadata":{"type":"array","uniqueItems":true,"items":{"type":"string","enum":["kid","ctr","ssrc","codec","frame-size","packet-size","timing","rtp-extensions","rtcp-feedback"]}},
+    "recording_bot_present":{"type":"boolean"},
+    "recording_bot_authorized_participant":{"type":"boolean"}
+  }
+}
