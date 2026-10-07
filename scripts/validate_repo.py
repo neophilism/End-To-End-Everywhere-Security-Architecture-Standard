@@ -27,6 +27,7 @@ import contact_discovery_engine
 import attachment_encryption_engine
 import real_time_media_engine
 import secret_storage_engine
+import transport_security_engine
 
 REQUIRED_PATHS = [
     "README.md",
@@ -52,6 +53,8 @@ REQUIRED_PATHS = [
     "spec/attachments-file-encryption.md",
     "spec/real-time-media.md",
     "spec/secret-storage-hardware-protection.md",
+    "spec/transport-security.md",
+    "adr/0015-transport-security.md",
     "adr/0014-secret-storage-hardware-protection.md",
     "adr/0013-real-time-media.md",
     "adr/0012-attachments-file-encryption.md",
@@ -118,6 +121,9 @@ REQUIRED_PATHS = [
     "schemas/secret-storage-policy.schema.json",
     "schemas/secret-storage-state-evidence.schema.json",
     "schemas/secret-storage-key-event.schema.json",
+    "schemas/transport-security-registry.schema.json",
+    "schemas/transport-security-policy.schema.json",
+    "schemas/transport-handshake-evidence.schema.json",
     "registry/terminology.json",
     "registry/threat-model.json",
     "registry/security-properties.json",
@@ -129,6 +135,7 @@ REQUIRED_PATHS = [
     "registry/contact-discovery-mechanisms.json",
     "registry/real-time-media.json",
     "registry/secret-storage-mechanisms.json",
+    "registry/transport-security.json",
     "profiles/catalog.json",
     "scripts/profile_engine.py",
     "scripts/crypto_registry.py",
@@ -144,6 +151,7 @@ REQUIRED_PATHS = [
     "scripts/attachment_encryption_engine.py",
     "scripts/real_time_media_engine.py",
     "scripts/secret_storage_engine.py",
+    "scripts/transport_security_engine.py",
     "fixtures/negotiation/policy.json",
     "fixtures/negotiation/valid/baseline.json",
     "fixtures/identity/policies/cross-signing.json",
@@ -214,6 +222,15 @@ REQUIRED_PATHS = [
     "fixtures/secret-storage/state/token.json",
     "fixtures/secret-storage/state/software.json",
     "fixtures/secret-storage/key-events/rotate-hardware.json",
+    "fixtures/transport/policies/classical-public.json",
+    "fixtures/transport/policies/hybrid-public.json",
+    "fixtures/transport/policies/hybrid-mtls.json",
+    "fixtures/transport/policies/hybrid-quic.json",
+    "fixtures/transport/evidence/classical-public.json",
+    "fixtures/transport/evidence/hybrid-public.json",
+    "fixtures/transport/evidence/hybrid-mtls.json",
+    "fixtures/transport/evidence/hybrid-quic.json",
+    "fixtures/transport/evidence/hybrid-resumed.json",
 ]
 
 VALID_STATUSES = {
@@ -946,6 +963,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         "schemas/secret-storage-policy.schema.json",
         "schemas/secret-storage-state-evidence.schema.json",
         "schemas/secret-storage-key-event.schema.json",
+        "schemas/transport-security-registry.schema.json",
+        "schemas/transport-security-policy.schema.json",
+        "schemas/transport-handshake-evidence.schema.json",
     ):
         schema_path = root / schema_rel
         if schema_path.is_file():
@@ -1267,6 +1287,24 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                     f"secret-storage-hardware-protection.md missing required marker: {required_text}"
                 )
 
+    transport_spec_path = root / "spec/transport-security.md"
+    if transport_spec_path.is_file():
+        transport_spec = transport_spec_path.read_text(encoding="utf-8")
+        for required_text in (
+            "**Status:** Normative",
+            "transport-tls13-classical@0.1.0",
+            "transport-tls13-hybrid@0.1.0",
+            "RFC 9846",
+            "RFC 10024",
+            "X25519MLKEM768",
+            "## 12. Session resumption",
+            "## 13. 0-RTT early data",
+            "## 16. Certificate and signature boundary",
+            "## 20. Conformance evidence",
+        ):
+            if required_text not in transport_spec:
+                errors.append(f"transport-security.md missing required marker: {required_text}")
+
     property_registry_path = root / "registry/security-properties.json"
     property_registry = load_json(property_registry_path) if property_registry_path.is_file() else {}
     if property_registry:
@@ -1388,6 +1426,20 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             secret_storage_engine.validate_registry(
                 secret_storage_registry,
                 source="registry/secret-storage-mechanisms.json",
+            )
+        )
+
+    transport_registry_path = root / "registry/transport-security.json"
+    transport_registry = (
+        load_json(transport_registry_path)
+        if transport_registry_path.is_file()
+        else {}
+    )
+    if transport_registry:
+        errors.extend(
+            transport_security_engine.validate_registry(
+                transport_registry,
+                source="registry/transport-security.json",
             )
         )
 
@@ -2300,6 +2352,97 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             secret_policies["hardware"], remote_root
         ):
             errors.append("remote raw root-key copy unexpectedly passed")
+
+    if transport_registry and crypto_registry_data and profile_catalog:
+        transport_cases = (
+            ("classical-public", "classical-public"),
+            ("hybrid-public", "hybrid-public"),
+            ("hybrid-mtls", "hybrid-mtls"),
+            ("hybrid-quic", "hybrid-quic"),
+            ("hybrid-public", "hybrid-resumed"),
+        )
+        for policy_name, evidence_name in transport_cases:
+            result = transport_security_engine.validate_handshake(
+                load_json(root / "fixtures/transport/policies" / f"{policy_name}.json"),
+                load_json(root / "fixtures/transport/evidence" / f"{evidence_name}.json"),
+                transport_registry,
+                crypto_registry_data,
+                profile_catalog,
+            )
+            if result:
+                errors.append(
+                    f"valid transport fixture {policy_name}/{evidence_name} failed: "
+                    + "; ".join(result)
+                )
+
+        tls12 = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        tls12["tls_version"] = "TLS1.2"
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            tls12, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("TLS 1.2 transport negotiation unexpectedly passed")
+
+        classical_fallback = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        classical_fallback["offered_group_ids"].append("X25519")
+        classical_fallback["selected_group_id"] = "X25519"
+        classical_fallback["transport_key_exchange_pq_protected"] = False
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            classical_fallback, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("hybrid transport with classical fallback unexpectedly passed")
+
+        psk_only = load_json(root / "fixtures/transport/evidence/hybrid-resumed.json")
+        psk_only["psk_key_exchange_mode"] = "psk_ke"
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            psk_only, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("PSK-only resumed transport unexpectedly passed")
+
+        wrong_identity = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        wrong_identity["server_reference_identifier"] = "evil.example.test"
+        wrong_identity["reference_identifier_match"] = False
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            wrong_identity, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("transport with wrong RFC 9525 service identity unexpectedly passed")
+
+        common_name = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        common_name["common_name_fallback_used"] = True
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            common_name, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("transport using Common Name fallback unexpectedly passed")
+
+        unsafe_0rtt = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        unsafe_0rtt["early_data_used"] = True
+        unsafe_0rtt["zero_rtt_application_profile_applied"] = True
+        unsafe_0rtt["zero_rtt_replay_protection_verified"] = True
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            unsafe_0rtt, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("0-RTT used under disabled policy unexpectedly passed")
+
+        obsolete_kyber = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        obsolete_kyber["obsolete_prestandard_kyber_group_used"] = True
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            obsolete_kyber, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("obsolete draft Kyber transport group unexpectedly passed")
+
+        transport_breaks_e2ee = load_json(root / "fixtures/transport/evidence/hybrid-public.json")
+        transport_breaks_e2ee["application_e2ee_terminated_or_decrypted_by_transport"] = True
+        if not transport_security_engine.validate_handshake(
+            load_json(root / "fixtures/transport/policies/hybrid-public.json"),
+            transport_breaks_e2ee, transport_registry, crypto_registry_data, profile_catalog
+        ):
+            errors.append("transport layer terminating application E2EE unexpectedly passed")
 
     known_property_ids = {
         prop.get("id")

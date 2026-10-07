@@ -67,3 +67,7 @@ PR 17 introduces the `real-time-media` family with RFC 9605 SFrame sender-key an
 ## Secret storage profiles
 
 PR 18 introduces the `secret-storage` family with native platform-keystore, hardware-isolated, external-token, and software-vault choices. Hardware profiles protect a non-exportable root/wrapping key while mutable protocol state remains in an authenticated encrypted vault. Rollback resistance is only claimed when a separate monotonic hardware or independent-witness anchor advances with the vault generation.
+
+## Transport security profiles
+
+PR 19 introduces the `transport-security` family with classical TLS 1.3 and recommended RFC 10024 hybrid PQ/traditional TLS. Both pin RFC 9846, require RFC 9525 service identity verification and fresh ephemeral key agreement, support stream TLS or QUIC, and keep application E2EE independent from transport termination. Hybrid conformance fails closed rather than silently falling back to traditional-only groups.
