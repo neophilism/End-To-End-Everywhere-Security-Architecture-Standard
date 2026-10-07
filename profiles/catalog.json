@@ -85,6 +85,12 @@
       "name": "Secret storage and hardware protection",
       "cardinality": "at-most-one",
       "description": "Local protection profiles for device identity keys, protocol state, recovery material, and other E2EE secrets using OS keystores, hardware-isolated key managers, external hardware tokens, or an encrypted software fallback."
+    },
+    {
+      "family_id": "transport-security",
+      "name": "Transport security",
+      "cardinality": "at-most-one",
+      "description": "TLS 1.3 transport profiles for ordinary authenticated transport and RFC 10024 post-quantum/traditional hybrid key agreement, usable over stream TLS or QUIC without weakening application-layer E2EE."
     }
   ],
   "profiles": [
@@ -819,6 +825,47 @@
         "secret-external-token@0.1.0"
       ],
       "notes": "Fallback for platforms without a trustworthy keystore. A high-entropy generated secret or Argon2id-hardened user secret protects the local encrypted vault. This profile does not claim non-exportability or protection against a fully compromised live endpoint."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "transport-tls13-classical",
+      "profile_version": "0.1.0",
+      "family_id": "transport-security",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "transport-tls13-hybrid@0.1.0"
+      ],
+      "notes": "RFC 9846 TLS 1.3 using ephemeral traditional ECDHE groups. Suitable where hybrid PQ/T TLS is unavailable or not required. Does not claim post-quantum confidentiality."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "transport-tls13-hybrid",
+      "profile_version": "0.1.0",
+      "family_id": "transport-security",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "transport-tls13-classical@0.1.0"
+      ],
+      "notes": "RFC 9846 TLS 1.3 with an RFC 10024 PQ/traditional hybrid group. X25519MLKEM768 is the default; P-256/ML-KEM-768 and P-384/ML-KEM-1024 are available for deployments with FIPS-oriented requirements. This profile does not by itself claim PQ authentication."
     }
   ]
 }
