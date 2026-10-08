@@ -30,9 +30,6 @@
   ],
   "finding_ids": [],
   "overall_conclusion": "REPLACE-ME",
-  "attestation_digest": "sha256:REPLACE-WITH-CONTENT-DIGEST",
-  "attestation_reference": "REPLACE-WITH-STABLE-REFERENCE",
   "final_reviewed_tree_digest": null,
-  "final_acceptance_digest": null,
-  "final_acceptance_reference": null
+  "final_acceptance": null
 }
