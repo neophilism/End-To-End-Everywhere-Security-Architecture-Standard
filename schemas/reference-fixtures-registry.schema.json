@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/reference-fixtures-registry.schema.json",
+  "title":"E2EESA Reference Fixtures Registry",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","registry_version","dispositions","positive_dispositions","negative_dispositions","generated_case_version"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "registry_version":{"type":"string","minLength":1},
+    "dispositions":{"type":"array","uniqueItems":true,"minItems":6,"items":{"type":"string","minLength":1}},
+    "positive_dispositions":{"type":"array","uniqueItems":true,"minItems":1,"items":{"type":"string","minLength":1}},
+    "negative_dispositions":{"type":"array","uniqueItems":true,"minItems":1,"items":{"type":"string","minLength":1}},
+    "generated_case_version":{"const":"0.1"}
+  }
+}
