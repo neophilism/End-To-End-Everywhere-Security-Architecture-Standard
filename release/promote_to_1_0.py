@@ -382,6 +382,12 @@ version-, and lifecycle-specific.
 
 
 def apply_promotion(policy: dict) -> None:
+    preflight = preflight_promotion(policy)
+    if preflight:
+        raise RuntimeError(
+            "promotion preflight failed: " + "; ".join(preflight)
+        )
+
     engineering = validate_1_0_readiness.engineering_errors()
     if engineering:
         raise RuntimeError(
@@ -438,6 +444,12 @@ def main() -> int:
     engineering = validate_1_0_readiness.engineering_errors()
     if engineering:
         for error in engineering:
+            print("ERROR:", error)
+        return 1
+
+    preflight = preflight_promotion(policy)
+    if preflight:
+        for error in preflight:
             print("ERROR:", error)
         return 1
 
