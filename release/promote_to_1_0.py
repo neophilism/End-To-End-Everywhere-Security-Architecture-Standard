@@ -428,6 +428,13 @@ def apply_promotion(policy: dict) -> None:
         encoding="utf-8",
     )
 
+    final_errors = final_release.validate_final_release()
+    if final_errors:
+        raise RuntimeError(
+            "post-promotion final release validation failed: "
+            + "; ".join(final_errors)
+        )
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
