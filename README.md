@@ -30,4 +30,4 @@ Security-sensitive changes are made through reviewed pull requests. Controversia
 
 ## Current status
 
-Pre-1.0 development. No profile in this repository should yet be interpreted as an End To End Everywhere certification claim.
+E2EESA 0.9 release candidate (`0.9.0-rc.1`). The candidate is frozen for independent expert review before the 1.0 decision. No profile in this repository should yet be interpreted as an End To End Everywhere certification claim.
