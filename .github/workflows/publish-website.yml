@@ -1,0 +1,35 @@
+name: Publish public standards portal
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - "spec/**"
+      - "profiles/**"
+      - "registry/**"
+      - "schemas/**"
+      - "VERSION"
+      - ".github/workflows/publish-website.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: standards-portal-production
+  cancel-in-progress: true
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify source-backed website data
+        run: |
+          node website/build.mjs
+          node website/check.mjs
+      - name: Publish snapshot of generated website
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2eesa-standards-website
+          path: website/
