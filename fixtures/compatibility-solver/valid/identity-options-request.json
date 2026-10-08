@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "request_id": "example-identity-options",
+  "standard_version": "0.1.0-dev",
+  "mode": "production",
+  "required_family_ids": [
+    "identity-architecture"
+  ],
+  "forbidden_family_ids": [],
+  "desired_property_ids": [],
+  "pinned_profile_refs": [
+    "example-choice-b@0.1.0"
+  ],
+  "excluded_profile_refs": [],
+  "max_solutions": 50,
+  "enforce_required_promotions": true,
+  "request_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}

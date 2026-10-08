@@ -49,9 +49,19 @@ import research_profile_registry
 import research_promotion
 import deprecation_migration
 import conformance_engine
+import compatibility_solver
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/compatibility_solver.py',
+    'registry/compatibility-solver.json',
+    'schemas/compatibility-solver-registry.schema.json',
+    'schemas/compatibility-solver-request.schema.json',
+    'schemas/compatibility-solver-result.schema.json',
+    'spec/compatibility-configuration-solver.md',
+    'adr/0042-solver-enumerates-without-security-ranking.md',
+    'tests/test_compatibility_solver.py',
+    'fixtures/compatibility-solver/valid/identity-options-request.json',
     'scripts/e2eesa_conformance.py',
     'registry/conformance-cli.json',
     'schemas/conformance-cli-registry.schema.json',

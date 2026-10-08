@@ -54,6 +54,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 39. [Deprecation and Emergency Migration](deprecation-emergency-migration.md) — planned and emergency retirement state machines, downgrade-safe cutover, bounded historical processing, dependency impact, registry projection, and overdue enforcement.
 40. [Conformance Engine](conformance-engine.md) — deterministic production, Candidate-evaluation, and migration-only conformance with complete family scope, Required-profile enforcement, full property evidence, and exact standards/product digest binding.
 41. [Conformance CLI](conformance-cli.md) — deterministic no-network CLI for basis discovery, request binding, PR 40 evaluation, saved-result verification, and human-readable explanation with stable CI exit codes.
+42. [Compatibility and Configuration Solver](compatibility-configuration-solver.md) — deterministic no-ranking enumeration of PR 2-compatible configurations constrained by lifecycle mode, PR 38 Candidate/Required state, pins/exclusions, family scope inputs, desired properties, and explicit search limits.
 
 ## Remaining specification areas
 
