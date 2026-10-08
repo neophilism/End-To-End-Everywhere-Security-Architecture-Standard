@@ -965,11 +965,22 @@ def operation_allowed(
         if timeline["legacy_processing_stop_at"] is not None
         else None
     )
-    event_types = {
-        event["event_type"]
-        for event in case.get("events", [])
-        if isinstance(event, dict)
-    }
+    event_types: set[str] = set()
+    for event in case.get("events", []):
+        if not isinstance(event, dict):
+            continue
+        event_type = event.get("event_type")
+        occurred_at = event.get("occurred_at")
+        if not isinstance(event_type, str) or not isinstance(occurred_at, str):
+            continue
+        try:
+            occurred = datetime.strptime(
+                occurred_at, "%Y-%m-%dT%H:%M:%SZ"
+            ).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if occurred <= now:
+            event_types.add(event_type)
     stopped = "stop-new-use" in event_types or "emergency-stop" in event_types
     prohibited = "prohibit" in event_types or "emergency-stop" in event_types
 
