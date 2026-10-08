@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1",
+  "case_id": "example-planned-hpke-kem-retirement-case",
+  "plan_id": "example-planned-hpke-kem-retirement",
+  "plan_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "events": [
+    {
+      "event_id": "event-01",
+      "event_type": "activate-plan",
+      "occurred_at": "2026-10-15T00:00:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "reference": "https://example.org/events/activate"
+    },
+    {
+      "event_id": "event-02",
+      "event_type": "replacement-available",
+      "occurred_at": "2026-10-20T00:00:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "reference": "https://example.org/events/replacement"
+    },
+    {
+      "event_id": "event-03",
+      "event_type": "prefer-replacement",
+      "occurred_at": "2026-10-20T01:00:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "reference": "https://example.org/events/prefer"
+    },
+    {
+      "event_id": "event-04",
+      "event_type": "stop-new-use",
+      "occurred_at": "2026-11-15T00:00:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "reference": "https://example.org/events/stop"
+    },
+    {
+      "event_id": "event-05",
+      "event_type": "enter-legacy-processing",
+      "occurred_at": "2026-11-15T00:01:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "https://example.org/events/legacy"
+    },
+    {
+      "event_id": "event-06",
+      "event_type": "dependent-migrated",
+      "occurred_at": "2026-12-01T00:00:00Z",
+      "dependent_id": "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
+      "evidence_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "reference": "https://example.org/events/dependent-aes"
+    },
+    {
+      "event_id": "event-07",
+      "event_type": "dependent-migrated",
+      "occurred_at": "2026-12-02T00:00:00Z",
+      "dependent_id": "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
+      "evidence_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "reference": "https://example.org/events/dependent-chacha"
+    },
+    {
+      "event_id": "event-08",
+      "event_type": "prohibit",
+      "occurred_at": "2026-12-31T00:00:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "reference": "https://example.org/events/prohibit"
+    },
+    {
+      "event_id": "event-09",
+      "event_type": "complete",
+      "occurred_at": "2026-12-31T00:01:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "reference": "https://example.org/events/complete"
+    }
+  ],
+  "case_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
