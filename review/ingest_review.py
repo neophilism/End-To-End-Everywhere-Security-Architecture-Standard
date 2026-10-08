@@ -113,6 +113,40 @@ def validate_source_attestation(data: dict, path: Path) -> list[str]:
     ):
         errors.append(f"{path}: finding_ids must be a unique string array")
 
+    evidence_digest = data.get("automated_evidence_digest")
+    evidence_reference = data.get("automated_evidence_reference")
+    equivalent_note = data.get("automated_evidence_equivalent_note")
+    has_digest = isinstance(evidence_digest, str) and bool(
+        SHA256_RE.fullmatch(evidence_digest)
+    )
+    has_reference = isinstance(evidence_reference, str) and bool(
+        evidence_reference.strip()
+    )
+    has_equivalent = isinstance(equivalent_note, str) and bool(
+        equivalent_note.strip()
+    )
+    if (evidence_digest is None) != (evidence_reference is None):
+        errors.append(
+            f"{path}: automated evidence digest/reference must be supplied together"
+        )
+    if evidence_digest is not None and not has_digest:
+        errors.append(f"{path}: automated_evidence_digest must be sha256 when set")
+    if evidence_reference is not None and not has_reference:
+        errors.append(
+            f"{path}: automated_evidence_reference must be non-empty when set"
+        )
+    if has_digest and has_reference:
+        if equivalent_note is not None:
+            errors.append(
+                f"{path}: automated_evidence_equivalent_note must be null when "
+                "an automated evidence artifact is supplied"
+            )
+    elif not has_equivalent:
+        errors.append(
+            f"{path}: provide automated evidence digest/reference or a non-empty "
+            "equivalent manual-procedure note"
+        )
+
     final_acceptance = data.get("final_acceptance")
     final_tree = data.get("final_reviewed_tree_digest")
     if final_acceptance not in {None, True, False}:
@@ -154,6 +188,11 @@ def normalized_reviewer(data: dict, path: Path) -> dict:
         "domains": sorted(data["domains"]),
         "attestation_digest": digest,
         "attestation_reference": path.relative_to(ROOT).as_posix(),
+        "automated_evidence_digest": data.get("automated_evidence_digest"),
+        "automated_evidence_reference": data.get("automated_evidence_reference"),
+        "automated_evidence_equivalent_note": data.get(
+            "automated_evidence_equivalent_note"
+        ),
         "final_reviewed_tree_digest": (
             data["final_reviewed_tree_digest"] if accepted else None
         ),
