@@ -49,7 +49,8 @@
       "release/1.0.0-readiness.json",
       "release/1.0.0-finalization.json",
       "release/1.0.0-RELEASE-GUIDE.md",
-      "release/1.0.0-RELEASE-NOTES.md"
+      "release/1.0.0-RELEASE-NOTES.md",
+      "release/1.0.0-manifest.schema.json"
     ],
     "excluded_paths": [
       "registry/release-candidate.json",
