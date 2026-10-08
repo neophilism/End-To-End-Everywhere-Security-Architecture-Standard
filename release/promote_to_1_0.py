@@ -23,6 +23,7 @@ for path in (RELEASE, REVIEW, SCRIPTS):
 
 import final_release
 import review_completion
+import requirement_transition
 import validate_1_0_readiness
 import validate_review
 
@@ -407,6 +408,8 @@ def apply_promotion(policy: dict) -> None:
             "unable to create review completion receipt: " + str(exc)
         ) from exc
 
+    requirements_before = requirement_transition.snapshot()
+
     old = policy["pre_1_0_standard_version"]
     new = policy["final_standard_version"]
     for item in planned_replacements(policy):
@@ -421,6 +424,20 @@ def apply_promotion(policy: dict) -> None:
     mark_readiness_complete()
     generate_release_notes()
     replace_review_pending_notice()
+
+    try:
+        requirement_transition.write_report(
+            requirements_before,
+            old_version=old,
+            new_version=new,
+            source_reviewed_tree_digest=package["completion"][
+                "final_reviewed_tree_digest"
+            ],
+        )
+    except ValueError as exc:
+        raise RuntimeError(
+            "requirement ID transition failed: " + str(exc)
+        ) from exc
 
     residual = final_release.residual_pre_1_0_occurrences(policy)
     if residual:
