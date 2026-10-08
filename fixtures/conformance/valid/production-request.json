@@ -1,0 +1,160 @@
+{
+  "schema_version": "0.1",
+  "assessment_id": "example-production-conformance",
+  "conformance_policy_ref": "conformance-production@0.1.0",
+  "standard_version": "0.1.0-dev",
+  "product_id": "example-product",
+  "product_version": "1.0.0",
+  "platform": "example-platform",
+  "evaluated_at": "2026-10-08T04:00:00Z",
+  "assurance_plan_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "certification_bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "configuration_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "source_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "input_digests": {
+    "profile_catalog": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "cryptographic_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "security_properties_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "threat_model_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "assurance_levels_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "certification_evidence_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "research_promotion_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "deprecation_migration_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "conformance_registry": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "family_scope": [
+    {
+      "family_id": "foundation",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "example-architecture",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "example-addons",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "identity-architecture",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "pairwise-e2ee",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "group-e2ee",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "key-verification",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "key-transparency",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "backup-recovery",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "metadata-privacy",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "contact-discovery",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "attachment-encryption",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "real-time-media",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "secret-storage",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "transport-security",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "client-security",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "server-trust",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "telemetry",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "secure-development",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "software-supply-chain",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "security-verification",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "formal-verification",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "assurance-level",
+      "applicability": "in-scope",
+      "rationale": null
+    },
+    {
+      "family_id": "vulnerability-disclosure",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "vulnerability-prioritization",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    },
+    {
+      "family_id": "advisory-interoperability",
+      "applicability": "not-applicable",
+      "rationale": "Example product fixture does not implement this optional capability."
+    }
+  ],
+  "migration_context": null,
+  "request_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
