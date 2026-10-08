@@ -52,6 +52,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 37. [Research Profile Registry](research-profile-registry.md) — content-addressed experimental research entries with threat/property/algorithm context, hypotheses, experiments, vectors, implementations, results, limitations, and reproducibility.
 38. [Research → Production Promotion Gates](research-production-promotion.md) — sequential Experimental → Candidate → Recommended → Required promotion with machine-readable independent-review/evidence paths and production-catalog projection.
 39. [Deprecation and Emergency Migration](deprecation-emergency-migration.md) — planned and emergency retirement state machines, downgrade-safe cutover, bounded historical processing, dependency impact, registry projection, and overdue enforcement.
+40. [Conformance Engine](conformance-engine.md) — deterministic production, Candidate-evaluation, and migration-only conformance with complete family scope, Required-profile enforcement, full property evidence, and exact standards/product digest binding.
 
 ## Remaining specification areas
 
