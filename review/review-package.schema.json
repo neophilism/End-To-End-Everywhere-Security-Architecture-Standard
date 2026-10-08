@@ -137,7 +137,9 @@
           "status",
           "disposition_rationale",
           "fix_reference",
-          "reviewer_acceptance"
+          "reviewer_acceptance",
+          "source_finding_digest",
+          "source_finding_reference"
         ],
         "properties": {
           "finding_id": {
@@ -211,6 +213,14 @@
               "boolean",
               "null"
             ]
+          },
+          "source_finding_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "source_finding_reference": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
