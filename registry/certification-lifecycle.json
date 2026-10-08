@@ -111,6 +111,15 @@
       "requires_validity_window": false
     },
     {
+      "event_type": "corrective-action-submitted",
+      "from_state": "corrective-action",
+      "to_state": "renewal-review",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
       "event_type": "begin-renewal",
       "from_state": "certified",
       "to_state": "renewal-review",
