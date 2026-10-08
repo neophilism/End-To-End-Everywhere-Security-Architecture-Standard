@@ -158,6 +158,22 @@ A review is not expected to prove the entire standard correct. It must clearly s
 
 ## Running the candidate checks
 
+### Recommended reproducible evidence run
+
+From the repository root:
+
+`python review/run_expert_review_suite.py --reviewer-id <reviewer-id> --organization-id <organization-id> --output review/evidence/<reviewer-id>-automated-evidence.json`
+
+The generated JSON records the exact candidate identity, command lines, environment, exit codes, stdout/stderr and their SHA-256 digests, and an overall content digest. Attach or reference that evidence from your reviewer attestation.
+
+This automated report is deliberately marked `human_review_required=true`. Passing it does not satisfy the human expert-review domains or authorize 1.0.
+
+To inspect the plan only:
+
+`python review/run_expert_review_suite.py --plan`
+
+### Individual commands
+
 From the repository root:
 
 `python scripts/validate_repo.py`
