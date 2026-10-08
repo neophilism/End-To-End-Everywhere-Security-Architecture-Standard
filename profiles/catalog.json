@@ -127,6 +127,12 @@
       "name": "Security verification framework",
       "cardinality": "at-most-one",
       "description": "Security verification framework. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "formal-verification",
+      "name": "Formal verification",
+      "cardinality": "many",
+      "description": "Complementary machine-checked proof models selected according to the claims and assurance tier."
     }
   ],
   "profiles": [
@@ -1104,6 +1110,42 @@
         "verification-whitebox@0.1.0"
       ],
       "notes": "Combined external and internal assessment with per-profile method/threat/property coverage and no unresolved counterexamples."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "formal-symbolic-protocol",
+      "profile_version": "0.1.0",
+      "family_id": "formal-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Machine-checked symbolic protocol proof under an explicit adversary/equational model. Tool-neutral; Tamarin/ProVerif-class approaches are examples."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "formal-computational-proof",
+      "profile_version": "0.1.0",
+      "family_id": "formal-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Machine-checked computational/game-based cryptographic proof with explicit assumptions and reductions."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "formal-code-refinement",
+      "profile_version": "0.1.0",
+      "family_id": "formal-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Machine-checked implementation/refinement proof binding code to a formal specification and disclosing unverified toolchain boundaries."
     }
   ]
 }
