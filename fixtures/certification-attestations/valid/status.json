@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "payload": {
+    "schema_version": "0.1",
+    "statement_id": "example-status-0",
+    "attestation_id": "example-certification-attestation",
+    "case_id": "example-certification-case",
+    "sequence": 0,
+    "state": "certified",
+    "effective_at": "2026-10-07T21:00:00Z",
+    "previous_status_digest": null,
+    "lifecycle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "lifecycle_event_id": "event-05-approve",
+    "evidence_bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "certificate_expires_at": "2027-10-07T15:30:00Z",
+    "surveillance_due_at": "2027-04-07T15:30:00Z",
+    "issuer_id": "open-e2ee-verified",
+    "signing_policy_id": "e2eesa-cert-classical"
+  },
+  "payload_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "envelopes": [
+    {
+      "envelope_id": "status-envelope-classical",
+      "format": "jws-compact",
+      "serialized_envelope": "TEST-STATUS-ED25519",
+      "payload_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}
