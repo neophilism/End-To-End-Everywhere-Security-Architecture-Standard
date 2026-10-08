@@ -48,8 +48,19 @@ import confidence_classification
 import research_profile_registry
 import research_promotion
 import deprecation_migration
+import conformance_engine
 
 REQUIRED_PATHS = [
+    'scripts/conformance_engine.py',
+    'registry/conformance.json',
+    'schemas/conformance-request.schema.json',
+    'schemas/conformance-result.schema.json',
+    'spec/conformance-engine.md',
+    'adr/0040-conformance-claims-are-scope-specific.md',
+    'tests/test_conformance_engine.py',
+    'fixtures/conformance/valid/production-assurance-plan.json',
+    'fixtures/conformance/valid/production-certification-bundle.json',
+    'fixtures/conformance/valid/production-request.json',
     'scripts/deprecation_migration.py',
     'registry/deprecation-migration.json',
     'schemas/deprecation-migration-registry.schema.json',
