@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "interface_kinds": [
+    "runtime-profile-composition",
+    "assurance-evidence-composition",
+    "resolver-composition"
+  ],
+  "pair_relationships": [
+    "co-configurable",
+    "exclusive-alternative",
+    "explicitly-incompatible",
+    "dependency-compatible",
+    "contextually-incompatible"
+  ],
+  "wire_interoperability_inference": "prohibited",
+  "maximum_pair_search_states": 250000
+}
