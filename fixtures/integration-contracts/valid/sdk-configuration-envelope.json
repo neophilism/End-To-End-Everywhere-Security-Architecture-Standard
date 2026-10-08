@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1",
+  "contract_id": "sdk-contract",
+  "contract_version": "1.0.0",
+  "producer_system": "sdk",
+  "consumer_system": "e2eesa",
+  "artifact_type": "configuration",
+  "standard_version": "0.1.0-dev",
+  "authority_path": null,
+  "schema_path": "schemas/configuration.schema.json",
+  "payload_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "produced_at": "2026-10-08T05:30:00Z",
+  "correlation_id": "example-sdk-config",
+  "payload": {
+    "schema_version": "0.1",
+    "configuration_id": "example-integration-config",
+    "standard_version": "0.1.0-dev",
+    "selected_profiles": [
+      "foundation-baseline@0.1.0"
+    ],
+    "accepted_nondefault_statuses": []
+  },
+  "envelope_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
