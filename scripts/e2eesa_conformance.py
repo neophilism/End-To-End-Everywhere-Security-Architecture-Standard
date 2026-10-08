@@ -39,6 +39,13 @@ class InputError(ValueError):
     """Command-level input error."""
 
 
+class CliArgumentParser(argparse.ArgumentParser):
+    """argparse adapter that preserves the normative PR 41 exit-code contract."""
+
+    def error(self, message: str) -> None:
+        raise InputError(message)
+
+
 class ConformanceArgumentParser(argparse.ArgumentParser):
     """Argument parser whose syntax errors follow the normative CLI exit contract."""
 
