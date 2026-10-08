@@ -39,6 +39,13 @@ class InputError(ValueError):
     """Command-level input error."""
 
 
+class ConformanceArgumentParser(argparse.ArgumentParser):
+    """Argument parser whose syntax errors follow the normative CLI exit contract."""
+
+    def error(self, message: str) -> None:
+        raise InputError(message)
+
+
 def _reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for key, value in pairs:
@@ -324,7 +331,7 @@ def validate_cli_registry(registry: dict[str, Any]) -> list[str]:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
+    parser = ConformanceArgumentParser(
         prog="e2eesa-conformance",
         description="Evaluate and verify E2EESA conformance using the PR 40 engine.",
     )
