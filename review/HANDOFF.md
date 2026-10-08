@@ -76,3 +76,18 @@ Validate the fixed tree with:
 This permits only the exact expected rc.1 manifest-drift condition and still requires every other repository invariant to pass. Then compute the fixed-tree identity with:
 
 `python review/final_review_tree.py`
+
+
+## Normalizing submitted review artifacts
+
+Standalone reviewer files are the source artifacts. Do not manually copy their hashes into the combined package.
+
+After adding or updating files under `review/attestations/` or `review/findings/`, run:
+
+`python review/ingest_review.py --write`
+
+Then verify deterministic normalization with:
+
+`python review/ingest_review.py`
+
+The ingest tool computes SHA-256 identities and stable repository references automatically, checks reviewer/finding relationships, preserves the full finding failure scenario and references, and updates `review/independent-review.json`. The combined package never asks a source artifact to contain its own hash.
