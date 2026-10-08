@@ -120,6 +120,34 @@ def validate_package(package: dict, root: Path = ROOT) -> list[str]:
         if not isinstance(reference, str) or not reference:
             errors.append(f"{prefix}.attestation_reference must be non-empty")
 
+        final_tree = reviewer.get("final_reviewed_tree_digest")
+        final_acceptance_digest = reviewer.get("final_acceptance_digest")
+        final_acceptance_reference = reviewer.get("final_acceptance_reference")
+        final_values = (
+            final_tree,
+            final_acceptance_digest,
+            final_acceptance_reference,
+        )
+        if any(value is not None for value in final_values):
+            if not isinstance(final_tree, str) or not SHA256_RE.fullmatch(final_tree):
+                errors.append(
+                    f"{prefix}.final_reviewed_tree_digest must be sha256 when set"
+                )
+            if (
+                not isinstance(final_acceptance_digest, str)
+                or not SHA256_RE.fullmatch(final_acceptance_digest)
+            ):
+                errors.append(
+                    f"{prefix}.final_acceptance_digest must be sha256 when set"
+                )
+            if (
+                not isinstance(final_acceptance_reference, str)
+                or not final_acceptance_reference
+            ):
+                errors.append(
+                    f"{prefix}.final_acceptance_reference must be non-empty when set"
+                )
+
     findings = package.get("findings")
     if not isinstance(findings, list):
         errors.append("findings must be an array")
@@ -197,18 +225,44 @@ def validate_package(package: dict, root: Path = ROOT) -> list[str]:
         if not isinstance(complete, bool):
             errors.append("completion.review_complete must be boolean")
         if complete:
-            for field in ("completed_at", "summary_digest", "summary_reference"):
+            for field in (
+                "completed_at",
+                "summary_digest",
+                "summary_reference",
+                "final_reviewed_tree_digest",
+                "final_reviewed_commit",
+            ):
                 value = completion.get(field)
                 if not isinstance(value, str) or not value:
                     errors.append(f"completed review requires {field}")
-            if isinstance(completion.get("summary_digest"), str) and not SHA256_RE.fullmatch(completion["summary_digest"]):
+            if (
+                isinstance(completion.get("summary_digest"), str)
+                and not SHA256_RE.fullmatch(completion["summary_digest"])
+            ):
                 errors.append("completion.summary_digest must be sha256")
+            if (
+                isinstance(completion.get("final_reviewed_tree_digest"), str)
+                and not SHA256_RE.fullmatch(
+                    completion["final_reviewed_tree_digest"]
+                )
+            ):
+                errors.append(
+                    "completion.final_reviewed_tree_digest must be sha256"
+                )
         else:
             if any(
                 completion.get(field) is not None
-                for field in ("completed_at", "summary_digest", "summary_reference")
+                for field in (
+                    "completed_at",
+                    "summary_digest",
+                    "summary_reference",
+                    "final_reviewed_tree_digest",
+                    "final_reviewed_commit",
+                )
             ):
-                errors.append("incomplete review must not claim completion artifacts")
+                errors.append(
+                    "incomplete review must not claim completion artifacts"
+                )
 
     return sorted(set(errors))
 
@@ -249,6 +303,25 @@ def completion_errors(package: dict, root: Path = ROOT) -> list[str]:
         for item in independent_reviewers
     ):
         errors.append("PR 49 completion requires independent cryptography/protocol review")
+
+    final_tree = completion.get("final_reviewed_tree_digest")
+    for reviewer in independent_reviewers:
+        reviewer_id = reviewer.get("reviewer_id")
+        if reviewer.get("final_reviewed_tree_digest") != final_tree:
+            errors.append(
+                f"reviewer {reviewer_id} final acceptance is not bound "
+                "to the completion final reviewed tree"
+            )
+        digest = reviewer.get("final_acceptance_digest")
+        if not isinstance(digest, str) or not SHA256_RE.fullmatch(digest):
+            errors.append(
+                f"reviewer {reviewer_id} lacks final acceptance digest"
+            )
+        reference = reviewer.get("final_acceptance_reference")
+        if not isinstance(reference, str) or not reference:
+            errors.append(
+                f"reviewer {reviewer_id} lacks final acceptance reference"
+            )
 
     for finding in findings:
         if not isinstance(finding, dict):
