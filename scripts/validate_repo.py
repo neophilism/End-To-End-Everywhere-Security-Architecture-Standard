@@ -44,8 +44,22 @@ import vulnerability_handling
 import advisory_interoperability
 import observatory_evidence
 import observatory_data_architecture
+import confidence_classification
 
 REQUIRED_PATHS = [
+    'scripts/confidence_classification.py',
+    'registry/confidence-classification.json',
+    'schemas/confidence-classification-policy.schema.json',
+    'schemas/classification-record.schema.json',
+    'spec/confidence-classification.md',
+    'adr/0036-explicit-confidence-semantics-and-mixed-resolution.md',
+    'tests/test_confidence_classification.py',
+    'fixtures/confidence-classification/valid/human-policy.json',
+    'fixtures/confidence-classification/valid/human-record.json',
+    'fixtures/confidence-classification/valid/automated-policy.json',
+    'fixtures/confidence-classification/valid/automated-record.json',
+    'fixtures/confidence-classification/valid/mixed-weighted-policy.json',
+    'fixtures/confidence-classification/valid/mixed-weighted-record.json',
     'scripts/observatory_data_architecture.py',
     'registry/observatory-data-architecture.json',
     'schemas/observatory-property-graph.schema.json',
