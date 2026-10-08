@@ -63,3 +63,16 @@ After all review-driven fixes are applied, compute the exact fixed standard-tree
 `python review/final_review_tree.py`
 
 Every reviewer's final acceptance must reference that same tree digest. The combined completion record must use it as `final_reviewed_tree_digest`.
+
+
+## Validation after review fixes
+
+Once a reviewer finding causes a frozen candidate file to change, the original rc.1 manifest is expected to differ. Do **not** rewrite the historical rc.1 manifest merely to hide that difference.
+
+Validate the fixed tree with:
+
+`python review/validate_post_fix_tree.py`
+
+This permits only the exact expected rc.1 manifest-drift condition and still requires every other repository invariant to pass. Then compute the fixed-tree identity with:
+
+`python review/final_review_tree.py`
