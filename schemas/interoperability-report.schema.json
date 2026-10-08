@@ -1,0 +1,30 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/interoperability-report.schema.json",
+  "title":"E2EESA Cross-Profile Interoperability Report",
+  "type":"object","additionalProperties":false,
+  "required":[
+    "schema_version","standard_version","production_profile_count","pair_count",
+    "co_configurable_count","exclusive_alternative_count",
+    "explicitly_incompatible_count","dependency_compatible_count",
+    "contextually_incompatible_count","declared_contract_count",
+    "search_states_examined","input_digests","pairs","errors","report_digest"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "standard_version":{"type":"string","minLength":1},
+    "production_profile_count":{"type":"integer","minimum":0},
+    "pair_count":{"type":"integer","minimum":0},
+    "co_configurable_count":{"type":"integer","minimum":0},
+    "exclusive_alternative_count":{"type":"integer","minimum":0},
+    "explicitly_incompatible_count":{"type":"integer","minimum":0},
+    "dependency_compatible_count":{"type":"integer","minimum":0},
+    "contextually_incompatible_count":{"type":"integer","minimum":0},
+    "declared_contract_count":{"type":"integer","minimum":0},
+    "search_states_examined":{"type":"integer","minimum":0},
+    "input_digests":{"type":"object","additionalProperties":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}},
+    "pairs":{"type":"array","items":{"$ref":"interoperability-pair-record.schema.json"}},
+    "errors":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "report_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}
