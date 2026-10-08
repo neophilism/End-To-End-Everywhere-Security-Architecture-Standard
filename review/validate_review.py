@@ -172,6 +172,19 @@ def validate_package(package: dict, root: Path = ROOT) -> list[str]:
             errors.append(f"{prefix} references unknown reviewer_id")
         if finding.get("severity") not in SEVERITIES:
             errors.append(f"{prefix} has invalid severity")
+
+        source_digest = finding.get("source_finding_digest")
+        if (
+            not isinstance(source_digest, str)
+            or not SHA256_RE.fullmatch(source_digest)
+        ):
+            errors.append(f"{prefix}.source_finding_digest must be sha256")
+        source_reference = finding.get("source_finding_reference")
+        if not isinstance(source_reference, str) or not source_reference:
+            errors.append(
+                f"{prefix}.source_finding_reference must be non-empty"
+            )
+
         state = finding.get("status")
         if state not in FINDING_STATES:
             errors.append(f"{prefix} has invalid status")
