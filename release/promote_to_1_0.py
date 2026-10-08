@@ -149,6 +149,10 @@ def patch_repository_version_validation() -> None:
     )
     if old_check in text:
         text = text.replace(old_check, new_check)
+    elif "STABLE_VERSION.fullmatch(version)" not in text:
+        raise RuntimeError(
+            "validate_repo.py VERSION acceptance block did not match expected source"
+        )
 
     old_release_gate = '''    errors.extend(
         "release candidate: " + error
@@ -168,6 +172,10 @@ def patch_repository_version_validation() -> None:
 '''
     if old_release_gate in text:
         text = text.replace(old_release_gate, new_release_gate)
+    elif 'current_release_version.startswith("0.9.0-rc.")' not in text:
+        raise RuntimeError(
+            "validate_repo.py release-candidate gate did not match expected source"
+        )
 
     path.write_text(text, encoding="utf-8")
 
