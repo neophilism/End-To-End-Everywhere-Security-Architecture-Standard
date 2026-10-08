@@ -50,9 +50,20 @@ import research_promotion
 import deprecation_migration
 import conformance_engine
 import compatibility_solver
+import reference_fixtures
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/reference_fixtures.py',
+    'registry/reference-fixtures.json',
+    'schemas/reference-fixtures-registry.schema.json',
+    'schemas/reference-fixture-manifest.schema.json',
+    'schemas/reference-fixture-case.schema.json',
+    'schemas/reference-fixture-report.schema.json',
+    'spec/reference-fixtures.md',
+    'adr/0043-reference-fixtures-cover-lifecycle-boundaries.md',
+    'tests/test_reference_fixtures.py',
+    'fixtures/reference-architectures/manifest.json',
     'scripts/compatibility_solver.py',
     'registry/compatibility-solver.json',
     'schemas/compatibility-solver-registry.schema.json',
