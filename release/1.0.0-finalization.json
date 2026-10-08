@@ -55,7 +55,8 @@
       "release/review-completion-receipt.json",
       "release/final_release.py",
       "release/promote_to_1_0.py",
-      "release/validate_1_0_readiness.py"
+      "release/validate_1_0_readiness.py",
+      "release/review-completion-receipt.schema.json"
     ],
     "excluded_paths": [
       "registry/release-candidate.json",
