@@ -1,0 +1,140 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "levels": [
+    {
+      "profile_ref": "assurance-a1-observed@0.1.0",
+      "ordinal": 1,
+      "name": "A1 Observed",
+      "minimum_independent_assessors": 1,
+      "required_profile_refs": ["verification-blackbox@0.1.0"],
+      "symbolic_property_ids": [],
+      "refinement_property_ids": [],
+      "computational_property_ids": []
+    },
+    {
+      "profile_ref": "assurance-a2-reviewed@0.1.0",
+      "ordinal": 2,
+      "name": "A2 Reviewed",
+      "minimum_independent_assessors": 1,
+      "required_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0"
+      ],
+      "symbolic_property_ids": [],
+      "refinement_property_ids": [],
+      "computational_property_ids": []
+    },
+    {
+      "profile_ref": "assurance-a3-protocol-formal@0.1.0",
+      "ordinal": 3,
+      "name": "A3 Protocol Formal",
+      "minimum_independent_assessors": 1,
+      "required_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0"
+      ],
+      "symbolic_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-KEY-CONSISTENCY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-REPLAY-RESISTANCE",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY",
+        "SP-PQ-AUTHENTICATION"
+      ],
+      "refinement_property_ids": [],
+      "computational_property_ids": []
+    },
+    {
+      "profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "ordinal": 4,
+      "name": "A4 Implementation Formal",
+      "minimum_independent_assessors": 1,
+      "required_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0",
+        "formal-code-refinement@0.1.0"
+      ],
+      "symbolic_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-KEY-CONSISTENCY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-REPLAY-RESISTANCE",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY",
+        "SP-PQ-AUTHENTICATION"
+      ],
+      "refinement_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "computational_property_ids": []
+    },
+    {
+      "profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "ordinal": 5,
+      "name": "A5 Comprehensive Formal",
+      "minimum_independent_assessors": 2,
+      "required_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0",
+        "formal-code-refinement@0.1.0",
+        "formal-computational-proof@0.1.0"
+      ],
+      "symbolic_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-KEY-CONSISTENCY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-REPLAY-RESISTANCE",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY",
+        "SP-PQ-AUTHENTICATION"
+      ],
+      "refinement_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "computational_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-PQ-CONFIDENTIALITY",
+        "SP-PQ-AUTHENTICATION"
+      ]
+    }
+  ]
+}
