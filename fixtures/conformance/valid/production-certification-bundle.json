@@ -1,0 +1,520 @@
+{
+  "schema_version": "0.1",
+  "bundle_id": "example-a3-certification-bundle",
+  "product_id": "example-product",
+  "product_version": "1.0.0",
+  "platform": "example-platform",
+  "assurance_profile_ref": "assurance-a3-protocol-formal@0.1.0",
+  "assurance_plan_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "configuration_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "effective_profile_refs": [
+    "assurance-a3-protocol-formal@0.1.0",
+    "development-ssdf-baseline@0.1.0",
+    "example-choice-b@0.1.0",
+    "formal-symbolic-protocol@0.1.0",
+    "foundation-baseline@0.1.0",
+    "supply-chain-attested-reproducible@0.1.0",
+    "verification-combined@0.1.0"
+  ],
+  "source_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "source_access": "restricted-review",
+  "observed_at": "2026-10-07T20:00:00Z",
+  "evidence_items": [
+    {
+      "evidence_id": "evidence-01-architecture-configuration",
+      "evidence_type": "architecture-configuration",
+      "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-02-security-claims",
+      "evidence_type": "security-claims",
+      "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-03-verification-policy",
+      "evidence_type": "verification-policy",
+      "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-04-verification-evidence",
+      "evidence_type": "verification-evidence",
+      "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "issuer_id": "independent-assessor-one",
+      "issuer_role": "independent-assessor",
+      "assessor_ids": [
+        "independent-assessor-one"
+      ],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-05-independent-audit-report",
+      "evidence_type": "independent-audit-report",
+      "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "issuer_id": "independent-assessor-one",
+      "issuer_role": "independent-assessor",
+      "assessor_ids": [
+        "independent-assessor-one"
+      ],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-06-cryptographic-profile-report",
+      "evidence_type": "cryptographic-profile-report",
+      "digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-07-threat-model-report",
+      "evidence_type": "threat-model-report",
+      "digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-08-secure-development-policy",
+      "evidence_type": "secure-development-policy",
+      "digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-09-secure-development-evidence",
+      "evidence_type": "secure-development-evidence",
+      "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-10-supply-chain-policy",
+      "evidence_type": "supply-chain-policy",
+      "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-11-supply-chain-evidence",
+      "evidence_type": "supply-chain-evidence",
+      "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-12-sbom",
+      "evidence_type": "sbom",
+      "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-13-build-provenance",
+      "evidence_type": "build-provenance",
+      "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "issuer_id": "example-vendor",
+      "issuer_role": "tool",
+      "assessor_ids": [],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-14-source-review-report",
+      "evidence_type": "source-review-report",
+      "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "issuer_id": "independent-assessor-one",
+      "issuer_role": "independent-assessor",
+      "assessor_ids": [
+        "independent-assessor-one"
+      ],
+      "profile_refs": [
+        "assurance-a3-protocol-formal@0.1.0"
+      ],
+      "property_ids": [
+        "SP-BUILD-PROVENANCE",
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-15-formal-policy",
+      "evidence_type": "formal-policy",
+      "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "issuer_id": "example-vendor",
+      "issuer_role": "vendor",
+      "assessor_ids": [],
+      "profile_refs": [
+        "formal-symbolic-protocol@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    },
+    {
+      "evidence_id": "evidence-16-formal-evidence",
+      "evidence_type": "formal-evidence",
+      "digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "issuer_id": "independent-assessor-one",
+      "issuer_role": "independent-assessor",
+      "assessor_ids": [
+        "independent-assessor-one"
+      ],
+      "profile_refs": [
+        "formal-symbolic-protocol@0.1.0"
+      ],
+      "property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "observed_at": "2026-10-07T19:00:00Z",
+      "reference": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "limitations": [
+        "Example fixture only; does not represent a completed real assessment."
+      ]
+    }
+  ],
+  "claim_evidence": [
+    {
+      "property_id": "SP-BUILD-PROVENANCE",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN"
+      ],
+      "evidence_ids": [
+        "evidence-11-supply-chain-evidence",
+        "evidence-13-build-provenance",
+        "evidence-14-source-review-report"
+      ],
+      "status": "supported",
+      "limitations": [
+        "Example fixture only."
+      ]
+    },
+    {
+      "property_id": "SP-CONFIDENTIALITY",
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "evidence_ids": [
+        "evidence-04-verification-evidence",
+        "evidence-05-independent-audit-report",
+        "evidence-16-formal-evidence"
+      ],
+      "status": "supported",
+      "limitations": [
+        "Example fixture only."
+      ]
+    },
+    {
+      "property_id": "SP-DOWNGRADE-RESISTANCE",
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "evidence_ids": [
+        "evidence-04-verification-evidence",
+        "evidence-05-independent-audit-report",
+        "evidence-16-formal-evidence"
+      ],
+      "status": "supported",
+      "limitations": [
+        "Example fixture only."
+      ]
+    },
+    {
+      "property_id": "SP-INTEGRITY",
+      "threat_ids": [
+        "TM-NET-ACTIVE"
+      ],
+      "evidence_ids": [
+        "evidence-04-verification-evidence",
+        "evidence-05-independent-audit-report"
+      ],
+      "status": "supported",
+      "limitations": [
+        "Example fixture only."
+      ]
+    },
+    {
+      "property_id": "SP-SOFTWARE-INTEGRITY",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN"
+      ],
+      "evidence_ids": [
+        "evidence-09-secure-development-evidence",
+        "evidence-11-supply-chain-evidence",
+        "evidence-14-source-review-report"
+      ],
+      "status": "supported",
+      "limitations": [
+        "Example fixture only."
+      ]
+    }
+  ],
+  "exceptions": []
+}
