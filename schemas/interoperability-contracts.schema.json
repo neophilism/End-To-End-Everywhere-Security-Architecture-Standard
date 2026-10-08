@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/interoperability-contracts.schema.json",
+  "title":"E2EESA Declared Dependency Interoperability Contracts",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","standard_version","contracts"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "standard_version":{"type":"string","minLength":1},
+    "contracts":{
+      "type":"array","uniqueItems":true,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["contract_id","consumer_profile_ref","provider_profile_ref","interface_kind","expected_relationship"],
+        "properties":{
+          "contract_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "consumer_profile_ref":{"type":"string","minLength":1},
+          "provider_profile_ref":{"type":"string","minLength":1},
+          "interface_kind":{"type":"string","minLength":1},
+          "expected_relationship":{"const":"co-configurable"}
+        }
+      }
+    }
+  }
+}
