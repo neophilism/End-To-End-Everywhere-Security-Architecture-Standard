@@ -10,7 +10,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
-NORMATIVE_RE = re.compile(r"\\b(MUST NOT|SHOULD NOT|MUST|SHOULD|MAY)\\b")
+NORMATIVE_RE = re.compile(r"\b(MUST NOT|SHOULD NOT|MUST|SHOULD|MAY)\b")
 
 
 def canonical_digest(value):
