@@ -41,7 +41,7 @@ A 0.9 candidate is valid only when:
 - PR 47 security-rationale coverage is 100%;
 - all six PR 45 integration contracts validate;
 - the profile catalog, cryptographic registry, conformance registry, promotion registry, migration registry, and integration registry validate;
-- all files in the frozen surface match the stored manifest digest;
+- all files in the frozen surface match their stored Git blob object IDs and byte sizes;
 - no unexpected frozen file is added or removed; and
 - the release version and basis version match the release registry.
 
@@ -65,7 +65,7 @@ The normal CI workflow continues to run every unit test and seeded adversarial r
 
 ## Candidate freeze semantics
 
-A change to any frozen file changes the release manifest and invalidates the candidate until the manifest is intentionally regenerated.
+A change to any frozen file changes its Git blob object ID and therefore the SHA-256 digest of the ordered release manifest, invalidating the candidate until the manifest is intentionally regenerated.
 
 PR 49 may change frozen material only to incorporate documented independent expert-review findings.
 
