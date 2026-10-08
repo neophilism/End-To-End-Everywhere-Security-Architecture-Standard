@@ -49,8 +49,15 @@ import research_profile_registry
 import research_promotion
 import deprecation_migration
 import conformance_engine
+import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/e2eesa_conformance.py',
+    'registry/conformance-cli.json',
+    'schemas/conformance-cli-registry.schema.json',
+    'spec/conformance-cli.md',
+    'adr/0041-cli-is-a-thin-deterministic-conformance-adapter.md',
+    'tests/test_conformance_cli.py',
     'scripts/conformance_engine.py',
     'registry/conformance.json',
     'schemas/conformance-request.schema.json',
