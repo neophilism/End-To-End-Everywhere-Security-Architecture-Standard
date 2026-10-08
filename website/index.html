@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10242b">
+  <meta name="description" content="Explore the End-to-End Everywhere Security Architecture Standard. Understand the security choices, discover applicable profiles, and read the authoritative requirements in plain language.">
+  <title>End-to-End Everywhere — Security made understandable</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="./" data-nav="home" aria-label="End-to-End Everywhere home">
+        <span class="brand-symbol" aria-hidden="true"><span>e</span><i></i><span>e</span></span>
+        <span class="brand-title">end to end<br><b>everywhere.</b></span>
+      </a>
+      <div class="sidebar-caption">THE STANDARD, SIMPLIFIED</div>
+      <nav id="nav" class="sidebar-nav" aria-label="Explore">
+        <a href="?view=home" data-nav="home" class="nav-link active"><span class="nav-icon" aria-hidden="true">⌂</span> Overview</a>
+        <a href="?view=guide" data-nav="guide" class="nav-link"><span class="nav-icon" aria-hidden="true">◇</span> Find your path</a>
+        <a href="?view=profiles" data-nav="profiles" class="nav-link"><span class="nav-icon" aria-hidden="true">▦</span> Explore profiles</a>
+        <a href="?view=library" data-nav="library" class="nav-link"><span class="nav-icon" aria-hidden="true">≡</span> Standards library</a>
+        <a href="?view=about" data-nav="about" class="nav-link"><span class="nav-icon" aria-hidden="true">◎</span> How this works</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <span class="note-icon" aria-hidden="true">✦</span>
+          <div><strong>Made for every role.</strong><p>You don't need to be a cryptographer to get started.</p></div>
+        </div>
+        <a class="source-link" href="https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard" target="_blank" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <button id="menu-button" class="icon-button mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb">E2E EVERYWHERE <span>/</span> <span id="breadcrumb-label">OVERVIEW</span></div>
+        <div class="top-actions">
+          <div class="search-wrap">
+            <label class="sr-only" for="site-search">Search specifications, security topics, and profiles</label>
+            <span class="search-glass" aria-hidden="true">⌕</span>
+            <input id="site-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search the standard..." aria-controls="search-results" aria-expanded="false">
+            <kbd>/</kbd>
+            <div id="search-results" class="search-results" role="region" aria-label="Search results" hidden></div>
+          </div>
+          <a class="top-github" href="https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </header>
+      <div class="content-scroll" id="main" tabindex="-1">
+        <main id="app">
+          <div class="loading-state" role="status">
+            <div class="loading-glyph">e <span>↔</span> e</div>
+            <h1>Opening the standard</h1>
+            <p>Preparing the source-backed guide to secure architecture.</p>
+          </div>
+        </main>
+        <footer class="site-footer">
+          <span>END TO END EVERYWHERE <span aria-hidden="true">·</span> Clarity first. Security always.</span>
+          <span id="source-version">Sourced from the open standard on GitHub.</span>
+        </footer>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
