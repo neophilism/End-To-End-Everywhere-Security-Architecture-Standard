@@ -226,6 +226,13 @@ def validate_envelope(
         if binding not in payload:
             errors.append(f"integration payload missing required binding field {binding}")
 
+    # Preserve the PR 37 research/production boundary across transport.
+    if artifact_type == "research-profile-entry":
+        if payload.get("lifecycle_status") != "experimental":
+            errors.append("research-profile-entry transport boundary requires experimental lifecycle_status")
+        if payload.get("production_selectable") is not False:
+            errors.append("research-profile-entry transport boundary requires production_selectable=false")
+
     expected_payload_digest = compute_payload_digest(payload)
     if envelope.get("payload_digest") != expected_payload_digest:
         errors.append("integration payload_digest does not match canonical payload")
