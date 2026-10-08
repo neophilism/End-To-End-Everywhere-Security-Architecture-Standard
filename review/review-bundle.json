@@ -75,7 +75,9 @@
     "python scripts/run_reference_security_checks.py --seed 20261007 --iterations 1000",
     "python review/validate_review.py",
     "python review/validate_review.py --require-complete",
-    "python review/hash_artifact.py <artifact-path>"
+    "python review/hash_artifact.py <artifact-path>",
+    "python review/validate_post_fix_tree.py",
+    "python review/final_review_tree.py"
   ],
   "deliverables": [
     "reviewer attestation conforming to review/reviewer-attestation.schema.json",
