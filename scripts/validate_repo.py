@@ -46,8 +46,18 @@ import observatory_evidence
 import observatory_data_architecture
 import confidence_classification
 import research_profile_registry
+import research_promotion
 
 REQUIRED_PATHS = [
+    'scripts/research_promotion.py',
+    'registry/research-promotion.json',
+    'schemas/research-promotion-registry.schema.json',
+    'schemas/research-promotion-record.schema.json',
+    'spec/research-production-promotion.md',
+    'adr/0038-multi-path-research-promotion-gates.md',
+    'tests/test_research_promotion.py',
+    'fixtures/research-promotion/valid/candidate-research-entry.json',
+    'fixtures/research-promotion/valid/candidate-record.json',
     'scripts/research_profile_registry.py',
     'registry/research-profile-registry.json',
     'schemas/research-profile-registry.schema.json',

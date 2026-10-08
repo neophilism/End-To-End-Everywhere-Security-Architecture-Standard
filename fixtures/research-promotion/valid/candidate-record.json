@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1",
+  "promotion_id": "example-hybrid-promotion",
+  "sequence": 1,
+  "previous_promotion_record_digest": null,
+  "source_research": {
+    "entry_id": "example-hybrid-composition-study",
+    "entry_version": "0.1.0",
+    "entry_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source_state": "experimental",
+  "target_state": "candidate",
+  "gate_profile_ref": "promotion-candidate-baseline@0.1.0",
+  "submitter": {
+    "actor_id": "research-maintainer",
+    "organization_id": "org-research"
+  },
+  "requested_at": "2026-10-08T02:00:00Z",
+  "prior_state_effective_at": null,
+  "target_family_definition": null,
+  "target_profile": {
+    "schema_version": "0.1",
+    "profile_id": "pairwise-example-hybrid-research",
+    "profile_version": "0.1.0",
+    "family_id": "pairwise-e2ee",
+    "status": "provisional",
+    "decision_class": "profile-choice",
+    "security_properties": [
+      "SP-CONFIDENTIALITY",
+      "SP-DOWNGRADE-RESISTANCE",
+      "SP-PQ-CONFIDENTIALITY"
+    ],
+    "requires_profile_refs": [],
+    "incompatible_profile_refs": [],
+    "notes": "Illustrative PR 38 Candidate projection produced from registered research; explicit opt-in only."
+  },
+  "reconciliation": [],
+  "hypothesis_dispositions": [
+    {
+      "hypothesis_id": "hybrid-transcript-binding",
+      "promotion_role": "promotion-critical",
+      "rationale": "The target profile claims downgrade resistance, so transcript-binding evidence is promotion-critical."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "implementation-provenance-one",
+      "evidence_type": "implementation-provenance",
+      "evidence_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "reference": "https://example.org/research/hybrid-composition/source",
+      "producer_organization_id": "org-research",
+      "independent_from_submitter": false,
+      "created_at": "2026-10-08T01:00:00Z",
+      "details": {
+        "implementation_id": "hybrid-prototype",
+        "source_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+      }
+    },
+    {
+      "evidence_id": "security-review-one",
+      "evidence_type": "independent-security-review",
+      "evidence_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "reference": "https://example.org/reviews/hybrid-candidate-1",
+      "producer_organization_id": "org-review-a",
+      "independent_from_submitter": true,
+      "created_at": "2026-10-08T01:10:00Z",
+      "details": {
+        "status": "pass"
+      }
+    },
+    {
+      "evidence_id": "vector-verification-one",
+      "evidence_type": "test-vector-verification",
+      "evidence_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "reference": "https://example.org/research/hybrid-composition/independent-vector-check-v0.1",
+      "producer_organization_id": "org-vector-lab",
+      "independent_from_submitter": true,
+      "created_at": "2026-10-08T01:20:00Z",
+      "details": {
+        "vector_id": "hybrid-negative-vectors"
+      }
+    }
+  ],
+  "findings": [],
+  "approvals": [
+    {
+      "approver_id": "maintainer-approver",
+      "organization_id": "org-research",
+      "role": "standards-maintainer",
+      "approved_at": "2026-10-08T02:30:00Z",
+      "approval_evidence_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "reference": "https://example.org/approvals/candidate-maintainer"
+    },
+    {
+      "approver_id": "external-approver",
+      "organization_id": "org-review-a",
+      "role": "independent-security-reviewer",
+      "approved_at": "2026-10-08T02:40:00Z",
+      "approval_evidence_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "reference": "https://example.org/approvals/candidate-external"
+    }
+  ],
+  "decision": {
+    "status": "approved",
+    "decided_at": "2026-10-08T03:00:00Z",
+    "rationale": "Candidate gate satisfied for controlled opt-in evaluation."
+  },
+  "promotion_record_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
