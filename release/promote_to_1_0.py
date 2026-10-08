@@ -236,6 +236,29 @@ def mark_readiness_complete() -> None:
     write_json("release/1.0.0-readiness.json", readiness)
 
 
+def replace_review_pending_notice() -> None:
+    package = load_json("review/independent-review.json")
+    completion = package["completion"]
+
+    pending = ROOT / "INDEPENDENT-REVIEW-PENDING.md"
+    if pending.exists():
+        pending.unlink()
+
+    complete = ROOT / "INDEPENDENT-REVIEW-COMPLETE.md"
+    complete.write_text(
+        "# Independent Expert Review Complete\n\n"
+        "E2EESA 1.0 promotion is based on a completed independent expert review.\n\n"
+        "## Review identity\n\n"
+        f"- Final reviewed tree digest: {completion.get('final_reviewed_tree_digest')}\n"
+        f"- Final reviewed commit: {completion.get('final_reviewed_commit')}\n"
+        f"- Review summary digest: {completion.get('summary_digest')}\n"
+        f"- Review summary reference: {completion.get('summary_reference')}\n\n"
+        "Detailed reviewer attestations, findings, dispositions, and the "
+        "combined review package are retained under the review directory.\n",
+        encoding="utf-8",
+    )
+
+
 def generate_release_notes() -> None:
     package = load_json("review/independent-review.json")
     completion = package["completion"]
@@ -336,6 +359,7 @@ def apply_promotion(policy: dict) -> None:
     patch_readme()
     mark_readiness_complete()
     generate_release_notes()
+    replace_review_pending_notice()
 
     residual = final_release.residual_pre_1_0_occurrences(policy)
     if residual:
