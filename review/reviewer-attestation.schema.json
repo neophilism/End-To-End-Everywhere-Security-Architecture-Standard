@@ -21,7 +21,10 @@
     "finding_ids",
     "overall_conclusion",
     "final_reviewed_tree_digest",
-    "final_acceptance"
+    "final_acceptance",
+    "automated_evidence_digest",
+    "automated_evidence_reference",
+    "automated_evidence_equivalent_note"
   ],
   "properties": {
     "schema_version": {
@@ -148,6 +151,25 @@
     "final_acceptance": {
       "type": [
         "boolean",
+        "null"
+      ]
+    },
+    "automated_evidence_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "automated_evidence_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "automated_evidence_equivalent_note": {
+      "type": [
+        "string",
         "null"
       ]
     }
