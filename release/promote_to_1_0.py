@@ -261,13 +261,9 @@ def patch_readme() -> None:
     )
     if old in text:
         text = text.replace(old, new)
-    else:
-        text = text.replace(
-            "## Current status",
-            "## Current status\n\n"
-            "E2EESA 1.0.0 stable release. The independent expert-review "
-            "gate and final release validation are complete.",
-            1,
+    elif "E2EESA 1.0.0 stable release." not in text:
+        raise RuntimeError(
+            "README candidate status did not match expected source"
         )
     path.write_text(text, encoding="utf-8")
 
