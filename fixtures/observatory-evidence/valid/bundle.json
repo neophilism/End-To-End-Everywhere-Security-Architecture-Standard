@@ -1,0 +1,127 @@
+{
+  "schema_version": "0.1",
+  "bundle_id": "example-observatory-evidence",
+  "revision": 1,
+  "previous_bundle_digest": null,
+  "created_at": "2026-10-07T22:00:00Z",
+  "agents": [
+    {
+      "agent_id": "agent-fetcher",
+      "agent_type": "software",
+      "name": "Example Observatory Fetcher",
+      "version": "1.0.0",
+      "identity_ref": "https://example.org/tools/fetcher"
+    },
+    {
+      "agent_id": "agent-observatory",
+      "agent_type": "organization",
+      "name": "Example Observatory",
+      "version": null,
+      "identity_ref": "https://example.org/observatory"
+    }
+  ],
+  "entities": [
+    {
+      "entity_id": "entity-source-001",
+      "entity_type": "source-snapshot",
+      "content_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "media_type": "application/json",
+      "byte_length": 1024,
+      "content_uri": "urn:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_uri": "https://example.org/source.json",
+      "source_identifier": "source-revision-17",
+      "acquired_at": "2026-10-07T21:00:02Z",
+      "revision_of": null
+    },
+    {
+      "entity_id": "entity-derived-001",
+      "entity_type": "derived-record",
+      "content_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "media_type": "application/json",
+      "byte_length": 512,
+      "content_uri": "urn:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "source_uri": null,
+      "source_identifier": "normalized-record-001",
+      "acquired_at": null,
+      "revision_of": null
+    }
+  ],
+  "activities": [
+    {
+      "activity_id": "activity-acquire-001",
+      "activity_type": "acquire",
+      "started_at": "2026-10-07T21:00:00Z",
+      "ended_at": "2026-10-07T21:00:03Z",
+      "agent_ids": [
+        "agent-fetcher"
+      ],
+      "used_entity_ids": [],
+      "generated_entity_ids": [
+        "entity-source-001"
+      ],
+      "method_ref": "https-get-v1",
+      "parameters_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "acquisition": {
+        "transport": "http",
+        "source_uri": "https://example.org/source.json",
+        "retrieved_at": "2026-10-07T21:00:02Z",
+        "response_status": 200,
+        "etag": "\"example-etag-17\"",
+        "last_modified": "Wed, 07 Oct 2026 20:59:00 GMT",
+        "headers_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "request_ref": "request-001"
+      }
+    },
+    {
+      "activity_id": "activity-extract-001",
+      "activity_type": "extract",
+      "started_at": "2026-10-07T21:01:00Z",
+      "ended_at": "2026-10-07T21:01:01Z",
+      "agent_ids": [
+        "agent-fetcher"
+      ],
+      "used_entity_ids": [
+        "entity-source-001"
+      ],
+      "generated_entity_ids": [
+        "entity-derived-001"
+      ],
+      "method_ref": "example-normalizer-v1",
+      "parameters_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "acquisition": null
+    }
+  ],
+  "events": [
+    {
+      "event_id": "event-source-published",
+      "event_type": "source-published",
+      "occurred_start": "2026-10-07T20:30:00Z",
+      "occurred_end": null,
+      "subject_ids": [
+        "agent-observatory"
+      ],
+      "citation_ids": [
+        "citation-source-lines"
+      ],
+      "attributes": [
+        {
+          "name": "publication-status",
+          "value": "published"
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "citation-source-lines",
+      "entity_id": "entity-source-001",
+      "locator_kind": "line-range",
+      "locator_value": "L10-L20",
+      "excerpt_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "note": "Lines establishing the publication event."
+    }
+  ],
+  "manifest_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "integrity_anchors": [],
+  "bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
