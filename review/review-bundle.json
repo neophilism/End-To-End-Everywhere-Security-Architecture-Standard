@@ -80,11 +80,13 @@
     "reviewer attestation conforming to review/reviewer-attestation.schema.json",
     "one structured record per substantive finding conforming to review/finding.schema.json",
     "supplemental analysis/test vectors/proofs/traces where useful",
-    "post-fix reviewer acceptance or rejection for every submitted finding"
+    "post-fix reviewer acceptance or rejection for every submitted finding",
+    "final review summary based on review/REVIEW-SUMMARY-TEMPLATE.md"
   ],
   "templates": {
     "reviewer_attestation": "review/reviewer-attestation-template.json",
-    "finding": "review/finding-template.json"
+    "finding": "review/finding-template.json",
+    "final_review_summary": "review/REVIEW-SUMMARY-TEMPLATE.md"
   },
   "schemas": {
     "reviewer_attestation": "review/reviewer-attestation.schema.json",
