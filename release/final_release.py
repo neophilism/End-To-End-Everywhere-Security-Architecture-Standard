@@ -84,6 +84,9 @@ def build_manifest(policy: dict) -> dict:
             }
         )
     receipt = load_json("release/review-completion-receipt.json")
+    transition = load_json(
+        "release/1.0.0-requirement-id-transition.json"
+    )
     manifest = {
         "schema_version": "0.1",
         "release_version": "1.0.0",
@@ -94,6 +97,9 @@ def build_manifest(policy: dict) -> dict:
         "review_summary_digest": receipt.get("review_summary_digest"),
         "review_package_digest": receipt.get("review_package_digest"),
         "review_completion_receipt_digest": receipt.get("receipt_digest"),
+        "requirement_transition_report_digest": transition.get(
+            "report_digest"
+        ),
         "file_count": len(entries),
         "files": entries,
         "tree_digest": canonical_digest(entries),
