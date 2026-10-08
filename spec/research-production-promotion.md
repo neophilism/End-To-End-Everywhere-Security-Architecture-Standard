@@ -136,6 +136,7 @@ Promotion evidence records are content-addressed and typed.
 
 Supported evidence types include:
 
+- `implementation-provenance`;
 - `independent-security-review`;
 - `independent-replication`;
 - `interoperability`;
