@@ -43,6 +43,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 28. [Certification Evidence Model](certification-evidence-model.md) — content-addressed exact-scope certification evidence bundles, claim-to-evidence linkage, source-access declarations, and non-MUST exception records.
 29. [Certification Lifecycle](certification-lifecycle.md) — event-sourced application, evaluation, remediation, decision, surveillance, renewal, suspension, revocation, expiry, and appeal state machine.
 30. [Signed Certification Attestations](certification-attestations.md) — canonical certification payloads, JWS/COSE/DSSE envelope options, classical and dual classical+PQ signing policies, and signed rollback-resistant status statements.
+31. [Vulnerability Disclosure Profiles](vulnerability-disclosure-profiles.md) — RFC 9116 intake, reporter protection, active-exploitation escalation, and selectable risk-adaptive or fixed 90+30 disclosure clocks.
 
 ## Remaining specification areas
 
