@@ -47,8 +47,21 @@ import observatory_data_architecture
 import confidence_classification
 import research_profile_registry
 import research_promotion
+import deprecation_migration
 
 REQUIRED_PATHS = [
+    'scripts/deprecation_migration.py',
+    'registry/deprecation-migration.json',
+    'schemas/deprecation-migration-registry.schema.json',
+    'schemas/deprecation-migration-plan.schema.json',
+    'schemas/deprecation-migration-case.schema.json',
+    'spec/deprecation-emergency-migration.md',
+    'adr/0039-separate-planned-migration-from-emergency-stop.md',
+    'tests/test_deprecation_migration.py',
+    'fixtures/deprecation-migration/valid/planned-plan.json',
+    'fixtures/deprecation-migration/valid/planned-case.json',
+    'fixtures/deprecation-migration/valid/emergency-plan.json',
+    'fixtures/deprecation-migration/valid/emergency-case.json',
     'scripts/research_promotion.py',
     'registry/research-promotion.json',
     'schemas/research-promotion-registry.schema.json',
