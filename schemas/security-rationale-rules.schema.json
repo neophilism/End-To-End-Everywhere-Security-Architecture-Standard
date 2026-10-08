@@ -1,0 +1,22 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://endtoendeverywhere.org/e2eesa/schemas/security-rationale-rules.schema.json",
+ "type":"object","additionalProperties":false,
+ "required":["schema_version","rationale_version","rules"],
+ "properties":{
+  "schema_version":{"const":"0.1"},
+  "rationale_version":{"type":"string","minLength":1},
+  "rules":{"type":"array","minItems":1,"items":{
+   "type":"object","additionalProperties":false,
+   "required":["document_path","rationale","threat_ids","composite_scenario_ids","security_property_ids","evidence_expectations"],
+   "properties":{
+    "document_path":{"type":"string","pattern":"^spec/.+\\.md$"},
+    "rationale":{"type":"string","minLength":1},
+    "threat_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^TM-[A-Z0-9-]+$"}},
+    "composite_scenario_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^CS-[A-Z0-9-]+$"}},
+    "security_property_ids":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","pattern":"^SP-[A-Z0-9-]+$"}},
+    "evidence_expectations":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}}
+   }
+  }}
+ }
+}

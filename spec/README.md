@@ -59,6 +59,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 44. [Cross-Profile Interoperability Suite](cross-profile-interoperability.md) — full production-profile pair matrix distinguishing co-configuration, exclusive alternatives, direct incompatibility, dependency composition and contextual conflicts without inferring wire interoperability.
 45. [Six-Project Integration Contracts](integration-contracts.md) — stable content-addressed artifact contracts for SDK, Verified, Security Lab, Incident Exchange, Observatory, and Research Lab.
 46. [Complete Standards Crosswalk](standards-crosswalk.md) — deterministic requirement-by-requirement mapping of every normative BCP 14 paragraph to external standards or an explicit no-direct-analog rationale.
+47. [Security Rationale Corpus](security-rationale-corpus.md) — complete requirement-by-requirement rationale, threat/property linkage, evidence expectations, and inherited external-reference bindings.
 
 ## Remaining specification areas
 

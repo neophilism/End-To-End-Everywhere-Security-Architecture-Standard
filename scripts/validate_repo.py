@@ -15,6 +15,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 import integration_contracts
 import standards_crosswalk
+import security_rationale
 import profile_engine
 import crypto_registry
 import negotiation_engine
@@ -57,6 +58,11 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/security_rationale.py',
+    'registry/security-rationale-rules.json',
+    'schemas/security-rationale-rules.schema.json',
+    'spec/security-rationale-corpus.md',
+    'tests/test_security_rationale.py',
     'scripts/standards_crosswalk.py',
     'registry/external-standards.json',
     'registry/standards-crosswalk-rules.json',
@@ -2806,6 +2812,23 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         )
         if crosswalk_report["coverage_percent_basis_points"] != 10000:
             errors.append("standards crosswalk coverage must be 100 percent")
+
+    rationale_rules = load_json(root / "registry/security-rationale-rules.json")
+    rationale_errors = security_rationale.validate_rules(
+        rationale_rules, root, threat_registry, property_registry
+    )
+    errors.extend("security rationale: " + error for error in rationale_errors)
+    if not rationale_errors and not crosswalk_errors:
+        rationale_report = security_rationale.build_report(
+            root,
+            rationale_rules,
+            threat_registry,
+            property_registry,
+            external_standards,
+            crosswalk_rules,
+        )
+        if rationale_report["coverage_percent_basis_points"] != 10000:
+            errors.append("security rationale coverage must be 100 percent")
 
     errors.extend(client_security_engine.validate_repository(root, profile_catalog))
 
