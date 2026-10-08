@@ -39,8 +39,17 @@ import assurance_levels
 import certification_evidence
 import certification_lifecycle
 import certification_attestations
+import vulnerability_disclosure
 
 REQUIRED_PATHS = [
+    'scripts/vulnerability_disclosure.py',
+    'registry/vulnerability-disclosure.json',
+    'schemas/vulnerability-disclosure-policy.schema.json',
+    'spec/vulnerability-disclosure-profiles.md',
+    'adr/0031-vulnerability-disclosure-timing-options.md',
+    'tests/test_vulnerability_disclosure.py',
+    'fixtures/vulnerability-disclosure/valid/risk-adaptive-policy.json',
+    'fixtures/vulnerability-disclosure/valid/fixed-90-policy.json',
     'scripts/certification_attestations.py',
     'registry/certification-attestations.json',
     'schemas/certification-signing-policy.schema.json',
