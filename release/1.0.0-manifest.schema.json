@@ -12,7 +12,8 @@
     "files",
     "tree_digest",
     "review_package_digest",
-    "review_completion_receipt_digest"
+    "review_completion_receipt_digest",
+    "requirement_transition_report_digest"
   ],
   "properties": {
     "schema_version": {
@@ -73,6 +74,10 @@
       "pattern": "^sha256:[0-9a-f]{64}$"
     },
     "review_completion_receipt_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "requirement_transition_report_digest": {
       "type": "string",
       "pattern": "^sha256:[0-9a-f]{64}$"
     }
