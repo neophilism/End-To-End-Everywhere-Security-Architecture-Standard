@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "example-human-classification-policy",
+  "classification_mode": "human-reviewed",
+  "taxonomy": {
+    "taxonomy_id": "observatory-event-category",
+    "version": "1.0.0",
+    "reference": "https://example.org/taxonomy/event"
+  },
+  "allowed_assessment_confidence_models": [
+    "dimensional-ordinal"
+  ],
+  "final_confidence_model": "dimensional-ordinal",
+  "mixed_resolution": null,
+  "minimum_evidence_citations": 1,
+  "max_calibration_age_days": null,
+  "automated_output_must_record_model": true,
+  "human_override_reason_required": true
+}

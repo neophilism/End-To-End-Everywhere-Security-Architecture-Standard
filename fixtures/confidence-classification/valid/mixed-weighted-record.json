@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.1",
+  "record_id": "example-mixed-classification",
+  "revision": 1,
+  "previous_record_digest": null,
+  "source_bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "target": {
+    "kind": "event",
+    "id": "event-source-published"
+  },
+  "taxonomy": {
+    "taxonomy_id": "observatory-event-category",
+    "version": "1.0.0",
+    "reference": "https://example.org/taxonomy/event"
+  },
+  "evidence_citation_ids": [
+    "citation-source-lines"
+  ],
+  "mode": "mixed",
+  "status": "classified",
+  "human_assessment": {
+    "agent_id": "agent-human-reviewer",
+    "labels": [
+      "policy-publication"
+    ],
+    "confidence": {
+      "model": "stix-0-100",
+      "value": 80,
+      "rationale": "Human reviewer assigns high confidence to the cited classification."
+    },
+    "rationale": "Human reviewer agrees with the event classification.",
+    "assessed_at": "2026-10-07T22:10:00Z"
+  },
+  "automated_assessment": {
+    "agent_id": "agent-fetcher",
+    "labels": [
+      "policy-publication"
+    ],
+    "confidence": {
+      "model": "stix-0-100",
+      "value": 70,
+      "rationale": "Classifier confidence on the interoperable STIX scale."
+    },
+    "classifier": {
+      "model_id": "example-event-classifier",
+      "model_version": "1.0.0",
+      "model_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "configuration_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "evaluation_ref": "https://example.org/models/event-classifier/evaluation-1"
+    },
+    "assessed_at": "2026-10-07T22:05:00Z"
+  },
+  "mixed_resolution": {
+    "strategy": "declared-weighted",
+    "confidence_source": null,
+    "human_weight_percent": 60,
+    "automated_weight_percent": 40,
+    "override_reason": null
+  },
+  "final_labels": [
+    "policy-publication"
+  ],
+  "final_confidence": {
+    "model": "stix-0-100",
+    "value": 76,
+    "rationale": "60/40 declared weighted confidence from matching human and automated labels."
+  },
+  "created_at": "2026-10-07T22:30:00Z",
+  "classification_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
