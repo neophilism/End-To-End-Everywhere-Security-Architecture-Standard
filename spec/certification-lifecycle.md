@@ -54,7 +54,7 @@ Surveillance can:
 - revoke the certification; or
 - determine that the certification has expired.
 
-Corrective action returns to surveillance review for re-evaluation; it does not directly restore certification.
+Corrective action returns to the review that originated it: surveillance corrective action returns to `surveillance-review`, while renewal corrective action returns to `renewal-review`. It never directly restores certification.
 
 ## 4. Renewal
 
