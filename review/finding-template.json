@@ -1,0 +1,16 @@
+{
+  "finding_id":"E2EESA-REVIEW-REPLACE-ME",
+  "reviewer_id":"REPLACE-ME",
+  "severity":"high",
+  "title":"REPLACE-ME",
+  "analysis":"Explain the technical problem, violated assumption/property, and why it matters.",
+  "failure_scenario":"Describe a concrete attack, failure mode, false-positive conformance path, or assurance failure when applicable.",
+  "affected_requirement_ids":[],
+  "affected_paths":[],
+  "recommendation":"Describe the recommended correction and any acceptable alternatives.",
+  "supporting_references":[],
+  "status":"open",
+  "disposition_rationale":null,
+  "fix_reference":null,
+  "reviewer_acceptance":null
+}
