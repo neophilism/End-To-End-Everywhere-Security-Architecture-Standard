@@ -1,0 +1,34 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "classification_modes":["human-reviewed","automated","mixed"],
+  "mixed_resolution_strategies":["human-final","consensus","declared-weighted"],
+  "confidence_models":[
+    {
+      "id":"dimensional-ordinal",
+      "kind":"analytic-judgment",
+      "numeric":false,
+      "probability":false
+    },
+    {
+      "id":"stix-0-100",
+      "kind":"interoperable-confidence-scale",
+      "numeric":true,
+      "minimum":0,
+      "maximum":100,
+      "probability":false
+    },
+    {
+      "id":"calibrated-probability",
+      "kind":"empirically-calibrated-probability",
+      "numeric":true,
+      "minimum":0,
+      "maximum":10000,
+      "unit":"basis-points",
+      "probability":true
+    }
+  ],
+  "ordinal_levels":["unknown","low","moderate","high"],
+  "dimension_levels":["unknown","weak","limited","strong","very-strong"],
+  "conflict_levels":["unknown","none","minor","material"]
+}
