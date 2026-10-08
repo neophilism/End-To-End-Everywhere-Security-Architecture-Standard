@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "example-formal-policy",
+  "product_id": "example-product",
+  "product_version": "1.0.0",
+  "platform": "example-platform",
+  "configuration": {
+    "schema_version": "0.1",
+    "configuration_id": "example-formal-config",
+    "standard_version": "0.1.0-dev",
+    "selected_profiles": [
+      "foundation-baseline@0.1.0",
+      "example-choice-b@0.1.0",
+      "formal-symbolic-protocol@0.1.0",
+      "formal-code-refinement@0.1.0"
+    ],
+    "accepted_nondefault_statuses": []
+  },
+  "obligations": [
+    {
+      "obligation_id": "protocol-secrecy",
+      "formal_profile_ref": "formal-symbolic-protocol@0.1.0",
+      "property_ids": ["SP-CONFIDENTIALITY"],
+      "threat_ids": ["TM-NET-ACTIVE"],
+      "proof_scope": "example protocol secrecy and authentication state",
+      "require_machine_checking": true,
+      "require_unbounded_sessions": true,
+      "require_artifact_correspondence": false,
+      "maximum_evidence_age_hours": 168
+    },
+    {
+      "obligation_id": "implementation-refinement",
+      "formal_profile_ref": "formal-code-refinement@0.1.0",
+      "property_ids": ["SP-INTEGRITY"],
+      "threat_ids": ["TM-SUPPLY-CHAIN"],
+      "proof_scope": "example implementation refines the reviewed specification",
+      "require_machine_checking": true,
+      "require_unbounded_sessions": false,
+      "require_artifact_correspondence": true,
+      "maximum_evidence_age_hours": 168
+    }
+  ]
+}
