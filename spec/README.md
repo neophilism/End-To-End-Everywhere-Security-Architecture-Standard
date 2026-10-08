@@ -50,6 +50,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 35. [Observatory Data Architecture](observatory-data-architecture.md) — append-only canonical relational evidence with deterministic property-graph, W3C PROV RDF, and search projections plus PostgreSQL reference DDL.
 36. [Confidence and Classification Model](confidence-classification.md) — human-reviewed, automated, and mixed classification with explicit dimensional, STIX 0–100, and calibrated-probability confidence semantics.
 37. [Research Profile Registry](research-profile-registry.md) — content-addressed experimental research entries with threat/property/algorithm context, hypotheses, experiments, vectors, implementations, results, limitations, and reproducibility.
+38. [Research → Production Promotion Gates](research-production-promotion.md) — sequential Experimental → Candidate → Recommended → Required promotion with machine-readable independent-review/evidence paths and production-catalog projection.
 
 ## Remaining specification areas
 
