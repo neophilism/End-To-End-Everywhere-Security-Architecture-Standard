@@ -40,8 +40,18 @@ import certification_evidence
 import certification_lifecycle
 import certification_attestations
 import vulnerability_disclosure
+import vulnerability_handling
 
 REQUIRED_PATHS = [
+    'scripts/vulnerability_handling.py',
+    'registry/vulnerability-handling.json',
+    'schemas/vulnerability-handling-policy.schema.json',
+    'schemas/vulnerability-handling-case.schema.json',
+    'spec/vulnerability-handling.md',
+    'adr/0032-vulnerability-prioritization-options.md',
+    'tests/test_vulnerability_handling.py',
+    'fixtures/vulnerability-handling/valid/policy.json',
+    'fixtures/vulnerability-handling/valid/case.json',
     'scripts/vulnerability_disclosure.py',
     'registry/vulnerability-disclosure.json',
     'schemas/vulnerability-disclosure-policy.schema.json',

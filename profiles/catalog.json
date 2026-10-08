@@ -145,6 +145,12 @@
       "name": "Vulnerability disclosure timing",
       "cardinality": "at-most-one",
       "description": "Selectable coordinated-disclosure timing model with common reporter-protection and intake invariants."
+    },
+    {
+      "family_id": "vulnerability-prioritization",
+      "name": "Vulnerability prioritization",
+      "cardinality": "at-most-one",
+      "description": "Response-priority model for confirmed vulnerability cases."
     }
   ],
   "profiles": [
@@ -1266,6 +1272,30 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Fixed 90-day disclosure clock with a 30-day patch-adoption window when a fix ships before day 90."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-prioritization-cvss-threat",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-prioritization",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "CVSS v4.0 technical severity plus explicit threat/environment context; active exploitation forces emergency priority."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-prioritization-ssvc",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-prioritization",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Versioned Stakeholder-Specific Vulnerability Categorization decision tree with recorded inputs and outcome."
     }
   ]
 }
