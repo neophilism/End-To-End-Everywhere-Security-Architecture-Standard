@@ -14,6 +14,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 import integration_contracts
+import standards_crosswalk
 import profile_engine
 import crypto_registry
 import negotiation_engine
@@ -56,6 +57,13 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/standards_crosswalk.py',
+    'registry/external-standards.json',
+    'registry/standards-crosswalk-rules.json',
+    'schemas/external-standards.schema.json',
+    'schemas/standards-crosswalk-rules.schema.json',
+    'spec/standards-crosswalk.md',
+    'tests/test_standards_crosswalk.py',
     'scripts/integration_contracts.py',
     'registry/integration-contracts.json',
     'schemas/integration-contract-registry.schema.json',
@@ -2785,6 +2793,19 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         )
         if not result:
             errors.append(f"{path.relative_to(root)}: invalid security claim fixture unexpectedly passed validation")
+
+    external_standards = load_json(root / "registry/external-standards.json")
+    crosswalk_rules = load_json(root / "registry/standards-crosswalk-rules.json")
+    crosswalk_errors = standards_crosswalk.validate(
+        external_standards, crosswalk_rules, root
+    )
+    errors.extend("standards crosswalk: " + error for error in crosswalk_errors)
+    if not crosswalk_errors:
+        crosswalk_report = standards_crosswalk.build_report(
+            root, external_standards, crosswalk_rules
+        )
+        if crosswalk_report["coverage_percent_basis_points"] != 10000:
+            errors.append("standards crosswalk coverage must be 100 percent")
 
     errors.extend(client_security_engine.validate_repository(root, profile_catalog))
 
