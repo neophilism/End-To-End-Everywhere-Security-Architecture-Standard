@@ -15,6 +15,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import standards_crosswalk
+import release_candidate
 
 REQUIRED_DOMAINS = {
     "cryptography-protocols",
@@ -305,6 +306,19 @@ def completion_errors(package: dict, root: Path = ROOT) -> list[str]:
         errors.append("PR 49 completion requires independent cryptography/protocol review")
 
     final_tree = completion.get("final_reviewed_tree_digest")
+    try:
+        release_policy = load_json(root / "registry" / "release-candidate.json")
+        current_tree = release_candidate.build_manifest(root, release_policy)
+        if current_tree.get("tree_digest") != final_tree:
+            errors.append(
+                "completion final reviewed tree digest does not match "
+                "the current post-fix standard tree"
+            )
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        errors.append(
+            "unable to compute current post-fix standard tree: " + str(exc)
+        )
+
     for reviewer in independent_reviewers:
         reviewer_id = reviewer.get("reviewer_id")
         if reviewer.get("final_reviewed_tree_digest") != final_tree:
