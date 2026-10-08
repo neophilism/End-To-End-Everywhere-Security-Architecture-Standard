@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1",
+  "target_release": "1.0.0",
+  "source_candidate": {
+    "release_version": "0.9.0-rc.1",
+    "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2",
+    "file_count": 645,
+    "basis_standard_version": "0.1.0-dev"
+  },
+  "engineering_status": "ready-except-independent-review",
+  "external_review_status": "pending",
+  "external_review_package": "review/independent-review.json",
+  "external_review_completion_command": "python review/validate_review.py --require-complete",
+  "internal_gates": [
+    {
+      "gate_id": "candidate-freeze",
+      "status": "passed",
+      "evidence": "scripts/release_candidate.py"
+    },
+    {
+      "gate_id": "repository-validation",
+      "status": "passed",
+      "evidence": "scripts/validate_repo.py"
+    },
+    {
+      "gate_id": "unit-tests",
+      "status": "passed",
+      "evidence": "python -m unittest discover -s tests -v"
+    },
+    {
+      "gate_id": "seeded-adversarial-checks",
+      "status": "passed",
+      "evidence": "python scripts/run_reference_security_checks.py --seed 20261007 --iterations 1000"
+    },
+    {
+      "gate_id": "catalog-complete-reference-fixtures",
+      "status": "passed",
+      "evidence": "fixtures/reference-architectures/manifest.json"
+    },
+    {
+      "gate_id": "production-interoperability-matrix",
+      "status": "passed",
+      "evidence": "PR 44: 63 production-positive profiles / 1953 unordered production-profile pairs"
+    },
+    {
+      "gate_id": "six-project-integration-contracts",
+      "status": "passed",
+      "evidence": "registry/integration-contracts.json"
+    },
+    {
+      "gate_id": "standards-crosswalk",
+      "status": "passed",
+      "evidence": "registry/standards-crosswalk-rules.json"
+    },
+    {
+      "gate_id": "security-rationale-corpus",
+      "status": "passed",
+      "evidence": "registry/security-rationale-rules.json"
+    }
+  ],
+  "external_gates": [
+    {
+      "gate_id": "independent-expert-review",
+      "status": "pending",
+      "blocking_for_final_release": true,
+      "placeholder_note": "Development may continue. Final 1.0 promotion remains blocked until the independent review package satisfies review/validate_review.py --require-complete."
+    }
+  ],
+  "promotion_actions_after_review": [
+    "apply accepted PR 49 review fixes",
+    "obtain reviewer acceptance of all blocker/critical/high findings and disposition all medium findings",
+    "record final review summary digest and reference",
+    "promote standard_version fields from 0.1.0-dev to 1.0.0 without changing profile_version or registry_version fields",
+    "set VERSION to 1.0.0",
+    "regenerate final 1.0 frozen manifest",
+    "rerun repository validation, release validation, unit tests, and seeded adversarial checks",
+    "generate final release notes and provenance record",
+    "create the final 1.0 tag/release only after all final gates pass"
+  ]
+}
