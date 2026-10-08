@@ -1,0 +1,35 @@
+{
+  "schema_version":"0.1",
+  "reviewer_id":"REPLACE-ME",
+  "reviewer_name":"REPLACE-ME",
+  "organization_id":"REPLACE-ME",
+  "organization_name":"REPLACE-ME",
+  "independent_from_maintainers":true,
+  "relationship_disclosure":"Describe any financial, employment, authorship, consulting, personal, or other relationship relevant to independence.",
+  "expertise":[
+    "REPLACE-ME"
+  ],
+  "domains":[
+    "cryptography-protocols"
+  ],
+  "candidate":{
+    "release_version":"0.9.0-rc.1",
+    "tree_digest":"sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2",
+    "file_count":645
+  },
+  "review_started_at":"REPLACE-ME",
+  "review_completed_at":"REPLACE-ME",
+  "methods_used":[
+    "REPLACE-ME"
+  ],
+  "areas_emphasized":[
+    "REPLACE-ME"
+  ],
+  "scope_limitations":[
+    "REPLACE-ME"
+  ],
+  "finding_ids":[],
+  "overall_conclusion":"REPLACE-ME",
+  "attestation_digest":"sha256:REPLACE-WITH-CONTENT-DIGEST",
+  "attestation_reference":"REPLACE-WITH-STABLE-REFERENCE"
+}
