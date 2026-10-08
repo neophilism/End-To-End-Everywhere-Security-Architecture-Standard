@@ -1,0 +1,41 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/compatibility-solver-request.schema.json",
+  "title":"E2EESA Compatibility Solver Request",
+  "type":"object","additionalProperties":false,
+  "required":[
+    "schema_version","request_id","standard_version","mode",
+    "required_family_ids","forbidden_family_ids","desired_property_ids",
+    "pinned_profile_refs","excluded_profile_refs","max_solutions",
+    "enforce_required_promotions","request_digest"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "request_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "standard_version":{"type":"string","minLength":1},
+    "mode":{"enum":["production","candidate","migration"]},
+    "required_family_ids":{
+      "type":"array","uniqueItems":true,
+      "items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+    },
+    "forbidden_family_ids":{
+      "type":"array","uniqueItems":true,
+      "items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+    },
+    "desired_property_ids":{
+      "type":"array","uniqueItems":true,
+      "items":{"type":"string","pattern":"^SP-[A-Z0-9-]+$"}
+    },
+    "pinned_profile_refs":{
+      "type":"array","uniqueItems":true,
+      "items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"}
+    },
+    "excluded_profile_refs":{
+      "type":"array","uniqueItems":true,
+      "items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"}
+    },
+    "max_solutions":{"type":"integer","minimum":1,"maximum":500},
+    "enforce_required_promotions":{"type":"boolean"},
+    "request_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}
