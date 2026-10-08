@@ -16,6 +16,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 import integration_contracts
 import standards_crosswalk
 import security_rationale
+import release_candidate
 import profile_engine
 import crypto_registry
 import negotiation_engine
@@ -58,6 +59,13 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/release_candidate.py',
+    'registry/release-candidate.json',
+    'schemas/release-candidate.schema.json',
+    'schemas/release-manifest.schema.json',
+    'spec/release-candidate.md',
+    'tests/test_release_candidate.py',
+    'release/0.9.0-rc.1-manifest.json',
     'scripts/security_rationale.py',
     'registry/security-rationale-rules.json',
     'schemas/security-rationale-rules.schema.json',
@@ -638,6 +646,7 @@ COMPOSITE_ID = re.compile(r"^CS-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 PROPERTY_ID = re.compile(r"^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 SEMVER = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$")
 DEV_VERSION = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+-dev$")
+CANDIDATE_VERSION = re.compile(r"^0\.9\.0-rc\.[0-9]+$")
 
 
 class ValidationError(Exception):
@@ -1189,8 +1198,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     version_path = root / "VERSION"
     if version_path.is_file():
         version = version_path.read_text(encoding="utf-8").strip()
-        if not DEV_VERSION.fullmatch(version):
-            errors.append("VERSION must use x.y.z-dev during pre-1.0 foundation development")
+        if not (DEV_VERSION.fullmatch(version) or CANDIDATE_VERSION.fullmatch(version)):
+            errors.append("VERSION must use x.y.z-dev or the 0.9.0-rc.N candidate line before 1.0")
 
     for schema_rel in (
         "schemas/profile.schema.json",
@@ -2829,6 +2838,11 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         )
         if rationale_report["coverage_percent_basis_points"] != 10000:
             errors.append("security rationale coverage must be 100 percent")
+
+    errors.extend(
+        "release candidate: " + error
+        for error in release_candidate.validate_release(root)
+    )
 
     errors.extend(client_security_engine.validate_repository(root, profile_catalog))
 
