@@ -116,6 +116,55 @@ def planned_replacements(policy: dict) -> list[dict]:
     return plan
 
 
+def preflight_promotion(policy: dict) -> list[str]:
+    errors: list[str] = []
+
+    version_path = ROOT / "VERSION"
+    current_version = (
+        version_path.read_text(encoding="utf-8").strip()
+        if version_path.is_file()
+        else ""
+    )
+    if current_version != policy["source_candidate"]["release_version"]:
+        errors.append(
+            "promotion preflight requires VERSION "
+            + policy["source_candidate"]["release_version"]
+        )
+
+    workflow = (ROOT / ".github/workflows/validate.yml").read_text(
+        encoding="utf-8"
+    )
+    if "Validate 0.9 candidate freeze" not in workflow:
+        errors.append("promotion preflight cannot find candidate workflow step")
+
+    validator = (ROOT / "scripts/validate_repo.py").read_text(
+        encoding="utf-8"
+    )
+    if "CANDIDATE_VERSION = re.compile" not in validator:
+        errors.append("promotion preflight cannot find candidate VERSION marker")
+    if "release_candidate.validate_release(root)" not in validator:
+        errors.append("promotion preflight cannot find candidate release gate")
+    if "STABLE_VERSION.fullmatch(version)" in validator:
+        errors.append("promotion preflight found an already-promoted VERSION gate")
+
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    if (
+        "E2EESA 0.9 release candidate" not in readme
+        or "0.9.0-rc.1" not in readme
+    ):
+        errors.append("promotion preflight cannot find candidate README status")
+
+    if not (ROOT / "INDEPENDENT-REVIEW-PENDING.md").is_file():
+        errors.append("promotion preflight requires the pending-review notice")
+
+    if not planned_replacements(policy):
+        errors.append(
+            "promotion preflight found no active pre-1.0 standard-version markers"
+        )
+
+    return sorted(set(errors))
+
+
 def patch_repository_version_validation() -> None:
     path = ROOT / "scripts" / "validate_repo.py"
     text = path.read_text(encoding="utf-8")
