@@ -1,0 +1,592 @@
+{
+  "schema_version": "0.1",
+  "crosswalk_version": "0.1.0",
+  "rules": [
+    {
+      "document_path": "spec/normative-language.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP14",
+          "relation": "direct",
+          "scope_note": "E2EESA requirement-keyword semantics directly adopt BCP 14."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/terminology.md",
+      "relations": [],
+      "no_direct_analog_reason": "E2EESA defines project-specific architecture terminology; external vocabularies are informative but not direct normative equivalents."
+    },
+    {
+      "document_path": "spec/threat-model.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/security-properties.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/profile-configuration.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/cryptographic-registry.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-131AR2",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-FIPS203",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-FIPS204",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/negotiation-downgrade.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "IETF-RFC8446",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/identity-device-architecture.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "IETF-RFC8032",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/pairwise-e2ee.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC7748",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "IETF-RFC8032",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-FIPS203",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/group-e2ee.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC9420",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "IETF-RFC9180",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/key-verification.md",
+      "relations": [],
+      "no_direct_analog_reason": "Manual safety-number/device-set verification semantics are E2EESA-specific and do not have a single direct external standard analogue."
+    },
+    {
+      "document_path": "spec/key-transparency.md",
+      "relations": [],
+      "no_direct_analog_reason": "The E2EESA Key Transparency deployment contract depends on an evolving specialized ecosystem; no stable external standard is asserted as a direct equivalent here."
+    },
+    {
+      "document_path": "spec/backup-recovery.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/metadata-privacy.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC9458",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/contact-discovery.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC9497",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/attachments-file-encryption.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/real-time-media.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC9605",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "IETF-RFC9420",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/secret-storage-hardware-protection.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/transport-security.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC8446",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/native-web-client-security.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-218",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "SLSA-1.2",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/server-trust-minimization.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/privacy-preserving-telemetry.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/secure-development-standard.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-218",
+          "relation": "direct",
+          "scope_note": "The E2EESA secure-development profile is explicitly SSDF-aligned."
+        },
+        {
+          "standard_id": "ISO-IEC-27001-2022",
+          "relation": "contextual",
+          "scope_note": "Organizational security-management controls provide contextual alignment."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/software-supply-chain.md",
+      "relations": [
+        {
+          "standard_id": "SLSA-1.2",
+          "relation": "direct",
+          "scope_note": "E2EESA supply-chain provenance requirements directly compose SLSA concepts."
+        },
+        {
+          "standard_id": "SPDX-3.0",
+          "relation": "direct",
+          "scope_note": "SPDX is an accepted SBOM/evidence format."
+        },
+        {
+          "standard_id": "CYCLONEDX-1.6",
+          "relation": "direct",
+          "scope_note": "CycloneDX is an accepted SBOM/evidence format."
+        },
+        {
+          "standard_id": "NIST-SP800-218",
+          "relation": "contextual",
+          "scope_note": "SSDF supply-chain practices provide broader development-process context."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/security-verification-framework.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "ISO-IEC-27001-2022",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/formal-verification-profiles.md",
+      "relations": [],
+      "no_direct_analog_reason": "E2EESA composes proof methods into project-specific assurance profiles; no single external standard defines the same profile structure."
+    },
+    {
+      "document_path": "spec/assurance-levels.md",
+      "relations": [
+        {
+          "standard_id": "ISO-IEC-27001-2022",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/certification-evidence-model.md",
+      "relations": [
+        {
+          "standard_id": "ISO-IEC-27001-2022",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/certification-lifecycle.md",
+      "relations": [
+        {
+          "standard_id": "ISO-IEC-27001-2022",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/certification-attestations.md",
+      "relations": [
+        {
+          "standard_id": "IETF-RFC7515",
+          "relation": "direct",
+          "scope_note": "JWS is one supported signed-attestation envelope."
+        },
+        {
+          "standard_id": "IETF-RFC9052",
+          "relation": "direct",
+          "scope_note": "COSE is one supported signed-attestation envelope."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/vulnerability-disclosure-profiles.md",
+      "relations": [
+        {
+          "standard_id": "ISO-IEC-29147-2018",
+          "relation": "direct",
+          "scope_note": "Vulnerability disclosure process requirements directly align."
+        },
+        {
+          "standard_id": "IETF-RFC9116",
+          "relation": "direct",
+          "scope_note": "security.txt intake publication is directly specified."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/vulnerability-handling.md",
+      "relations": [
+        {
+          "standard_id": "ISO-IEC-30111-2019",
+          "relation": "direct",
+          "scope_note": "Vulnerability handling/remediation process is directly aligned."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/advisory-interoperability.md",
+      "relations": [
+        {
+          "standard_id": "OASIS-CSAF-2.0",
+          "relation": "direct",
+          "scope_note": "CSAF 2.0 is a normative export target for structured advisories."
+        },
+        {
+          "standard_id": "ISO-IEC-30111-2019",
+          "relation": "contextual",
+          "scope_note": "Vulnerability handling state provides process context for advisories."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/observatory-evidence-model.md",
+      "relations": [
+        {
+          "standard_id": "W3C-PROV-O",
+          "relation": "direct",
+          "scope_note": "Entity/activity/agent provenance projection directly uses W3C PROV concepts."
+        },
+        {
+          "standard_id": "OASIS-STIX-2.1",
+          "relation": "contextual",
+          "scope_note": "Threat/observable exchange concepts provide contextual interoperability."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/observatory-data-architecture.md",
+      "relations": [
+        {
+          "standard_id": "W3C-PROV-O",
+          "relation": "direct",
+          "scope_note": "The RDF provenance projection directly targets W3C PROV-O semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/confidence-classification.md",
+      "relations": [
+        {
+          "standard_id": "OASIS-STIX-2.1",
+          "relation": "direct",
+          "scope_note": "The STIX 0-100 confidence option directly follows STIX confidence semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/research-profile-registry.md",
+      "relations": [],
+      "no_direct_analog_reason": "The machine-readable experimental research registry and its production-separation semantics are E2EESA-specific."
+    },
+    {
+      "document_path": "spec/research-production-promotion.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/deprecation-emergency-migration.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-131AR2",
+          "relation": "direct",
+          "scope_note": "Cryptographic transition guidance directly informs planned algorithm retirement."
+        },
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "direct",
+          "scope_note": "Algorithm agility and migration directly inform cutover/downgrade requirements."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/conformance-engine.md",
+      "relations": [
+        {
+          "standard_id": "ISO-IEC-27001-2022",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/conformance-cli.md",
+      "relations": [],
+      "no_direct_analog_reason": "The deterministic E2EESA command-line interface is a project-specific conformance implementation surface."
+    },
+    {
+      "document_path": "spec/compatibility-configuration-solver.md",
+      "relations": [],
+      "no_direct_analog_reason": "The E2EESA profile solver is project-specific; external standards do not define this exact configuration model."
+    },
+    {
+      "document_path": "spec/reference-fixtures.md",
+      "relations": [],
+      "no_direct_analog_reason": "The catalog-complete executable fixture corpus is E2EESA-specific test infrastructure."
+    },
+    {
+      "document_path": "spec/cross-profile-interoperability.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Provides external context or aligned requirements; E2EESA retains its own exact normative semantics."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/integration-contracts.md",
+      "relations": [],
+      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
+    },
+    {
+      "document_path": "spec/standards-crosswalk.md",
+      "relations": [],
+      "no_direct_analog_reason": "The crosswalk machinery itself is E2EESA-specific meta-governance."
+    }
+  ]
+}

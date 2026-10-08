@@ -58,6 +58,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 43. [Reference Fixtures](reference-fixtures.md) — executable catalog-complete positive and negative lifecycle fixtures for every exact profile ref, materialized through PR 42 and re-resolved through PR 2.
 44. [Cross-Profile Interoperability Suite](cross-profile-interoperability.md) — full production-profile pair matrix distinguishing co-configuration, exclusive alternatives, direct incompatibility, dependency composition and contextual conflicts without inferring wire interoperability.
 45. [Six-Project Integration Contracts](integration-contracts.md) — stable content-addressed artifact contracts for SDK, Verified, Security Lab, Incident Exchange, Observatory, and Research Lab.
+46. [Complete Standards Crosswalk](standards-crosswalk.md) — deterministic requirement-by-requirement mapping of every normative BCP 14 paragraph to external standards or an explicit no-direct-analog rationale.
 
 ## Remaining specification areas
 
