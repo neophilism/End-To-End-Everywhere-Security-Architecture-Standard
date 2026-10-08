@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "profile_ref": "advisory-csaf-2-0-iso20153@0.1.0",
+  "csaf_version": "2.0",
+  "document_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "validator": {
+    "name": "example-csaf-validator",
+    "version": "1.0.0",
+    "reference": "https://example.org/tools/csaf-validator"
+  },
+  "validated_at": "2026-10-11T14:00:00Z",
+  "errors": [],
+  "warnings": [
+    "Example fixture only; no real external validator was run."
+  ]
+}
