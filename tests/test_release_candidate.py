@@ -42,6 +42,7 @@ class ReleaseCandidateTests(unittest.TestCase):
         self.assertEqual(stored["file_count"],len(stored["files"]))
         self.assertGreater(stored["file_count"],100)
         self.assertTrue(stored["tree_digest"].startswith("sha256:"))
+        self.assertTrue(all(len(item["git_blob_sha"])==40 for item in stored["files"]))
 
     def test_manifest_paths_are_unique_sorted_and_existing(self):
         policy=self.load("registry/release-candidate.json")
