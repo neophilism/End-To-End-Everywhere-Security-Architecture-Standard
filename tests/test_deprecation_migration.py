@@ -497,7 +497,7 @@ class DeprecationMigrationTests(unittest.TestCase):
             "plan_digest":plan["plan_digest"],
             "events":[
                 {"event_id":"a","event_type":"activate-plan","occurred_at":"2026-11-01T00:00:00Z","dependent_id":None,"evidence_digest":"sha256:"+"8"*64,"reference":"https://example.org/a"},
-                {"event_id":"b","event_type":"replacement-available","occurred_at":"2026-11-01T00:01:00Z","dependent_id":None,"evidence_digest":"sha256:"+"9"*64,"reference":"https://example.org/b"},
+                {"event_id":"b","event_type":"replacement-available","occurred_at":"2026-11-01T00:00:00Z","dependent_id":None,"evidence_digest":"sha256:"+"9"*64,"reference":"https://example.org/b"},
                 {"event_id":"c","event_type":"dependent-migrated","occurred_at":"2026-11-20T00:00:00Z","dependent_id":"example-addon-requires-a@0.1.0","evidence_digest":"sha256:"+"a"*64,"reference":"https://example.org/c"},
                 {"event_id":"d","event_type":"stop-new-use","occurred_at":"2026-12-01T00:00:00Z","dependent_id":None,"evidence_digest":"sha256:"+"b"*64,"reference":"https://example.org/d"},
                 {"event_id":"e","event_type":"prohibit","occurred_at":"2026-12-01T00:00:00Z","dependent_id":None,"evidence_digest":"sha256:"+"c"*64,"reference":"https://example.org/e"},
