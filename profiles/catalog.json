@@ -139,6 +139,12 @@
       "name": "Assurance level",
       "cardinality": "at-most-one",
       "description": "Monotonic evidence-depth tier for an exact product/configuration."
+    },
+    {
+      "family_id": "vulnerability-disclosure",
+      "name": "Vulnerability disclosure timing",
+      "cardinality": "at-most-one",
+      "description": "Selectable coordinated-disclosure timing model with common reporter-protection and intake invariants."
     }
   ],
   "profiles": [
@@ -1236,6 +1242,30 @@
       ],
       "incompatible_profile_refs": [],
       "notes": "A4 plus computational proof obligations for applicable product-specific constructions/compositions and two independent assessors."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-disclosure-risk-adaptive",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-disclosure",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Risk-tier disclosure timing with published monotonic deadlines and a 180-day maximum coordination cap."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-disclosure-fixed-90",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-disclosure",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Fixed 90-day disclosure clock with a 30-day patch-adoption window when a fix ships before day 90."
     }
   ]
 }
