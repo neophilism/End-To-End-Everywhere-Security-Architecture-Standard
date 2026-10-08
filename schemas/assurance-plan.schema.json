@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/assurance-plan.schema.json",
+  "title": "E2EESA Assurance Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "plan_id",
+    "assurance_profile_ref",
+    "product_id",
+    "product_version",
+    "platform",
+    "configuration",
+    "claimed_property_ids",
+    "independent_assessor_ids",
+    "computational_scope_property_ids",
+    "computational_exemptions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "plan_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "assurance_profile_ref": {
+      "type": "string",
+      "pattern": "^assurance-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "configuration": {
+      "$ref": "configuration.schema.json"
+    },
+    "claimed_property_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SP-[A-Z0-9-]+$"
+      }
+    },
+    "independent_assessor_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "computational_scope_property_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SP-[A-Z0-9-]+$"
+      }
+    },
+    "computational_exemptions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "property_id",
+          "rationale",
+          "standardized_construction_refs"
+        ],
+        "properties": {
+          "property_id": {
+            "type": "string",
+            "pattern": "^SP-[A-Z0-9-]+$"
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "standardized_construction_refs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

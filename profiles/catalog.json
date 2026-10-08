@@ -133,6 +133,12 @@
       "name": "Formal verification",
       "cardinality": "many",
       "description": "Complementary machine-checked proof models selected according to the claims and assurance tier."
+    },
+    {
+      "family_id": "assurance-level",
+      "name": "Assurance level",
+      "cardinality": "at-most-one",
+      "description": "Monotonic evidence-depth tier for an exact product/configuration."
     }
   ],
   "profiles": [
@@ -1146,6 +1152,90 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Machine-checked implementation/refinement proof binding code to a formal specification and disclosing unverified toolchain boundaries."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a1-observed",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-blackbox@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "Independent external behavior assessment."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a2-reviewed",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "Combined independent external/source assessment plus secure-development and reproducible supply-chain evidence."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a3-protocol-formal",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "A2 plus symbolic formal protocol evidence for applicable claims."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a4-implementation-formal",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0",
+        "formal-code-refinement@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "A3 plus code/refinement evidence for applicable security-critical implementation claims."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a5-comprehensive-formal",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0",
+        "formal-code-refinement@0.1.0",
+        "formal-computational-proof@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "A4 plus computational proof obligations for applicable product-specific constructions/compositions and two independent assessors."
     }
   ]
 }

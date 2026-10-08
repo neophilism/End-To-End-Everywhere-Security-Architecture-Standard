@@ -35,8 +35,17 @@ import telemetry_engine
 import server_trust_engine
 import client_security_engine
 import formal_verification
+import assurance_levels
 
 REQUIRED_PATHS = [
+    'scripts/assurance_levels.py',
+    'registry/assurance-levels.json',
+    'schemas/assurance-levels-registry.schema.json',
+    'schemas/assurance-plan.schema.json',
+    'spec/assurance-levels.md',
+    'adr/0027-monotonic-assurance-levels.md',
+    'tests/test_assurance_levels.py',
+    'fixtures/assurance/valid/a3-plan.json',
     'scripts/formal_verification.py',
     'registry/formal-verification.json',
     'schemas/formal-verification-registry.schema.json',

@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "plan_id": "example-a3-plan",
+  "assurance_profile_ref": "assurance-a3-protocol-formal@0.1.0",
+  "product_id": "example-product",
+  "product_version": "1.0.0",
+  "platform": "example-platform",
+  "configuration": {
+    "schema_version": "0.1",
+    "configuration_id": "example-a3-config",
+    "standard_version": "0.1.0-dev",
+    "selected_profiles": [
+      "foundation-baseline@0.1.0",
+      "example-choice-b@0.1.0",
+      "assurance-a3-protocol-formal@0.1.0"
+    ],
+    "accepted_nondefault_statuses": []
+  },
+  "claimed_property_ids": ["SP-CONFIDENTIALITY"],
+  "independent_assessor_ids": ["independent-assessor-one"],
+  "computational_scope_property_ids": [],
+  "computational_exemptions": []
+}
