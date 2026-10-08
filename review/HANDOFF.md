@@ -35,6 +35,20 @@ The project will normalize the returned material into `review/independent-review
 
 ## Commands
 
+### Recommended one-command evidence run
+
+From the repository root:
+
+`python review/run_expert_review_suite.py --reviewer-id <reviewer-id> --organization-id <organization-id> --output review/evidence/<reviewer-id>-automated-evidence.json`
+
+This verifies the frozen candidate, runs the complete unit suite and seeded adversarial checks, validates the review package structure, and produces a content-addressed evidence report. It is supporting evidence only; the expert's human analysis, findings, limitations, and attestation remain required.
+
+Preview the exact command plan without running it:
+
+`python review/run_expert_review_suite.py --plan`
+
+### Individual commands
+
 Candidate validation:
 
 `python scripts/validate_repo.py`
