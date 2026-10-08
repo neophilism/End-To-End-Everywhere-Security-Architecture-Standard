@@ -10,6 +10,26 @@
       "git_blob_sha": "4d6d0072b43a94530f37141c16f27c9a81d84682"
     },
     {
+      "path": "CONTRIBUTING.md",
+      "size": 1138,
+      "git_blob_sha": "bc88cb1b0e855d440e876f86175e7d8610d49d20"
+    },
+    {
+      "path": "README.md",
+      "size": 1676,
+      "git_blob_sha": "c4da8e22fcdfc879c695a93feef720d58e94e353"
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 869,
+      "git_blob_sha": "996043f3bc5be52a9b105f53ededc129703c46c2"
+    },
+    {
+      "path": "VERSION",
+      "size": 11,
+      "git_blob_sha": "16d0a6cb390e703e7463b14a9a46c3a292b88d1a"
+    },
+    {
       "path": "adr/0000-template.md",
       "size": 1098,
       "git_blob_sha": "0007ba96470a66548df0bf522c05f9808f2fef89"
@@ -213,11 +233,6 @@
       "path": "adr/0044-configuration-interop-does-not-imply-wire-interop.md",
       "size": 1692,
       "git_blob_sha": "a70b9f385bb412b167cb8a1b2ff5dae54e34287a"
-    },
-    {
-      "path": "CONTRIBUTING.md",
-      "size": 1138,
-      "git_blob_sha": "bc88cb1b0e855d440e876f86175e7d8610d49d20"
     },
     {
       "path": "fixtures/advisory-interoperability/valid/advisory.json",
@@ -1635,19 +1650,14 @@
       "git_blob_sha": "1c05cdaa678c1a36feed7708537fa1fd222a0a0a"
     },
     {
-      "path": "profiles/catalog.json",
-      "size": 52105,
-      "git_blob_sha": "22f88145aeedd97fef2d7c0a46d06744edbeeff4"
-    },
-    {
       "path": "profiles/README.md",
       "size": 8115,
       "git_blob_sha": "8a19a72bb0575f82bb38bb1942d08790b928090c"
     },
     {
-      "path": "README.md",
-      "size": 1676,
-      "git_blob_sha": "c4da8e22fcdfc879c695a93feef720d58e94e353"
+      "path": "profiles/catalog.json",
+      "size": 52105,
+      "git_blob_sha": "22f88145aeedd97fef2d7c0a46d06744edbeeff4"
     },
     {
       "path": "reference/observatory/postgres.sql",
@@ -2740,9 +2750,9 @@
       "git_blob_sha": "4b39f68ab13b4612bec7f78c0716b7134113c1c5"
     },
     {
-      "path": "SECURITY.md",
-      "size": 869,
-      "git_blob_sha": "996043f3bc5be52a9b105f53ededc129703c46c2"
+      "path": "spec/README.md",
+      "size": 12447,
+      "git_blob_sha": "fed53277d1c676430b7598a67896820656a877c8"
     },
     {
       "path": "spec/advisory-interoperability.md",
@@ -2893,11 +2903,6 @@
       "path": "spec/profile-configuration.md",
       "size": 6710,
       "git_blob_sha": "c82a081c05624ddb8b3a1afe553048bcafd43ad1"
-    },
-    {
-      "path": "spec/README.md",
-      "size": 12447,
-      "git_blob_sha": "fed53277d1c676430b7598a67896820656a877c8"
     },
     {
       "path": "spec/real-time-media.md",
@@ -3223,12 +3228,7 @@
       "path": "tests/test_vulnerability_handling.py",
       "size": 16693,
       "git_blob_sha": "83cecf3975618cd3aa411f7c46454e520f4e5513"
-    },
-    {
-      "path": "VERSION",
-      "size": 11,
-      "git_blob_sha": "16d0a6cb390e703e7463b14a9a46c3a292b88d1a"
     }
   ],
-  "tree_digest": "sha256:1afc2dbed3f2a3ee55f9e613b1ef7cbca8582e8bdf5bffe6d413c78066495133"
+  "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2"
 }
