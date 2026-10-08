@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Repository-level validation for E2EESA standard artifacts."""
 
-from __future__ import integration_contracts
+import integration_contracts
 import annotations
 
 import json
