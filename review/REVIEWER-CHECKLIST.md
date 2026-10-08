@@ -68,3 +68,16 @@ Use this checklist as a working aid. It does not replace the signed/content-addr
 - [ ] Fixed findings were re-reviewed.
 - [ ] I explicitly accepted or rejected the final disposition of my findings.
 - [ ] My final attestation names every finding I submitted.
+
+
+## Validation after review fixes
+
+Once a reviewer finding causes a frozen candidate file to change, the original rc.1 manifest is expected to differ. Do **not** rewrite the historical rc.1 manifest merely to hide that difference.
+
+Validate the fixed tree with:
+
+`python review/validate_post_fix_tree.py`
+
+This permits only the exact expected rc.1 manifest-drift condition and still requires every other repository invariant to pass. Then compute the fixed-tree identity with:
+
+`python review/final_review_tree.py`
