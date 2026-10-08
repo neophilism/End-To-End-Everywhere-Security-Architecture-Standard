@@ -190,6 +190,27 @@ def validate_case(
             result.errors.append(f"{prefix} must be an object")
             continue
 
+        required_event_fields = {
+            "event_id","event_type","actor_id","actor_role","occurred_at",
+            "from_state","to_state","reason","evidence_bundle_digest",
+            "certificate_expires_at","surveillance_due_at","artifacts",
+        }
+        missing_event_fields = sorted(required_event_fields - event.keys())
+        if missing_event_fields:
+            result.errors.append(
+                f"{prefix} missing fields: {', '.join(missing_event_fields)}"
+            )
+        extra_event_fields = sorted(set(event) - required_event_fields)
+        if extra_event_fields:
+            result.errors.append(
+                f"{prefix} unknown fields: {', '.join(extra_event_fields)}"
+            )
+        artifacts = event.get("artifacts")
+        if not isinstance(artifacts, list) or len(artifacts) != len(set(artifacts)):
+            result.errors.append(f"{prefix} artifacts must be a unique array")
+        elif any(not _valid_digest(value) for value in artifacts):
+            result.errors.append(f"{prefix} artifacts must contain only sha256 digests")
+
         event_id = event.get("event_id")
         if not isinstance(event_id, str) or not event_id.strip():
             result.errors.append(f"{prefix} event_id must be non-empty")
