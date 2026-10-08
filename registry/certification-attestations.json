@@ -1,0 +1,48 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "payload_type":"application/vnd.e2eesa.certification+json",
+  "status_payload_type":"application/vnd.e2eesa.certification-status+json",
+  "envelope_formats":[
+    {
+      "id":"jws-compact",
+      "specification":"RFC 7515",
+      "multiple_signatures_per_envelope":false,
+      "requirements":"Protected alg/kid/typ; embedded canonical payload; typ e2eesa-cert+jws; no alg=none or b64=false."
+    },
+    {
+      "id":"cose-sign1",
+      "specification":"RFC 9052 / RFC 9053 / RFC 9964",
+      "multiple_signatures_per_envelope":false,
+      "requirements":"Protected alg/kid/content type; canonical payload bstr; external AAD E2EESA-CERT-0.1."
+    },
+    {
+      "id":"dsse",
+      "specification":"DSSE protocol",
+      "multiple_signatures_per_envelope":true,
+      "requirements":"Exact payloadType and PAE; trust and algorithm authorization come from E2EESA signing policy."
+    }
+  ],
+  "algorithm_ids":[
+    "ALG-ED25519",
+    "ALG-ECDSA-P256-SHA256",
+    "ALG-ECDSA-P384-SHA384",
+    "ALG-ML-DSA-44",
+    "ALG-ML-DSA-65",
+    "ALG-ML-DSA-87"
+  ],
+  "signature_policies":[
+    {
+      "policy_class":"classical-threshold",
+      "minimum_signatures":1,
+      "minimum_classical_signatures":1,
+      "minimum_post_quantum_signatures":0
+    },
+    {
+      "policy_class":"dual-classical-pq",
+      "minimum_signatures":2,
+      "minimum_classical_signatures":1,
+      "minimum_post_quantum_signatures":1
+    }
+  ]
+}
