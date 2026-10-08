@@ -1,0 +1,105 @@
+{
+  "schema_version": "0.1",
+  "plan_id": "example-planned-hpke-kem-retirement",
+  "asset": {
+    "kind": "algorithm",
+    "id": "ALG-HPKE-DHKEM-X25519-HKDF-SHA256"
+  },
+  "mode": "planned",
+  "strategy": "overlap-prefer-new",
+  "reason": {
+    "reason_class": "ecosystem-migration",
+    "summary": "Illustrative planned migration from one registered HPKE KEM to another; not a security claim about X25519.",
+    "evidence_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "reference": "https://example.org/migrations/hpke-kem/reason",
+    "detected_at": "2026-10-08T12:00:00Z"
+  },
+  "current_status": "recommended",
+  "terminal_status": "prohibited",
+  "replacement": {
+    "kind": "algorithm",
+    "id": "ALG-HPKE-DHKEM-P256-HKDF-SHA256"
+  },
+  "legacy_processing_policy": "migration-only",
+  "fallback_policy": "bounded-until-new-use-stop",
+  "controls": {
+    "downgrade_protection": true,
+    "fallback_telemetry": true,
+    "historical_cutoff_at": "2026-11-15T00:00:00Z",
+    "isolated_legacy_processing": true,
+    "audited_legacy_processing": true,
+    "configuration_rollback_blocked": true
+  },
+  "timeline": {
+    "effective_at": "2026-10-15T00:00:00Z",
+    "replacement_available_at": "2026-10-20T00:00:00Z",
+    "new_use_stop_at": "2026-11-15T00:00:00Z",
+    "legacy_processing_stop_at": "2026-12-15T00:00:00Z",
+    "prohibit_at": "2026-12-31T00:00:00Z"
+  },
+  "dependents": [
+    {
+      "kind": "suite",
+      "id": "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
+      "action": "retire",
+      "replacement_id": null,
+      "owner": "hpke-suite-maintainer",
+      "deadline_at": "2026-12-20T00:00:00Z",
+      "evidence_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "reference": "https://example.org/migrations/hpke-kem/dependent-aes"
+    },
+    {
+      "kind": "suite",
+      "id": "SUITE-HPKE-X25519-HKDF-SHA256-CHACHA20POLY1305",
+      "action": "retire",
+      "replacement_id": null,
+      "owner": "hpke-suite-maintainer",
+      "deadline_at": "2026-12-20T00:00:00Z",
+      "evidence_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "reference": "https://example.org/migrations/hpke-kem/dependent-chacha"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "replacement-check",
+      "evidence_type": "replacement-verification",
+      "evidence_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "reference": "https://example.org/migrations/hpke-kem/replacement-check"
+    },
+    {
+      "evidence_id": "migration-test",
+      "evidence_type": "migration-test",
+      "evidence_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "reference": "https://example.org/migrations/hpke-kem/migration-test"
+    },
+    {
+      "evidence_id": "impact-analysis",
+      "evidence_type": "dependent-impact",
+      "evidence_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "reference": "https://example.org/migrations/hpke-kem/impact"
+    },
+    {
+      "evidence_id": "fallback-accounting",
+      "evidence_type": "fallback-telemetry",
+      "evidence_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "reference": "https://example.org/migrations/hpke-kem/fallback"
+    }
+  ],
+  "approvals": [
+    {
+      "approver_id": "security-reviewer",
+      "role": "security-reviewer",
+      "approved_at": "2026-10-14T12:00:00Z",
+      "evidence_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "reference": "https://example.org/approvals/hpke-security"
+    },
+    {
+      "approver_id": "operations-reviewer",
+      "role": "operations-owner",
+      "approved_at": "2026-10-14T13:00:00Z",
+      "evidence_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "reference": "https://example.org/approvals/hpke-ops"
+    }
+  ],
+  "plan_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
