@@ -1,0 +1,11 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "lifecycle_statuses":["experimental"],
+  "research_kinds":["protocol-profile","algorithm-composition","implementation-technique","evidence-study","verification-method"],
+  "experiment_outcomes":["supported","refuted","inconclusive","error"],
+  "replication_statuses":["none","internal","independent"],
+  "vector_verification_statuses":["generated","internally-verified","independently-verified"],
+  "implementation_maturities":["concept","prototype","reference","independent"],
+  "entries":[]
+}
