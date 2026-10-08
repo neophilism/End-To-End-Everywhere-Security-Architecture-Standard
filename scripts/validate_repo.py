@@ -38,8 +38,21 @@ import formal_verification
 import assurance_levels
 import certification_evidence
 import certification_lifecycle
+import certification_attestations
 
 REQUIRED_PATHS = [
+    'scripts/certification_attestations.py',
+    'registry/certification-attestations.json',
+    'schemas/certification-signing-policy.schema.json',
+    'schemas/certification-attestation.schema.json',
+    'schemas/certification-status-statement.schema.json',
+    'spec/certification-attestations.md',
+    'adr/0030-portable-signed-certification-attestations.md',
+    'tests/test_certification_attestations.py',
+    'fixtures/certification-attestations/valid/signing-policy-classical.json',
+    'fixtures/certification-attestations/valid/signing-policy-dual.json',
+    'fixtures/certification-attestations/valid/attestation.json',
+    'fixtures/certification-attestations/valid/status.json',
     'scripts/certification_lifecycle.py',
     'registry/certification-lifecycle.json',
     'schemas/certification-lifecycle-registry.schema.json',
