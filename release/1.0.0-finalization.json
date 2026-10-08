@@ -50,7 +50,12 @@
       "release/1.0.0-finalization.json",
       "release/1.0.0-RELEASE-GUIDE.md",
       "release/1.0.0-RELEASE-NOTES.md",
-      "release/1.0.0-manifest.schema.json"
+      "release/1.0.0-manifest.schema.json",
+      "release/review_completion.py",
+      "release/review-completion-receipt.json",
+      "release/final_release.py",
+      "release/promote_to_1_0.py",
+      "release/validate_1_0_readiness.py"
     ],
     "excluded_paths": [
       "registry/release-candidate.json",
