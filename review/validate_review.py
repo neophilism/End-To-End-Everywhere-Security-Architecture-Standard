@@ -16,6 +16,7 @@ if str(SCRIPTS) not in sys.path:
 
 import standards_crosswalk
 import release_candidate
+import validate_post_fix_tree
 
 REQUIRED_DOMAINS = {
     "cryptography-protocols",
@@ -363,6 +364,11 @@ def completion_errors(package: dict, root: Path = ROOT) -> list[str]:
             errors.append(
                 f"medium finding {finding.get('finding_id')} must be dispositioned"
             )
+
+    post_fix_errors = validate_post_fix_tree.post_fix_errors(root)
+    errors.extend(
+        "post-fix tree: " + error for error in post_fix_errors
+    )
 
     if package.get("status") != "ready-for-1.0":
         errors.append("review package status must be ready-for-1.0")
