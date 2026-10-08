@@ -54,3 +54,12 @@ Final review gate:
 `python review/validate_review.py --require-complete`
 
 The final gate is intentionally expected to fail until the independent review has actually been completed.
+
+
+## Final fixed-tree acceptance
+
+After all review-driven fixes are applied, compute the exact fixed standard-tree identity with:
+
+`python review/final_review_tree.py`
+
+Every reviewer's final acceptance must reference that same tree digest. The combined completion record must use it as `final_reviewed_tree_digest`.
