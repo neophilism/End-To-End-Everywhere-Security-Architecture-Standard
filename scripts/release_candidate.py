@@ -19,6 +19,11 @@ def sha256_bytes(data):
     return "sha256:" + hashlib.sha256(data).hexdigest()
 
 
+def git_blob_sha(data):
+    header = ("blob " + str(len(data)) + chr(0)).encode("utf-8")
+    return hashlib.sha1(header + data).hexdigest()
+
+
 def canonical_bytes(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
 
@@ -59,7 +64,7 @@ def build_manifest(root, policy):
     entries=[]
     for rel in frozen_paths(root,policy):
         data=(root/rel).read_bytes()
-        entries.append({"path":rel,"size":len(data),"sha256":sha256_bytes(data)})
+        entries.append({"path":rel,"size":len(data),"git_blob_sha":git_blob_sha(data)})
     manifest={
         "schema_version":"0.1",
         "release_version":policy["release_version"],
