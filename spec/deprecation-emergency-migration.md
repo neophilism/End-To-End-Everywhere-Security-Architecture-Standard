@@ -239,6 +239,14 @@ Adoption/fallback telemetry is required when bounded fallback is enabled.
 
 Emergency plans record the incident/advisory/vulnerability evidence that caused the emergency.
 
+### Emergency authorization and review
+
+A credible emergency MUST be stoppable without waiting for ordinary multi-party migration governance.
+
+An emergency plan therefore MAY be activated by one designated `emergency-security-authority` when the evidence justifies immediate cessation of new use.
+
+That emergency authority does not eliminate review. A `post-emergency-review` event is mandatory within 24 hours of the `emergency-stop` event. The review evidence must independently assess the trigger, scope, replacement/availability decision, dependent impact, and historical-processing exception. Failure to complete this review is an overdue migration obligation.
+
 ## 11. Reason classes
 
 Reason classes are:
