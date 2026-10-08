@@ -22,6 +22,7 @@ for path in (RELEASE, REVIEW, SCRIPTS):
         sys.path.insert(0, str(path))
 
 import final_release
+import review_completion
 import validate_1_0_readiness
 import validate_review
 
@@ -398,6 +399,13 @@ def apply_promotion(policy: dict) -> None:
         raise RuntimeError(
             "independent review is incomplete: " + "; ".join(review_errors)
         )
+
+    try:
+        review_completion.write_receipt()
+    except ValueError as exc:
+        raise RuntimeError(
+            "unable to create review completion receipt: " + str(exc)
+        ) from exc
 
     old = policy["pre_1_0_standard_version"]
     new = policy["final_standard_version"]
