@@ -30,6 +30,7 @@ The logical relational model contains:
 - `agents`;
 - `entities`;
 - `activities`;
+- `activity_acquisitions`;
 - `activity_agents`;
 - `activity_used_entities`;
 - `activity_generated_entities`;
@@ -37,6 +38,7 @@ The logical relational model contains:
 - `event_subjects`;
 - `event_attributes`;
 - `citations`;
+- `event_citations`;
 - `integrity_anchors`; and
 - `anchor_verification`.
 
@@ -46,12 +48,7 @@ Rows scoped to a bundle use the bundle digest plus the local PR 34 identifier as
 
 Large source bytes need not be stored inside the relational database.
 
-The relational `content_objects` table stores:
-
-- SHA-256 digest;
-- media type;
-- known byte length; and
-- content-addressed/object-store URI when present.
+The relational `content_objects` table stores the content SHA-256 digest and known byte length. Media type, content-addressed/object-store URI, source URI and source-native identity remain bundle-scoped entity metadata because identical bytes can appear in more than one evidence context.
 
 Any external blob/object store is an implementation choice.
 
@@ -94,6 +91,8 @@ Each derived projection stores or exposes a checkpoint containing:
 - source relational row-set digest.
 
 A consumer MUST be able to determine which canonical evidence revision produced a projection.
+
+The projection-manifest digest covers the source bundle, relational row-set digest, row counts and projection digests/counts. It intentionally excludes `generated_at`, so rebuilding identical logical projections at a later time produces the same logical manifest digest while retaining a new generation timestamp.
 
 ## 7. Property graph projection
 
