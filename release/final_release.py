@@ -15,6 +15,7 @@ if str(REVIEW) not in sys.path:
     sys.path.insert(0, str(REVIEW))
 
 import review_completion
+import requirement_transition
 
 
 def canonical_bytes(value: object) -> bytes:
@@ -148,6 +149,16 @@ def validate_final_release() -> list[str]:
         for error in receipt_errors
     )
 
+    if not receipt_errors:
+        receipt = load_json("release/review-completion-receipt.json")
+        transition_errors = requirement_transition.validate_report(
+            receipt["final_reviewed_tree_digest"]
+        )
+        errors.extend(
+            "requirement transition: " + error
+            for error in transition_errors
+        )
+
     readiness = load_json("release/1.0.0-readiness.json")
     if readiness.get("external_review_status") != "complete":
         errors.append("1.0 readiness external_review_status must be complete")
@@ -196,6 +207,19 @@ def main() -> int:
             print(
                 "Refusing to write final manifest without a valid "
                 "review-completion receipt."
+            )
+            return 1
+
+        receipt = load_json("release/review-completion-receipt.json")
+        transition_errors = requirement_transition.validate_report(
+            receipt["final_reviewed_tree_digest"]
+        )
+        if transition_errors:
+            for error in transition_errors:
+                print("ERROR:", error)
+            print(
+                "Refusing to write final manifest without a valid "
+                "requirement ID transition report."
             )
             return 1
 
