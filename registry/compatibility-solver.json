@@ -1,0 +1,25 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "modes":[
+    {
+      "id":"production",
+      "eligible_statuses":["allowed","recommended"],
+      "accepted_nondefault_statuses":[]
+    },
+    {
+      "id":"candidate",
+      "eligible_statuses":["allowed","provisional","recommended"],
+      "accepted_nondefault_statuses":["provisional"]
+    },
+    {
+      "id":"migration",
+      "eligible_statuses":["allowed","deprecated","legacy","recommended"],
+      "accepted_nondefault_statuses":["deprecated","legacy"]
+    }
+  ],
+  "result_statuses":["solutions","unsatisfiable","invalid-request","search-limit"],
+  "default_max_solutions":50,
+  "maximum_max_solutions":500,
+  "maximum_search_states":250000
+}
