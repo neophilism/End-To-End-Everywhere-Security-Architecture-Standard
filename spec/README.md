@@ -57,6 +57,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 42. [Compatibility and Configuration Solver](compatibility-configuration-solver.md) — deterministic no-ranking enumeration of PR 2-compatible configurations constrained by lifecycle mode, PR 38 Candidate/Required state, pins/exclusions, family scope inputs, desired properties, and explicit search limits.
 43. [Reference Fixtures](reference-fixtures.md) — executable catalog-complete positive and negative lifecycle fixtures for every exact profile ref, materialized through PR 42 and re-resolved through PR 2.
 44. [Cross-Profile Interoperability Suite](cross-profile-interoperability.md) — full production-profile pair matrix distinguishing co-configuration, exclusive alternatives, direct incompatibility, dependency composition and contextual conflicts without inferring wire interoperability.
+45. [Six-Project Integration Contracts](integration-contracts.md) — stable content-addressed artifact contracts for SDK, Verified, Security Lab, Incident Exchange, Observatory, and Research Lab.
 
 ## Remaining specification areas
 
