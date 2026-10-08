@@ -155,6 +155,7 @@ Each normalized product is an exact product/version identity.
 At minimum it contains:
 
 - product ID;
+- product-line ID, which groups exact versions of the same product for affected/fixed lineage checks;
 - vendor;
 - product name;
 - version.
