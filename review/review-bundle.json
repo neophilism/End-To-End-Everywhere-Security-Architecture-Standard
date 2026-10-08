@@ -69,6 +69,7 @@
     }
   ],
   "commands": [
+    "python review/run_expert_review_suite.py --reviewer-id <reviewer-id> --organization-id <organization-id> --output review/evidence/<reviewer-id>-automated-evidence.json",
     "python scripts/validate_repo.py",
     "python scripts/release_candidate.py",
     "python -m unittest discover -s tests -v",
@@ -80,6 +81,7 @@
     "python review/final_review_tree.py"
   ],
   "deliverables": [
+    "automated review-support evidence from review/run_expert_review_suite.py, or a documented equivalent manual validation procedure",
     "reviewer attestation conforming to review/reviewer-attestation.schema.json",
     "one structured record per substantive finding conforming to review/finding.schema.json",
     "supplemental analysis/test vectors/proofs/traces where useful",
@@ -94,6 +96,7 @@
   "schemas": {
     "reviewer_attestation": "review/reviewer-attestation.schema.json",
     "finding": "review/finding.schema.json",
-    "combined_package": "review/review-package.schema.json"
+    "combined_package": "review/review-package.schema.json",
+    "automated_review_evidence": "review/automated-review-evidence.schema.json"
   }
 }
