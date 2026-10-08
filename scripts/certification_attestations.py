@@ -406,6 +406,35 @@ def validate_attestation(
 
     if issued_at and not_before and issued_at < not_before:
         errors.append("attestation issued_at must not precede not_before")
+
+    bundle_observed_at=_parse_time(
+        evidence_bundle.get("observed_at"),
+        "evidence_bundle.observed_at",
+        errors,
+    )
+    if issued_at is not None and bundle_observed_at is not None and issued_at < bundle_observed_at:
+        errors.append("attestation issued before evidence bundle observation time")
+    for index,item in enumerate(evidence_bundle.get("evidence_items",[])):
+        if not isinstance(item,dict):
+            continue
+        item_time=_parse_time(
+            item.get("observed_at"),
+            f"evidence_bundle.evidence_items[{index}].observed_at",
+            errors,
+        )
+        if issued_at is not None and item_time is not None and issued_at < item_time:
+            errors.append(
+                f"attestation issued before evidence item observation time: {item.get('evidence_id')}"
+            )
+    if lifecycle_case.get("events"):
+        latest_event=lifecycle_case["events"][-1]
+        latest_event_time=_parse_time(
+            latest_event.get("occurred_at"),
+            "lifecycle latest event occurred_at",
+            errors,
+        )
+        if issued_at is not None and latest_event_time is not None and issued_at < latest_event_time:
+            errors.append("attestation issued before latest lifecycle event")
     if not_before and expires_at and expires_at <= not_before:
         errors.append("attestation expires_at must be after not_before")
     if as_of is not None:
@@ -499,6 +528,14 @@ def validate_status_statement(
         errors.append("status payload_digest does not match canonical payload")
 
     effective_at=_parse_time(payload.get("effective_at"),"status.effective_at",errors)
+    if lifecycle_case.get("events"):
+        latest_event_time=_parse_time(
+            lifecycle_case["events"][-1].get("occurred_at"),
+            "status latest lifecycle event occurred_at",
+            errors,
+        )
+        if effective_at is not None and latest_event_time is not None and effective_at < latest_event_time:
+            errors.append("status statement effective_at precedes latest lifecycle event")
     sequence=payload.get("sequence")
     if not isinstance(sequence,int) or isinstance(sequence,bool) or sequence<0:
         errors.append("status sequence must be a non-negative integer")
