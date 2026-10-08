@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "dispositions": [
+    "production-positive",
+    "candidate-positive",
+    "migration-positive",
+    "unpromoted-provisional-negative",
+    "experimental-negative",
+    "prohibited-negative"
+  ],
+  "positive_dispositions": [
+    "production-positive",
+    "candidate-positive",
+    "migration-positive"
+  ],
+  "negative_dispositions": [
+    "unpromoted-provisional-negative",
+    "experimental-negative",
+    "prohibited-negative"
+  ],
+  "generated_case_version": "0.1"
+}
