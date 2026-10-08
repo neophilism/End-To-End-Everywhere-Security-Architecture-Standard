@@ -1,0 +1,28 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "relational_model_version":"0.1.0",
+  "projections":[
+    {
+      "projection_id":"property-graph",
+      "projection_version":"0.1.0",
+      "projection_kind":"graph",
+      "authoritative":false,
+      "rebuildable":true
+    },
+    {
+      "projection_id":"prov-rdf",
+      "projection_version":"0.1.0",
+      "projection_kind":"rdf",
+      "authoritative":false,
+      "rebuildable":true
+    },
+    {
+      "projection_id":"search-documents",
+      "projection_version":"0.1.0",
+      "projection_kind":"search",
+      "authoritative":false,
+      "rebuildable":true
+    }
+  ]
+}

@@ -43,8 +43,19 @@ import vulnerability_disclosure
 import vulnerability_handling
 import advisory_interoperability
 import observatory_evidence
+import observatory_data_architecture
 
 REQUIRED_PATHS = [
+    'scripts/observatory_data_architecture.py',
+    'registry/observatory-data-architecture.json',
+    'schemas/observatory-property-graph.schema.json',
+    'schemas/observatory-rdf-projection.schema.json',
+    'schemas/observatory-search-projection.schema.json',
+    'schemas/observatory-projection-manifest.schema.json',
+    'spec/observatory-data-architecture.md',
+    'adr/0035-relational-canonical-store-derived-projections.md',
+    'reference/observatory/postgres.sql',
+    'tests/test_observatory_data_architecture.py',
     'scripts/observatory_evidence.py',
     'schemas/observatory-evidence-bundle.schema.json',
     'spec/observatory-evidence-model.md',

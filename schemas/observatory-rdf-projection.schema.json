@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/observatory-rdf-projection.schema.json",
+  "title":"E2EESA Observatory W3C PROV RDF Projection",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","projection_version","source_bundle_digest","triples"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "projection_version":{"const":"0.1.0"},
+    "source_bundle_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "triples":{
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["subject","predicate","object"],
+        "properties":{
+          "subject":{"type":"string","minLength":1},
+          "predicate":{"type":"string","minLength":1},
+          "object":{"type":"string","minLength":1}
+        }
+      }
+    }
+  }
+}
