@@ -31,5 +31,8 @@
   "finding_ids": [],
   "overall_conclusion": "REPLACE-ME",
   "final_reviewed_tree_digest": null,
-  "final_acceptance": null
+  "final_acceptance": null,
+  "automated_evidence_digest": null,
+  "automated_evidence_reference": null,
+  "automated_evidence_equivalent_note": "REPLACE-ME only if you used an equivalent/manual validation procedure; otherwise set null and provide the automated evidence digest/reference."
 }
