@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "e2eesa-cert-dual",
+  "issuer_id": "open-e2ee-verified",
+  "policy_class": "dual-classical-pq",
+  "allowed_envelope_formats": [
+    "jws-compact",
+    "cose-sign1",
+    "dsse"
+  ],
+  "trusted_keys": [
+    {
+      "key_id": "cert-ed25519-2026",
+      "algorithm_id": "ALG-ED25519",
+      "public_key_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "public_key_ref": "https://example.org/keys/cert-ed25519-2026",
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_until": "2028-01-01T00:00:00Z",
+      "status": "active",
+      "status_effective_at": "2026-01-01T00:00:00Z",
+      "role": "certification-signer"
+    },
+    {
+      "key_id": "cert-mldsa65-2026",
+      "algorithm_id": "ALG-ML-DSA-65",
+      "public_key_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "public_key_ref": "https://example.org/keys/cert-mldsa65-2026",
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_until": "2028-01-01T00:00:00Z",
+      "status": "active",
+      "status_effective_at": "2026-01-01T00:00:00Z",
+      "role": "certification-signer"
+    }
+  ]
+}
