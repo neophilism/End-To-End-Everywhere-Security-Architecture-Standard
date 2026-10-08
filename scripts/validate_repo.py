@@ -45,8 +45,17 @@ import advisory_interoperability
 import observatory_evidence
 import observatory_data_architecture
 import confidence_classification
+import research_profile_registry
 
 REQUIRED_PATHS = [
+    'scripts/research_profile_registry.py',
+    'registry/research-profile-registry.json',
+    'schemas/research-profile-registry.schema.json',
+    'schemas/research-profile-entry.schema.json',
+    'spec/research-profile-registry.md',
+    'adr/0037-research-registration-does-not-imply-production-approval.md',
+    'tests/test_research_profile_registry.py',
+    'fixtures/research-profile-registry/valid/entry.json',
     'scripts/confidence_classification.py',
     'registry/confidence-classification.json',
     'schemas/confidence-classification-policy.schema.json',
