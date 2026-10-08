@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Repository-level validation for E2EESA standard artifacts."""
 
-from __future__ import annotations
+from __future__ import integration_contracts
+import annotations
 
 import json
 import re
@@ -55,6 +56,13 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/integration_contracts.py',
+    'registry/integration-contracts.json',
+    'schemas/integration-contract-registry.schema.json',
+    'schemas/integration-envelope.schema.json',
+    'spec/integration-contracts.md',
+    'tests/test_integration_contracts.py',
+    'fixtures/integration-contracts/valid/sdk-configuration-envelope.json',
     'scripts/interoperability_suite.py',
     'registry/interoperability-suite.json',
     'schemas/interoperability-suite-registry.schema.json',
