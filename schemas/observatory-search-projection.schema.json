@@ -1,0 +1,38 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/observatory-search-projection.schema.json",
+  "title":"E2EESA Observatory Search Projection",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","projection_version","source_bundle_digest","documents"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "projection_version":{"const":"0.1.0"},
+    "source_bundle_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "documents":{
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["document_id","record_type","source_id","title","body","facets","digests"],
+        "properties":{
+          "document_id":{"type":"string","minLength":1},
+          "record_type":{"enum":["agent","entity","event","citation"]},
+          "source_id":{"type":"string","minLength":1},
+          "title":{"type":"string","minLength":1},
+          "body":{"type":"string"},
+          "facets":{
+            "type":"array","uniqueItems":true,
+            "items":{
+              "type":"object","additionalProperties":false,
+              "required":["name","value"],
+              "properties":{
+                "name":{"type":"string","minLength":1},
+                "value":{"type":["string","integer","boolean","null"]}
+              }
+            }
+          },
+          "digests":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}}
+        }
+      }
+    }
+  }
+}
