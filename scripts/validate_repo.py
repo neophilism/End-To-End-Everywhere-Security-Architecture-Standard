@@ -13,6 +13,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
+import integration_contracts
 import profile_engine
 import crypto_registry
 import negotiation_engine
@@ -55,6 +56,13 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/integration_contracts.py',
+    'registry/integration-contracts.json',
+    'schemas/integration-contract-registry.schema.json',
+    'schemas/integration-envelope.schema.json',
+    'spec/integration-contracts.md',
+    'tests/test_integration_contracts.py',
+    'fixtures/integration-contracts/valid/sdk-configuration-envelope.json',
     'scripts/interoperability_suite.py',
     'registry/interoperability-suite.json',
     'schemas/interoperability-suite-registry.schema.json',
