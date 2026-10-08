@@ -14,7 +14,7 @@ REVIEW = ROOT / "review"
 if str(REVIEW) not in sys.path:
     sys.path.insert(0, str(REVIEW))
 
-import validate_review
+import review_completion
 
 
 def canonical_bytes(value: object) -> bytes:
@@ -82,16 +82,17 @@ def build_manifest(policy: dict) -> dict:
                 "git_blob_sha": git_blob_sha(data),
             }
         )
-    review_package = load_json("review/independent-review.json")
-    completion = review_package.get("completion", {})
+    receipt = load_json("release/review-completion-receipt.json")
     manifest = {
         "schema_version": "0.1",
         "release_version": "1.0.0",
         "source_candidate_digest": policy["source_candidate"]["tree_digest"],
-        "final_reviewed_tree_digest": completion.get(
+        "final_reviewed_tree_digest": receipt.get(
             "final_reviewed_tree_digest"
         ),
-        "review_summary_digest": completion.get("summary_digest"),
+        "review_summary_digest": receipt.get("review_summary_digest"),
+        "review_package_digest": receipt.get("review_package_digest"),
+        "review_completion_receipt_digest": receipt.get("receipt_digest"),
         "file_count": len(entries),
         "files": entries,
         "tree_digest": canonical_digest(entries),
@@ -141,11 +142,10 @@ def residual_pre_1_0_occurrences(policy: dict) -> list[str]:
 def validate_final_release() -> list[str]:
     errors: list[str] = []
     policy = load_json("release/1.0.0-finalization.json")
-    review_package = load_json("review/independent-review.json")
-
+    receipt_errors = review_completion.validate_receipt()
     errors.extend(
-        "external review: " + error
-        for error in validate_review.completion_errors(review_package, ROOT)
+        "review completion receipt: " + error
+        for error in receipt_errors
     )
 
     readiness = load_json("release/1.0.0-readiness.json")
@@ -189,12 +189,14 @@ def main() -> int:
 
     policy = load_json("release/1.0.0-finalization.json")
     if args.write_manifest:
-        review_package = load_json("review/independent-review.json")
-        review_errors = validate_review.completion_errors(review_package, ROOT)
-        if review_errors:
-            for error in review_errors:
+        receipt_errors = review_completion.validate_receipt()
+        if receipt_errors:
+            for error in receipt_errors:
                 print("ERROR:", error)
-            print("Refusing to write final manifest before independent review completes.")
+            print(
+                "Refusing to write final manifest without a valid "
+                "review-completion receipt."
+            )
             return 1
 
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
