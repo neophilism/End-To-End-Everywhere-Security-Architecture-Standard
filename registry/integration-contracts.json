@@ -1,0 +1,371 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "standard_version": "0.1.0-dev",
+  "systems": [
+    "e2eesa",
+    "sdk",
+    "verified",
+    "security-lab",
+    "incident-exchange",
+    "observatory",
+    "research-lab"
+  ],
+  "artifact_types": [
+    {
+      "artifact_type": "profile-catalog",
+      "authority_path": "profiles/catalog.json",
+      "schema_path": "schemas/profile-catalog.schema.json",
+      "artifact_class": "normative",
+      "binding_fields": [
+        "standard_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "cryptographic-registry",
+      "authority_path": "registry/cryptographic-algorithms.json",
+      "schema_path": null,
+      "artifact_class": "normative",
+      "binding_fields": [
+        "standard_version",
+        "registry_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "configuration",
+      "authority_path": null,
+      "schema_path": "schemas/configuration.schema.json",
+      "artifact_class": "request",
+      "binding_fields": [
+        "standard_version",
+        "configuration_id",
+        "selected_profiles"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "conformance-request",
+      "authority_path": null,
+      "schema_path": "schemas/conformance-request.schema.json",
+      "artifact_class": "request",
+      "binding_fields": [
+        "standard_version"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "conformance-result",
+      "authority_path": null,
+      "schema_path": "schemas/conformance-result.schema.json",
+      "artifact_class": "result",
+      "binding_fields": [
+        "standard_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "certification-evidence-bundle",
+      "authority_path": null,
+      "schema_path": "schemas/certification-evidence-bundle.schema.json",
+      "artifact_class": "evidence",
+      "binding_fields": [
+        "bundle_id",
+        "bundle_digest"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "certification-lifecycle-case",
+      "authority_path": null,
+      "schema_path": "schemas/certification-lifecycle-case.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "case_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "certification-attestation",
+      "authority_path": null,
+      "schema_path": "schemas/certification-attestation.schema.json",
+      "artifact_class": "result",
+      "binding_fields": [
+        "attestation_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "certification-status-statement",
+      "authority_path": null,
+      "schema_path": "schemas/certification-status-statement.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "certification_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "verification-policy",
+      "authority_path": null,
+      "schema_path": "schemas/verification-policy.schema.json",
+      "artifact_class": "request",
+      "binding_fields": [
+        "policy_id"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "verification-evidence",
+      "authority_path": null,
+      "schema_path": "schemas/verification-evidence.schema.json",
+      "artifact_class": "evidence",
+      "binding_fields": [
+        "evidence_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "formal-verification-evidence",
+      "authority_path": null,
+      "schema_path": "schemas/formal-verification-evidence.schema.json",
+      "artifact_class": "evidence",
+      "binding_fields": [
+        "evidence_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "threat-model-registry",
+      "authority_path": "registry/threat-model.json",
+      "schema_path": "schemas/threat-model.schema.json",
+      "artifact_class": "normative",
+      "binding_fields": [
+        "registry_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "security-property-registry",
+      "authority_path": "registry/security-properties.json",
+      "schema_path": "schemas/security-properties.schema.json",
+      "artifact_class": "normative",
+      "binding_fields": [
+        "registry_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "vulnerability-handling-case",
+      "authority_path": null,
+      "schema_path": "schemas/vulnerability-handling-case.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "case_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "normalized-advisory",
+      "authority_path": null,
+      "schema_path": "schemas/normalized-advisory.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "advisory_id"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "advisory-interoperability-registry",
+      "authority_path": "registry/advisory-interoperability.json",
+      "schema_path": "schemas/advisory-interoperability-registry.schema.json",
+      "artifact_class": "normative",
+      "binding_fields": [
+        "registry_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "observatory-evidence-bundle",
+      "authority_path": null,
+      "schema_path": "schemas/observatory-evidence-bundle.schema.json",
+      "artifact_class": "evidence",
+      "binding_fields": [
+        "bundle_id",
+        "bundle_digest"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "confidence-classification-policy",
+      "authority_path": null,
+      "schema_path": "schemas/confidence-classification-policy.schema.json",
+      "artifact_class": "request",
+      "binding_fields": [
+        "policy_id"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "classification-record",
+      "authority_path": null,
+      "schema_path": "schemas/classification-record.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "record_id",
+        "source_bundle_digest",
+        "classification_digest"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "observatory-projection-manifest",
+      "authority_path": null,
+      "schema_path": "schemas/observatory-projection-manifest.schema.json",
+      "artifact_class": "projection",
+      "binding_fields": [
+        "source_bundle_digest"
+      ],
+      "mutability": "derive"
+    },
+    {
+      "artifact_type": "research-profile-registry",
+      "authority_path": "registry/research-profile-registry.json",
+      "schema_path": "schemas/research-profile-registry.schema.json",
+      "artifact_class": "normative",
+      "binding_fields": [
+        "registry_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "research-promotion-registry",
+      "authority_path": "registry/research-promotion.json",
+      "schema_path": "schemas/research-promotion-registry.schema.json",
+      "artifact_class": "normative",
+      "binding_fields": [
+        "registry_version"
+      ],
+      "mutability": "preserve"
+    },
+    {
+      "artifact_type": "research-profile-entry",
+      "authority_path": null,
+      "schema_path": "schemas/research-profile-entry.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "entry_id",
+        "entry_version",
+        "entry_digest",
+        "lifecycle_status",
+        "production_selectable"
+      ],
+      "mutability": "produce-new"
+    },
+    {
+      "artifact_type": "research-promotion-record",
+      "authority_path": null,
+      "schema_path": "schemas/research-promotion-record.schema.json",
+      "artifact_class": "state",
+      "binding_fields": [
+        "promotion_id",
+        "source_state",
+        "target_state",
+        "promotion_record_digest"
+      ],
+      "mutability": "produce-new"
+    }
+  ],
+  "contracts": [
+    {
+      "contract_id": "sdk-contract",
+      "contract_version": "1.0.0",
+      "system_id": "sdk",
+      "consumes": [
+        "profile-catalog",
+        "cryptographic-registry",
+        "configuration",
+        "conformance-request"
+      ],
+      "emits": [
+        "configuration",
+        "conformance-request"
+      ]
+    },
+    {
+      "contract_id": "verified-contract",
+      "contract_version": "1.0.0",
+      "system_id": "verified",
+      "consumes": [
+        "conformance-result",
+        "certification-evidence-bundle",
+        "certification-lifecycle-case",
+        "certification-attestation",
+        "certification-status-statement"
+      ],
+      "emits": [
+        "certification-lifecycle-case",
+        "certification-attestation",
+        "certification-status-statement"
+      ]
+    },
+    {
+      "contract_id": "security-lab-contract",
+      "contract_version": "1.0.0",
+      "system_id": "security-lab",
+      "consumes": [
+        "verification-policy",
+        "profile-catalog",
+        "threat-model-registry",
+        "security-property-registry"
+      ],
+      "emits": [
+        "verification-evidence",
+        "formal-verification-evidence"
+      ]
+    },
+    {
+      "contract_id": "incident-exchange-contract",
+      "contract_version": "1.0.0",
+      "system_id": "incident-exchange",
+      "consumes": [
+        "vulnerability-handling-case",
+        "normalized-advisory",
+        "advisory-interoperability-registry"
+      ],
+      "emits": [
+        "vulnerability-handling-case",
+        "normalized-advisory"
+      ]
+    },
+    {
+      "contract_id": "observatory-contract",
+      "contract_version": "1.0.0",
+      "system_id": "observatory",
+      "consumes": [
+        "observatory-evidence-bundle",
+        "confidence-classification-policy"
+      ],
+      "emits": [
+        "observatory-evidence-bundle",
+        "classification-record",
+        "observatory-projection-manifest"
+      ]
+    },
+    {
+      "contract_id": "research-lab-contract",
+      "contract_version": "1.0.0",
+      "system_id": "research-lab",
+      "consumes": [
+        "observatory-evidence-bundle",
+        "research-profile-registry",
+        "research-promotion-registry"
+      ],
+      "emits": [
+        "research-profile-entry",
+        "research-promotion-record"
+      ]
+    }
+  ]
+}
