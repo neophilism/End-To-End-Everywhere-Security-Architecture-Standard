@@ -36,8 +36,17 @@ import server_trust_engine
 import client_security_engine
 import formal_verification
 import assurance_levels
+import certification_evidence
 
 REQUIRED_PATHS = [
+    'scripts/certification_evidence.py',
+    'registry/certification-evidence.json',
+    'schemas/certification-evidence-registry.schema.json',
+    'schemas/certification-evidence-bundle.schema.json',
+    'spec/certification-evidence-model.md',
+    'adr/0028-content-addressed-certification-evidence.md',
+    'tests/test_certification_evidence.py',
+    'fixtures/certification-evidence/valid/a3-bundle.json',
     'scripts/assurance_levels.py',
     'registry/assurance-levels.json',
     'schemas/assurance-levels-registry.schema.json',
