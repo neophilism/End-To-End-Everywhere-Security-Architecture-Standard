@@ -1,0 +1,13 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "commands":["basis","bind-request","evaluate","verify-result","explain"],
+  "formats":["json","text"],
+  "exit_codes":[
+    {"code":0,"name":"PASS","meaning":"Passing verdict or successful non-verdict command."},
+    {"code":1,"name":"FAIL","meaning":"Conformance verdict is fail."},
+    {"code":2,"name":"INDETERMINATE","meaning":"Conformance verdict is indeterminate."},
+    {"code":3,"name":"INVALID_INPUT","meaning":"Invalid invocation, malformed/ambiguous JSON, missing artifact, or command-level input error."},
+    {"code":4,"name":"RESULT_MISMATCH","meaning":"Saved result digest or deterministic reevaluation comparison failed."}
+  ]
+}
