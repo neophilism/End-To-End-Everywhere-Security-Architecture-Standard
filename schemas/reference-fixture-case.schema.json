@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/reference-fixture-case.schema.json",
+  "title":"E2EESA Generated Reference Fixture Case",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","fixture_id","manifest_entry","solver_request","solver_result_digest","reference_solution","case_digest"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "fixture_id":{"type":"string","minLength":1},
+    "manifest_entry":{"type":"object"},
+    "solver_request":{"$ref":"compatibility-solver-request.schema.json"},
+    "solver_result_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "reference_solution":{
+      "oneOf":[
+        {"type":"null"},
+        {"type":"object"}
+      ]
+    },
+    "case_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}
