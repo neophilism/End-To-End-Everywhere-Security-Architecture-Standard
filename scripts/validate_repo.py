@@ -41,8 +41,19 @@ import certification_lifecycle
 import certification_attestations
 import vulnerability_disclosure
 import vulnerability_handling
+import advisory_interoperability
 
 REQUIRED_PATHS = [
+    'scripts/advisory_interoperability.py',
+    'registry/advisory-interoperability.json',
+    'schemas/advisory-interoperability-registry.schema.json',
+    'schemas/normalized-advisory.schema.json',
+    'schemas/csaf-validation-result.schema.json',
+    'spec/advisory-interoperability.md',
+    'adr/0033-advisory-format-and-risk-signal-separation.md',
+    'tests/test_advisory_interoperability.py',
+    'fixtures/advisory-interoperability/valid/advisory.json',
+    'fixtures/advisory-interoperability/valid/csaf-validation-result.json',
     'scripts/vulnerability_handling.py',
     'registry/vulnerability-handling.json',
     'schemas/vulnerability-handling-policy.schema.json',
