@@ -1,0 +1,28 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/reference-fixture-manifest.schema.json",
+  "title":"E2EESA Reference Fixture Manifest",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","standard_version","catalog_profile_count","entries"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "standard_version":{"type":"string","minLength":1},
+    "catalog_profile_count":{"type":"integer","minimum":0},
+    "entries":{
+      "type":"array","uniqueItems":true,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["fixture_id","profile_ref","family_id","profile_status","disposition","solver_mode","expected_solver_status"],
+        "properties":{
+          "fixture_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "profile_ref":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+          "family_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "profile_status":{"type":"string","minLength":1},
+          "disposition":{"type":"string","minLength":1},
+          "solver_mode":{"enum":["production","candidate","migration"]},
+          "expected_solver_status":{"enum":["solutions","invalid-request"]}
+        }
+      }
+    }
+  }
+}

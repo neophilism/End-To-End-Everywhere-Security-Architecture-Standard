@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/reference-fixture-report.schema.json",
+  "title":"E2EESA Reference Fixture Coverage Report",
+  "type":"object","additionalProperties":false,
+  "required":[
+    "schema_version","standard_version","catalog_profile_count","manifest_entry_count",
+    "production_positive_count","candidate_positive_count","migration_positive_count",
+    "negative_lifecycle_count","family_coverage_count","passed_case_count",
+    "failed_case_count","errors","case_digests","report_digest"
+  ],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "standard_version":{"type":"string","minLength":1},
+    "catalog_profile_count":{"type":"integer","minimum":0},
+    "manifest_entry_count":{"type":"integer","minimum":0},
+    "production_positive_count":{"type":"integer","minimum":0},
+    "candidate_positive_count":{"type":"integer","minimum":0},
+    "migration_positive_count":{"type":"integer","minimum":0},
+    "negative_lifecycle_count":{"type":"integer","minimum":0},
+    "family_coverage_count":{"type":"integer","minimum":0},
+    "passed_case_count":{"type":"integer","minimum":0},
+    "failed_case_count":{"type":"integer","minimum":0},
+    "errors":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "case_digests":{
+      "type":"object",
+      "additionalProperties":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+    },
+    "report_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}

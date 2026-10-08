@@ -1,0 +1,610 @@
+{
+  "schema_version": "0.1",
+  "standard_version": "0.1.0-dev",
+  "catalog_profile_count": 67,
+  "entries": [
+    {
+      "fixture_id": "profile-advisory-csaf-2-0-iso20153-0-1-0",
+      "profile_ref": "advisory-csaf-2-0-iso20153@0.1.0",
+      "family_id": "advisory-interoperability",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-advisory-csaf-2-1-csd03-0-1-0",
+      "profile_ref": "advisory-csaf-2-1-csd03@0.1.0",
+      "family_id": "advisory-interoperability",
+      "profile_status": "provisional",
+      "disposition": "unpromoted-provisional-negative",
+      "solver_mode": "candidate",
+      "expected_solver_status": "invalid-request"
+    },
+    {
+      "fixture_id": "profile-assurance-a1-observed-0-1-0",
+      "profile_ref": "assurance-a1-observed@0.1.0",
+      "family_id": "assurance-level",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-assurance-a2-reviewed-0-1-0",
+      "profile_ref": "assurance-a2-reviewed@0.1.0",
+      "family_id": "assurance-level",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-assurance-a3-protocol-formal-0-1-0",
+      "profile_ref": "assurance-a3-protocol-formal@0.1.0",
+      "family_id": "assurance-level",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-assurance-a4-implementation-formal-0-1-0",
+      "profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "family_id": "assurance-level",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-assurance-a5-comprehensive-formal-0-1-0",
+      "profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "family_id": "assurance-level",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-attachment-chunked-aead-0-1-0",
+      "profile_ref": "attachment-chunked-aead@0.1.0",
+      "family_id": "attachment-encryption",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-backup-hardware-assisted-0-1-0",
+      "profile_ref": "backup-hardware-assisted@0.1.0",
+      "family_id": "backup-recovery",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-backup-none-0-1-0",
+      "profile_ref": "backup-none@0.1.0",
+      "family_id": "backup-recovery",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-backup-user-secret-0-1-0",
+      "profile_ref": "backup-user-secret@0.1.0",
+      "family_id": "backup-recovery",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-client-native-signed-0-1-0",
+      "profile_ref": "client-native-signed@0.1.0",
+      "family_id": "client-security",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-client-web-hardened-0-1-0",
+      "profile_ref": "client-web-hardened@0.1.0",
+      "family_id": "client-security",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-client-web-verified-bootstrap-0-1-0",
+      "profile_ref": "client-web-verified-bootstrap@0.1.0",
+      "family_id": "client-security",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-contact-attested-private-set-0-1-0",
+      "profile_ref": "contact-attested-private-set@0.1.0",
+      "family_id": "contact-discovery",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-contact-exact-handle-0-1-0",
+      "profile_ref": "contact-exact-handle@0.1.0",
+      "family_id": "contact-discovery",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-contact-voprf-directory-0-1-0",
+      "profile_ref": "contact-voprf-directory@0.1.0",
+      "family_id": "contact-discovery",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-development-ssdf-baseline-0-1-0",
+      "profile_ref": "development-ssdf-baseline@0.1.0",
+      "family_id": "secure-development",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-addon-conflicts-a-0-1-0",
+      "profile_ref": "example-addon-conflicts-a@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-addon-requires-a-0-1-0",
+      "profile_ref": "example-addon-requires-a@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-choice-a-0-1-0",
+      "profile_ref": "example-choice-a@0.1.0",
+      "family_id": "example-architecture",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-choice-a-0-2-0",
+      "profile_ref": "example-choice-a@0.2.0",
+      "family_id": "example-architecture",
+      "profile_status": "provisional",
+      "disposition": "unpromoted-provisional-negative",
+      "solver_mode": "candidate",
+      "expected_solver_status": "invalid-request"
+    },
+    {
+      "fixture_id": "profile-example-choice-b-0-1-0",
+      "profile_ref": "example-choice-b@0.1.0",
+      "family_id": "example-architecture",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-experimental-addon-0-1-0",
+      "profile_ref": "example-experimental-addon@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "experimental",
+      "disposition": "experimental-negative",
+      "solver_mode": "candidate",
+      "expected_solver_status": "invalid-request"
+    },
+    {
+      "fixture_id": "profile-example-prohibited-addon-0-1-0",
+      "profile_ref": "example-prohibited-addon@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "prohibited",
+      "disposition": "prohibited-negative",
+      "solver_mode": "migration",
+      "expected_solver_status": "invalid-request"
+    },
+    {
+      "fixture_id": "profile-formal-code-refinement-0-1-0",
+      "profile_ref": "formal-code-refinement@0.1.0",
+      "family_id": "formal-verification",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-formal-computational-proof-0-1-0",
+      "profile_ref": "formal-computational-proof@0.1.0",
+      "family_id": "formal-verification",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-formal-symbolic-protocol-0-1-0",
+      "profile_ref": "formal-symbolic-protocol@0.1.0",
+      "family_id": "formal-verification",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-foundation-baseline-0-1-0",
+      "profile_ref": "foundation-baseline@0.1.0",
+      "family_id": "foundation",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-group-mls-rfc9420-0-1-0",
+      "profile_ref": "group-mls-rfc9420@0.1.0",
+      "family_id": "group-e2ee",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-group-pairwise-fanout-0-1-0",
+      "profile_ref": "group-pairwise-fanout@0.1.0",
+      "family_id": "group-e2ee",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-group-sender-key-aead-0-1-0",
+      "profile_ref": "group-sender-key-aead@0.1.0",
+      "family_id": "group-e2ee",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-identity-account-root-0-1-0",
+      "profile_ref": "identity-account-root@0.1.0",
+      "family_id": "identity-architecture",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-identity-device-cross-signing-0-1-0",
+      "profile_ref": "identity-device-cross-signing@0.1.0",
+      "family_id": "identity-architecture",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-identity-threshold-quorum-0-1-0",
+      "profile_ref": "identity-threshold-quorum@0.1.0",
+      "family_id": "identity-architecture",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-kt-contact-monitoring-0-1-0",
+      "profile_ref": "kt-contact-monitoring@0.1.0",
+      "family_id": "key-transparency",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-kt-third-party-auditing-0-1-0",
+      "profile_ref": "kt-third-party-auditing@0.1.0",
+      "family_id": "key-transparency",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-kt-third-party-management-0-1-0",
+      "profile_ref": "kt-third-party-management@0.1.0",
+      "family_id": "key-transparency",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-media-sframe-mls-0-1-0",
+      "profile_ref": "media-sframe-mls@0.1.0",
+      "family_id": "real-time-media",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-media-sframe-sender-keys-0-1-0",
+      "profile_ref": "media-sframe-sender-keys@0.1.0",
+      "family_id": "real-time-media",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-metadata-minimized-0-1-0",
+      "profile_ref": "metadata-minimized@0.1.0",
+      "family_id": "metadata-privacy",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-metadata-relay-partitioned-0-1-0",
+      "profile_ref": "metadata-relay-partitioned@0.1.0",
+      "family_id": "metadata-privacy",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-metadata-sender-hidden-0-1-0",
+      "profile_ref": "metadata-sender-hidden@0.1.0",
+      "family_id": "metadata-privacy",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-pairwise-pqxdh-double-ratchet-0-1-0",
+      "profile_ref": "pairwise-pqxdh-double-ratchet@0.1.0",
+      "family_id": "pairwise-e2ee",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-pairwise-pqxdh-spqr-0-1-0",
+      "profile_ref": "pairwise-pqxdh-spqr@0.1.0",
+      "family_id": "pairwise-e2ee",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-pairwise-pqxdh-triple-ratchet-0-1-0",
+      "profile_ref": "pairwise-pqxdh-triple-ratchet@0.1.0",
+      "family_id": "pairwise-e2ee",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-pairwise-x3dh-double-ratchet-0-1-0",
+      "profile_ref": "pairwise-x3dh-double-ratchet@0.1.0",
+      "family_id": "pairwise-e2ee",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-secret-external-token-0-1-0",
+      "profile_ref": "secret-external-token@0.1.0",
+      "family_id": "secret-storage",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-secret-hardware-isolated-0-1-0",
+      "profile_ref": "secret-hardware-isolated@0.1.0",
+      "family_id": "secret-storage",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-secret-platform-keystore-0-1-0",
+      "profile_ref": "secret-platform-keystore@0.1.0",
+      "family_id": "secret-storage",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-secret-software-vault-0-1-0",
+      "profile_ref": "secret-software-vault@0.1.0",
+      "family_id": "secret-storage",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-server-ciphertext-only-0-1-0",
+      "profile_ref": "server-ciphertext-only@0.1.0",
+      "family_id": "server-trust",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-supply-chain-attested-reproducible-0-1-0",
+      "profile_ref": "supply-chain-attested-reproducible@0.1.0",
+      "family_id": "software-supply-chain",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-telemetry-dp-aggregate-0-1-0",
+      "profile_ref": "telemetry-dp-aggregate@0.1.0",
+      "family_id": "telemetry",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-telemetry-minimized-diagnostics-0-1-0",
+      "profile_ref": "telemetry-minimized-diagnostics@0.1.0",
+      "family_id": "telemetry",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-telemetry-none-0-1-0",
+      "profile_ref": "telemetry-none@0.1.0",
+      "family_id": "telemetry",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-transport-tls13-classical-0-1-0",
+      "profile_ref": "transport-tls13-classical@0.1.0",
+      "family_id": "transport-security",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-transport-tls13-hybrid-0-1-0",
+      "profile_ref": "transport-tls13-hybrid@0.1.0",
+      "family_id": "transport-security",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-verification-blackbox-0-1-0",
+      "profile_ref": "verification-blackbox@0.1.0",
+      "family_id": "security-verification",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-verification-combined-0-1-0",
+      "profile_ref": "verification-combined@0.1.0",
+      "family_id": "security-verification",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-verification-whitebox-0-1-0",
+      "profile_ref": "verification-whitebox@0.1.0",
+      "family_id": "security-verification",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-verify-account-root-0-1-0",
+      "profile_ref": "verify-account-root@0.1.0",
+      "family_id": "key-verification",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-verify-device-set-0-1-0",
+      "profile_ref": "verify-device-set@0.1.0",
+      "family_id": "key-verification",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-vulnerability-disclosure-fixed-90-0-1-0",
+      "profile_ref": "vulnerability-disclosure-fixed-90@0.1.0",
+      "family_id": "vulnerability-disclosure",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-vulnerability-disclosure-risk-adaptive-0-1-0",
+      "profile_ref": "vulnerability-disclosure-risk-adaptive@0.1.0",
+      "family_id": "vulnerability-disclosure",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-vulnerability-prioritization-cvss-threat-0-1-0",
+      "profile_ref": "vulnerability-prioritization-cvss-threat@0.1.0",
+      "family_id": "vulnerability-prioritization",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-vulnerability-prioritization-ssvc-0-1-0",
+      "profile_ref": "vulnerability-prioritization-ssvc@0.1.0",
+      "family_id": "vulnerability-prioritization",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    }
+  ]
+}
