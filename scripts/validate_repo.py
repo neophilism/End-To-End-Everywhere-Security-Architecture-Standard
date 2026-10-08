@@ -37,8 +37,17 @@ import client_security_engine
 import formal_verification
 import assurance_levels
 import certification_evidence
+import certification_lifecycle
 
 REQUIRED_PATHS = [
+    'scripts/certification_lifecycle.py',
+    'registry/certification-lifecycle.json',
+    'schemas/certification-lifecycle-registry.schema.json',
+    'schemas/certification-lifecycle-case.schema.json',
+    'spec/certification-lifecycle.md',
+    'adr/0029-event-sourced-certification-lifecycle.md',
+    'tests/test_certification_lifecycle.py',
+    'fixtures/certification-lifecycle/valid/basic-certified.json',
     'scripts/certification_evidence.py',
     'registry/certification-evidence.json',
     'schemas/certification-evidence-registry.schema.json',
