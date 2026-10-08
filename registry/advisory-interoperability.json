@@ -1,0 +1,33 @@
+{
+  "schema_version":"0.1",
+  "registry_version":"0.1.0",
+  "profiles":[
+    {
+      "profile_ref":"advisory-csaf-2-0-iso20153@0.1.0",
+      "csaf_version":"2.0",
+      "maturity":"stable",
+      "standard":"ISO/IEC 20153:2025 / OASIS CSAF 2.0",
+      "schema_uri":"https://docs.oasis-open.org/csaf/csaf/v2.0/schema/csaf_json_schema.json",
+      "document_category":"csaf_security_advisory",
+      "native_cvss_v4":false,
+      "native_epss":false,
+      "native_ssvc_v2":false,
+      "native_first_known_exploitation_dates":false
+    },
+    {
+      "profile_ref":"advisory-csaf-2-1-csd03@0.1.0",
+      "csaf_version":"2.1",
+      "maturity":"provisional",
+      "standard":"OASIS CSAF 2.1 Committee Specification Draft 03 (2026-09-11)",
+      "schema_uri":"https://docs.oasis-open.org/csaf/csaf/v2.1/schema/csaf.json",
+      "document_category":"csaf_security_advisory",
+      "native_cvss_v4":true,
+      "native_epss":true,
+      "native_ssvc_v2":true,
+      "native_first_known_exploitation_dates":true
+    }
+  ],
+  "current_cve_record_format":"5.2.0",
+  "current_epss_model":"EPSS-v5",
+  "epss_v5_effective_date":"2026-06-15"
+}
