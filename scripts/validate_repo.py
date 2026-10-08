@@ -42,8 +42,15 @@ import certification_attestations
 import vulnerability_disclosure
 import vulnerability_handling
 import advisory_interoperability
+import observatory_evidence
 
 REQUIRED_PATHS = [
+    'scripts/observatory_evidence.py',
+    'schemas/observatory-evidence-bundle.schema.json',
+    'spec/observatory-evidence-model.md',
+    'adr/0034-content-addressed-provenance-and-composable-anchors.md',
+    'tests/test_observatory_evidence.py',
+    'fixtures/observatory-evidence/valid/bundle.json',
     'scripts/advisory_interoperability.py',
     'registry/advisory-interoperability.json',
     'schemas/advisory-interoperability-registry.schema.json',
