@@ -348,6 +348,8 @@ Security Architecture Standard.
 - Independent reviewers: {len(reviewers)}
 - Independent organizations: {len(organizations)}
 - Review domains: {", ".join(domains)}
+- Final reviewed tree digest: {completion.get("final_reviewed_tree_digest")}
+- Final reviewed commit: {completion.get("final_reviewed_commit")}
 - Review summary digest: {completion.get("summary_digest")}
 - Review summary reference: {completion.get("summary_reference")}
 - Findings by severity: {json.dumps(counts, sort_keys=True)}
