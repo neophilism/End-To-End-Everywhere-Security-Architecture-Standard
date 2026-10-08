@@ -37,7 +37,8 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 22. [Privacy-Preserving Telemetry](privacy-preserving-telemetry.md) — no-export, opt-in minimized diagnostics and pure-DP aggregate alternatives with closed event schemas, explicit collector trust, contribution clipping and lifetime privacy-budget accounting.
 23. [Secure Development Standard](secure-development-standard.md) — SSDF-aligned process controls, independent exact-source review, test/fuzz/scanning release gates, dependency/change control and checked remediation or limited expiring risk acceptance.
 24. [Software Supply Chain](software-supply-chain.md) — immutable transitive inventories, SPDX/CycloneDX SBOM evidence, authenticated SLSA 1.2 build-provenance expectations and independent byte reproduction, plus a deterministic source-release builder.
-25. [Security Verification Framework](security-verification-framework.md) — black-box, white-box and combined assessment profiles with exact configuration/artifact binding, per-profile method/threat/property coverage, corpus/model evidence and bounded seeded reference security checks.
+25. [Security Verification Framework](security-verification-framework.md)
+26. [Formal Verification Profiles](formal-verification-profiles.md) — symbolic protocol, computational cryptographic, and code/refinement proof profiles with exact evidence binding. — black-box, white-box and combined assessment profiles with exact configuration/artifact binding, per-profile method/threat/property coverage, corpus/model evidence and bounded seeded reference security checks.
 
 ## Remaining specification areas
 

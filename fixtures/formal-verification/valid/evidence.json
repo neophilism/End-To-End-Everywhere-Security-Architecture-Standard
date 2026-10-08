@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "example-formal-policy",
+  "product_id": "example-product",
+  "product_version": "1.0.0",
+  "platform": "example-platform",
+  "configuration_digest": "CONFIG_DIGEST_REPLACED_BY_TEST",
+  "source_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "observed_at": "2026-10-07T20:00:00Z",
+  "proofs": [
+    {
+      "proof_id": "symbolic-proof",
+      "formal_profile_ref": "formal-symbolic-protocol@0.1.0",
+      "proof_kind": "symbolic-protocol",
+      "status": "passed",
+      "property_ids": ["SP-CONFIDENTIALITY"],
+      "threat_ids": ["TM-NET-ACTIVE"],
+      "source_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "model_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "specification_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "proof_artifact_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "tool": {
+        "name": "example-symbolic-prover",
+        "version": "1.0.0",
+        "digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "machine_checked": true,
+      "session_scope": "unbounded",
+      "artifact_correspondence": "not-applicable",
+      "assumptions": ["perfect symbolic cryptography within declared equational theory"],
+      "trusted_axioms": [],
+      "limitations": ["example fixture only"],
+      "unresolved_obligations": [],
+      "completed_at": "2026-10-07T19:00:00Z",
+      "reproduction_ref": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "proof_id": "refinement-proof",
+      "formal_profile_ref": "formal-code-refinement@0.1.0",
+      "proof_kind": "code-refinement",
+      "status": "passed",
+      "property_ids": ["SP-INTEGRITY"],
+      "threat_ids": ["TM-SUPPLY-CHAIN"],
+      "source_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "model_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "specification_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "proof_artifact_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "tool": {
+        "name": "example-refinement-prover",
+        "version": "1.0.0",
+        "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+      },
+      "machine_checked": true,
+      "session_scope": "not-applicable",
+      "artifact_correspondence": "verified",
+      "assumptions": ["declared compiler/linker correspondence chain"],
+      "trusted_axioms": [],
+      "limitations": ["example fixture only"],
+      "unresolved_obligations": [],
+      "completed_at": "2026-10-07T19:00:00Z",
+      "reproduction_ref": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+    }
+  ]
+}

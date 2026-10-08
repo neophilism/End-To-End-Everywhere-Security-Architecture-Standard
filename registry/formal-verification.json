@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "profiles": [
+    {
+      "profile_ref": "formal-symbolic-protocol@0.1.0",
+      "proof_kind": "symbolic-protocol",
+      "supports_unbounded_sessions": true,
+      "requires_machine_checking": true,
+      "description": "Symbolic protocol proof under an explicit adversary and equational model."
+    },
+    {
+      "profile_ref": "formal-computational-proof@0.1.0",
+      "proof_kind": "computational",
+      "supports_unbounded_sessions": false,
+      "requires_machine_checking": true,
+      "description": "Machine-checked computational/game-based cryptographic proof."
+    },
+    {
+      "profile_ref": "formal-code-refinement@0.1.0",
+      "proof_kind": "code-refinement",
+      "supports_unbounded_sessions": false,
+      "requires_machine_checking": true,
+      "description": "Machine-checked relation between implementation code and a formal specification."
+    }
+  ]
+}
