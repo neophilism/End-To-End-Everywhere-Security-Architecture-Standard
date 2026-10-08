@@ -1,0 +1,39 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/observatory-projection-manifest.schema.json",
+  "title":"E2EESA Observatory Projection Manifest",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","source_bundle_digest","relational_model_version","relational_rowset_digest","row_counts","projections","generated_at","manifest_digest"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "source_bundle_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "relational_model_version":{"const":"0.1.0"},
+    "relational_rowset_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "row_counts":{
+      "type":"array","uniqueItems":true,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["table","count"],
+        "properties":{
+          "table":{"type":"string","minLength":1},
+          "count":{"type":"integer","minimum":0}
+        }
+      }
+    },
+    "projections":{
+      "type":"array","minItems":3,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["projection_id","projection_version","projection_digest","item_count"],
+        "properties":{
+          "projection_id":{"enum":["property-graph","prov-rdf","search-documents"]},
+          "projection_version":{"const":"0.1.0"},
+          "projection_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+          "item_count":{"type":"integer","minimum":0}
+        }
+      }
+    },
+    "generated_at":{"type":"string","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"},
+    "manifest_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}
