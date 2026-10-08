@@ -179,6 +179,8 @@ def validate_case(
     last_adverse_actor_id: str | None = None
     appeal_origin_state: str | None = None
     appeal_adverse_actor_id: str | None = None
+    corrective_origin_state: str | None = None
+    renewal_review_bundle: str | None = None
     event_ids: set[str] = set()
     previous_time: datetime | None = None
 
@@ -309,6 +311,31 @@ def validate_case(
             decision_cycle_evaluators = set()
             decision_bundle = None
 
+        if event_type == "require-corrective-action":
+            corrective_origin_state = "surveillance-review"
+        elif event_type == "renewal-corrective-action":
+            corrective_origin_state = "renewal-review"
+        elif event_type == "corrective-action-submitted":
+            if corrective_origin_state is None:
+                result.errors.append(f"{prefix} corrective action has no originating review state")
+            elif declared_to != corrective_origin_state:
+                result.errors.append(
+                    f"{prefix} corrective action must return to origin state {corrective_origin_state}"
+                )
+            if declared_to == "renewal-review" and _valid_digest(bundle):
+                renewal_review_bundle = bundle
+            corrective_origin_state = None
+
+        if event_type == "begin-renewal" and _valid_digest(bundle):
+            renewal_review_bundle = bundle
+
+        if event_type == "renew":
+            if renewal_review_bundle is None:
+                result.errors.append(f"{prefix} renewal has no reviewed evidence bundle")
+            elif bundle != renewal_review_bundle:
+                result.errors.append(f"{prefix} renewal bundle differs from bundle under renewal review")
+            renewal_review_bundle = None
+
         if event_type in {"suspend", "revoke"}:
             last_adverse_actor_id = actor_id if isinstance(actor_id, str) else None
 
@@ -360,6 +387,9 @@ def validate_case(
         as_of_dt = as_of if as_of.tzinfo is not None else as_of.replace(tzinfo=timezone.utc)
     else:
         as_of_dt = _parse_time(as_of, "as_of", result.errors)
+
+    if as_of_dt is not None and previous_time is not None and previous_time > as_of_dt:
+        result.errors.append("lifecycle contains events after validation as_of time")
 
     if as_of_dt is not None and current_state == "certified":
         if certificate_expires is not None and as_of_dt >= certificate_expires:
