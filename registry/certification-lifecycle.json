@@ -1,0 +1,348 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "transitions": [
+    {
+      "event_type": "submit",
+      "from_state": "draft",
+      "to_state": "submitted",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "accept-intake",
+      "from_state": "submitted",
+      "to_state": "intake-review",
+      "actor_role": "intake-reviewer",
+      "requires_reason": false,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "begin-evaluation",
+      "from_state": "intake-review",
+      "to_state": "evaluation",
+      "actor_role": "evaluator",
+      "requires_reason": false,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "require-remediation",
+      "from_state": "evaluation",
+      "to_state": "remediation",
+      "actor_role": "evaluator",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "remediation-submitted",
+      "from_state": "remediation",
+      "to_state": "evaluation",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "advance-to-decision",
+      "from_state": "evaluation",
+      "to_state": "decision-review",
+      "actor_role": "evaluator",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "approve",
+      "from_state": "decision-review",
+      "to_state": "certified",
+      "actor_role": "decision-maker",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": true
+    },
+    {
+      "event_type": "deny",
+      "from_state": "decision-review",
+      "to_state": "denied",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "begin-surveillance",
+      "from_state": "certified",
+      "to_state": "surveillance-review",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "surveillance-pass",
+      "from_state": "surveillance-review",
+      "to_state": "certified",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": false,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": true
+    },
+    {
+      "event_type": "require-corrective-action",
+      "from_state": "surveillance-review",
+      "to_state": "corrective-action",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "corrective-action-submitted",
+      "from_state": "corrective-action",
+      "to_state": "surveillance-review",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "corrective-action-submitted",
+      "from_state": "corrective-action",
+      "to_state": "renewal-review",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "begin-renewal",
+      "from_state": "certified",
+      "to_state": "renewal-review",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "renew",
+      "from_state": "renewal-review",
+      "to_state": "certified",
+      "actor_role": "decision-maker",
+      "requires_reason": false,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": true
+    },
+    {
+      "event_type": "renewal-corrective-action",
+      "from_state": "renewal-review",
+      "to_state": "corrective-action",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "suspend",
+      "from_state": "certified",
+      "to_state": "suspended",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "suspend",
+      "from_state": "surveillance-review",
+      "to_state": "suspended",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "suspend",
+      "from_state": "renewal-review",
+      "to_state": "suspended",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "reinstate",
+      "from_state": "suspended",
+      "to_state": "certified",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": true,
+      "requires_validity_window": true
+    },
+    {
+      "event_type": "revoke",
+      "from_state": "certified",
+      "to_state": "revoked",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "revoke",
+      "from_state": "surveillance-review",
+      "to_state": "revoked",
+      "actor_role": "surveillance-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "revoke",
+      "from_state": "renewal-review",
+      "to_state": "revoked",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "revoke",
+      "from_state": "suspended",
+      "to_state": "revoked",
+      "actor_role": "decision-maker",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "expire",
+      "from_state": "certified",
+      "to_state": "expired",
+      "actor_role": "system",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "expire",
+      "from_state": "suspended",
+      "to_state": "expired",
+      "actor_role": "system",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "expire",
+      "from_state": "renewal-review",
+      "to_state": "expired",
+      "actor_role": "system",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "withdraw",
+      "from_state": "submitted",
+      "to_state": "withdrawn",
+      "actor_role": "applicant",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "withdraw",
+      "from_state": "intake-review",
+      "to_state": "withdrawn",
+      "actor_role": "applicant",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "withdraw",
+      "from_state": "evaluation",
+      "to_state": "withdrawn",
+      "actor_role": "applicant",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "withdraw",
+      "from_state": "remediation",
+      "to_state": "withdrawn",
+      "actor_role": "applicant",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "open-appeal",
+      "from_state": "denied",
+      "to_state": "appeal-review",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "open-appeal",
+      "from_state": "suspended",
+      "to_state": "appeal-review",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "open-appeal",
+      "from_state": "revoked",
+      "to_state": "appeal-review",
+      "actor_role": "applicant",
+      "requires_reason": false,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "appeal-upheld",
+      "from_state": "appeal-review",
+      "to_state": "denied",
+      "actor_role": "appeal-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "appeal-upheld",
+      "from_state": "appeal-review",
+      "to_state": "suspended",
+      "actor_role": "appeal-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "appeal-upheld",
+      "from_state": "appeal-review",
+      "to_state": "revoked",
+      "actor_role": "appeal-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    },
+    {
+      "event_type": "appeal-remanded",
+      "from_state": "appeal-review",
+      "to_state": "decision-review",
+      "actor_role": "appeal-reviewer",
+      "requires_reason": true,
+      "requires_evidence_bundle": false,
+      "requires_validity_window": false
+    }
+  ]
+}

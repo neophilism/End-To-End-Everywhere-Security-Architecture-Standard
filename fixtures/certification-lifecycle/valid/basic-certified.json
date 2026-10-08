@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1",
+  "case_id": "example-certification-case",
+  "product_id": "example-product",
+  "product_version": "1.0.0",
+  "platform": "example-platform",
+  "initial_state": "draft",
+  "events": [
+    {
+      "event_id": "event-01-submit",
+      "event_type": "submit",
+      "actor_id": "vendor-applicant",
+      "actor_role": "applicant",
+      "occurred_at": "2026-10-07T14:00:00Z",
+      "from_state": "draft",
+      "to_state": "submitted",
+      "reason": null,
+      "evidence_bundle_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "certificate_expires_at": null,
+      "surveillance_due_at": null,
+      "artifacts": []
+    },
+    {
+      "event_id": "event-02-intake",
+      "event_type": "accept-intake",
+      "actor_id": "intake-reviewer-one",
+      "actor_role": "intake-reviewer",
+      "occurred_at": "2026-10-07T14:10:00Z",
+      "from_state": "submitted",
+      "to_state": "intake-review",
+      "reason": null,
+      "evidence_bundle_digest": null,
+      "certificate_expires_at": null,
+      "surveillance_due_at": null,
+      "artifacts": []
+    },
+    {
+      "event_id": "event-03-evaluate",
+      "event_type": "begin-evaluation",
+      "actor_id": "evaluator-one",
+      "actor_role": "evaluator",
+      "occurred_at": "2026-10-07T14:20:00Z",
+      "from_state": "intake-review",
+      "to_state": "evaluation",
+      "reason": null,
+      "evidence_bundle_digest": null,
+      "certificate_expires_at": null,
+      "surveillance_due_at": null,
+      "artifacts": []
+    },
+    {
+      "event_id": "event-04-decision",
+      "event_type": "advance-to-decision",
+      "actor_id": "evaluator-one",
+      "actor_role": "evaluator",
+      "occurred_at": "2026-10-07T15:00:00Z",
+      "from_state": "evaluation",
+      "to_state": "decision-review",
+      "reason": null,
+      "evidence_bundle_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "certificate_expires_at": null,
+      "surveillance_due_at": null,
+      "artifacts": []
+    },
+    {
+      "event_id": "event-05-approve",
+      "event_type": "approve",
+      "actor_id": "decision-maker-one",
+      "actor_role": "decision-maker",
+      "occurred_at": "2026-10-07T15:30:00Z",
+      "from_state": "decision-review",
+      "to_state": "certified",
+      "reason": null,
+      "evidence_bundle_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "certificate_expires_at": "2027-10-07T15:30:00Z",
+      "surveillance_due_at": "2027-04-07T15:30:00Z",
+      "artifacts": []
+    }
+  ]
+}

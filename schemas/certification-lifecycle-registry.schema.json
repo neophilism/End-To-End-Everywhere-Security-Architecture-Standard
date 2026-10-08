@@ -1,0 +1,27 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/certification-lifecycle-registry.schema.json",
+  "title":"E2EESA Certification Lifecycle Registry",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","registry_version","transitions"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "registry_version":{"type":"string","minLength":1},
+    "transitions":{
+      "type":"array","minItems":1,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["event_type","from_state","to_state","actor_role","requires_reason","requires_evidence_bundle","requires_validity_window"],
+        "properties":{
+          "event_type":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "from_state":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "to_state":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "actor_role":{"enum":["applicant","intake-reviewer","evaluator","decision-maker","surveillance-reviewer","appeal-reviewer","system"]},
+          "requires_reason":{"type":"boolean"},
+          "requires_evidence_bundle":{"type":"boolean"},
+          "requires_validity_window":{"type":"boolean"}
+        }
+      }
+    }
+  }
+}
