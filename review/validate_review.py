@@ -190,9 +190,26 @@ def validate_package(package: dict, root: Path = ROOT) -> list[str]:
         if state not in FINDING_STATES:
             errors.append(f"{prefix} has invalid status")
 
-        for field in ("title", "analysis", "recommendation"):
+        for field in (
+            "title",
+            "analysis",
+            "failure_scenario",
+            "recommendation",
+        ):
             if not isinstance(finding.get(field), str) or not finding[field].strip():
                 errors.append(f"{prefix}.{field} must be non-empty")
+
+        supporting = finding.get("supporting_references")
+        if (
+            not isinstance(supporting, list)
+            or any(
+                not isinstance(item, str) or not item
+                for item in supporting
+            )
+        ):
+            errors.append(
+                f"{prefix}.supporting_references must be a string array"
+            )
 
         reqs = finding.get("affected_requirement_ids")
         if not isinstance(reqs, list) or len(reqs) != len(set(reqs)):
