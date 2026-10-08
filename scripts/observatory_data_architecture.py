@@ -234,7 +234,7 @@ def relational_rows(bundle: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
                 "bundle_digest": bundle_digest,
                 "event_id": event_id,
                 "attribute_name": attribute["name"],
-                "value": attribute["value"],
+                "value_json": attribute["value"],
             })
         for citation_id in event["citation_ids"]:
             rows["event_citations"].append({
