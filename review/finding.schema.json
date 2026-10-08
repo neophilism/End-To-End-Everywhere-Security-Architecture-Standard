@@ -1,8 +1,9 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "type":"object",
-  "additionalProperties":false,
-  "required":[
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate",
     "finding_id",
     "reviewer_id",
     "severity",
@@ -18,20 +19,109 @@
     "fix_reference",
     "reviewer_acceptance"
   ],
-  "properties":{
-    "finding_id":{"type":"string","minLength":1},
-    "reviewer_id":{"type":"string","minLength":1},
-    "severity":{"enum":["blocker","critical","high","medium","low","informational"]},
-    "title":{"type":"string","minLength":1},
-    "analysis":{"type":"string","minLength":1},
-    "failure_scenario":{"type":"string","minLength":1},
-    "affected_requirement_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^REQ-[0-9a-f]{64}$"}},
-    "affected_paths":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
-    "recommendation":{"type":"string","minLength":1},
-    "supporting_references":{"type":"array","items":{"type":"string","minLength":1}},
-    "status":{"enum":["open","fixed","deferred","rejected"]},
-    "disposition_rationale":{"type":["string","null"]},
-    "fix_reference":{"type":["string","null"]},
-    "reviewer_acceptance":{"type":["boolean","null"]}
+  "properties": {
+    "finding_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "enum": [
+        "blocker",
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "informational"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "analysis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "failure_scenario": {
+      "type": "string",
+      "minLength": 1
+    },
+    "affected_requirement_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^REQ-[0-9a-f]{64}$"
+      }
+    },
+    "affected_paths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "recommendation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supporting_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "status": {
+      "enum": [
+        "open",
+        "fixed",
+        "deferred",
+        "rejected"
+      ]
+    },
+    "disposition_rationale": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fix_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewer_acceptance": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_version",
+        "tree_digest",
+        "file_count"
+      ],
+      "properties": {
+        "release_version": {
+          "const": "0.9.0-rc.1"
+        },
+        "tree_digest": {
+          "const": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2"
+        },
+        "file_count": {
+          "const": 645
+        }
+      }
+    }
   }
 }
