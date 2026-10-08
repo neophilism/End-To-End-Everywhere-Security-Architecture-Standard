@@ -60,6 +60,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 45. [Six-Project Integration Contracts](integration-contracts.md) — stable content-addressed artifact contracts for SDK, Verified, Security Lab, Incident Exchange, Observatory, and Research Lab.
 46. [Complete Standards Crosswalk](standards-crosswalk.md) — deterministic requirement-by-requirement mapping of every normative BCP 14 paragraph to external standards or an explicit no-direct-analog rationale.
 47. [Security Rationale Corpus](security-rationale-corpus.md) — complete requirement-by-requirement rationale, threat/property linkage, evidence expectations, and inherited external-reference bindings.
+48. [E2EESA 0.9 Release Candidate](release-candidate.md) — content-addressed candidate freeze, complete release gates, reproducible manifest, and independent-review boundary.
 
 ## Remaining specification areas
 

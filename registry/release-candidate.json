@@ -1,0 +1,36 @@
+{
+  "schema_version":"0.1",
+  "release_version":"0.9.0-rc.1",
+  "basis_standard_version":"0.1.0-dev",
+  "manifest_path":"release/0.9.0-rc.1-manifest.json",
+  "frozen_roots":[
+    ".github/workflows",
+    "adr",
+    "fixtures",
+    "profiles",
+    "reference",
+    "registry",
+    "schemas",
+    "scripts",
+    "spec",
+    "tests"
+  ],
+  "frozen_top_level_files":[
+    "CONTRIBUTING.md",
+    "README.md",
+    "SECURITY.md",
+    "VERSION"
+  ],
+  "excluded_paths":[
+    "registry/release-candidate.json",
+    "release/0.9.0-rc.1-manifest.json"
+  ],
+  "required_release_gates":[
+    "repository-validation",
+    "catalog-complete-reference-fixtures",
+    "production-interoperability-matrix",
+    "six-project-integration-contracts",
+    "complete-standards-crosswalk",
+    "complete-security-rationale"
+  ]
+}
