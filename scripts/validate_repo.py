@@ -34,8 +34,19 @@ import secure_development_engine
 import telemetry_engine
 import server_trust_engine
 import client_security_engine
+import formal_verification
 
 REQUIRED_PATHS = [
+    'scripts/formal_verification.py',
+    'registry/formal-verification.json',
+    'schemas/formal-verification-registry.schema.json',
+    'schemas/formal-verification-policy.schema.json',
+    'schemas/formal-verification-evidence.schema.json',
+    'spec/formal-verification-profiles.md',
+    'adr/0026-formal-verification-methods.md',
+    'tests/test_formal_verification.py',
+    'fixtures/formal-verification/valid/policy.json',
+    'fixtures/formal-verification/valid/evidence.json',
     'scripts/verification_engine.py',
     'scripts/run_reference_security_checks.py',
     'registry/security-verification.json',
