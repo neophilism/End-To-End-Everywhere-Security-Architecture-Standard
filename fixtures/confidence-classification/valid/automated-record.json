@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.1",
+  "record_id": "example-automated-classification",
+  "revision": 1,
+  "previous_record_digest": null,
+  "source_bundle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "target": {
+    "kind": "entity",
+    "id": "entity-derived-001"
+  },
+  "taxonomy": {
+    "taxonomy_id": "observatory-event-category",
+    "version": "1.0.0",
+    "reference": "https://example.org/taxonomy/event"
+  },
+  "evidence_citation_ids": [
+    "citation-source-lines"
+  ],
+  "mode": "automated",
+  "status": "classified",
+  "human_assessment": null,
+  "automated_assessment": {
+    "agent_id": "agent-fetcher",
+    "labels": [
+      "policy-publication"
+    ],
+    "confidence": {
+      "model": "calibrated-probability",
+      "probability_basis_points": 9300,
+      "calibration": {
+        "model_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+        "evaluation_dataset_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+        "sample_count": 500,
+        "evaluated_at": "2026-10-01T00:00:00Z",
+        "calibration_method": "isotonic-regression",
+        "brier_score_millionths": 80000,
+        "expected_calibration_error_basis_points": 300
+      },
+      "rationale": "The probability is produced by the exact calibrated classifier model and configuration."
+    },
+    "classifier": {
+      "model_id": "example-event-classifier",
+      "model_version": "1.0.0",
+      "model_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "configuration_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "evaluation_ref": "https://example.org/models/event-classifier/evaluation-1"
+    },
+    "assessed_at": "2026-10-07T22:10:00Z"
+  },
+  "mixed_resolution": null,
+  "final_labels": [
+    "policy-publication"
+  ],
+  "final_confidence": {
+    "model": "calibrated-probability",
+    "probability_basis_points": 9300,
+    "calibration": {
+      "model_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "evaluation_dataset_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "sample_count": 500,
+      "evaluated_at": "2026-10-01T00:00:00Z",
+      "calibration_method": "isotonic-regression",
+      "brier_score_millionths": 80000,
+      "expected_calibration_error_basis_points": 300
+    },
+    "rationale": "The probability is produced by the exact calibrated classifier model and configuration."
+  },
+  "created_at": "2026-10-07T22:30:00Z",
+  "classification_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
