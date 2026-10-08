@@ -1,0 +1,153 @@
+{
+  "schema_version": "0.1",
+  "standard_version": "0.1.0-dev",
+  "contracts": [
+    {
+      "contract_id": "requires-assurance-a1-observed-verification-blackbox",
+      "consumer_profile_ref": "assurance-a1-observed@0.1.0",
+      "provider_profile_ref": "verification-blackbox@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a2-reviewed-development-ssdf-baseline",
+      "consumer_profile_ref": "assurance-a2-reviewed@0.1.0",
+      "provider_profile_ref": "development-ssdf-baseline@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a2-reviewed-supply-chain-attested-reproducible",
+      "consumer_profile_ref": "assurance-a2-reviewed@0.1.0",
+      "provider_profile_ref": "supply-chain-attested-reproducible@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a2-reviewed-verification-combined",
+      "consumer_profile_ref": "assurance-a2-reviewed@0.1.0",
+      "provider_profile_ref": "verification-combined@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a3-protocol-formal-development-ssdf-baseline",
+      "consumer_profile_ref": "assurance-a3-protocol-formal@0.1.0",
+      "provider_profile_ref": "development-ssdf-baseline@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a3-protocol-formal-formal-symbolic-protocol",
+      "consumer_profile_ref": "assurance-a3-protocol-formal@0.1.0",
+      "provider_profile_ref": "formal-symbolic-protocol@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a3-protocol-formal-supply-chain-attested-reproducible",
+      "consumer_profile_ref": "assurance-a3-protocol-formal@0.1.0",
+      "provider_profile_ref": "supply-chain-attested-reproducible@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a3-protocol-formal-verification-combined",
+      "consumer_profile_ref": "assurance-a3-protocol-formal@0.1.0",
+      "provider_profile_ref": "verification-combined@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a4-implementation-formal-development-ssdf-baseline",
+      "consumer_profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "provider_profile_ref": "development-ssdf-baseline@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a4-implementation-formal-formal-code-refinement",
+      "consumer_profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "provider_profile_ref": "formal-code-refinement@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a4-implementation-formal-formal-symbolic-protocol",
+      "consumer_profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "provider_profile_ref": "formal-symbolic-protocol@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a4-implementation-formal-supply-chain-attested-reproducible",
+      "consumer_profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "provider_profile_ref": "supply-chain-attested-reproducible@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a4-implementation-formal-verification-combined",
+      "consumer_profile_ref": "assurance-a4-implementation-formal@0.1.0",
+      "provider_profile_ref": "verification-combined@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a5-comprehensive-formal-development-ssdf-baseline",
+      "consumer_profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "provider_profile_ref": "development-ssdf-baseline@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a5-comprehensive-formal-formal-code-refinement",
+      "consumer_profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "provider_profile_ref": "formal-code-refinement@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a5-comprehensive-formal-formal-computational-proof",
+      "consumer_profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "provider_profile_ref": "formal-computational-proof@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a5-comprehensive-formal-formal-symbolic-protocol",
+      "consumer_profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "provider_profile_ref": "formal-symbolic-protocol@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a5-comprehensive-formal-supply-chain-attested-reproducible",
+      "consumer_profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "provider_profile_ref": "supply-chain-attested-reproducible@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-assurance-a5-comprehensive-formal-verification-combined",
+      "consumer_profile_ref": "assurance-a5-comprehensive-formal@0.1.0",
+      "provider_profile_ref": "verification-combined@0.1.0",
+      "interface_kind": "assurance-evidence-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-example-addon-requires-a-example-choice-a",
+      "consumer_profile_ref": "example-addon-requires-a@0.1.0",
+      "provider_profile_ref": "example-choice-a@0.1.0",
+      "interface_kind": "resolver-composition",
+      "expected_relationship": "co-configurable"
+    },
+    {
+      "contract_id": "requires-media-sframe-mls-group-mls-rfc9420",
+      "consumer_profile_ref": "media-sframe-mls@0.1.0",
+      "provider_profile_ref": "group-mls-rfc9420@0.1.0",
+      "interface_kind": "runtime-profile-composition",
+      "expected_relationship": "co-configurable"
+    }
+  ]
+}
