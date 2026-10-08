@@ -114,7 +114,7 @@ class CertificationAttestationTests(unittest.TestCase):
             record,policy,self.attestation_registry(),self.crypto_registry(),
             lifecycle,self.lifecycle_registry(),bundle,plan,self.evidence_registry(),
             self.assurance_registry(),self.catalog(),self.property_ids(),self.threat_ids(),
-            verifier or self.fake_verifier,as_of="2026-10-07T16:00:00Z",
+            verifier or self.fake_verifier,as_of="2026-10-07T21:30:00Z",
         )
 
     def prepared_status(self):
@@ -165,7 +165,7 @@ class CertificationAttestationTests(unittest.TestCase):
             record,policy,self.attestation_registry(),self.crypto_registry(),
             lifecycle,self.lifecycle_registry(),bundle,plan,self.evidence_registry(),
             self.assurance_registry(),self.catalog(),self.property_ids(),self.threat_ids(),
-            None,as_of="2026-10-07T16:00:00Z",
+            None,as_of="2026-10-07T21:30:00Z",
         )
         self.assertTrue(any("cryptographic verifier backend is required" in e for e in errors))
 
@@ -246,7 +246,7 @@ class CertificationAttestationTests(unittest.TestCase):
         errors=certification_attestations.validate_status_statement(
             record,policy,self.attestation_registry(),self.crypto_registry(),
             lifecycle,self.lifecycle_registry(),self.fake_verifier,
-            highest_sequence=0,as_of="2026-10-07T16:00:00Z",
+            highest_sequence=0,as_of="2026-10-07T21:30:00Z",
         )
         self.assertEqual(errors,[])
 
@@ -255,7 +255,7 @@ class CertificationAttestationTests(unittest.TestCase):
         errors=certification_attestations.validate_status_statement(
             record,policy,self.attestation_registry(),self.crypto_registry(),
             lifecycle,self.lifecycle_registry(),self.fake_verifier,
-            highest_sequence=1,as_of="2026-10-07T16:00:00Z",
+            highest_sequence=1,as_of="2026-10-07T21:30:00Z",
         )
         self.assertTrue(any("status sequence rollback detected" in e for e in errors))
 
@@ -270,7 +270,7 @@ class CertificationAttestationTests(unittest.TestCase):
         errors=certification_attestations.validate_status_statement(
             current,policy,self.attestation_registry(),self.crypto_registry(),
             lifecycle,self.lifecycle_registry(),self.fake_verifier,
-            previous_record=previous,highest_sequence=0,as_of="2026-10-07T16:00:00Z",
+            previous_record=previous,highest_sequence=0,as_of="2026-10-07T21:30:00Z",
         )
         self.assertTrue(any("does not bind previous accepted status payload" in e for e in errors))
 
