@@ -48,6 +48,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 33. [Advisory Interoperability](advisory-interoperability.md) — normalized vulnerability advisories with stable CSAF 2.0/ISO 20153 and provisional CSAF 2.1 exports, modern risk-signal provenance, and external conformance evidence.
 34. [Observatory Evidence Model](observatory-evidence-model.md) — immutable content-addressed evidence, W3C-PROV-style entities/activities/agents, acquisition history, citations, revisions, real-world events, and composable integrity anchors.
 35. [Observatory Data Architecture](observatory-data-architecture.md) — append-only canonical relational evidence with deterministic property-graph, W3C PROV RDF, and search projections plus PostgreSQL reference DDL.
+36. [Confidence and Classification Model](confidence-classification.md) — human-reviewed, automated, and mixed classification with explicit dimensional, STIX 0–100, and calibrated-probability confidence semantics.
 
 ## Remaining specification areas
 
