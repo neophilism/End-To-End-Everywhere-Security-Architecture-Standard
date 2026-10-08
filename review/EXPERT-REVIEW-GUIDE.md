@@ -249,3 +249,12 @@ PR 49 may be considered complete only when:
 - `python review/validate_review.py --require-complete` passes.
 
 Until then, development may continue, but the repository should describe 1.0 as **independent review pending** rather than complete.
+
+
+## Final fixed-tree acceptance
+
+After all review-driven fixes are applied, compute the exact fixed standard-tree identity with:
+
+`python review/final_review_tree.py`
+
+Every reviewer's final acceptance must reference that same tree digest. The combined completion record must use it as `final_reviewed_tree_digest`.
