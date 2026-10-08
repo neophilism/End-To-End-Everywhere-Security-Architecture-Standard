@@ -51,9 +51,20 @@ import deprecation_migration
 import conformance_engine
 import compatibility_solver
 import reference_fixtures
+import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    'scripts/interoperability_suite.py',
+    'registry/interoperability-suite.json',
+    'schemas/interoperability-suite-registry.schema.json',
+    'schemas/interoperability-contracts.schema.json',
+    'schemas/interoperability-pair-record.schema.json',
+    'schemas/interoperability-report.schema.json',
+    'spec/cross-profile-interoperability.md',
+    'adr/0044-configuration-interop-does-not-imply-wire-interop.md',
+    'tests/test_interoperability_suite.py',
+    'fixtures/interoperability/dependency-contracts.json',
     'scripts/reference_fixtures.py',
     'registry/reference-fixtures.json',
     'schemas/reference-fixtures-registry.schema.json',

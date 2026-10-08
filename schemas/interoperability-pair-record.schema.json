@@ -1,0 +1,27 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/interoperability-pair-record.schema.json",
+  "title":"E2EESA Cross-Profile Pair Record",
+  "type":"object","additionalProperties":false,
+  "required":[
+    "pair_id","profile_a","profile_b","same_family","exclusive_family",
+    "explicit_incompatibility","dependency_directions","co_configurable",
+    "solver_status","solver_result_digest","primary_relationship",
+    "reference_solution_digest","pair_digest"
+  ],
+  "properties":{
+    "pair_id":{"type":"string","pattern":"^pair-[0-9a-f]{16}$"},
+    "profile_a":{"type":"string","minLength":1},
+    "profile_b":{"type":"string","minLength":1},
+    "same_family":{"type":"boolean"},
+    "exclusive_family":{"type":"boolean"},
+    "explicit_incompatibility":{"type":"boolean"},
+    "dependency_directions":{"type":"array","uniqueItems":true,"items":{"enum":["a-requires-b","b-requires-a"]}},
+    "co_configurable":{"type":"boolean"},
+    "solver_status":{"enum":["solutions","unsatisfiable","invalid-request","search-limit"]},
+    "solver_result_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "primary_relationship":{"enum":["co-configurable","exclusive-alternative","explicitly-incompatible","dependency-compatible","contextually-incompatible"]},
+    "reference_solution_digest":{"type":["string","null"],"pattern":"^sha256:[0-9a-f]{64}$"},
+    "pair_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}

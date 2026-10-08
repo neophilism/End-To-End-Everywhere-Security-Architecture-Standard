@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/interoperability-suite-registry.schema.json",
+  "title":"E2EESA Interoperability Suite Registry",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","registry_version","interface_kinds","pair_relationships","wire_interoperability_inference","maximum_pair_search_states"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "registry_version":{"type":"string","minLength":1},
+    "interface_kinds":{"type":"array","uniqueItems":true,"minItems":1,"items":{"type":"string","minLength":1}},
+    "pair_relationships":{"type":"array","uniqueItems":true,"minItems":1,"items":{"type":"string","minLength":1}},
+    "wire_interoperability_inference":{"const":"prohibited"},
+    "maximum_pair_search_states":{"type":"integer","minimum":1}
+  }
+}
