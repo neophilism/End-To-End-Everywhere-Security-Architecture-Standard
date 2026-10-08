@@ -1,0 +1,94 @@
+{
+  "schema_version": "0.1",
+  "candidate": {
+    "release_version": "0.9.0-rc.1",
+    "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2",
+    "file_count": 645
+  },
+  "start_here": [
+    "review/HANDOFF.md",
+    "review/EXPERT-REVIEW-GUIDE.md",
+    "review/REVIEWER-CHECKLIST.md",
+    "review/independent-review-request.md"
+  ],
+  "domains": [
+    {
+      "domain": "cryptography-protocols",
+      "key_paths": [
+        "spec/cryptographic-registry.md",
+        "spec/negotiation-downgrade.md",
+        "spec/pairwise-e2ee.md",
+        "spec/group-e2ee.md",
+        "spec/key-verification.md",
+        "spec/key-transparency.md",
+        "spec/real-time-media.md",
+        "registry/cryptographic-algorithms.json",
+        "profiles/catalog.json"
+      ]
+    },
+    {
+      "domain": "implementation-security",
+      "key_paths": [
+        "spec/native-web-client-security.md",
+        "spec/server-trust-minimization.md",
+        "spec/secret-storage-hardware-protection.md",
+        "spec/transport-security.md",
+        "spec/security-verification-framework.md"
+      ]
+    },
+    {
+      "domain": "supply-chain-development",
+      "key_paths": [
+        "spec/secure-development-standard.md",
+        "spec/software-supply-chain.md",
+        "spec/deprecation-emergency-migration.md",
+        ".github/workflows/validate.yml"
+      ]
+    },
+    {
+      "domain": "privacy-metadata-recovery",
+      "key_paths": [
+        "spec/backup-recovery.md",
+        "spec/metadata-privacy.md",
+        "spec/contact-discovery.md",
+        "spec/privacy-preserving-telemetry.md",
+        "spec/identity-device-architecture.md"
+      ]
+    },
+    {
+      "domain": "conformance-standards",
+      "key_paths": [
+        "spec/conformance-engine.md",
+        "spec/certification-evidence-model.md",
+        "spec/certification-lifecycle.md",
+        "spec/certification-attestations.md",
+        "spec/standards-crosswalk.md",
+        "spec/security-rationale-corpus.md",
+        "spec/integration-contracts.md"
+      ]
+    }
+  ],
+  "commands": [
+    "python scripts/validate_repo.py",
+    "python scripts/release_candidate.py",
+    "python -m unittest discover -s tests -v",
+    "python scripts/run_reference_security_checks.py --seed 20261007 --iterations 1000",
+    "python review/validate_review.py",
+    "python review/validate_review.py --require-complete"
+  ],
+  "deliverables": [
+    "reviewer attestation conforming to review/reviewer-attestation.schema.json",
+    "one structured record per substantive finding conforming to review/finding.schema.json",
+    "supplemental analysis/test vectors/proofs/traces where useful",
+    "post-fix reviewer acceptance or rejection for every submitted finding"
+  ],
+  "templates": {
+    "reviewer_attestation": "review/reviewer-attestation-template.json",
+    "finding": "review/finding-template.json"
+  },
+  "schemas": {
+    "reviewer_attestation": "review/reviewer-attestation.schema.json",
+    "finding": "review/finding.schema.json",
+    "combined_package": "review/review-package.schema.json"
+  }
+}
