@@ -122,6 +122,41 @@ def validate_package(package: dict, root: Path = ROOT) -> list[str]:
         if not isinstance(reference, str) or not reference:
             errors.append(f"{prefix}.attestation_reference must be non-empty")
 
+        evidence_digest = reviewer.get("automated_evidence_digest")
+        evidence_reference = reviewer.get("automated_evidence_reference")
+        equivalent_note = reviewer.get("automated_evidence_equivalent_note")
+        has_digest = isinstance(evidence_digest, str) and bool(
+            SHA256_RE.fullmatch(evidence_digest)
+        )
+        has_reference = isinstance(evidence_reference, str) and bool(
+            evidence_reference.strip()
+        )
+        has_equivalent = isinstance(equivalent_note, str) and bool(
+            equivalent_note.strip()
+        )
+        if (evidence_digest is None) != (evidence_reference is None):
+            errors.append(
+                f"{prefix} automated evidence digest/reference must be supplied together"
+            )
+        if evidence_digest is not None and not has_digest:
+            errors.append(
+                f"{prefix}.automated_evidence_digest must be sha256 when set"
+            )
+        if evidence_reference is not None and not has_reference:
+            errors.append(
+                f"{prefix}.automated_evidence_reference must be non-empty when set"
+            )
+        if has_digest and has_reference:
+            if equivalent_note is not None:
+                errors.append(
+                    f"{prefix}.automated_evidence_equivalent_note must be null when "
+                    "automated evidence is supplied"
+                )
+        elif not has_equivalent:
+            errors.append(
+                f"{prefix} requires automated evidence or an equivalent procedure note"
+            )
+
         final_tree = reviewer.get("final_reviewed_tree_digest")
         final_acceptance_digest = reviewer.get("final_acceptance_digest")
         final_acceptance_reference = reviewer.get("final_acceptance_reference")
