@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://endtoendeverywhere.org/e2eesa/schemas/csaf-validation-result.schema.json",
+  "title":"E2EESA External CSAF Validation Result",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","profile_ref","csaf_version","document_digest","validator","validated_at","errors","warnings"],
+  "properties":{
+    "schema_version":{"const":"0.1"},
+    "profile_ref":{"enum":["advisory-csaf-2-0-iso20153@0.1.0","advisory-csaf-2-1-csd03@0.1.0"]},
+    "csaf_version":{"enum":["2.0","2.1"]},
+    "document_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "validator":{
+      "type":"object","additionalProperties":false,
+      "required":["name","version","reference"],
+      "properties":{
+        "name":{"type":"string","minLength":1},
+        "version":{"type":"string","minLength":1},
+        "reference":{"type":"string","minLength":1}
+      }
+    },
+    "validated_at":{"type":"string","pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"},
+    "errors":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "warnings":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}}
+  }
+}

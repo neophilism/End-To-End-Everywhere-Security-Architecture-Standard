@@ -151,6 +151,12 @@
       "name": "Vulnerability prioritization",
       "cardinality": "at-most-one",
       "description": "Response-priority model for confirmed vulnerability cases."
+    },
+    {
+      "family_id": "advisory-interoperability",
+      "name": "Security advisory interoperability",
+      "cardinality": "many",
+      "description": "Machine-readable advisory export targets; multiple interoperable outputs may be emitted from one normalized advisory."
     }
   ],
   "profiles": [
@@ -1296,6 +1302,30 @@
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
       "notes": "Versioned Stakeholder-Specific Vulnerability Categorization decision tree with recorded inputs and outcome."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "advisory-csaf-2-0-iso20153",
+      "profile_version": "0.1.0",
+      "family_id": "advisory-interoperability",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Stable production interoperability profile using OASIS CSAF 2.0 as standardized by ISO/IEC 20153:2025."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "advisory-csaf-2-1-csd03",
+      "profile_version": "0.1.0",
+      "family_id": "advisory-interoperability",
+      "status": "provisional",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Provisional current-capability profile using OASIS CSAF 2.1 Committee Specification Draft 03; supports native CVSS v4, EPSS, SSVC v2, and first-known-exploitation dates."
     }
   ]
 }

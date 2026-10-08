@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.1",
+  "advisory_id": "E2EESA-EXAMPLE-2026-001",
+  "title": "Example Product parser validation vulnerability",
+  "publisher": {
+    "category": "vendor",
+    "name": "Example Vendor",
+    "namespace": "https://example.org/security"
+  },
+  "handling_case_id": "example-vulnerability-case",
+  "handling_case_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "initial_release_at": "2026-10-11T13:00:00Z",
+  "current_release_at": "2026-10-11T13:00:00Z",
+  "revision": 1,
+  "revision_history": [
+    {
+      "revision": 1,
+      "date": "2026-10-11T13:00:00Z",
+      "summary": "Initial advisory publication."
+    }
+  ],
+  "products": [
+    {
+      "product_id": "CSAFPID-EXAMPLE-100",
+      "product_line_id": "example-product",
+      "vendor": "Example Vendor",
+      "name": "Example Product",
+      "version": "1.0.0",
+      "purl": "pkg:generic/example-product@1.0.0",
+      "cpe": null
+    },
+    {
+      "product_id": "CSAFPID-EXAMPLE-101",
+      "product_line_id": "example-product",
+      "vendor": "Example Vendor",
+      "name": "Example Product",
+      "version": "1.0.1",
+      "purl": "pkg:generic/example-product@1.0.1",
+      "cpe": null
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "vulnerability_id": "example-parser-validation",
+      "cve": "CVE-2026-99999",
+      "cve_record_format": "5.2.0",
+      "cwes": [
+        {
+          "id": "CWE-20",
+          "name": "Improper Input Validation",
+          "version": "4.18"
+        }
+      ],
+      "description": "An untrusted length field can cross the protocol parser boundary without sufficient validation.",
+      "references": [
+        "https://example.org/security/advisories/example-001"
+      ],
+      "product_status": {
+        "known_affected": [
+          "CSAFPID-EXAMPLE-100"
+        ],
+        "fixed": [
+          "CSAFPID-EXAMPLE-101"
+        ],
+        "known_not_affected": [],
+        "under_investigation": []
+      },
+      "remediations": [
+        {
+          "category": "vendor_fix",
+          "details": "Upgrade to Example Product 1.0.1 or later.",
+          "product_ids": [
+            "CSAFPID-EXAMPLE-100"
+          ],
+          "url": "https://example.org/security/advisories/example-001",
+          "artifact_digest": null
+        }
+      ],
+      "cvss_v4": {
+        "version": "4.0",
+        "vectorString": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+        "baseScore": 9.3,
+        "baseSeverity": "CRITICAL",
+        "source": "https://example.org/security/advisories/example-001",
+        "observed_at": "2026-10-11T13:00:00Z"
+      },
+      "epss": {
+        "probability": 0.85,
+        "percentile": 0.99,
+        "observed_at": "2026-10-11T12:00:00Z",
+        "model": "EPSS-v5",
+        "source_uri": "https://api.first.org/data/v1/epss"
+      },
+      "kev": {
+        "status": "unknown",
+        "source_uri": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+        "checked_at": "2026-10-11T12:00:00Z",
+        "date_added": null,
+        "due_date": null,
+        "known_ransomware_campaign_use": null
+      },
+      "priority": {
+        "profile_ref": "vulnerability-prioritization-cvss-threat@0.1.0",
+        "decision": "out-of-band",
+        "rationale": "Critical technical severity on an internet-exposed service; no active exploitation is known.",
+        "observed_at": "2026-10-11T12:00:00Z",
+        "factors": [
+          {
+            "name": "internet-exposed",
+            "value": true
+          },
+          {
+            "name": "exploitation",
+            "value": "none"
+          }
+        ],
+        "ssvc_v2": null
+      },
+      "exploitation": {
+        "status": "none-known",
+        "first_known_exploitation_at": null,
+        "evidence_refs": []
+      }
+    }
+  ]
+}
