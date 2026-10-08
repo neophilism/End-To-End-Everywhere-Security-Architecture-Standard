@@ -408,6 +408,11 @@
       "no_direct_analog_reason": "The catalog-complete executable fixture corpus is E2EESA-specific test infrastructure."
     },
     {
+      "document_path": "spec/release-candidate.md",
+      "relations": [],
+      "no_direct_analog_reason": "The E2EESA release-candidate freeze, manifest, and review-gate process are project-specific release governance with no single direct external standard analogue."
+    },
+    {
       "document_path": "spec/research-production-promotion.md",
       "relations": [
         {
