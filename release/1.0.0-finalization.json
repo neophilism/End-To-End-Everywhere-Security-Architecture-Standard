@@ -1,13 +1,13 @@
 {
-  "schema_version":"0.1",
-  "target_release":"1.0.0",
-  "source_candidate":{
-    "release_version":"0.9.0-rc.1",
-    "tree_digest":"sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2"
+  "schema_version": "0.1",
+  "target_release": "1.0.0",
+  "source_candidate": {
+    "release_version": "0.9.0-rc.1",
+    "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2"
   },
-  "pre_1_0_standard_version":"0.1.0-dev",
-  "final_standard_version":"1.0.0",
-  "historical_version_paths":[
+  "pre_1_0_standard_version": "0.1.0-dev",
+  "final_standard_version": "1.0.0",
+  "historical_version_paths": [
     "registry/release-candidate.json",
     "spec/release-candidate.md",
     "release/0.9.0-rc.1-manifest.json",
@@ -23,9 +23,9 @@
     "release/1.0.0-RELEASE-NOTES-TEMPLATE.md",
     "release/1.0.0-finalization.json"
   ],
-  "final_manifest":{
-    "path":"release/1.0.0-manifest.json",
-    "frozen_roots":[
+  "final_manifest": {
+    "path": "release/1.0.0-manifest.json",
+    "frozen_roots": [
       ".github/workflows",
       "adr",
       "fixtures",
@@ -38,17 +38,20 @@
       "tests",
       "review"
     ],
-    "frozen_top_level_files":[
+    "frozen_top_level_files": [
       "CONTRIBUTING.md",
       "README.md",
       "SECURITY.md",
-      "VERSION"
+      "VERSION",
+      "INDEPENDENT-REVIEW-COMPLETE.md"
     ],
-    "additional_files":[
+    "additional_files": [
       "release/1.0.0-readiness.json",
-      "release/1.0.0-finalization.json"
+      "release/1.0.0-finalization.json",
+      "release/1.0.0-RELEASE-GUIDE.md",
+      "release/1.0.0-RELEASE-NOTES.md"
     ],
-    "excluded_paths":[
+    "excluded_paths": [
       "registry/release-candidate.json",
       "release/0.9.0-rc.1-manifest.json",
       "release/1.0.0-manifest.json",
