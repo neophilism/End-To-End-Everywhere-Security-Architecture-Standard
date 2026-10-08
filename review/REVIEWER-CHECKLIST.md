@@ -81,3 +81,10 @@ Validate the fixed tree with:
 This permits only the exact expected rc.1 manifest-drift condition and still requires every other repository invariant to pass. Then compute the fixed-tree identity with:
 
 `python review/final_review_tree.py`
+
+
+## Reproducible automated evidence
+
+- [ ] I ran `python review/run_expert_review_suite.py --reviewer-id <id> --organization-id <org> --output review/evidence/<id>-automated-evidence.json`, or I documented why an equivalent/manual procedure was used.
+- [ ] I preserved the generated report digest and referenced the evidence artifact in my attestation.
+- [ ] I understand that a passing automated report does not substitute for my human technical review.
