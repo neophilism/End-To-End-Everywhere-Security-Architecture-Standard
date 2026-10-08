@@ -55,7 +55,13 @@ def validate_registry(
 
     seen_refs: set[str] = set()
     seen_ordinals: set[int] = set()
-    prior_required: set[str] = set()
+    verification_rank = {
+        "verification-blackbox@0.1.0": 1,
+        "verification-whitebox@0.1.0": 2,
+        "verification-combined@0.1.0": 3,
+    }
+    prior_nonverification_required: set[str] = set()
+    prior_verification_rank = 0
     prior_symbolic: set[str] = set()
     prior_refinement: set[str] = set()
     prior_computational: set[str] = set()
@@ -93,7 +99,16 @@ def validate_registry(
         unknown_required = sorted(required - set(catalog_by_ref))
         if unknown_required:
             errors.append(f"{prefix} unknown required profiles: {', '.join(unknown_required)}")
-        if not prior_required.issubset(required):
+        verification_refs = sorted(required & set(verification_rank))
+        if len(verification_refs) != 1:
+            errors.append(f"{prefix} must require exactly one security-verification profile")
+            current_verification_rank = 0
+        else:
+            current_verification_rank = verification_rank[verification_refs[0]]
+            if current_verification_rank < prior_verification_rank:
+                errors.append(f"{prefix} breaks monotonic verification depth")
+        nonverification_required = required - set(verification_rank)
+        if not prior_nonverification_required.issubset(nonverification_required):
             errors.append(f"{prefix} breaks monotonic required-profile inclusion")
         if profile is not None and set(profile.get("requires_profile_refs", [])) != required:
             errors.append(f"{prefix} catalog dependencies do not match assurance registry")
@@ -129,7 +144,8 @@ def validate_registry(
             else:
                 prior_computational = current
 
-        prior_required = required
+        prior_nonverification_required = nonverification_required
+        prior_verification_rank = current_verification_rank
 
     return errors
 
