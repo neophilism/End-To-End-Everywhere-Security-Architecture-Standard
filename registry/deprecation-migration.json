@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "0.1.0",
+  "modes": [
+    "planned",
+    "emergency"
+  ],
+  "strategies": [
+    "overlap-prefer-new",
+    "scheduled-cutover",
+    "emergency-stop"
+  ],
+  "legacy_processing_policies": [
+    "hard-cutoff",
+    "historical-read-verify-only",
+    "migration-only"
+  ],
+  "fallback_policies": [
+    "disabled",
+    "bounded-until-new-use-stop"
+  ],
+  "reason_classes": [
+    "cryptanalytic-break",
+    "active-exploitation",
+    "standard-withdrawal",
+    "security-margin",
+    "interoperability-retirement",
+    "implementation-risk",
+    "ecosystem-migration",
+    "other"
+  ],
+  "dependent_actions": [
+    "replace",
+    "deprecate",
+    "legacy",
+    "retire",
+    "update-requirement"
+  ],
+  "event_types": [
+    "activate-plan",
+    "replacement-available",
+    "prefer-replacement",
+    "stop-new-use",
+    "enter-legacy-processing",
+    "prohibit",
+    "dependent-migrated",
+    "complete",
+    "emergency-stop",
+    "post-emergency-review"
+  ]
+}

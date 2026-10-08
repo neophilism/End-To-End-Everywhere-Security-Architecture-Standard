@@ -1,0 +1,92 @@
+{
+  "schema_version": "0.1",
+  "plan_id": "example-emergency-aead-shutdown",
+  "asset": {
+    "kind": "algorithm",
+    "id": "ALG-AES-128-GCM"
+  },
+  "mode": "emergency",
+  "strategy": "emergency-stop",
+  "reason": {
+    "reason_class": "active-exploitation",
+    "summary": "Illustrative emergency fixture only; it does not assert a real vulnerability in AES-128-GCM.",
+    "evidence_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "reference": "https://example.org/incidents/illustrative-aead",
+    "detected_at": "2026-10-08T05:00:00Z"
+  },
+  "current_status": "allowed",
+  "terminal_status": "prohibited",
+  "replacement": {
+    "kind": "algorithm",
+    "id": "ALG-AES-256-GCM"
+  },
+  "legacy_processing_policy": "historical-read-verify-only",
+  "fallback_policy": "disabled",
+  "controls": {
+    "downgrade_protection": true,
+    "fallback_telemetry": false,
+    "historical_cutoff_at": "2026-10-08T05:15:00Z",
+    "isolated_legacy_processing": true,
+    "audited_legacy_processing": true,
+    "configuration_rollback_blocked": true
+  },
+  "timeline": {
+    "effective_at": "2026-10-08T05:15:00Z",
+    "replacement_available_at": "2026-10-08T05:10:00Z",
+    "new_use_stop_at": "2026-10-08T05:15:00Z",
+    "legacy_processing_stop_at": "2026-11-08T05:15:00Z",
+    "prohibit_at": "2026-10-08T05:15:00Z"
+  },
+  "dependents": [
+    {
+      "kind": "suite",
+      "id": "SUITE-HPKE-P256-HKDF-SHA256-AES128GCM",
+      "action": "retire",
+      "replacement_id": null,
+      "owner": "hpke-suite-maintainer",
+      "deadline_at": "2026-10-09T05:15:00Z",
+      "evidence_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "reference": "https://example.org/incidents/dependent-p256"
+    },
+    {
+      "kind": "suite",
+      "id": "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
+      "action": "retire",
+      "replacement_id": null,
+      "owner": "hpke-suite-maintainer",
+      "deadline_at": "2026-10-09T05:15:00Z",
+      "evidence_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "reference": "https://example.org/incidents/dependent-x25519"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "emergency-analysis",
+      "evidence_type": "emergency-analysis",
+      "evidence_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "reference": "https://example.org/incidents/illustrative-aead/analysis"
+    },
+    {
+      "evidence_id": "impact-analysis",
+      "evidence_type": "dependent-impact",
+      "evidence_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "reference": "https://example.org/incidents/illustrative-aead/impact"
+    },
+    {
+      "evidence_id": "replacement-check",
+      "evidence_type": "replacement-verification",
+      "evidence_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "reference": "https://example.org/incidents/illustrative-aead/replacement"
+    }
+  ],
+  "approvals": [
+    {
+      "approver_id": "emergency-authority",
+      "role": "emergency-security-authority",
+      "approved_at": "2026-10-08T05:12:00Z",
+      "evidence_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "reference": "https://example.org/approvals/emergency"
+    }
+  ],
+  "plan_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}

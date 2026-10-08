@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1",
+  "case_id": "example-emergency-aead-shutdown-case",
+  "plan_id": "example-emergency-aead-shutdown",
+  "plan_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "events": [
+    {
+      "event_id": "event-01",
+      "event_type": "emergency-stop",
+      "occurred_at": "2026-10-08T05:13:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "reference": "https://example.org/events/emergency-stop"
+    },
+    {
+      "event_id": "event-02",
+      "event_type": "post-emergency-review",
+      "occurred_at": "2026-10-08T12:00:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "reference": "https://example.org/events/post-review"
+    },
+    {
+      "event_id": "event-03",
+      "event_type": "dependent-migrated",
+      "occurred_at": "2026-10-09T04:00:00Z",
+      "dependent_id": "SUITE-HPKE-P256-HKDF-SHA256-AES128GCM",
+      "evidence_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "reference": "https://example.org/events/migrated-p256"
+    },
+    {
+      "event_id": "event-04",
+      "event_type": "dependent-migrated",
+      "occurred_at": "2026-10-09T04:10:00Z",
+      "dependent_id": "SUITE-HPKE-X25519-HKDF-SHA256-AES128GCM",
+      "evidence_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "https://example.org/events/migrated-x25519"
+    },
+    {
+      "event_id": "event-05",
+      "event_type": "complete",
+      "occurred_at": "2026-10-09T04:20:00Z",
+      "dependent_id": null,
+      "evidence_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "reference": "https://example.org/events/emergency-complete"
+    }
+  ],
+  "case_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
