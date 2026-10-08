@@ -61,7 +61,10 @@
           "attestation_reference",
           "final_reviewed_tree_digest",
           "final_acceptance_digest",
-          "final_acceptance_reference"
+          "final_acceptance_reference",
+          "automated_evidence_digest",
+          "automated_evidence_reference",
+          "automated_evidence_equivalent_note"
         ],
         "properties": {
           "reviewer_id": {
@@ -112,6 +115,25 @@
             "pattern": "^sha256:[0-9a-f]{64}$"
           },
           "final_acceptance_reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "automated_evidence_digest": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "automated_evidence_reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "automated_evidence_equivalent_note": {
             "type": [
               "string",
               "null"
