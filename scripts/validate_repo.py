@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Repository-level validation for E2EESA standard artifacts."""
 
-import integration_contracts
-import annotations
+from __future__ import annotations
 
 import json
 import re
@@ -14,6 +13,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
+import integration_contracts
 import profile_engine
 import crypto_registry
 import negotiation_engine
