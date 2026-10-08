@@ -82,10 +82,16 @@ def build_manifest(policy: dict) -> dict:
                 "git_blob_sha": git_blob_sha(data),
             }
         )
+    review_package = load_json("review/independent-review.json")
+    completion = review_package.get("completion", {})
     manifest = {
         "schema_version": "0.1",
         "release_version": "1.0.0",
         "source_candidate_digest": policy["source_candidate"]["tree_digest"],
+        "final_reviewed_tree_digest": completion.get(
+            "final_reviewed_tree_digest"
+        ),
+        "review_summary_digest": completion.get("summary_digest"),
         "file_count": len(entries),
         "files": entries,
         "tree_digest": canonical_digest(entries),
@@ -142,6 +148,17 @@ def validate_final_release() -> list[str]:
         for error in validate_review.completion_errors(review_package, ROOT)
     )
 
+    readiness = load_json("release/1.0.0-readiness.json")
+    if readiness.get("external_review_status") != "complete":
+        errors.append("1.0 readiness external_review_status must be complete")
+    if readiness.get("engineering_status") not in {
+        "ready-for-final-promotion",
+        "released",
+    }:
+        errors.append(
+            "1.0 readiness engineering_status must be ready-for-final-promotion or released"
+        )
+
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     if version != "1.0.0":
         errors.append("VERSION must equal 1.0.0 for final release")
@@ -179,6 +196,33 @@ def main() -> int:
                 print("ERROR:", error)
             print("Refusing to write final manifest before independent review completes.")
             return 1
+
+        version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        if version != "1.0.0":
+            print("ERROR: VERSION must equal 1.0.0 before final manifest generation.")
+            return 1
+
+        residual = residual_pre_1_0_occurrences(policy)
+        if residual:
+            print(
+                "ERROR: unclassified pre-1.0 standard-version occurrences remain: "
+                + ", ".join(residual)
+            )
+            return 1
+
+        readiness = load_json("release/1.0.0-readiness.json")
+        if readiness.get("external_review_status") != "complete":
+            print("ERROR: external review status must be complete.")
+            return 1
+        if readiness.get("engineering_status") not in {
+            "ready-for-final-promotion",
+            "released",
+        }:
+            print(
+                "ERROR: engineering status must be ready-for-final-promotion or released."
+            )
+            return 1
+
         manifest = build_manifest(policy)
         path = ROOT / policy["final_manifest"]["path"]
         path.write_text(
