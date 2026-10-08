@@ -3,6 +3,460 @@
   "rationale_version": "0.1.0",
   "rules": [
     {
+      "document_path": "spec/advisory-interoperability.md",
+      "rationale": "Advisory interoperability requirements preserve vulnerability meaning across export formats and revisions.",
+      "threat_ids": [
+        "TM-UPDATE",
+        "TM-SUPPLY-CHAIN"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "advisory-evidence",
+        "schema-validation-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/assurance-levels.md",
+      "rationale": "Assurance levels provide monotonic evidence-depth semantics so higher assurance cannot be claimed with less or weaker evidence.",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN",
+        "TM-UPDATE",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "evidence_expectations": [
+        "assurance-plan-evidence",
+        "verification-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/attachments-file-encryption.md",
+      "rationale": "Attachment requirements prevent object substitution, partial-stream forgery, replay, and storage-service plaintext access.",
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-NET-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "attachment-manifest-evidence",
+        "chunk-verification-evidence",
+        "key-distribution-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/backup-recovery.md",
+      "rationale": "Backup and recovery requirements prevent recovery channels from becoming a weaker alternate path to plaintext or unauthorized device access.",
+      "threat_ids": [
+        "TM-BACKUP",
+        "TM-RECOVERY",
+        "TM-CREDENTIAL",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [
+        "CS-BACKUP-CREDENTIAL",
+        "CS-RECOVERY-ACCOUNT"
+      ],
+      "security_property_ids": [
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "backup-envelope-evidence",
+        "recovery-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/certification-attestations.md",
+      "rationale": "Signed attestation requirements make certification scope and status independently verifiable and rollback-resistant.",
+      "threat_ids": [
+        "TM-SIGNING-KEY",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-NON-REPUDIATION",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "signature-evidence",
+        "status-statement-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/certification-evidence-model.md",
+      "rationale": "Certification evidence requirements bind claims to immutable scope and evidence so trustmarks cannot drift away from what was actually evaluated.",
+      "threat_ids": [
+        "TM-ROLLBACK",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "certification-evidence",
+        "digest-binding-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/certification-lifecycle.md",
+      "rationale": "Certification lifecycle requirements ensure findings, suspension, expiry, renewal, and revocation remain visible instead of leaving stale approval claims active.",
+      "threat_ids": [
+        "TM-ROLLBACK",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "lifecycle-event-evidence",
+        "status-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/compatibility-configuration-solver.md",
+      "rationale": "Solver requirements enumerate valid configurations without hidden ranking or silently weakening requested properties/lifecycle constraints.",
+      "threat_ids": [
+        "TM-ROLLBACK",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "solver-evidence",
+        "resolver-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/confidence-classification.md",
+      "rationale": "Explicit confidence semantics prevent human judgment, ordinal confidence, and calibrated probability from being conflated or averaged without declared rules.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "classification-evidence",
+        "calibration-evidence",
+        "review-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/conformance-cli.md",
+      "rationale": "CLI requirements make conformance evaluation reproducible in local and CI environments without hidden network state.",
+      "threat_ids": [
+        "TM-ROLLBACK",
+        "TM-SUPPLY-CHAIN"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "evidence_expectations": [
+        "cli-result-evidence",
+        "digest-verification-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/conformance-engine.md",
+      "rationale": "Conformance requirements make pass/fail decisions deterministic, scoped, evidence-bound, and consistent with lifecycle and Required-profile state.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "conformance-evidence",
+        "scope-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/contact-discovery.md",
+      "rationale": "Private discovery requirements limit address-book disclosure, enumeration, and correlation while preserving explicit discoverability semantics.",
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-METADATA",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-METADATA-CONFIDENTIALITY",
+        "SP-UNLINKABILITY"
+      ],
+      "evidence_expectations": [
+        "privacy-protocol-evidence",
+        "enumeration-resistance-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/cross-profile-interoperability.md",
+      "rationale": "Cross-profile testing detects dependency, cardinality, and incompatibility failures without falsely equating co-configuration with wire interoperability.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "interoperability-evidence",
+        "solver-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/cryptographic-registry.md",
+      "rationale": "Closed-world algorithm registration and lifecycle status reduce algorithm confusion, obsolete-primitive use, and unsupported cryptographic claims.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-QUANTUM-HARVEST",
+        "TM-RNG"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "evidence_expectations": [
+        "registry-evidence",
+        "cryptographic-test-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/deprecation-emergency-migration.md",
+      "rationale": "Retirement requirements prevent broken or obsolete algorithms/profiles from remaining active through fallback, rollback, or unmanaged dependencies.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-ROLLBACK",
+        "TM-QUANTUM-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-CONFIDENTIALITY"
+      ],
+      "evidence_expectations": [
+        "migration-evidence",
+        "dependency-evidence",
+        "cutover-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/formal-verification-profiles.md",
+      "rationale": "Formal-verification requirements prevent proof claims from exceeding the actual model, assumptions, code linkage, or properties proven.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-CONFIDENTIALITY"
+      ],
+      "evidence_expectations": [
+        "formal-proof-evidence",
+        "model-binding-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/group-e2ee.md",
+      "rationale": "Group state, membership, epoch, and rekey requirements prevent stale or unauthorized members from retaining normal access to protected group content.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE",
+        "TM-ENDPOINT-STATE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY"
+      ],
+      "evidence_expectations": [
+        "group-state-evidence",
+        "interoperability-evidence",
+        "test-vector-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/identity-device-architecture.md",
+      "rationale": "Device authorization rules prevent unauthorized enrollment, stale-device access, and server-side substitution of cryptographic identities.",
+      "threat_ids": [
+        "TM-ACCOUNT",
+        "TM-CREDENTIAL",
+        "TM-SERVICE-ACTIVE",
+        "TM-DEVICE-PHYSICAL"
+      ],
+      "composite_scenario_ids": [
+        "CS-ACCOUNT-ENROLLMENT",
+        "CS-PHYSICAL-CREDENTIAL"
+      ],
+      "security_property_ids": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "identity-state-evidence",
+        "authorization-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/integration-contracts.md",
+      "rationale": "Integration-contract requirements preserve exact artifact identity and lifecycle semantics when E2EESA data crosses into the six downstream codebases.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK",
+        "TM-SUPPLY-CHAIN"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "envelope-digest-evidence",
+        "schema-validation-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/key-transparency.md",
+      "rationale": "Transparency requirements detect inconsistent, rolled-back, or selectively presented identity-directory state.",
+      "threat_ids": [
+        "TM-DIRECTORY",
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [
+        "CS-DIRECTORY-SERVICE"
+      ],
+      "security_property_ids": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "transparency-proof-evidence",
+        "monitor-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/key-verification.md",
+      "rationale": "Out-of-band key verification detects identity-key substitution that authenticated service transport alone cannot rule out.",
+      "threat_ids": [
+        "TM-DIRECTORY",
+        "TM-SERVICE-ACTIVE",
+        "TM-ACCOUNT"
+      ],
+      "composite_scenario_ids": [
+        "CS-DIRECTORY-SERVICE"
+      ],
+      "security_property_ids": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "evidence_expectations": [
+        "verification-record-evidence",
+        "negative-test-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/metadata-privacy.md",
+      "rationale": "Metadata controls reduce service-visible and observer-visible information that content encryption alone does not hide.",
+      "threat_ids": [
+        "TM-METADATA",
+        "TM-NET-PASSIVE",
+        "TM-SERVICE-READ"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY",
+        "SP-UNLINKABILITY"
+      ],
+      "evidence_expectations": [
+        "metadata-flow-evidence",
+        "retention-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/native-web-client-security.md",
+      "rationale": "Client-security requirements reduce malicious-update, web-bootstrap, and rollback paths that can otherwise defeat correct E2EE protocols at execution time.",
+      "threat_ids": [
+        "TM-UPDATE",
+        "TM-SUPPLY-CHAIN",
+        "TM-SIGNING-KEY",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [
+        "CS-TARGETED-UPDATE",
+        "CS-SUPPLY-SIGNING"
+      ],
+      "security_property_ids": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "release-evidence",
+        "transparency-evidence",
+        "bootstrap-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/negotiation-downgrade.md",
+      "rationale": "Authenticated negotiation and minimum-version enforcement prevent active attackers or stale configuration from forcing weaker security.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "protocol-transcript-evidence",
+        "negative-test-evidence"
+      ]
+    },
+    {
       "document_path": "spec/normative-language.md",
       "rationale": "Unambiguous requirement strength is necessary so implementations and evaluators reach the same conformance decision.",
       "threat_ids": [
@@ -19,6 +473,345 @@
       "evidence_expectations": [
         "configuration-evidence",
         "review-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/observatory-data-architecture.md",
+      "rationale": "Canonical append-only storage plus deterministic projections prevent query/index representations from becoming untraceable alternate sources of truth.",
+      "threat_ids": [
+        "TM-ROLLBACK",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "projection-manifest-evidence",
+        "database-invariant-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/observatory-evidence-model.md",
+      "rationale": "Immutable provenance requirements prevent later classification or research claims from becoming detached from the source material and acquisition history that supports them.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "provenance-evidence",
+        "content-digest-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/pairwise-e2ee.md",
+      "rationale": "Pairwise session requirements protect message confidentiality/authenticity while bounding compromise and recovery behavior.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-READ",
+        "TM-ENDPOINT-STATE",
+        "TM-QUANTUM-HARVEST"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "evidence_expectations": [
+        "protocol-transcript-evidence",
+        "test-vector-evidence",
+        "state-transition-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/privacy-preserving-telemetry.md",
+      "rationale": "Telemetry requirements prevent diagnostics from silently becoming a new metadata or content exfiltration channel.",
+      "threat_ids": [
+        "TM-METADATA",
+        "TM-SERVICE-READ",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "evidence_expectations": [
+        "telemetry-schema-evidence",
+        "privacy-budget-evidence",
+        "consent-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/profile-configuration.md",
+      "rationale": "Exact profile/version selection and dependency resolution prevent hidden architectural ambiguity and accidental downgrade.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "configuration-evidence",
+        "resolver-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/real-time-media.md",
+      "rationale": "Real-time media rules preserve end-to-end media confidentiality and membership binding despite intermediaries such as SFUs.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "media-transcript-evidence",
+        "membership-evidence",
+        "interoperability-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/reference-fixtures.md",
+      "rationale": "Reference-fixture requirements ensure every profile lifecycle path has executable positive/negative examples and prevent untested catalog drift.",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "fixture-evidence",
+        "test-result-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/release-candidate.md",
+      "rationale": "A content-addressed release freeze prevents unreviewed artifact drift between the tested candidate and the material presented for independent review and eventual 1.0 release.",
+      "threat_ids": [
+        "TM-ROLLBACK",
+        "TM-SUPPLY-CHAIN",
+        "TM-UPDATE"
+      ],
+      "composite_scenario_ids": [
+        "CS-SUPPLY-SIGNING",
+        "CS-TARGETED-UPDATE"
+      ],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-BUILD-PROVENANCE",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "manifest-integrity-evidence",
+        "release-validation-evidence",
+        "review-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/research-production-promotion.md",
+      "rationale": "Promotion gates require independent evidence before experimental work can become a production option or default.",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN",
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "independent-review-evidence",
+        "replication-evidence",
+        "interoperability-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/research-profile-registry.md",
+      "rationale": "Research registry requirements preserve negative results, assumptions, limitations, and exact experimental provenance while preventing experiments from masquerading as production recommendations.",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN",
+        "TM-SERVICE-ACTIVE"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "research-evidence",
+        "reproducibility-evidence",
+        "test-vector-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/secret-storage-hardware-protection.md",
+      "rationale": "Secret-storage requirements reduce key extraction, rollback, and misuse while keeping hardware guarantees scoped to what the platform actually enforces.",
+      "threat_ids": [
+        "TM-DEVICE-PHYSICAL",
+        "TM-ENDPOINT-STATE",
+        "TM-HARDWARE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "key-storage-evidence",
+        "attestation-evidence",
+        "rollback-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/secure-development-standard.md",
+      "rationale": "Secure-development controls reduce preventable implementation defects and require security-relevant changes to receive proportionate review and remediation.",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN",
+        "TM-UPDATE",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "development-process-evidence",
+        "review-evidence",
+        "remediation-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/security-properties.md",
+      "rationale": "Machine-readable property semantics prevent implementations from claiming protections that their evidence or threat model does not actually establish.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "claim-evidence",
+        "verification-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/security-rationale-corpus.md",
+      "rationale": "Rationale-corpus requirements ensure every normative rule remains traceable to security purpose, threats, properties, evidence, and references.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "rationale-coverage-evidence",
+        "reference-validation-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/security-verification-framework.md",
+      "rationale": "Verification requirements make security claims falsifiable by binding methods, targets, threat coverage, and evidence to an exact product/configuration.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "verification-evidence",
+        "negative-test-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/server-trust-minimization.md",
+      "rationale": "Server-trust minimization keeps plaintext and high-value E2EE secrets outside service components except where a profile explicitly requires otherwise.",
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "evidence_expectations": [
+        "data-flow-evidence",
+        "key-inventory-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/software-supply-chain.md",
+      "rationale": "Supply-chain requirements bind released artifacts to reviewed source/build provenance and detect dependency or build-pipeline substitution.",
+      "threat_ids": [
+        "TM-SUPPLY-CHAIN",
+        "TM-SIGNING-KEY",
+        "TM-UPDATE"
+      ],
+      "composite_scenario_ids": [
+        "CS-SUPPLY-SIGNING"
+      ],
+      "security_property_ids": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "evidence_expectations": [
+        "sbom-evidence",
+        "provenance-evidence",
+        "reproducible-build-evidence"
+      ]
+    },
+    {
+      "document_path": "spec/standards-crosswalk.md",
+      "rationale": "Crosswalk requirements prevent selective or overstated external-standard mappings and make coverage drift visible.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "crosswalk-coverage-evidence",
+        "reference-validation-evidence"
       ]
     },
     {
@@ -60,309 +853,6 @@
       ]
     },
     {
-      "document_path": "spec/security-properties.md",
-      "rationale": "Machine-readable property semantics prevent implementations from claiming protections that their evidence or threat model does not actually establish.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-INTEGRITY",
-        "SP-DOWNGRADE-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "claim-evidence",
-        "verification-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/profile-configuration.md",
-      "rationale": "Exact profile/version selection and dependency resolution prevent hidden architectural ambiguity and accidental downgrade.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-DOWNGRADE-RESISTANCE",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "configuration-evidence",
-        "resolver-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/cryptographic-registry.md",
-      "rationale": "Closed-world algorithm registration and lifecycle status reduce algorithm confusion, obsolete-primitive use, and unsupported cryptographic claims.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-QUANTUM-HARVEST",
-        "TM-RNG"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-INTEGRITY",
-        "SP-DOWNGRADE-RESISTANCE",
-        "SP-PQ-CONFIDENTIALITY"
-      ],
-      "evidence_expectations": [
-        "registry-evidence",
-        "cryptographic-test-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/negotiation-downgrade.md",
-      "rationale": "Authenticated negotiation and minimum-version enforcement prevent active attackers or stale configuration from forcing weaker security.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-DOWNGRADE-RESISTANCE",
-        "SP-REPLAY-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "protocol-transcript-evidence",
-        "negative-test-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/identity-device-architecture.md",
-      "rationale": "Device authorization rules prevent unauthorized enrollment, stale-device access, and server-side substitution of cryptographic identities.",
-      "threat_ids": [
-        "TM-ACCOUNT",
-        "TM-CREDENTIAL",
-        "TM-SERVICE-ACTIVE",
-        "TM-DEVICE-PHYSICAL"
-      ],
-      "composite_scenario_ids": [
-        "CS-ACCOUNT-ENROLLMENT",
-        "CS-PHYSICAL-CREDENTIAL"
-      ],
-      "security_property_ids": [
-        "SP-PEER-AUTHENTICATION",
-        "SP-AUTHORIZATION-INTEGRITY",
-        "SP-REPLAY-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "identity-state-evidence",
-        "authorization-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/pairwise-e2ee.md",
-      "rationale": "Pairwise session requirements protect message confidentiality/authenticity while bounding compromise and recovery behavior.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-READ",
-        "TM-ENDPOINT-STATE",
-        "TM-QUANTUM-HARVEST"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-MESSAGE-AUTHENTICITY",
-        "SP-FORWARD-SECRECY",
-        "SP-POST-COMPROMISE-SECURITY",
-        "SP-PQ-CONFIDENTIALITY"
-      ],
-      "evidence_expectations": [
-        "protocol-transcript-evidence",
-        "test-vector-evidence",
-        "state-transition-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/group-e2ee.md",
-      "rationale": "Group state, membership, epoch, and rekey requirements prevent stale or unauthorized members from retaining normal access to protected group content.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-ACTIVE",
-        "TM-ENDPOINT-STATE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-AUTHORIZATION-INTEGRITY",
-        "SP-FORWARD-SECRECY",
-        "SP-POST-COMPROMISE-SECURITY"
-      ],
-      "evidence_expectations": [
-        "group-state-evidence",
-        "interoperability-evidence",
-        "test-vector-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/key-verification.md",
-      "rationale": "Out-of-band key verification detects identity-key substitution that authenticated service transport alone cannot rule out.",
-      "threat_ids": [
-        "TM-DIRECTORY",
-        "TM-SERVICE-ACTIVE",
-        "TM-ACCOUNT"
-      ],
-      "composite_scenario_ids": [
-        "CS-DIRECTORY-SERVICE"
-      ],
-      "security_property_ids": [
-        "SP-PEER-AUTHENTICATION",
-        "SP-KEY-CONSISTENCY"
-      ],
-      "evidence_expectations": [
-        "verification-record-evidence",
-        "negative-test-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/key-transparency.md",
-      "rationale": "Transparency requirements detect inconsistent, rolled-back, or selectively presented identity-directory state.",
-      "threat_ids": [
-        "TM-DIRECTORY",
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [
-        "CS-DIRECTORY-SERVICE"
-      ],
-      "security_property_ids": [
-        "SP-KEY-CONSISTENCY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "transparency-proof-evidence",
-        "monitor-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/backup-recovery.md",
-      "rationale": "Backup and recovery requirements prevent recovery channels from becoming a weaker alternate path to plaintext or unauthorized device access.",
-      "threat_ids": [
-        "TM-BACKUP",
-        "TM-RECOVERY",
-        "TM-CREDENTIAL",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [
-        "CS-BACKUP-CREDENTIAL",
-        "CS-RECOVERY-ACCOUNT"
-      ],
-      "security_property_ids": [
-        "SP-BACKUP-CONFIDENTIALITY",
-        "SP-RECOVERY-CONFIDENTIALITY",
-        "SP-AUTHORIZATION-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "backup-envelope-evidence",
-        "recovery-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/metadata-privacy.md",
-      "rationale": "Metadata controls reduce service-visible and observer-visible information that content encryption alone does not hide.",
-      "threat_ids": [
-        "TM-METADATA",
-        "TM-NET-PASSIVE",
-        "TM-SERVICE-READ"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-METADATA-MINIMIZATION",
-        "SP-METADATA-CONFIDENTIALITY",
-        "SP-UNLINKABILITY"
-      ],
-      "evidence_expectations": [
-        "metadata-flow-evidence",
-        "retention-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/contact-discovery.md",
-      "rationale": "Private discovery requirements limit address-book disclosure, enumeration, and correlation while preserving explicit discoverability semantics.",
-      "threat_ids": [
-        "TM-SERVICE-READ",
-        "TM-METADATA",
-        "TM-INSIDER"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-METADATA-CONFIDENTIALITY",
-        "SP-UNLINKABILITY"
-      ],
-      "evidence_expectations": [
-        "privacy-protocol-evidence",
-        "enumeration-resistance-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/attachments-file-encryption.md",
-      "rationale": "Attachment requirements prevent object substitution, partial-stream forgery, replay, and storage-service plaintext access.",
-      "threat_ids": [
-        "TM-SERVICE-READ",
-        "TM-NET-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-INTEGRITY",
-        "SP-REPLAY-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "attachment-manifest-evidence",
-        "chunk-verification-evidence",
-        "key-distribution-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/real-time-media.md",
-      "rationale": "Real-time media rules preserve end-to-end media confidentiality and membership binding despite intermediaries such as SFUs.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-READ",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-INTEGRITY",
-        "SP-AUTHORIZATION-INTEGRITY",
-        "SP-REPLAY-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "media-transcript-evidence",
-        "membership-evidence",
-        "interoperability-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/secret-storage-hardware-protection.md",
-      "rationale": "Secret-storage requirements reduce key extraction, rollback, and misuse while keeping hardware guarantees scoped to what the platform actually enforces.",
-      "threat_ids": [
-        "TM-DEVICE-PHYSICAL",
-        "TM-ENDPOINT-STATE",
-        "TM-HARDWARE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-ROLLBACK-RESISTANCE",
-        "SP-SOFTWARE-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "key-storage-evidence",
-        "attestation-evidence",
-        "rollback-evidence"
-      ]
-    },
-    {
       "document_path": "spec/transport-security.md",
       "rationale": "Transport requirements protect service connections without confusing transport encryption with application-layer E2EE.",
       "threat_ids": [
@@ -380,211 +870,6 @@
         "handshake-evidence",
         "identity-verification-evidence",
         "negative-test-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/native-web-client-security.md",
-      "rationale": "Client-security requirements reduce malicious-update, web-bootstrap, and rollback paths that can otherwise defeat correct E2EE protocols at execution time.",
-      "threat_ids": [
-        "TM-UPDATE",
-        "TM-SUPPLY-CHAIN",
-        "TM-SIGNING-KEY",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [
-        "CS-TARGETED-UPDATE",
-        "CS-SUPPLY-SIGNING"
-      ],
-      "security_property_ids": [
-        "SP-SOFTWARE-INTEGRITY",
-        "SP-BUILD-PROVENANCE",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "release-evidence",
-        "transparency-evidence",
-        "bootstrap-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/server-trust-minimization.md",
-      "rationale": "Server-trust minimization keeps plaintext and high-value E2EE secrets outside service components except where a profile explicitly requires otherwise.",
-      "threat_ids": [
-        "TM-SERVICE-READ",
-        "TM-SERVICE-ACTIVE",
-        "TM-INSIDER"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-CONFIDENTIALITY",
-        "SP-METADATA-MINIMIZATION"
-      ],
-      "evidence_expectations": [
-        "data-flow-evidence",
-        "key-inventory-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/privacy-preserving-telemetry.md",
-      "rationale": "Telemetry requirements prevent diagnostics from silently becoming a new metadata or content exfiltration channel.",
-      "threat_ids": [
-        "TM-METADATA",
-        "TM-SERVICE-READ",
-        "TM-INSIDER"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-METADATA-MINIMIZATION",
-        "SP-METADATA-CONFIDENTIALITY"
-      ],
-      "evidence_expectations": [
-        "telemetry-schema-evidence",
-        "privacy-budget-evidence",
-        "consent-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/secure-development-standard.md",
-      "rationale": "Secure-development controls reduce preventable implementation defects and require security-relevant changes to receive proportionate review and remediation.",
-      "threat_ids": [
-        "TM-SUPPLY-CHAIN",
-        "TM-UPDATE",
-        "TM-INSIDER"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-SOFTWARE-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "development-process-evidence",
-        "review-evidence",
-        "remediation-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/software-supply-chain.md",
-      "rationale": "Supply-chain requirements bind released artifacts to reviewed source/build provenance and detect dependency or build-pipeline substitution.",
-      "threat_ids": [
-        "TM-SUPPLY-CHAIN",
-        "TM-SIGNING-KEY",
-        "TM-UPDATE"
-      ],
-      "composite_scenario_ids": [
-        "CS-SUPPLY-SIGNING"
-      ],
-      "security_property_ids": [
-        "SP-SOFTWARE-INTEGRITY",
-        "SP-BUILD-PROVENANCE"
-      ],
-      "evidence_expectations": [
-        "sbom-evidence",
-        "provenance-evidence",
-        "reproducible-build-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/security-verification-framework.md",
-      "rationale": "Verification requirements make security claims falsifiable by binding methods, targets, threat coverage, and evidence to an exact product/configuration.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-SOFTWARE-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "verification-evidence",
-        "negative-test-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/formal-verification-profiles.md",
-      "rationale": "Formal-verification requirements prevent proof claims from exceeding the actual model, assumptions, code linkage, or properties proven.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-CONFIDENTIALITY"
-      ],
-      "evidence_expectations": [
-        "formal-proof-evidence",
-        "model-binding-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/assurance-levels.md",
-      "rationale": "Assurance levels provide monotonic evidence-depth semantics so higher assurance cannot be claimed with less or weaker evidence.",
-      "threat_ids": [
-        "TM-SUPPLY-CHAIN",
-        "TM-UPDATE",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-SOFTWARE-INTEGRITY",
-        "SP-BUILD-PROVENANCE"
-      ],
-      "evidence_expectations": [
-        "assurance-plan-evidence",
-        "verification-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/certification-evidence-model.md",
-      "rationale": "Certification evidence requirements bind claims to immutable scope and evidence so trustmarks cannot drift away from what was actually evaluated.",
-      "threat_ids": [
-        "TM-ROLLBACK",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "certification-evidence",
-        "digest-binding-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/certification-lifecycle.md",
-      "rationale": "Certification lifecycle requirements ensure findings, suspension, expiry, renewal, and revocation remain visible instead of leaving stale approval claims active.",
-      "threat_ids": [
-        "TM-ROLLBACK",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "lifecycle-event-evidence",
-        "status-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/certification-attestations.md",
-      "rationale": "Signed attestation requirements make certification scope and status independently verifiable and rollback-resistant.",
-      "threat_ids": [
-        "TM-SIGNING-KEY",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-NON-REPUDIATION",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "signature-evidence",
-        "status-statement-evidence"
       ]
     },
     {
@@ -621,267 +906,6 @@
         "case-event-evidence",
         "remediation-evidence",
         "retest-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/advisory-interoperability.md",
-      "rationale": "Advisory interoperability requirements preserve vulnerability meaning across export formats and revisions.",
-      "threat_ids": [
-        "TM-UPDATE",
-        "TM-SUPPLY-CHAIN"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "advisory-evidence",
-        "schema-validation-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/observatory-evidence-model.md",
-      "rationale": "Immutable provenance requirements prevent later classification or research claims from becoming detached from the source material and acquisition history that supports them.",
-      "threat_ids": [
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK",
-        "TM-INSIDER"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "provenance-evidence",
-        "content-digest-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/observatory-data-architecture.md",
-      "rationale": "Canonical append-only storage plus deterministic projections prevent query/index representations from becoming untraceable alternate sources of truth.",
-      "threat_ids": [
-        "TM-ROLLBACK",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "projection-manifest-evidence",
-        "database-invariant-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/confidence-classification.md",
-      "rationale": "Explicit confidence semantics prevent human judgment, ordinal confidence, and calibrated probability from being conflated or averaged without declared rules.",
-      "threat_ids": [
-        "TM-SERVICE-ACTIVE",
-        "TM-INSIDER"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "classification-evidence",
-        "calibration-evidence",
-        "review-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/research-profile-registry.md",
-      "rationale": "Research registry requirements preserve negative results, assumptions, limitations, and exact experimental provenance while preventing experiments from masquerading as production recommendations.",
-      "threat_ids": [
-        "TM-SUPPLY-CHAIN",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "research-evidence",
-        "reproducibility-evidence",
-        "test-vector-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/research-production-promotion.md",
-      "rationale": "Promotion gates require independent evidence before experimental work can become a production option or default.",
-      "threat_ids": [
-        "TM-SUPPLY-CHAIN",
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-SOFTWARE-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "independent-review-evidence",
-        "replication-evidence",
-        "interoperability-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/deprecation-emergency-migration.md",
-      "rationale": "Retirement requirements prevent broken or obsolete algorithms/profiles from remaining active through fallback, rollback, or unmanaged dependencies.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-ROLLBACK",
-        "TM-QUANTUM-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-DOWNGRADE-RESISTANCE",
-        "SP-ROLLBACK-RESISTANCE",
-        "SP-CONFIDENTIALITY"
-      ],
-      "evidence_expectations": [
-        "migration-evidence",
-        "dependency-evidence",
-        "cutover-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/conformance-engine.md",
-      "rationale": "Conformance requirements make pass/fail decisions deterministic, scoped, evidence-bound, and consistent with lifecycle and Required-profile state.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-DOWNGRADE-RESISTANCE",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "conformance-evidence",
-        "scope-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/conformance-cli.md",
-      "rationale": "CLI requirements make conformance evaluation reproducible in local and CI environments without hidden network state.",
-      "threat_ids": [
-        "TM-ROLLBACK",
-        "TM-SUPPLY-CHAIN"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-BUILD-PROVENANCE"
-      ],
-      "evidence_expectations": [
-        "cli-result-evidence",
-        "digest-verification-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/compatibility-configuration-solver.md",
-      "rationale": "Solver requirements enumerate valid configurations without hidden ranking or silently weakening requested properties/lifecycle constraints.",
-      "threat_ids": [
-        "TM-ROLLBACK",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-DOWNGRADE-RESISTANCE",
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "solver-evidence",
-        "resolver-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/reference-fixtures.md",
-      "rationale": "Reference-fixture requirements ensure every profile lifecycle path has executable positive/negative examples and prevent untested catalog drift.",
-      "threat_ids": [
-        "TM-SUPPLY-CHAIN",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "fixture-evidence",
-        "test-result-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/cross-profile-interoperability.md",
-      "rationale": "Cross-profile testing detects dependency, cardinality, and incompatibility failures without falsely equating co-configuration with wire interoperability.",
-      "threat_ids": [
-        "TM-NET-ACTIVE",
-        "TM-SERVICE-ACTIVE"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-DOWNGRADE-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "interoperability-evidence",
-        "solver-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/integration-contracts.md",
-      "rationale": "Integration-contract requirements preserve exact artifact identity and lifecycle semantics when E2EESA data crosses into the six downstream codebases.",
-      "threat_ids": [
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK",
-        "TM-SUPPLY-CHAIN"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY",
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "evidence_expectations": [
-        "envelope-digest-evidence",
-        "schema-validation-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/standards-crosswalk.md",
-      "rationale": "Crosswalk requirements prevent selective or overstated external-standard mappings and make coverage drift visible.",
-      "threat_ids": [
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "crosswalk-coverage-evidence",
-        "reference-validation-evidence"
-      ]
-    },
-    {
-      "document_path": "spec/security-rationale-corpus.md",
-      "rationale": "Rationale-corpus requirements ensure every normative rule remains traceable to security purpose, threats, properties, evidence, and references.",
-      "threat_ids": [
-        "TM-SERVICE-ACTIVE",
-        "TM-ROLLBACK"
-      ],
-      "composite_scenario_ids": [],
-      "security_property_ids": [
-        "SP-INTEGRITY"
-      ],
-      "evidence_expectations": [
-        "rationale-coverage-evidence",
-        "reference-validation-evidence"
       ]
     }
   ]
