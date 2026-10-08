@@ -98,3 +98,12 @@ Before PR 49 completion, record:
 Then update `review/independent-review.json` and verify:
 
 `python review/validate_review.py --require-complete`
+
+
+## Final fixed-tree acceptance
+
+After all review-driven fixes are applied, compute the exact fixed standard-tree identity with:
+
+`python review/final_review_tree.py`
+
+Every reviewer's final acceptance must reference that same tree digest. The combined completion record must use it as `final_reviewed_tree_digest`.
