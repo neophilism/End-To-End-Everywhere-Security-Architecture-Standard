@@ -7,7 +7,7 @@
     "case_id": "example-certification-case",
     "sequence": 0,
     "state": "certified",
-    "effective_at": "2026-10-07T16:00:00Z",
+    "effective_at": "2026-10-07T21:00:00Z",
     "previous_status_digest": null,
     "lifecycle_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
     "lifecycle_event_id": "event-05-approve",
