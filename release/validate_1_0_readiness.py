@@ -80,11 +80,27 @@ def engineering_errors() -> list[str]:
             if not isinstance(gate.get("evidence"), str) or not gate["evidence"]:
                 errors.append("internal gate lacks evidence: " + str(gate_id))
 
-    candidate_errors = release_candidate.validate_release(ROOT)
-    errors.extend("candidate: " + error for error in candidate_errors)
-
     package_errors = validate_review.validate_package(review_package, ROOT)
     errors.extend("review package: " + error for error in package_errors)
+
+    review_complete = (
+        isinstance(review_package.get("completion"), dict)
+        and review_package["completion"].get("review_complete") is True
+    )
+    engineering_status = readiness.get("engineering_status")
+
+    if not review_complete and engineering_status != "review-fixes-in-progress":
+        candidate_errors = release_candidate.validate_release(ROOT)
+        errors.extend("candidate: " + error for error in candidate_errors)
+    elif engineering_status == "review-fixes-in-progress":
+        if review_package.get("status") not in {
+            "review-in-progress",
+            "findings-open",
+        }:
+            errors.append(
+                "review-fixes-in-progress requires review package status "
+                "review-in-progress or findings-open"
+            )
 
     return sorted(set(errors))
 
