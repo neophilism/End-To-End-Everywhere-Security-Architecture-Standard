@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.1",
+  "entry_id": "example-hybrid-composition-study",
+  "entry_version": "0.1.0",
+  "revision": 1,
+  "previous_entry_digest": null,
+  "title": "Example X25519 plus ML-KEM-768 composition study",
+  "summary": "Illustrative research registry entry evaluating protocol binding and downgrade behavior for a composition of registered classical and post-quantum components. This fixture makes no production security claim.",
+  "research_kind": "algorithm-composition",
+  "target": {
+    "family_id": "pairwise-e2ee",
+    "profile_id": "pairwise-example-hybrid-research",
+    "intended_version": "0.1.0"
+  },
+  "lifecycle_status": "experimental",
+  "production_selectable": false,
+  "created_at": "2026-10-07T22:00:00Z",
+  "updated_at": "2026-10-07T23:00:00Z",
+  "provenance_evidence_bundle_digests": [
+    "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  ],
+  "design_spec": {
+    "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "reference": "https://example.org/research/hybrid-composition/spec-v0.1"
+  },
+  "threat_model": {
+    "registered_threat_ids": [
+      "TM-NET-ACTIVE",
+      "TM-QUANTUM-HARVEST"
+    ],
+    "composite_scenario_ids": [
+      "CS-QUANTUM-HARVEST"
+    ],
+    "experimental_threats": []
+  },
+  "security_properties": {
+    "registered_property_ids": [
+      "SP-CONFIDENTIALITY",
+      "SP-DOWNGRADE-RESISTANCE",
+      "SP-PQ-CONFIDENTIALITY"
+    ],
+    "experimental_properties": []
+  },
+  "cryptographic_algorithm_ids": [
+    "ALG-ML-KEM-768",
+    "ALG-X25519"
+  ],
+  "experimental_components": [],
+  "hypotheses": [
+    {
+      "hypothesis_id": "hybrid-transcript-binding",
+      "statement": "The studied composition binds both registered key-establishment contributions and the selected profile into the transcript used by the experimental key schedule.",
+      "criterion": "The registered verification procedure must reject every supplied downgrade/substitution negative vector and no experiment may demonstrate acceptance of a transcript with an omitted or substituted component.",
+      "target_property_ids": [
+        "SP-DOWNGRADE-RESISTANCE"
+      ]
+    }
+  ],
+  "test_vectors": [
+    {
+      "vector_id": "hybrid-negative-vectors",
+      "purpose": "Exercise downgrade and component-substitution rejection behavior.",
+      "media_type": "application/json",
+      "artifact_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "reference": "https://example.org/research/hybrid-composition/vectors-v0.1.json",
+      "verification_status": "internally-verified",
+      "verification_evidence_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "verification_reference": "https://example.org/research/hybrid-composition/vector-check-v0.1"
+    }
+  ],
+  "implementations": [
+    {
+      "implementation_id": "hybrid-prototype",
+      "maturity": "prototype",
+      "source_reference": "https://example.org/research/hybrid-composition/source",
+      "source_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "language_runtime": "Rust example prototype",
+      "build_reference": "https://example.org/research/hybrid-composition/build-v0.1",
+      "limitations": [
+        "Illustrative fixture only; not independently reviewed and not intended for production use."
+      ],
+      "production_use_prohibited": true
+    }
+  ],
+  "experiments": [
+    {
+      "experiment_id": "hybrid-negative-vector-run",
+      "hypothesis_ids": [
+        "hybrid-transcript-binding"
+      ],
+      "methodology_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "methodology_reference": "https://example.org/research/hybrid-composition/method-v0.1",
+      "test_vector_ids": [
+        "hybrid-negative-vectors"
+      ],
+      "implementation_ids": [
+        "hybrid-prototype"
+      ],
+      "environment_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "environment_reference": "https://example.org/research/hybrid-composition/environment-v0.1",
+      "outcome": "inconclusive",
+      "result_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "result_reference": "https://example.org/research/hybrid-composition/results-v0.1",
+      "executed_at": "2026-10-07T22:30:00Z",
+      "replication_status": "none",
+      "replication_evidence_digest": null,
+      "replication_reference": null
+    }
+  ],
+  "evidence": {
+    "review_evidence_digests": [],
+    "formal_evidence_digests": [],
+    "interoperability_evidence_digests": [],
+    "benchmark_evidence_digests": [
+      "sha256:8888888888888888888888888888888888888888888888888888888888888888"
+    ]
+  },
+  "limitations": [
+    "Illustrative fixture only; no independent review, formal proof, or production interoperability evidence is claimed."
+  ],
+  "open_questions": [
+    "What additional independent and formal evidence would be required before any promotion assessment?"
+  ],
+  "reproduction_ref": "https://example.org/research/hybrid-composition/reproduce-v0.1",
+  "entry_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
