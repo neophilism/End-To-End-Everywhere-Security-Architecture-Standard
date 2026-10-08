@@ -46,6 +46,7 @@ Normative requirements use RFC 2119 / RFC 8174 terminology intentionally and spa
 31. [Vulnerability Disclosure Profiles](vulnerability-disclosure-profiles.md) — RFC 9116 intake, reporter protection, active-exploitation escalation, and selectable risk-adaptive or fixed 90+30 disclosure clocks.
 32. [Vulnerability Handling](vulnerability-handling.md) — event-sourced validation, prioritization, root-cause analysis, remediation, retesting, emergency handling, risk acceptance, and disclosure-clock enforcement.
 33. [Advisory Interoperability](advisory-interoperability.md) — normalized vulnerability advisories with stable CSAF 2.0/ISO 20153 and provisional CSAF 2.1 exports, modern risk-signal provenance, and external conformance evidence.
+34. [Observatory Evidence Model](observatory-evidence-model.md) — immutable content-addressed evidence, W3C-PROV-style entities/activities/agents, acquisition history, citations, revisions, real-world events, and composable integrity anchors.
 
 ## Remaining specification areas
 
