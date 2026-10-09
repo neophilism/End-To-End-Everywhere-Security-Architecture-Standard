@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 662,
+  "file_count": 664,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -1671,8 +1671,8 @@
     },
     {
       "path": "profiles/catalog.json",
-      "size": 47683,
-      "git_blob_sha": "9f911ecf3f2deb1080e96cc55f6567b1b5b8bfbb"
+      "size": 58752,
+      "git_blob_sha": "87fac03bca714ff22e30cc3abf3260f80a8462ae"
     },
     {
       "path": "reference/observatory/postgres.sql",
@@ -1691,8 +1691,8 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 6784,
-      "git_blob_sha": "8bca0c14f3469279a990bb574c668ef7c0fee5b4"
+      "size": 6788,
+      "git_blob_sha": "cda4c7d286bbb7f2f5841fa29d549a023c84d0f8"
     },
     {
       "path": "registry/canonical-serialization.json",
@@ -2291,13 +2291,13 @@
     },
     {
       "path": "schemas/profile-catalog.schema.json",
-      "size": 1146,
-      "git_blob_sha": "142b29cd4f5067428d8fa3441d28a9e64c685772"
+      "size": 1482,
+      "git_blob_sha": "57961172502617789a71583d6da9d329647b75a8"
     },
     {
       "path": "schemas/profile.schema.json",
-      "size": 1619,
-      "git_blob_sha": "829e852bdd283b8b961442ed27abc2f5c4059706"
+      "size": 2501,
+      "git_blob_sha": "b1589c2a64608418766f652f7cd4ed283f9debdf"
     },
     {
       "path": "schemas/real-time-media-frame-evidence.schema.json",
@@ -2606,8 +2606,8 @@
     },
     {
       "path": "scripts/compatibility_solver.py",
-      "size": 35005,
-      "git_blob_sha": "167b5150e23affbd74024c53573abd9834903286"
+      "size": 35666,
+      "git_blob_sha": "3ce193235bb796efb6061a479db18f5c369543e1"
     },
     {
       "path": "scripts/component_inventory.py",
@@ -2710,9 +2710,14 @@
       "git_blob_sha": "d817259b7688f6e33441bc99462c25427329c923"
     },
     {
+      "path": "scripts/profile_dependencies.py",
+      "size": 5455,
+      "git_blob_sha": "fbeb81719bc3577efc32179cb74645814aee6531"
+    },
+    {
       "path": "scripts/profile_engine.py",
-      "size": 19735,
-      "git_blob_sha": "9d0ac3bd6f2baf2bfcad7232fbb193d10ba97011"
+      "size": 20062,
+      "git_blob_sha": "3887f1fac31ef53a8991f8e8d7f327ccc2d1e13e"
     },
     {
       "path": "scripts/real_time_media_engine.py",
@@ -2966,8 +2971,8 @@
     },
     {
       "path": "spec/profile-configuration.md",
-      "size": 6710,
-      "git_blob_sha": "c82a081c05624ddb8b3a1afe553048bcafd43ad1"
+      "size": 7632,
+      "git_blob_sha": "118e717c139cad0753f370a22371aaa2d931eae1"
     },
     {
       "path": "spec/real-time-media.md",
@@ -3255,6 +3260,11 @@
       "git_blob_sha": "ca778279c72198d86af9976c921eab02726d06c9"
     },
     {
+      "path": "tests/test_scoped_dependencies.py",
+      "size": 4088,
+      "git_blob_sha": "d08b6043b2fbfd10d4bac640945c2ce4851cfb1b"
+    },
+    {
       "path": "tests/test_secret_storage_engine.py",
       "size": 10369,
       "git_blob_sha": "121891b31d21b28b688c323695e8b0c38157ef15"
@@ -3315,5 +3325,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:9ff058d2dd4f1cf409da13979aca5d03ada11a4549479fc646d9d0103b86061d"
+  "tree_digest": "sha256:4c5680ebd94e03f31777b45f7283ae241a50fde8b42444e8a7e8f1b7350e1b08"
 }

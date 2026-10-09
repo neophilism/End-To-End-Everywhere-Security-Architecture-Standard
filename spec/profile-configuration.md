@@ -164,3 +164,9 @@ Where E2EESA later recognizes multiple serious approaches to a disputed architec
 The resolver provides the mechanism to select among them safely.
 
 It does not establish that every conceivable implementation is acceptable, and it does not permit a configuration author to disable E2EESA invariants.
+
+## Typed and scoped dependency contracts
+
+Production profiles MAY declare `dependency_rules`. Each rule binds a requirement identifier, `same-component` or `same-flow` scope, and a typed `all_of` / `any_of` tree of exact `profile_ref` or `family_id` leaves. These rules are authoritative. A prose drift check is supplementary. The resolver rejects missing alternatives; the solver enumerates them without silently selecting a weaker replacement. Family cardinality is unchanged and applies within the component scope.
+
+Active assessments MUST check each consuming flow. Profiles in an unrelated component or flow cannot satisfy a key-delivery dependency. A reusable library's host obligation names the exact consuming flow, host component/flow, requirement, and source/build-bound integration evidence. Recipient and key-authority boundaries must agree; declaration validity alone does not establish runtime integration.

@@ -11,6 +11,7 @@ import json
 from typing import Any, Iterable
 
 import conformance_engine
+import profile_dependencies
 import profile_engine
 import research_promotion
 
@@ -714,7 +715,7 @@ def solve(
         if desired_properties & set(profile.get("security_properties", [])):
             provider_families.add(family_id)
 
-    search_families = sorted(mandatory_families | provider_families)
+    search_families = sorted(profile_dependencies.family_universe(profiles,mandatory_families | provider_families))
     options_by_family: list[tuple[str, list[tuple[str, ...]]]] = []
     for family_id in search_families:
         family = families[family_id]
@@ -726,6 +727,17 @@ def solve(
             mandatory=family_id in mandatory_families,
         )
         options_by_family.append((family_id, options))
+
+    available_refs = {ref for refs in eligible_by_family.values() for ref in refs}
+    available_families = set(eligible_by_family)
+    impossible_rules = [
+        rule["requirement_id"]
+        for ref in pins for rule in profiles[ref].get("dependency_rules", [])
+        if not profile_dependencies.satisfied(rule["requires"], available_refs, available_families)
+    ]
+    if impossible_rules:
+        options_by_family.append(("impossible-pinned-dependency", []))
+        diagnostics.append(_diagnostic("unsatisfied-dependency", "error", ", ".join(sorted(set(impossible_rules)))))
 
     maximum_states = solver_registry["maximum_search_states"]
     states_examined = 0
