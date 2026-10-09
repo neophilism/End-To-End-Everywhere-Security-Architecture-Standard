@@ -16,6 +16,9 @@ import security_rationale
 import standards_crosswalk
 
 
+RC1_ARCHIVE_ANCHOR = {'release_version': '0.9.0-rc.1', 'source_commit': 'dea8f54cab9130da86a71f36de553766a978daf2', 'manifest_path': 'release/0.9.0-rc.1-manifest.json', 'manifest_sha256': '85c3cb9e607c1508ae65baeda5987e4a04d8b89d25ca167d48f85983b3afd278', 'archive_path': 'release/archive/0.9.0-rc.1.tar.gz', 'archive_sha256': 'cf7f3a999ad35676ea732db065303bc2f61ecce655daf1cf0897f6870d4b862e', 'tree_digest': 'sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2'}
+REQUIRED_FROZEN_ROOTS = {'reference', 'fixtures', 'schemas', 'profiles', '.github/workflows', 'scripts', 'registry', 'tests', 'spec', 'adr'}
+
 def sha256_bytes(data):
     return "sha256:" + hashlib.sha256(data).hexdigest()
 
@@ -82,6 +85,14 @@ def validate_release(root):
     errors=[]
     policy=load_json(root,"registry/release-candidate.json")
     errors.extend(validate_historical_candidates(root, policy))
+    if not REQUIRED_FROZEN_ROOTS.issubset(set(policy.get("frozen_roots",[]))):
+        errors.append("release freeze omits a required source root")
+    if any(path.startswith(tuple(top+"/" for top in REQUIRED_FROZEN_ROOTS)) and path!="registry/release-candidate.json" for path in policy.get("excluded_paths",[])):
+        errors.append("release freeze excludes a source file")
+    if policy.get("development_state") not in {"audit-remediation","frozen-candidate"}:
+        errors.append("release development state must be explicit")
+    if (policy.get("development_state")=="audit-remediation") != policy.get("release_version", "").endswith("-dev"):
+        errors.append("development/frozen candidate version identity mismatch")
     version=(root/"VERSION").read_text(encoding="utf-8").strip()
     if version!=policy["release_version"]:
         errors.append("VERSION does not match release candidate version")
@@ -150,9 +161,13 @@ def validate_release(root):
 def validate_historical_candidates(root, policy):
     """Verify archived bytes without requiring a Git history or extracting paths."""
     errors = []
+    if "release/0.9.0-rc.1-archive.json" not in policy.get("historical_candidates", []):
+        errors.append("original rc.1 verification anchor is mandatory")
     for path in policy.get("historical_candidates", []):
         try:
             anchor = load_json(root, path)
+            if path == "release/0.9.0-rc.1-archive.json" and anchor != RC1_ARCHIVE_ANCHOR:
+                raise ValueError("original rc.1 verification anchor changed")
             manifest_bytes = (root / anchor["manifest_path"]).read_bytes()
             archive_bytes = (root / anchor["archive_path"]).read_bytes()
             if hashlib.sha256(manifest_bytes).hexdigest() != anchor["manifest_sha256"]:

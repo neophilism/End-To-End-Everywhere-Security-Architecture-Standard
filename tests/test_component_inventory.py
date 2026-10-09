@@ -5,8 +5,8 @@ import component_inventory as inv
 
 def fixture():
     return {'schema_version':'0.2','product_id':'mixed-app','source_digest':'sha256:'+'a'*64,'artifact_digest':'sha256:'+'b'*64,'evidence_refs':['source-build-inventory'],
-      'components':[{'component_id':'client','product_class':'protected-content-library','capabilities':['offline'],'profile_refs':[],'inventory_flow_ids':['private-file'],'host_obligations':[]}],
-      'flows':[{'flow_id':'private-file','component_id':'client','operation':'local-storage','data_class':'protected','recipient_ids':['alice'],'key_authority_ids':['alice'],'profile_refs':[],'networked':False}]}
+      'components':[{'component_id':'client','product_class':'protected-content-library','capabilities':['offline'],'profile_refs':['secret-software-vault@0.1.0'],'inventory_flow_ids':['private-file'],'host_obligations':[]}],
+      'flows':[{'flow_id':'private-file','component_id':'client','operation':'local-storage','data_class':'protected','recipient_ids':['alice'],'key_authority_ids':['alice'],'profile_refs':['secret-software-vault@0.1.0'],'networked':False}]}
 
 class InventoryTests(unittest.TestCase):
     def catalog(self):return json.loads((ROOT/'profiles/catalog.json').read_text())

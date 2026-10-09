@@ -43,7 +43,7 @@
     {
       "id": "AUD-07",
       "title": "Scoped claim eligibility",
-      "state": "pending",
+      "state": "implemented",
       "independent_review": "pending"
     },
     {
@@ -164,21 +164,48 @@
   "findings": [
     {
       "id": "F01",
-      "state": "reported",
+      "state": "regression-verified",
       "source": "Claude audit v2",
-      "reproductions": []
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_scoped_assessment.py"
+        }
+      ]
     },
     {
       "id": "F02",
-      "state": "reported",
+      "state": "regression-verified",
       "source": "Claude audit v2",
-      "reproductions": []
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_scoped_dependencies.py"
+        }
+      ]
     },
     {
       "id": "F03",
-      "state": "reported",
+      "state": "regression-verified",
       "source": "Claude audit v2",
-      "reproductions": []
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_production_catalog.py"
+        }
+      ]
     },
     {
       "id": "F04",
@@ -228,8 +255,12 @@
       "source": "Claude audit v2",
       "reproductions": [
         {
-          "test": "tests/test_canonical_serialization.py::test_unicode_owners_agree",
-          "scope": "Unicode integer-only mismatch independently reproduced; active owners now agree"
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_cross_language_bytes.py"
         }
       ]
     },

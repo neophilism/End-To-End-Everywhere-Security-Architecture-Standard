@@ -192,6 +192,8 @@ class ConformanceEngineTests(unittest.TestCase):
         result=self.evaluate(request,plan,bundle,inputs)
         self.assertEqual(result["verdict"],"pass",result["reasons"])
         self.assertFalse(result["production_certification_eligible"])
+        self.assertEqual(result["claim_scope"],"configuration-diagnostic")
+        self.assertEqual(result["result_class"],"configuration")
         self.assertEqual(
             set(result["required_property_ids"]),
             {
@@ -387,6 +389,8 @@ class ConformanceEngineTests(unittest.TestCase):
         result=self.evaluate(request,plan,bundle,inputs)
         self.assertEqual(result["verdict"],"indeterminate",result["reasons"])
         self.assertFalse(result["production_certification_eligible"])
+        self.assertEqual(result["claim_scope"],"configuration-diagnostic")
+        self.assertEqual(result["result_class"],"configuration")
         self.assertEqual(result["conditional_property_ids"],["SP-INTEGRITY"])
 
     def test_not_supported_required_property_fails(self) -> None:
@@ -443,8 +447,10 @@ class ConformanceEngineTests(unittest.TestCase):
         request,plan,bundle,inputs=self.candidate()
         result=self.evaluate(request,plan,bundle,inputs)
         self.assertEqual(result["verdict"],"pass",result["reasons"])
-        self.assertEqual(result["claim_scope"],"candidate-evaluation")
+        self.assertEqual(result["evaluation_policy_scope"],"candidate-evaluation")
         self.assertFalse(result["production_certification_eligible"])
+        self.assertEqual(result["claim_scope"],"configuration-diagnostic")
+        self.assertEqual(result["result_class"],"configuration")
 
     def test_unpromoted_provisional_profile_cannot_use_candidate_policy(self) -> None:
         request,plan,bundle,inputs=self.candidate()
@@ -476,8 +482,10 @@ class ConformanceEngineTests(unittest.TestCase):
             migration_plan=migration_plan,migration_case=migration_case
         )
         self.assertEqual(result["verdict"],"pass",result["reasons"])
-        self.assertEqual(result["claim_scope"],"migration-only")
+        self.assertEqual(result["evaluation_policy_scope"],"migration-only")
         self.assertFalse(result["production_certification_eligible"])
+        self.assertEqual(result["claim_scope"],"configuration-diagnostic")
+        self.assertEqual(result["result_class"],"configuration")
 
     def test_migration_operation_after_legacy_deadline_fails(self) -> None:
         request,plan,bundle,inputs,migration_plan,migration_case=self.migration()

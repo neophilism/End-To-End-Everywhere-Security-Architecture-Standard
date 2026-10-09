@@ -13,6 +13,10 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
+import component_inventory
+import digest_contracts
+import scoped_assessment
+
 import integration_contracts
 import standards_crosswalk
 import security_rationale
@@ -59,6 +63,19 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    "scripts/canonical_serialization.py",
+    "scripts/digest_contracts.py",
+    "scripts/component_inventory.py",
+    "scripts/profile_dependencies.py",
+    "scripts/scoped_assessment.py",
+    "scripts/reproduce_audit_baseline.py",
+    "registry/canonical-serialization.json",
+    "registry/digest-contracts.json",
+    "registry/product-classes.json",
+    "registry/audit-remediation.json",
+    "schemas/component-inventory.schema.json",
+    "schemas/scoped-assessment-request.schema.json",
+    "schemas/scoped-assessment-result.schema.json",
     'scripts/release_candidate.py',
     'registry/release-candidate.json',
     'schemas/release-candidate.schema.json',
@@ -1617,6 +1634,22 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 known_property_ids=known_property_ids_for_catalog,
             )
         )
+
+    production_families={x.get("family_id") for x in profile_catalog.get("families",[])}
+    if {"foundation","example-architecture","example-addons"} & production_families:
+        errors.append("production catalog includes illustrative providers")
+    for rule in component_inventory.product_classes(root)["classes"]:
+        required=set(rule["mandatory_families"])
+        required.update(family for value in rule["capability_families"].values() for family in value)
+        if required-production_families:errors.append("product class refers to unknown production families")
+    for contract in digest_contracts.registry(root)["contracts"]:
+        schema=load_json(root/contract["schema_path"])
+        if set(contract["included_fields"]) & set(contract["excluded_fields"]):errors.append("digest contract includes excluded fields")
+        if set(contract["included_fields"]) | set(contract["excluded_fields"]) != set(schema.get("properties",{})):
+            errors.append("digest contract field set differs from schema: "+contract["contract_id"])
+    if not errors:
+        try:scoped_assessment.standard_lock(root)
+        except ValueError as exc:errors.append(str(exc))
 
     pairwise_protocol_registry_path = root / "registry/pairwise-protocols.json"
     pairwise_protocol_registry = (

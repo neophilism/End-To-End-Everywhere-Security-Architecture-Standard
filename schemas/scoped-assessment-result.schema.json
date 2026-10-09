@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/scoped-assessment-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "request_digest",
+    "standard_lock",
+    "verdict",
+    "result_class",
+    "configuration_valid",
+    "inventory_supported",
+    "components",
+    "claims",
+    "production_certification_eligible",
+    "independent_review_state",
+    "deployment_state",
+    "errors",
+    "limitations",
+    "result_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2"
+    },
+    "assessment_id": {
+      "type": "string"
+    },
+    "request_digest": {
+      "type": "string"
+    },
+    "standard_lock": {
+      "type": "object"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "fail",
+        "indeterminate"
+      ]
+    },
+    "result_class": {
+      "enum": [
+        "configuration",
+        "process",
+        "component",
+        "protected-content"
+      ]
+    },
+    "configuration_valid": {
+      "type": "boolean"
+    },
+    "inventory_supported": {
+      "type": "boolean"
+    },
+    "components": {
+      "type": "array"
+    },
+    "claims": {
+      "type": "array"
+    },
+    "production_certification_eligible": {
+      "type": "boolean"
+    },
+    "independent_review_state": {
+      "type": "string"
+    },
+    "deployment_state": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "array"
+    },
+    "limitations": {
+      "type": "array"
+    },
+    "result_digest": {
+      "type": "string"
+    }
+  }
+}

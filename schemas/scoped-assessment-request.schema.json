@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endtoendeverywhere.org/e2eesa/schemas/scoped-assessment-request.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "evaluated_at",
+    "policy",
+    "standard_lock",
+    "inventory",
+    "claims",
+    "request_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2"
+    },
+    "assessment_id": {
+      "type": "string"
+    },
+    "evaluated_at": {
+      "type": "string"
+    },
+    "policy": {
+      "enum": [
+        "configuration",
+        "candidate",
+        "production"
+      ]
+    },
+    "standard_lock": {
+      "type": "object"
+    },
+    "inventory": {
+      "$ref": "component-inventory.schema.json"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim_id",
+          "claim_domain",
+          "flow_id",
+          "property_id",
+          "threat_ids",
+          "profile_refs",
+          "evidence_refs"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "claim_domain": {
+            "enum": [
+              "protected-content",
+              "component",
+              "process"
+            ]
+          },
+          "flow_id": {
+            "type": "string"
+          },
+          "property_id": {
+            "type": "string"
+          },
+          "threat_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "profile_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "request_digest": {
+      "type": "string"
+    }
+  }
+}

@@ -170,3 +170,15 @@ It does not establish that every conceivable implementation is acceptable, and i
 Production profiles MAY declare `dependency_rules`. Each rule binds a requirement identifier, `same-component` or `same-flow` scope, and a typed `all_of` / `any_of` tree of exact `profile_ref` or `family_id` leaves. These rules are authoritative. A prose drift check is supplementary. The resolver rejects missing alternatives; the solver enumerates them without silently selecting a weaker replacement. Family cardinality is unchanged and applies within the component scope.
 
 Active assessments MUST check each consuming flow. Profiles in an unrelated component or flow cannot satisfy a key-delivery dependency. A reusable library's host obligation names the exact consuming flow, host component/flow, requirement, and source/build-bound integration evidence. Recipient and key-authority boundaries must agree; declaration validity alone does not establish runtime integration.
+
+`DEP-CONTENT-AUTHORITY`: Pairwise, group, attachment, media, and backup profiles MUST bind identity architecture and secret storage in the same component, with an explicitly discharged host obligation where a reusable component delegates that boundary.
+
+`DEP-ENDPOINT-BOUNDARY`: Pairwise, group, and network media endpoint profiles MUST bind client and transport security in the same component.
+
+`DEP-GROUP-PAIRWISE-CHANNEL`: Sender-key and pairwise-fanout group flows MUST bind their pairwise channel to that consuming flow.
+
+`DEP-AUTHENTICATED-PARENT-CHANNEL`: Attachments and sender-key media MUST bind an authenticated pairwise or group parent channel in the same flow or a specifically evidenced host integration.
+
+`DEP-TRANSPARENCY-VERIFICATION-SUBJECT`: Key transparency MUST bind identity architecture and the key-verification subject in the same component.
+
+`DEP-ACCOUNT-ROOT-IDENTITY`: Account-root verification MUST select the exact account-root identity profile in the same component.

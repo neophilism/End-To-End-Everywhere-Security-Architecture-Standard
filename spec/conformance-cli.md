@@ -169,3 +169,7 @@ A `verify-result` command with the same:
 must reproduce the same PR 40 logical result.
 
 Changed repository inputs produce PR 40 evaluation-basis digest failures rather than silently verifying the old result.
+
+## Legacy diagnostics after Audit v2
+
+The legacy `0.1` request adapter emits a separately versioned `0.2` configuration diagnostic result, under `schemas/conformance-diagnostic-result.schema.json`. It preserves the selected legacy policy as `evaluation_policy_scope` while `claim_scope` is `configuration-diagnostic`, `result_class` is `configuration`, and certification eligibility is always false. The output digest uses its exact diagnostic record contract. These passes do not establish product conformance. Historical `0.1` results retain their original archived verifier and bytes. Active component/flow assessments use `scripts/scoped_assessment.py` and its own exact schema/contract identities.

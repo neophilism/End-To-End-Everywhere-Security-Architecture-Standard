@@ -25,7 +25,7 @@ def validate_rules(rules, families, profiles):
         rid=rule['requirement_id']
         if not isinstance(rid,str) or not rid or rid in ids:errors.append('duplicate/invalid dependency requirement id')
         else:ids.add(rid)
-        if rule['scope'] not in {'same-component','same-flow'}:errors.append('unsupported dependency scope')
+        if not isinstance(rule['scope'],str) or rule['scope'] not in {'same-component','same-flow'}:errors.append('unsupported dependency scope')
         errors.extend(validate_node(rule['requires'],families,profiles))
     return errors
 
@@ -71,6 +71,7 @@ def inventory_errors(manifest, catalog, required_families):
             for obligation in component['host_obligations']:
                 fields={'flow_id','host_component_id','host_flow_id','requirement_id','integration_evidence_ref'}
                 if not isinstance(obligation,dict) or set(obligation)!=fields:errors.append(cid+': invalid host obligation');continue
+                if not all(isinstance(obligation[k],str) and obligation[k] for k in fields):errors.append(cid+': invalid host obligation identifiers');continue
                 if obligation['flow_id']!=fid:continue
                 host=flows.get(obligation['host_flow_id'])
                 if host is None or host['component_id']!=obligation['host_component_id'] or obligation['integration_evidence_ref'] not in manifest['evidence_refs']:errors.append(fid+': unbound host integration');continue
