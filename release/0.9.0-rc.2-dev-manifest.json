@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 658,
+  "file_count": 662,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -1691,8 +1691,8 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 6780,
-      "git_blob_sha": "b3dffad948ec719f708fa329ddab19978f591f85"
+      "size": 6784,
+      "git_blob_sha": "8bca0c14f3469279a990bb574c668ef7c0fee5b4"
     },
     {
       "path": "registry/canonical-serialization.json",
@@ -1803,6 +1803,11 @@
       "path": "registry/pairwise-protocols.json",
       "size": 5685,
       "git_blob_sha": "ba086904b1612765e7366021571d8d38f73c04d6"
+    },
+    {
+      "path": "registry/product-classes.json",
+      "size": 8680,
+      "git_blob_sha": "ca8767a6fdf1ad481b38894781ea48b4d9620ba1"
     },
     {
       "path": "registry/real-time-media.json",
@@ -2013,6 +2018,11 @@
       "path": "schemas/compatibility-solver-result.schema.json",
       "size": 3577,
       "git_blob_sha": "cbd3bcc3b61606853299995da9c495f40d4dcca2"
+    },
+    {
+      "path": "schemas/component-inventory.schema.json",
+      "size": 3623,
+      "git_blob_sha": "4495da3ca4b046e7235a1bbb13a0a2be89958cbc"
     },
     {
       "path": "schemas/confidence-classification-policy.schema.json",
@@ -2600,6 +2610,11 @@
       "git_blob_sha": "167b5150e23affbd74024c53573abd9834903286"
     },
     {
+      "path": "scripts/component_inventory.py",
+      "size": 7418,
+      "git_blob_sha": "5e79832e7aebc09d3ee3ac5d53418da8d92dd6cf"
+    },
+    {
       "path": "scripts/confidence_classification.py",
       "size": 33441,
       "git_blob_sha": "ef8007ea9e083ec9c85388fcb199ecd7dc72b899"
@@ -2851,8 +2866,8 @@
     },
     {
       "path": "spec/conformance-engine.md",
-      "size": 10609,
-      "git_blob_sha": "95a3ace7c5bdbcbe8ebe1cce7d44365e98f0016c"
+      "size": 11541,
+      "git_blob_sha": "5721ded951a3e4899dd52f800b8e392d795e8e5c"
     },
     {
       "path": "spec/contact-discovery.md",
@@ -3100,6 +3115,11 @@
       "git_blob_sha": "4bbc9f16fede7871c4ba5ebe398190c7f0ff9a2f"
     },
     {
+      "path": "tests/test_component_inventory.py",
+      "size": 2437,
+      "git_blob_sha": "a407bb617bc162f34000cf1cbe50bce4ac38877d"
+    },
+    {
       "path": "tests/test_confidence_classification.py",
       "size": 19739,
       "git_blob_sha": "08eef6d8c0ff02ffed81a0be94771ccb377c293f"
@@ -3295,5 +3315,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:7d96b9851d244ca866c6521d15b84893a3d249f1f8eafcc6e71abf427212180c"
+  "tree_digest": "sha256:9ff058d2dd4f1cf409da13979aca5d03ada11a4549479fc646d9d0103b86061d"
 }

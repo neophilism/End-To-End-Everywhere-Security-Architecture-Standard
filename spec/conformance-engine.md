@@ -284,3 +284,9 @@ Conditional promised properties yield indeterminate, never pass.
 ## 16. References
 
 PR 40 composes the E2EESA profile, assurance, certification, research-promotion and deprecation/migration layers established by PRs 2, 27–28 and 38–39.
+
+## Active component inventories
+
+Active `0.2` assessments MUST classify components and data flows using `registry/product-classes.json`, with source/build-bound observations and completeness evidence appropriate to the assessment tier. The inventory is an assessment input, not its own completeness proof. A mandatory family cannot be waived by a rationale or an empty inventory contradicted by observed protected flows. Unknown classes or capabilities do not receive exemptions. A public website, endpoint, relay, and intentionally authorized processor may be separate components in one product.
+
+A reusable protected-content component MAY declare explicit host obligations for the exact consuming flow; an unrelated service profile cannot discharge them. Offline vaults do not require a network solely to earn component conformance. Declared inventories without trusted assessment evidence remain unqualified for product claims.

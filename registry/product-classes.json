@@ -1,0 +1,390 @@
+{
+  "schema_version": "0.1",
+  "registry_version": "1.0.0",
+  "capabilities": [
+    "groups",
+    "attachments",
+    "media",
+    "backup",
+    "contact-discovery",
+    "metadata-privacy",
+    "key-transparency",
+    "networked",
+    "offline",
+    "sharing"
+  ],
+  "classes": [
+    {
+      "class_id": "messaging-endpoint",
+      "mandatory_families": [
+        "identity-architecture",
+        "pairwise-e2ee",
+        "key-verification",
+        "secret-storage",
+        "transport-security",
+        "client-security"
+      ],
+      "endpoint": true,
+      "allows_protected_content": true,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "conferencing-endpoint",
+      "mandatory_families": [
+        "identity-architecture",
+        "real-time-media",
+        "key-verification",
+        "secret-storage",
+        "transport-security",
+        "client-security"
+      ],
+      "endpoint": true,
+      "allows_protected_content": true,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "storage-sync-endpoint",
+      "mandatory_families": [
+        "identity-architecture",
+        "attachment-encryption",
+        "secret-storage",
+        "transport-security",
+        "client-security"
+      ],
+      "endpoint": true,
+      "allows_protected_content": true,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "offline-private-vault",
+      "mandatory_families": [
+        "identity-architecture",
+        "secret-storage",
+        "client-security"
+      ],
+      "endpoint": true,
+      "allows_protected_content": true,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "protected-content-library",
+      "mandatory_families": [],
+      "endpoint": false,
+      "allows_protected_content": true,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "messaging-service",
+      "mandatory_families": [
+        "server-trust",
+        "transport-security",
+        "secure-development",
+        "software-supply-chain"
+      ],
+      "endpoint": false,
+      "allows_protected_content": false,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "storage-service",
+      "mandatory_families": [
+        "server-trust",
+        "transport-security",
+        "secure-development",
+        "software-supply-chain"
+      ],
+      "endpoint": false,
+      "allows_protected_content": false,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "ciphertext-relay",
+      "mandatory_families": [
+        "server-trust",
+        "transport-security",
+        "secure-development",
+        "software-supply-chain"
+      ],
+      "endpoint": false,
+      "allows_protected_content": false,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "public-data-service",
+      "mandatory_families": [
+        "server-trust",
+        "transport-security",
+        "secure-development",
+        "software-supply-chain"
+      ],
+      "endpoint": false,
+      "allows_protected_content": false,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "authorized-processing-service",
+      "mandatory_families": [
+        "server-trust",
+        "transport-security",
+        "secure-development",
+        "software-supply-chain"
+      ],
+      "endpoint": false,
+      "allows_protected_content": true,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    },
+    {
+      "class_id": "development-process-only",
+      "mandatory_families": [
+        "secure-development",
+        "software-supply-chain",
+        "security-verification"
+      ],
+      "endpoint": false,
+      "allows_protected_content": false,
+      "capability_families": {
+        "groups": [
+          "group-e2ee"
+        ],
+        "attachments": [
+          "attachment-encryption"
+        ],
+        "media": [
+          "real-time-media"
+        ],
+        "backup": [
+          "backup-recovery"
+        ],
+        "contact-discovery": [
+          "contact-discovery"
+        ],
+        "metadata-privacy": [
+          "metadata-privacy"
+        ],
+        "key-transparency": [
+          "key-transparency"
+        ]
+      }
+    }
+  ]
+}
