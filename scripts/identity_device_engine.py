@@ -9,6 +9,8 @@ identity event payload with the applicable current key.
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import argparse
 import copy
 import hashlib
@@ -58,12 +60,7 @@ def _unique_string_list(value: Any) -> bool:
 
 
 def canonical_state_bytes(state: dict[str, Any]) -> bytes:
-    return json.dumps(
-        state,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(state)
 
 
 def state_hash(state: dict[str, Any]) -> str:

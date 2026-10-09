@@ -11,6 +11,8 @@ not, by itself, prove a person's real-world identity.
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import argparse
 import base64
 import hashlib
@@ -46,12 +48,7 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def _canonical_json(value: Any) -> bytes:
-    return json.dumps(
-        value,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(value)
 
 
 def _nonempty_string(value: Any) -> bool:

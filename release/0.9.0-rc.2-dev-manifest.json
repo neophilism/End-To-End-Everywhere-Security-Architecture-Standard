@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 646,
+  "file_count": 650,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -1676,8 +1676,13 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 6191,
-      "git_blob_sha": "dce801647be1179951042303a75b042904a43c20"
+      "size": 6420,
+      "git_blob_sha": "3fc35071b8b14f246a0306a5501f9b32f9b6c183"
+    },
+    {
+      "path": "registry/canonical-serialization.json",
+      "size": 2851,
+      "git_blob_sha": "5d7d405edef23b62f7a793cf989a746c75a3ad25"
     },
     {
       "path": "registry/certification-attestations.json",
@@ -1816,8 +1821,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 29342,
-      "git_blob_sha": "f02a302425e2743a8425000e1f3f14511f4ecb78"
+      "size": 29918,
+      "git_blob_sha": "b4e5d44927af5cafbe8f9d9fa5eef65d3a88dfba"
     },
     {
       "path": "registry/security-verification.json",
@@ -1836,8 +1841,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 21757,
-      "git_blob_sha": "99d7b88aee03c1cf48bb6d2cc0bfca2ae05c201c"
+      "size": 21983,
+      "git_blob_sha": "9c04e2e13bab4a8cbdac208a89cb1c99e1f1abf9"
     },
     {
       "path": "registry/telemetry.json",
@@ -2511,8 +2516,8 @@
     },
     {
       "path": "scripts/advisory_interoperability.py",
-      "size": 37508,
-      "git_blob_sha": "88d852d37bd0542ae52c049cd5a9670bb28de07a"
+      "size": 37511,
+      "git_blob_sha": "2d42189a4557eeee1696f50f070ec4d6e85721ce"
     },
     {
       "path": "scripts/assurance_common.py",
@@ -2526,8 +2531,8 @@
     },
     {
       "path": "scripts/attachment_encryption_engine.py",
-      "size": 25231,
-      "git_blob_sha": "ddf9d7d50abe394479b1073b8c2bf258dc568925"
+      "size": 25178,
+      "git_blob_sha": "c44b388dab3b2bbe5b185d6dd6482ffc748a3edd"
     },
     {
       "path": "scripts/backup_recovery_engine.py",
@@ -2540,14 +2545,19 @@
       "git_blob_sha": "633d0f73bf8b684ed34ef9bc7d70b706bab65d5d"
     },
     {
+      "path": "scripts/canonical_serialization.py",
+      "size": 3985,
+      "git_blob_sha": "ac72d492d0950717d7f4375efa57fabe1f8026d2"
+    },
+    {
       "path": "scripts/certification_attestation.py",
-      "size": 31572,
-      "git_blob_sha": "58d47c20fe3048abe318d7443d13515e07466d92"
+      "size": 31323,
+      "git_blob_sha": "640eba81d00e4a94a07c71c3706a4e19b6b3a4bf"
     },
     {
       "path": "scripts/certification_attestations.py",
-      "size": 27661,
-      "git_blob_sha": "7cbc96a2dc7894fd3cccac350f3d74cbc5f5858c"
+      "size": 27452,
+      "git_blob_sha": "a50820d395dcf76d002c779f58c897478664683e"
     },
     {
       "path": "scripts/certification_evidence.py",
@@ -2566,18 +2576,18 @@
     },
     {
       "path": "scripts/compatibility_solver.py",
-      "size": 35083,
-      "git_blob_sha": "3dcd97362b137d1ff0d26d4d03f2b4fa06c72908"
+      "size": 35005,
+      "git_blob_sha": "167b5150e23affbd74024c53573abd9834903286"
     },
     {
       "path": "scripts/confidence_classification.py",
-      "size": 33519,
-      "git_blob_sha": "2b2d6c2304fb3834e0b9480118fe05568ded8f8c"
+      "size": 33441,
+      "git_blob_sha": "ef8007ea9e083ec9c85388fcb199ecd7dc72b899"
     },
     {
       "path": "scripts/conformance_engine.py",
-      "size": 36513,
-      "git_blob_sha": "24219543890ae6c12668324089a0f0475b65ea68"
+      "size": 36435,
+      "git_blob_sha": "2992274f95dfe40b682a532dc1dee5a7bf54c57d"
     },
     {
       "path": "scripts/contact_discovery_engine.py",
@@ -2591,18 +2601,18 @@
     },
     {
       "path": "scripts/deprecation_migration.py",
-      "size": 43168,
-      "git_blob_sha": "b024d880d257c8d22f9ba9e14b66e322e48289de"
+      "size": 43090,
+      "git_blob_sha": "1083f384918fc2eafffc83b1bbdce3e1d5215fb6"
     },
     {
       "path": "scripts/e2eesa_conformance.py",
-      "size": 17915,
-      "git_blob_sha": "311357d0fc4e0b5fed43d2256a0a6b5b55c1dc81"
+      "size": 18002,
+      "git_blob_sha": "ba476584335702f59ba01cf7511f22fb618ee8b0"
     },
     {
       "path": "scripts/formal_verification.py",
-      "size": 16875,
-      "git_blob_sha": "aef1f65aac641b536e179f039d40b98b98ca1d44"
+      "size": 16820,
+      "git_blob_sha": "44df709d0dce7ae66bbbbafaa2672211e52d56e3"
     },
     {
       "path": "scripts/group_e2ee_engine.py",
@@ -2611,18 +2621,18 @@
     },
     {
       "path": "scripts/identity_device_engine.py",
-      "size": 26779,
-      "git_blob_sha": "923a8e898e4e614b3bc82a44009b80f9afc396fd"
+      "size": 26726,
+      "git_blob_sha": "a3c1ac3a702979c822381577be05c6c0abbba473"
     },
     {
       "path": "scripts/integration_contracts.py",
-      "size": 11060,
-      "git_blob_sha": "eb283310fcb28d2363628b78182afc1b09bcc46f"
+      "size": 10982,
+      "git_blob_sha": "e5eda08f022f0eaa903ab9f1a9cfe956f8760dfb"
     },
     {
       "path": "scripts/interoperability_suite.py",
-      "size": 20369,
-      "git_blob_sha": "92bf6297ced9de39cac729ce488a607e20743a45"
+      "size": 20291,
+      "git_blob_sha": "2076260fcc2d8fb2ba4076f016d2cf441cfd346f"
     },
     {
       "path": "scripts/key_transparency_engine.py",
@@ -2631,8 +2641,8 @@
     },
     {
       "path": "scripts/key_verification_engine.py",
-      "size": 24783,
-      "git_blob_sha": "9b39cb7e5db19ed1618a527253615952dbfb9414"
+      "size": 24730,
+      "git_blob_sha": "56e7c88e2b0ef96b726caef603d2960319d49950"
     },
     {
       "path": "scripts/metadata_privacy_engine.py",
@@ -2646,13 +2656,13 @@
     },
     {
       "path": "scripts/observatory_data_architecture.py",
-      "size": 34327,
-      "git_blob_sha": "bfff9bfba322acb316138ee0bb9995a73048166b"
+      "size": 34249,
+      "git_blob_sha": "2bc943b6637aac4b325a7d7d0800683c6affce79"
     },
     {
       "path": "scripts/observatory_evidence.py",
-      "size": 22082,
-      "git_blob_sha": "0c997667025438698f473a0b7576f4a5a5691b0b"
+      "size": 22135,
+      "git_blob_sha": "7fed66af29b29062164f74c8dacd8da9ea84bc51"
     },
     {
       "path": "scripts/pairwise_session_engine.py",
@@ -2671,8 +2681,8 @@
     },
     {
       "path": "scripts/reference_fixtures.py",
-      "size": 16480,
-      "git_blob_sha": "03abd112ff3b2ee201641f7eb01b2ca3daa792bf"
+      "size": 16402,
+      "git_blob_sha": "dde2713fbf4e2cf2f71e13560d37c6ed3e728a09"
     },
     {
       "path": "scripts/release_candidate.py",
@@ -2681,13 +2691,13 @@
     },
     {
       "path": "scripts/research_profile_registry.py",
-      "size": 26151,
-      "git_blob_sha": "c5dd2d1c2081a5f8cd564458e477b3e70ca5689a"
+      "size": 26073,
+      "git_blob_sha": "8c4c494d570263f9ca32f066ccc65f7579f8b552"
     },
     {
       "path": "scripts/research_promotion.py",
-      "size": 58592,
-      "git_blob_sha": "d65715d4111fbe44fcae79dacdfbf65313414aa3"
+      "size": 58514,
+      "git_blob_sha": "7d75628028537c19ea68e28252ead477287e4638"
     },
     {
       "path": "scripts/run_reference_security_checks.py",
@@ -2716,8 +2726,8 @@
     },
     {
       "path": "scripts/standards_crosswalk.py",
-      "size": 8194,
-      "git_blob_sha": "4286ca9131f6ab65a320feabde2a9406513c5e9b"
+      "size": 8108,
+      "git_blob_sha": "9cac3fec44d68ac7d035d712a258446c90d06e53"
     },
     {
       "path": "scripts/supply_chain_engine.py",
@@ -2778,6 +2788,11 @@
       "path": "spec/backup-recovery.md",
       "size": 10998,
       "git_blob_sha": "d74f6aef5a361f0b90d05de91af499fbb6911d2e"
+    },
+    {
+      "path": "spec/canonical-serialization.md",
+      "size": 1642,
+      "git_blob_sha": "1c78ee2a4f37202e12dec9f575b1b780d63a8397"
     },
     {
       "path": "spec/certification-attestations.md",
@@ -3025,6 +3040,11 @@
       "git_blob_sha": "f5dc1404da50415ee8b0e089d61baaaea87a206b"
     },
     {
+      "path": "tests/test_canonical_serialization.py",
+      "size": 1694,
+      "git_blob_sha": "046e77de8d8f46d34660eb3fa84cec07a38d8ceb"
+    },
+    {
       "path": "tests/test_certification_attestations.py",
       "size": 14408,
       "git_blob_sha": "0048b92d5993f4d97298fe116fb5af2700edd65d"
@@ -3131,8 +3151,8 @@
     },
     {
       "path": "tests/test_observatory_evidence.py",
-      "size": 13472,
-      "git_blob_sha": "5cba96a90957b492dd1e55b67c9f304a485d854d"
+      "size": 13519,
+      "git_blob_sha": "dd8bd16b6ad0cdb35867867b8377e5c571f35d44"
     },
     {
       "path": "tests/test_pairwise_session_engine.py",
@@ -3235,5 +3255,5 @@
       "git_blob_sha": "83cecf3975618cd3aa411f7c46454e520f4e5513"
     }
   ],
-  "tree_digest": "sha256:26840e0359b21125b2c10a4da147ee6ee287cdfaff305032e887f218dea8c063"
+  "tree_digest": "sha256:9fd1bee0ccd38897fbcea38b3730356e3bdbbfe01c2a1635dfd05609353ec377"
 }

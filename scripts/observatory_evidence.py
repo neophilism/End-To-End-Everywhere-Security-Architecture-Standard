@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import hashlib
 import json
 import re
@@ -13,13 +15,7 @@ SHA256_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 
 def canonical_bytes(value: object) -> bytes:
-    return json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-        allow_nan=False,
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(value)
 
 
 def canonical_digest(value: object) -> str:
@@ -128,6 +124,11 @@ def validate_bundle(bundle: dict[str, Any]) -> list[str]:
 
     for path in _find_floats(bundle):
         errors.append(f"observatory canonical JSON subset forbids floating-point values: {path}")
+
+    try:
+        canonical_serialization.canonical_bytes(bundle)
+    except ValueError as exc:
+        return errors + [str(exc)]
 
     revision = bundle.get("revision")
     if not isinstance(revision, int) or isinstance(revision, bool) or revision < 1:

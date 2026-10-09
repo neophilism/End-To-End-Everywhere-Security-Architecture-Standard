@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -42,17 +44,7 @@ def _reject_floats(value: object, path: str, errors: list[str]) -> None:
 
 
 def canonical_bytes(value: object) -> bytes:
-    errors: list[str] = []
-    _reject_floats(value, "payload", errors)
-    if errors:
-        raise ValueError("; ".join(errors))
-    return json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-        allow_nan=False,
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(value)
 
 
 def canonical_digest(value: object) -> str:

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import argparse
 import hashlib
 import json
@@ -14,8 +16,7 @@ NORMATIVE_RE = re.compile(r"\b(MUST NOT|SHOULD NOT|MUST|SHOULD|MAY)\b")
 
 
 def canonical_digest(value):
-    data = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
-    return "sha256:" + hashlib.sha256(data).hexdigest()
+    return canonical_serialization.canonical_digest(value)
 
 
 def spec_documents(root):
