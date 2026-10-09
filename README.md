@@ -30,4 +30,6 @@ Security-sensitive changes are made through reviewed pull requests. Controversia
 
 ## Current status
 
-E2EESA 0.9 release candidate (`0.9.0-rc.1`). The candidate is frozen for independent expert review before the 1.0 decision. No profile in this repository should yet be interpreted as an End To End Everywhere certification claim.
+Development toward `0.9.0-rc.2` is addressing Audit v2. The original `0.9.0-rc.1` bytes and manifest remain archived and verified on every check. The current development tree is not a frozen candidate or a production certification basis. Legacy evaluator passes establish configuration consistency only. Independent expert review and the 1.0 decision remain separate gates.
+
+The ordered work and evidence states are in `registry/audit-remediation.json`. Downstream adoption follows the corrected component and data-flow contracts.

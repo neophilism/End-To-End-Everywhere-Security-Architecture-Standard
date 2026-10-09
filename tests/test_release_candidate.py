@@ -19,10 +19,25 @@ class ReleaseCandidateTests(unittest.TestCase):
     def load(self,rel):
         return json.loads((ROOT/rel).read_text(encoding="utf-8"))
 
-    def test_release_version_is_09_rc1(self):
+    def test_release_version_is_rc2_development(self):
         policy=self.load("registry/release-candidate.json")
-        self.assertEqual(policy["release_version"],"0.9.0-rc.1")
-        self.assertEqual((ROOT/"VERSION").read_text(encoding="utf-8").strip(),"0.9.0-rc.1")
+        self.assertEqual(policy["release_version"],"0.9.0-rc.2-dev")
+        self.assertEqual((ROOT/"VERSION").read_text(encoding="utf-8").strip(),"0.9.0-rc.2-dev")
+
+    def test_historical_candidate_bytes_are_verified(self):
+        self.assertEqual(release_candidate.validate_historical_candidates(ROOT, self.load("registry/release-candidate.json")), [])
+
+    def test_changed_historical_manifest_is_rejected(self):
+        import shutil
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            (target / "release/archive").mkdir(parents=True)
+            policy = self.load("registry/release-candidate.json")
+            anchor = self.load(policy["historical_candidates"][0])
+            for path in [policy["historical_candidates"][0], anchor["manifest_path"], anchor["archive_path"]]:
+                shutil.copyfile(ROOT / path, target / path)
+            (target / anchor["manifest_path"]).write_text("{}")
+            self.assertTrue(release_candidate.validate_historical_candidates(target, policy))
 
     def test_basis_version_is_deliberately_frozen(self):
         policy=self.load("registry/release-candidate.json")

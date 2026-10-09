@@ -191,7 +191,7 @@ class ConformanceEngineTests(unittest.TestCase):
         request,plan,bundle,inputs=self.prepare()
         result=self.evaluate(request,plan,bundle,inputs)
         self.assertEqual(result["verdict"],"pass",result["reasons"])
-        self.assertTrue(result["production_certification_eligible"])
+        self.assertFalse(result["production_certification_eligible"])
         self.assertEqual(
             set(result["required_property_ids"]),
             {

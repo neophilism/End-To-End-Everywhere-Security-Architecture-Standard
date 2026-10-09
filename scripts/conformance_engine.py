@@ -864,10 +864,9 @@ def evaluate_conformance(
         "conformance_policy_ref":policy_ref,
         "claim_scope":policy.get("claim_scope"),
         "verdict":verdict,
-        "production_certification_eligible":bool(
-            verdict == "pass"
-            and policy.get("production_certification_eligible")
-        ),
+        # Legacy evaluation checks configuration/evidence consistency only.
+        # It has no component inventory and cannot establish product eligibility.
+        "production_certification_eligible":False,
         "product_id":request.get("product_id"),
         "product_version":request.get("product_version"),
         "platform":request.get("platform"),

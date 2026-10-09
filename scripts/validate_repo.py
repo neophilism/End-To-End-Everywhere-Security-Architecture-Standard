@@ -646,7 +646,7 @@ COMPOSITE_ID = re.compile(r"^CS-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 PROPERTY_ID = re.compile(r"^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 SEMVER = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$")
 DEV_VERSION = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+-dev$")
-CANDIDATE_VERSION = re.compile(r"^0\.9\.0-rc\.[0-9]+$")
+CANDIDATE_VERSION = re.compile(r"^0\.9\.0-rc\.[0-9]+(?:-dev)?$")
 
 
 class ValidationError(Exception):

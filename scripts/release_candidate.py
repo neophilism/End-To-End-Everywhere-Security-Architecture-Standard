@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import tarfile
 from pathlib import Path
 
 import crypto_registry
@@ -80,6 +81,7 @@ def build_manifest(root, policy):
 def validate_release(root):
     errors=[]
     policy=load_json(root,"registry/release-candidate.json")
+    errors.extend(validate_historical_candidates(root, policy))
     version=(root/"VERSION").read_text(encoding="utf-8").strip()
     if version!=policy["release_version"]:
         errors.append("VERSION does not match release candidate version")
@@ -143,6 +145,36 @@ def validate_release(root):
             errors.append("release candidate frozen-file manifest differs from working tree")
 
     return sorted(set(errors))
+
+
+def validate_historical_candidates(root, policy):
+    """Verify archived bytes without requiring a Git history or extracting paths."""
+    errors = []
+    for path in policy.get("historical_candidates", []):
+        try:
+            anchor = load_json(root, path)
+            manifest_bytes = (root / anchor["manifest_path"]).read_bytes()
+            archive_bytes = (root / anchor["archive_path"]).read_bytes()
+            if hashlib.sha256(manifest_bytes).hexdigest() != anchor["manifest_sha256"]:
+                raise ValueError("historical manifest byte identity changed")
+            if hashlib.sha256(archive_bytes).hexdigest() != anchor["archive_sha256"]:
+                raise ValueError("historical archive byte identity changed")
+            manifest = json.loads(manifest_bytes)
+            if canonical_digest(manifest["files"]) != anchor["tree_digest"]:
+                raise ValueError("historical tree digest changed")
+            with tarfile.open(root / anchor["archive_path"], "r:gz") as archive:
+                members = archive.getmembers()
+                if [item.name for item in members] != [item["path"] for item in manifest["files"]]:
+                    raise ValueError("historical archive path set changed")
+                for item, expected in zip(members, manifest["files"]):
+                    if not item.isfile():
+                        raise ValueError("historical archive contains a non-file")
+                    data = archive.extractfile(item).read()
+                    if len(data) != expected["size"] or git_blob_sha(data) != expected["git_blob_sha"]:
+                        raise ValueError("historical bytes changed: " + item.name)
+        except (OSError, ValueError, KeyError, tarfile.TarError) as exc:
+            errors.append(path + ": " + str(exc))
+    return errors
 
 
 if __name__=="__main__":
