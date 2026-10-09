@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import profile_dependencies
+
 import argparse
 import json
 import re
@@ -166,7 +168,7 @@ def validate_catalog(
             "requires_profile_refs",
             "incompatible_profile_refs",
         }
-        allowed_fields = required_fields | {"notes"}
+        allowed_fields = required_fields | {"notes", "dependency_rules"}
         extra = sorted(set(profile) - allowed_fields)
         if extra:
             errors.append(f"{prefix}: unknown fields: {', '.join(extra)}")
@@ -235,6 +237,10 @@ def validate_catalog(
     for prefix, field_name, target in pending_references:
         if target not in refs:
             errors.append(f"{prefix}: unknown profile reference in {field_name}: {target}")
+
+    for profile in profiles:
+        if isinstance(profile,dict):
+            errors.extend(profile_dependencies.validate_rules(profile.get("dependency_rules",[]),family_ids,refs))
 
     profiles_by_ref = {
         profile_ref(profile): profile
@@ -433,6 +439,8 @@ def resolve_configuration(
             result.errors.append(
                 f"family {family_id} violates cardinality {cardinality}: selected {count}"
             )
+
+    result.errors.extend(profile_dependencies.configuration_errors(profiles_by_ref,effective))
 
     properties = sorted(
         {

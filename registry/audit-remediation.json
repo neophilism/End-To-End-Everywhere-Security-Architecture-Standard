@@ -37,7 +37,7 @@
     {
       "id": "AUD-06",
       "title": "Scoped typed dependencies",
-      "state": "pending",
+      "state": "implemented",
       "independent_review": "pending"
     },
     {

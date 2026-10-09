@@ -4,29 +4,107 @@
   "title": "E2EESA Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "profile_id", "profile_version", "family_id", "status", "decision_class", "security_properties", "requires_profile_refs", "incompatible_profile_refs"],
+  "required": [
+    "schema_version",
+    "profile_id",
+    "profile_version",
+    "family_id",
+    "status",
+    "decision_class",
+    "security_properties",
+    "requires_profile_refs",
+    "incompatible_profile_refs"
+  ],
   "properties": {
-    "schema_version": {"type": "string", "const": "0.1"},
-    "profile_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-    "profile_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
-    "family_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-    "status": {"type": "string", "enum": ["recommended", "allowed", "legacy", "deprecated", "prohibited", "provisional", "experimental"]},
-    "decision_class": {"type": "string", "enum": ["invariant", "profile-choice", "capability", "experimental"]},
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "family_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "recommended",
+        "allowed",
+        "legacy",
+        "deprecated",
+        "prohibited",
+        "provisional",
+        "experimental"
+      ]
+    },
+    "decision_class": {
+      "type": "string",
+      "enum": [
+        "invariant",
+        "profile-choice",
+        "capability",
+        "experimental"
+      ]
+    },
     "security_properties": {
       "type": "array",
-      "items": {"type": "string", "pattern": "^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+      "items": {
+        "type": "string",
+        "pattern": "^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+      },
       "uniqueItems": true
     },
     "requires_profile_refs": {
       "type": "array",
-      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+      },
       "uniqueItems": true
     },
     "incompatible_profile_refs": {
       "type": "array",
-      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+      },
       "uniqueItems": true
     },
-    "notes": {"type": "string"}
+    "notes": {
+      "type": "string"
+    },
+    "dependency_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirement_id",
+          "scope",
+          "requires"
+        ],
+        "properties": {
+          "requirement_id": {
+            "type": "string"
+          },
+          "scope": {
+            "enum": [
+              "same-component",
+              "same-flow"
+            ]
+          },
+          "requires": {
+            "type": "object"
+          }
+        }
+      }
+    }
   }
 }
