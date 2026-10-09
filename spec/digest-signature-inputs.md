@@ -1,0 +1,11 @@
+# Digest and signature inputs
+
+The active `e2eesa-sha256-domain-v1` input is the bytes `E2EESA`, one zero byte, the canonical header object, one zero byte, and the canonical selected payload object. The header contains the exact contract identifier and version, serialization scheme, digest scheme, purpose, signature algorithm, and exact profile reference. The digest is SHA-256 of those bytes, represented as lowercase `sha256:` plus 64 hexadecimal digits. No newline, BOM, hexadecimal decoding, or implicit Unicode normalization is added.
+
+A consumer MUST select an exact entry in `registry/digest-contracts.json`. Entries define required, included, and excluded fields and the payload schema version. Unknown fields, missing required fields, and mismatched versions fail before hashing. Only the explicitly named self-digest fields are excluded; evidence, source, parent-state, and configuration digests stay bound. Arrays remain ordered unless an entry explicitly defines schema set preprocessing.
+
+Signature providers MUST sign the signature-purpose input, binding the selected algorithm and versioned profile, and verify those same bytes. A digest-purpose input is not a signature-purpose input. This byte contract does not turn a `verified_authorizers` fixture into a real verified signature; runtime adapters must verify authorizer signatures against current authorized keys and their selected profile before applying an event.
+
+The registry covers closed record schemas. Union payloads and external standard formats MUST use an explicit integration contract rather than silently inferring a field selection. New scoped assessment records select their own contract and scheme. Existing legacy entry points are configuration diagnostics; downstream migrations use explicit new input identities.
+
+Historical read/verification selects the original owner encoding by a named legacy scheme or executes the archived verifier. A verifier MUST NOT try active and historical inputs until one happens to verify. Historical attestation set normalization and signature conventions remain those of the frozen archived implementation; raw legacy digest helpers do not stand in for those complete conventions.
