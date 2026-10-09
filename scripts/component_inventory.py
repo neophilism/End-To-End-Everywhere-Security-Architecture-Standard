@@ -28,6 +28,7 @@ def validate_inventory(manifest, *, catalog, trusted_observations=None, classes=
     if not isinstance(manifest,dict) or set(manifest)!=required:
         return {'valid':False,'inventory_supported':False,'errors':['inventory fields mismatch'],'limitations':[],'required_families':{}}
     if manifest['schema_version']!='0.2':errors.append('inventory schema version must be 0.2')
+    if not isinstance(manifest['product_id'],str) or not manifest['product_id']:errors.append('product_id must be nonempty')
     for k in ['source_digest','artifact_digest']:
         if not isinstance(manifest[k],str) or not DIGEST.fullmatch(manifest[k]) or manifest[k]=='sha256:'+'0'*64:errors.append('invalid '+k)
     classes=classes or product_classes();classmap={x['class_id']:x for x in classes['classes']}
@@ -41,7 +42,7 @@ def validate_inventory(manifest, *, catalog, trusted_observations=None, classes=
         if not isinstance(component,dict) or set(component)!=fields:errors.append('component fields mismatch');continue
         cid=component['component_id']
         if not isinstance(cid,str) or not cid or cid in components:errors.append('duplicate/invalid component id');continue
-        rule=classmap.get(component['product_class'])
+        rule=classmap.get(component['product_class']) if isinstance(component['product_class'],str) else None
         if rule is None:errors.append(cid+': unknown product class');continue
         for key in ['capabilities','profile_refs','inventory_flow_ids']:
             arr=component[key]
@@ -58,8 +59,8 @@ def validate_inventory(manifest, *, catalog, trusted_observations=None, classes=
         fields={'flow_id','component_id','operation','data_class','recipient_ids','key_authority_ids','profile_refs','networked'}
         if not isinstance(flow,dict) or set(flow)!=fields:errors.append('flow fields mismatch');continue
         fid=flow['flow_id'];cid=flow['component_id']
-        if not isinstance(fid,str) or not fid or fid in flows or cid not in components:errors.append('invalid flow/component binding');continue
-        if flow['operation'] not in OPERATIONS or flow['data_class'] not in {'protected','public','intentionally-disclosed'}:errors.append(fid+': unsupported flow classification')
+        if not isinstance(fid,str) or not fid or fid in flows or not isinstance(cid,str) or cid not in components:errors.append('invalid flow/component binding');continue
+        if not isinstance(flow['operation'],str) or flow['operation'] not in OPERATIONS or not isinstance(flow['data_class'],str) or flow['data_class'] not in {'protected','public','intentionally-disclosed'}:errors.append(fid+': unsupported flow classification')
         for key in ['recipient_ids','key_authority_ids','profile_refs']:
             arr=flow[key]
             if not isinstance(arr,list) or not all(isinstance(x,str) and x for x in arr) or len(arr)!=len(set(arr)):errors.append(fid+': invalid '+key)
@@ -72,6 +73,8 @@ def validate_inventory(manifest, *, catalog, trusted_observations=None, classes=
             if not rule['allows_protected_content']:errors.append(cid+': class cannot handle protected content')
             if not flow['recipient_ids'] or not flow['key_authority_ids']:errors.append(fid+': protected recipient/key authorities required')
             if rule['endpoint']:requirements[cid].update(['identity-architecture','secret-storage','client-security'])
+            operation_family={'direct-message':'pairwise-e2ee','group-message':'group-e2ee','attachment':'attachment-encryption','media':'real-time-media','backup':'backup-recovery','local-storage':'secret-storage'}.get(flow['operation'])
+            if operation_family:requirements[cid].add(operation_family)
         if flow['networked']:requirements[cid].add('transport-security')
         flows[fid]=flow
     for cid,component in components.items():

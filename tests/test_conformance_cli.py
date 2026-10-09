@@ -319,7 +319,8 @@ class ConformanceCliTests(unittest.TestCase):
             ])
             self.assertEqual(code, 0, stderr)
             self.assertIn("verdict: PASS", stdout)
-            self.assertIn("claim_scope: production-conformance", stdout)
+            self.assertIn("claim_scope: configuration-diagnostic", stdout)
+            self.assertIn("evaluation_policy_scope: production-conformance", stdout)
 
             result["result_digest"] = "sha256:" + "9" * 64
             self.write_json(directory, "bad-result.json", result)

@@ -154,6 +154,8 @@ def render_result_text(result: dict[str, Any]) -> str:
     lines = [
         f"verdict: {str(result.get('verdict', 'unknown')).upper()}",
         f"claim_scope: {result.get('claim_scope')}",
+        f"evaluation_policy_scope: {result.get('evaluation_policy_scope')}",
+        f"result_class: {result.get('result_class')}",
         (
             "product: "
             f"{result.get('product_id')} {result.get('product_version')} "

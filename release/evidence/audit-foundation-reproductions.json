@@ -1,0 +1,181 @@
+{
+  "schema_version": "0.1",
+  "evidence_origin": "locally-reproduced; independent expert review remains pending",
+  "audited_commit": "dea8f54cab9130da86a71f36de553766a978daf2",
+  "historical_tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2",
+  "baseline": {
+    "legacy_configuration": {
+      "verdict": "pass",
+      "production_certification_eligible": true,
+      "claim_scope": "production-conformance"
+    },
+    "dependency_cases": [
+      {
+        "profile": "pairwise-pqxdh-triple-ratchet@0.1.0",
+        "forbidden_families": [
+          "identity-architecture",
+          "key-verification",
+          "key-transparency",
+          "secret-storage",
+          "client-security",
+          "server-trust",
+          "transport-security"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      },
+      {
+        "profile": "group-sender-key-aead@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee",
+          "identity-architecture"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      },
+      {
+        "profile": "group-pairwise-fanout@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      },
+      {
+        "profile": "backup-hardware-assisted@0.1.0",
+        "forbidden_families": [
+          "identity-architecture"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      },
+      {
+        "profile": "attachment-chunked-aead@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee",
+          "group-e2ee"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      },
+      {
+        "profile": "kt-third-party-auditing@0.1.0",
+        "forbidden_families": [
+          "key-verification",
+          "identity-architecture"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      },
+      {
+        "profile": "media-sframe-sender-keys@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee",
+          "group-e2ee"
+        ],
+        "status": "solutions",
+        "solution_count": 2,
+        "exhaustive": true
+      }
+    ],
+    "unicode_digest_mismatch": true
+  },
+  "corrected": {
+    "legacy_configuration": {
+      "verdict": "pass",
+      "production_certification_eligible": false,
+      "claim_scope": "configuration-diagnostic"
+    },
+    "dependency_cases": [
+      {
+        "profile": "pairwise-pqxdh-triple-ratchet@0.1.0",
+        "forbidden_families": [
+          "identity-architecture",
+          "key-verification",
+          "key-transparency",
+          "secret-storage",
+          "client-security",
+          "server-trust",
+          "transport-security"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      },
+      {
+        "profile": "group-sender-key-aead@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee",
+          "identity-architecture"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      },
+      {
+        "profile": "group-pairwise-fanout@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      },
+      {
+        "profile": "backup-hardware-assisted@0.1.0",
+        "forbidden_families": [
+          "identity-architecture"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      },
+      {
+        "profile": "attachment-chunked-aead@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee",
+          "group-e2ee"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      },
+      {
+        "profile": "kt-third-party-auditing@0.1.0",
+        "forbidden_families": [
+          "key-verification",
+          "identity-architecture"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      },
+      {
+        "profile": "media-sframe-sender-keys@0.1.0",
+        "forbidden_families": [
+          "pairwise-e2ee",
+          "group-e2ee"
+        ],
+        "status": "unsatisfiable",
+        "solution_count": 0,
+        "exhaustive": true
+      }
+    ],
+    "unicode_digest_mismatch": false
+  },
+  "regression_verified": true,
+  "tested_source_file_digests": {
+    "scripts/formal_verification.py": "1a591653c973fb5c80c238f80dffe038dfeecc8df83bf3a72758d2ff069667f4",
+    "scripts/conformance_engine.py": "8f48744452f44adc77eafec7573e79bf8378872fff08ec614716886f4c3f68be",
+    "scripts/compatibility_solver.py": "03823f3ef800af791603c487f809040dde046980f9c6e6307c22bdc80397dffe",
+    "scripts/profile_engine.py": "fd37100cb990054ab20cb2952c7b23497ca868a6579af5d37a2c144c2837ab2d",
+    "scripts/profile_dependencies.py": "fb1cee67a1915e854254a3f67bad90cad4587d02c5f4617c0ab15efa66254cbf",
+    "scripts/canonical_serialization.py": "c244699c340890e0831373e22b3f188bc8d6730f2832424db2badb13139398d5"
+  }
+}

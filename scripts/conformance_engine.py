@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import canonical_serialization
+import digest_contracts
 
 import hashlib
 import json
@@ -57,7 +58,7 @@ def result_core(result: dict[str, Any]) -> dict[str, Any]:
 
 
 def compute_result_digest(result: dict[str, Any]) -> str:
-    return canonical_digest(result_core(result))
+    return digest_contracts.digest('conformance-diagnostic-result-record@1.0.0', result)
 
 
 def _parse_time(value: object, field: str, errors: list[str]) -> datetime | None:
@@ -854,11 +855,13 @@ def evaluate_conformance(
         verdict = "pass"
 
     result = {
-        "schema_version":"0.1",
+        "schema_version":"0.2",
         "assessment_id":request.get("assessment_id"),
         "request_digest":request.get("request_digest"),
         "conformance_policy_ref":policy_ref,
-        "claim_scope":policy.get("claim_scope"),
+        "claim_scope":"configuration-diagnostic",
+        "evaluation_policy_scope":policy.get("claim_scope"),
+        "result_class":"configuration",
         "verdict":verdict,
         # Legacy evaluation checks configuration/evidence consistency only.
         # It has no component inventory and cannot establish product eligibility.
@@ -889,10 +892,13 @@ def validate_result(
     expected: dict[str, Any],
 ) -> list[str]:
     errors: list[str] = []
-    if result.get("schema_version") != "0.1":
-        errors.append("conformance result schema_version must be 0.1")
-    if result.get("result_digest") != compute_result_digest(result):
-        errors.append("conformance result_digest does not match canonical result")
+    if result.get("schema_version") != "0.2":
+        errors.append("conformance diagnostic result schema_version must be 0.2")
+    try:
+        if result.get("result_digest") != compute_result_digest(result):
+            errors.append("conformance result_digest does not match canonical result")
+    except ValueError as exc:
+        errors.append(str(exc))
     if canonical_bytes(result_core(result)) != canonical_bytes(result_core(expected)):
         errors.append("conformance result content differs from deterministic reevaluation")
     return sorted(set(errors))

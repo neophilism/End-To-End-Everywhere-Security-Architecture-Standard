@@ -2669,6 +2669,7 @@
       ],
       "included_fields": [
         "decision_class",
+        "dependency_rules",
         "family_id",
         "incompatible_profile_refs",
         "notes",
@@ -4500,6 +4501,131 @@
         "schema_version"
       ],
       "excluded_fields": [],
+      "set_preprocessing": []
+    },
+    {
+      "contract_id": "scoped-assessment-request-record@1.0.0",
+      "schema_path": "schemas/scoped-assessment-request.schema.json",
+      "payload_schema_version": "0.2",
+      "required_fields": [
+        "assessment_id",
+        "claims",
+        "evaluated_at",
+        "inventory",
+        "policy",
+        "schema_version",
+        "standard_lock"
+      ],
+      "included_fields": [
+        "assessment_id",
+        "claims",
+        "evaluated_at",
+        "inventory",
+        "policy",
+        "schema_version",
+        "standard_lock"
+      ],
+      "excluded_fields": [
+        "request_digest"
+      ],
+      "set_preprocessing": []
+    },
+    {
+      "contract_id": "scoped-assessment-result-record@1.0.0",
+      "schema_path": "schemas/scoped-assessment-result.schema.json",
+      "payload_schema_version": "0.2",
+      "required_fields": [
+        "assessment_id",
+        "claims",
+        "components",
+        "configuration_valid",
+        "deployment_state",
+        "errors",
+        "independent_review_state",
+        "inventory_supported",
+        "limitations",
+        "production_certification_eligible",
+        "request_digest",
+        "result_class",
+        "schema_version",
+        "standard_lock",
+        "verdict"
+      ],
+      "included_fields": [
+        "assessment_id",
+        "claims",
+        "components",
+        "configuration_valid",
+        "deployment_state",
+        "errors",
+        "independent_review_state",
+        "inventory_supported",
+        "limitations",
+        "production_certification_eligible",
+        "request_digest",
+        "result_class",
+        "schema_version",
+        "standard_lock",
+        "verdict"
+      ],
+      "excluded_fields": [
+        "result_digest"
+      ],
+      "set_preprocessing": []
+    },
+    {
+      "contract_id": "conformance-diagnostic-result-record@1.0.0",
+      "schema_path": "schemas/conformance-diagnostic-result.schema.json",
+      "payload_schema_version": "0.2",
+      "required_fields": [
+        "assessment_id",
+        "claim_scope",
+        "conditional_property_ids",
+        "conformance_policy_ref",
+        "effective_profile_refs",
+        "evaluated_at",
+        "evaluation_policy_scope",
+        "in_scope_family_ids",
+        "input_digests",
+        "not_supported_property_ids",
+        "platform",
+        "product_id",
+        "product_version",
+        "production_certification_eligible",
+        "reasons",
+        "request_digest",
+        "required_promoted_profile_refs",
+        "required_property_ids",
+        "result_class",
+        "schema_version",
+        "verdict"
+      ],
+      "included_fields": [
+        "assessment_id",
+        "claim_scope",
+        "conditional_property_ids",
+        "conformance_policy_ref",
+        "effective_profile_refs",
+        "evaluated_at",
+        "evaluation_policy_scope",
+        "in_scope_family_ids",
+        "input_digests",
+        "not_supported_property_ids",
+        "platform",
+        "product_id",
+        "product_version",
+        "production_certification_eligible",
+        "reasons",
+        "request_digest",
+        "required_promoted_profile_refs",
+        "required_property_ids",
+        "result_class",
+        "schema_version",
+        "verdict"
+      ],
+      "excluded_fields": [
+        "result_digest"
+      ],
       "set_preprocessing": []
     }
   ]

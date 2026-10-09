@@ -27,6 +27,11 @@ class ReleaseCandidateTests(unittest.TestCase):
     def test_historical_candidate_bytes_are_verified(self):
         self.assertEqual(release_candidate.validate_historical_candidates(ROOT, self.load("registry/release-candidate.json")), [])
 
+    def test_original_anchor_cannot_be_removed(self):
+        policy=self.load("registry/release-candidate.json")
+        policy["historical_candidates"]=[]
+        self.assertTrue(release_candidate.validate_historical_candidates(ROOT,policy))
+
     def test_changed_historical_manifest_is_rejected(self):
         import shutil
         with tempfile.TemporaryDirectory() as directory:

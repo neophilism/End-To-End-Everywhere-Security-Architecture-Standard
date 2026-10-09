@@ -2,12 +2,12 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 664,
+  "file_count": 673,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
-      "size": 857,
-      "git_blob_sha": "4d6d0072b43a94530f37141c16f27c9a81d84682"
+      "size": 1043,
+      "git_blob_sha": "684a4b33cf31167bb4e56f965a33556165c7cc2f"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -1675,6 +1675,11 @@
       "git_blob_sha": "87fac03bca714ff22e30cc3abf3260f80a8462ae"
     },
     {
+      "path": "reference/canonicalization/canonical.mjs",
+      "size": 2555,
+      "git_blob_sha": "7daa0b7ed549900bdde55795fd366fa0da32400b"
+    },
+    {
       "path": "reference/observatory/postgres.sql",
       "size": 9863,
       "git_blob_sha": "79e66aa58c3105e96da8c3babb4d31404f20d652"
@@ -1691,8 +1696,8 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 6788,
-      "git_blob_sha": "cda4c7d286bbb7f2f5841fa29d549a023c84d0f8"
+      "size": 7893,
+      "git_blob_sha": "8c2c912a95be2409936557cc46f2644643d86e8e"
     },
     {
       "path": "registry/canonical-serialization.json",
@@ -1756,8 +1761,8 @@
     },
     {
       "path": "registry/digest-contracts.json",
-      "size": 133215,
-      "git_blob_sha": "ddf249c6474e0e549823201747bf2faa0f347eed"
+      "size": 136609,
+      "git_blob_sha": "8988e8aff37c862f018181e4ae75a5d77fcd58f2"
     },
     {
       "path": "registry/external-standards.json",
@@ -2038,6 +2043,11 @@
       "path": "schemas/conformance-cli-registry.schema.json",
       "size": 1052,
       "git_blob_sha": "6706eef1708a55db83e76c131a578b2eddd13fe6"
+    },
+    {
+      "path": "schemas/conformance-diagnostic-result.schema.json",
+      "size": 3832,
+      "git_blob_sha": "65c0fe14bf6295100e11b2f607b58a04bab28111"
     },
     {
       "path": "schemas/conformance-request.schema.json",
@@ -2385,6 +2395,16 @@
       "git_blob_sha": "b26904a1f7e9bb2d7e0addd3eeec46546575efc9"
     },
     {
+      "path": "schemas/scoped-assessment-request.schema.json",
+      "size": 2033,
+      "git_blob_sha": "1d94fe3c01a4726f037348cbf05f4bc1b0bf9b39"
+    },
+    {
+      "path": "schemas/scoped-assessment-result.schema.json",
+      "size": 1630,
+      "git_blob_sha": "9ed015d90cb000a9b4abe2416db69f52d6d678ad"
+    },
+    {
       "path": "schemas/secret-storage-key-event.schema.json",
       "size": 1535,
       "git_blob_sha": "c47b1cd50d158789de97bbae327e4feee484d706"
@@ -2611,8 +2631,8 @@
     },
     {
       "path": "scripts/component_inventory.py",
-      "size": 7418,
-      "git_blob_sha": "5e79832e7aebc09d3ee3ac5d53418da8d92dd6cf"
+      "size": 8020,
+      "git_blob_sha": "07b15842290368b4fcbb0df4d017e3802b49043e"
     },
     {
       "path": "scripts/confidence_classification.py",
@@ -2621,8 +2641,8 @@
     },
     {
       "path": "scripts/conformance_engine.py",
-      "size": 36435,
-      "git_blob_sha": "2992274f95dfe40b682a532dc1dee5a7bf54c57d"
+      "size": 36691,
+      "git_blob_sha": "3df48e3b987900ea01cc5012b2826fef97aa9cb9"
     },
     {
       "path": "scripts/contact_discovery_engine.py",
@@ -2646,8 +2666,8 @@
     },
     {
       "path": "scripts/e2eesa_conformance.py",
-      "size": 18023,
-      "git_blob_sha": "f0f761640a5c37cd002c01cc197a0e3427b5c35a"
+      "size": 18155,
+      "git_blob_sha": "24a621056aea4748ab6c9d108ae7b633dbc33b9e"
     },
     {
       "path": "scripts/formal_verification.py",
@@ -2711,8 +2731,8 @@
     },
     {
       "path": "scripts/profile_dependencies.py",
-      "size": 5455,
-      "git_blob_sha": "fbeb81719bc3577efc32179cb74645814aee6531"
+      "size": 5652,
+      "git_blob_sha": "736d77d0f1192e84175ebdbb5356896b5435e7cc"
     },
     {
       "path": "scripts/profile_engine.py",
@@ -2731,8 +2751,13 @@
     },
     {
       "path": "scripts/release_candidate.py",
-      "size": 8411,
-      "git_blob_sha": "5d18df82b9475c7cd0f1d80910ea4c969387a5f7"
+      "size": 10098,
+      "git_blob_sha": "db0a74213a8cf1d7ee5369883bdac490bdfc16d9"
+    },
+    {
+      "path": "scripts/reproduce_audit_baseline.py",
+      "size": 5060,
+      "git_blob_sha": "596450b90ad3ec7eb984fe95a61ae1ac0e919106"
     },
     {
       "path": "scripts/research_profile_registry.py",
@@ -2748,6 +2773,11 @@
       "path": "scripts/run_reference_security_checks.py",
       "size": 6489,
       "git_blob_sha": "058f90edf2839471984ddfe980b216b2dcab5b8c"
+    },
+    {
+      "path": "scripts/scoped_assessment.py",
+      "size": 12194,
+      "git_blob_sha": "287d0edaea04c80f934c30cce5f4724e0946b538"
     },
     {
       "path": "scripts/secret_storage_engine.py",
@@ -2791,8 +2821,8 @@
     },
     {
       "path": "scripts/validate_repo.py",
-      "size": 124747,
-      "git_blob_sha": "db5c9110d0a3f8f25a22c8fd56c0d85adb6e558d"
+      "size": 126550,
+      "git_blob_sha": "2d3d4b68b64144fe69bf74660b195b25bda0238d"
     },
     {
       "path": "scripts/verification_engine.py",
@@ -2866,13 +2896,13 @@
     },
     {
       "path": "spec/conformance-cli.md",
-      "size": 5191,
-      "git_blob_sha": "ab3e46ff97f7479678c2f279ea20714b8f56b790"
+      "size": 5895,
+      "git_blob_sha": "16c30e991f28881cca7db4aa7b5e18a1d4cd7b03"
     },
     {
       "path": "spec/conformance-engine.md",
-      "size": 11541,
-      "git_blob_sha": "5721ded951a3e4899dd52f800b8e392d795e8e5c"
+      "size": 12904,
+      "git_blob_sha": "9ecc3b272103d8471a21046c2d383da7d8ffd17a"
     },
     {
       "path": "spec/contact-discovery.md",
@@ -2971,8 +3001,8 @@
     },
     {
       "path": "spec/profile-configuration.md",
-      "size": 7632,
-      "git_blob_sha": "118e717c139cad0753f370a22371aaa2d931eae1"
+      "size": 8630,
+      "git_blob_sha": "9dfe2aee0e8c56e756bcf9dd44a30fe17859ad44"
     },
     {
       "path": "spec/real-time-media.md",
@@ -3080,6 +3110,11 @@
       "git_blob_sha": "660071e068ff9672e08c3ceef7b6480b648ae79a"
     },
     {
+      "path": "tests/test_audit_reproductions.py",
+      "size": 484,
+      "git_blob_sha": "2db123d4a198f5e718b58d69ed3abd1c2da0ea07"
+    },
+    {
       "path": "tests/test_backup_recovery_engine.py",
       "size": 9824,
       "git_blob_sha": "48449c2fc9fcf221c527afe328e08c95d24ed078"
@@ -3121,8 +3156,8 @@
     },
     {
       "path": "tests/test_component_inventory.py",
-      "size": 2437,
-      "git_blob_sha": "a407bb617bc162f34000cf1cbe50bce4ac38877d"
+      "size": 2495,
+      "git_blob_sha": "0e707403374bc6204fa5423b26f93a3599f913e9"
     },
     {
       "path": "tests/test_confidence_classification.py",
@@ -3131,18 +3166,23 @@
     },
     {
       "path": "tests/test_conformance_cli.py",
-      "size": 18036,
-      "git_blob_sha": "7e8b2f7009d14d7c50fd03d3a5b1f341373c0b60"
+      "size": 18123,
+      "git_blob_sha": "8b9994a76e89e8117c9b59e92ac8c3140cadd41d"
     },
     {
       "path": "tests/test_conformance_engine.py",
-      "size": 23275,
-      "git_blob_sha": "b898ee22322cda0d9b680592fa997acaf704f861"
+      "size": 23859,
+      "git_blob_sha": "0a08c83e257276c87359db0b856fa88a4ba31b95"
     },
     {
       "path": "tests/test_contact_discovery_engine.py",
       "size": 8551,
       "git_blob_sha": "ddad119b70349c00414aa5c355f64b8cccb024eb"
+    },
+    {
+      "path": "tests/test_cross_language_bytes.py",
+      "size": 1548,
+      "git_blob_sha": "2fab5547f1905bcdd6ace84a5cfd7911541aa78a"
     },
     {
       "path": "tests/test_crypto_registry.py",
@@ -3246,8 +3286,8 @@
     },
     {
       "path": "tests/test_release_candidate.py",
-      "size": 6008,
-      "git_blob_sha": "2d17f01b61a200b56eacae2c0af56f22a98af789"
+      "size": 6253,
+      "git_blob_sha": "744be9921e42eedff2f156575cadcb1cfadbbb4d"
     },
     {
       "path": "tests/test_research_profile_registry.py",
@@ -3258,6 +3298,11 @@
       "path": "tests/test_research_promotion.py",
       "size": 36647,
       "git_blob_sha": "ca778279c72198d86af9976c921eab02726d06c9"
+    },
+    {
+      "path": "tests/test_scoped_assessment.py",
+      "size": 7628,
+      "git_blob_sha": "6f1fbaff98b4dca71202a7da3a828cb985e46c1c"
     },
     {
       "path": "tests/test_scoped_dependencies.py",
@@ -3325,5 +3370,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:4c5680ebd94e03f31777b45f7283ae241a50fde8b42444e8a7e8f1b7350e1b08"
+  "tree_digest": "sha256:cb5511657ab264113dda8c38c1ebf3d5d51c705400de730eaa3763c58c2891f6"
 }
