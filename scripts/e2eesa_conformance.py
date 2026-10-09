@@ -11,6 +11,7 @@ import sys
 import tempfile
 from typing import Any, TextIO
 
+import canonical_serialization
 import conformance_engine
 import formal_verification
 
@@ -69,13 +70,15 @@ def load_json(path: str | Path) -> dict[str, Any]:
     except OSError as exc:
         raise InputError(f"cannot read {file_path}: {exc}") from exc
     try:
-        value = json.loads(text, object_pairs_hook=_reject_duplicate_keys)
+        value = canonical_serialization.parse_json(text)
     except InputError:
         raise
     except json.JSONDecodeError as exc:
         raise InputError(
             f"invalid JSON in {file_path}: line {exc.lineno} column {exc.colno}: {exc.msg}"
         ) from exc
+    except ValueError as exc:
+        raise InputError(str(exc)) from exc
     if not isinstance(value, dict):
         raise InputError(f"{file_path}: top-level JSON value must be an object")
     return value

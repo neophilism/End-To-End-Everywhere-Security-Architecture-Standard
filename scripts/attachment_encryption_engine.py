@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import argparse
 import hashlib
 import json
@@ -47,12 +49,7 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def _canonical_json(value: Any) -> bytes:
-    return json.dumps(
-        value,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(value)
 
 
 def _algorithm_index(registry: dict[str, Any]) -> dict[str, dict[str, Any]]:

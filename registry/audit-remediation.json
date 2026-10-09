@@ -13,7 +13,7 @@
     {
       "id": "AUD-02",
       "title": "Shared canonical serialization",
-      "state": "pending",
+      "state": "implemented",
       "independent_review": "pending"
     },
     {
@@ -224,9 +224,14 @@
     },
     {
       "id": "F11",
-      "state": "reported",
+      "state": "regression-verified",
       "source": "Claude audit v2",
-      "reproductions": []
+      "reproductions": [
+        {
+          "test": "tests/test_canonical_serialization.py::test_unicode_owners_agree",
+          "scope": "Unicode integer-only mismatch independently reproduced; active owners now agree"
+        }
+      ]
     },
     {
       "id": "F12",

@@ -907,6 +907,24 @@
         "remediation-evidence",
         "retest-evidence"
       ]
+    },
+    {
+      "document_path": "spec/canonical-serialization.md",
+      "rationale": "Document-level projection for interoperable, versioned serialization; individual requirement analysis is tracked separately.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK",
+        "TM-SUPPLY-CHAIN"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "envelope-digest-evidence",
+        "schema-validation-evidence"
+      ]
     }
   ]
 }

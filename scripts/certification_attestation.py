@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import copy
 import hashlib
 import json
@@ -82,24 +84,11 @@ def canonical_payload_bytes(payload: dict[str, Any], *, attestation: bool = True
     if errors:
         raise ValueError("; ".join(errors))
     value = normalize_attestation_payload(payload) if attestation else copy.deepcopy(payload)
-    return json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-        allow_nan=False,
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(value)
 
 
 def canonical_digest(value: object) -> str:
-    encoded = json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-        allow_nan=False,
-    ).encode("utf-8")
-    return "sha256:" + hashlib.sha256(encoded).hexdigest()
+    return canonical_serialization.canonical_digest(value)
 
 
 def payload_digest(payload: dict[str, Any], *, attestation: bool = True) -> str:

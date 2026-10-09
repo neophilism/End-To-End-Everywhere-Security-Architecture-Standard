@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import hashlib
 import json
 import re
@@ -24,9 +26,7 @@ PROHIBITED_SYNTHETIC_SCORE_KEYS = {
 
 
 def canonical_bytes(value: object) -> bytes:
-    return json.dumps(
-        value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False
-    ).encode("utf-8")
+    return canonical_serialization.canonical_bytes(canonical_serialization.external_decimal_model(value))
 
 
 def canonical_digest(value: object) -> str:
