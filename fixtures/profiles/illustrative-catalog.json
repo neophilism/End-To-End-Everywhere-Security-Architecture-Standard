@@ -1,0 +1,143 @@
+{
+  "schema_version": "0.1",
+  "standard_version": "0.1.0-dev",
+  "families": [
+    {
+      "family_id": "foundation",
+      "name": "Foundation",
+      "cardinality": "exactly-one",
+      "description": "Illustrative mandatory foundation family used to exercise the resolver before production architecture profiles are introduced."
+    },
+    {
+      "family_id": "example-architecture",
+      "name": "Example architecture choice",
+      "cardinality": "exactly-one",
+      "description": "Illustrative mutually exclusive architecture family demonstrating multi-option selection."
+    },
+    {
+      "family_id": "example-addons",
+      "name": "Example add-ons",
+      "cardinality": "many",
+      "description": "Illustrative independently composable capability family."
+    }
+  ],
+  "profiles": [
+    {
+      "schema_version": "0.1",
+      "profile_id": "foundation-baseline",
+      "profile_version": "0.1.0",
+      "family_id": "foundation",
+      "status": "recommended",
+      "decision_class": "invariant",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Resolver fixture only; not a production cryptographic architecture."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-choice-a",
+      "profile_version": "0.1.0",
+      "family_id": "example-architecture",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrative profile only."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-choice-b",
+      "profile_version": "0.1.0",
+      "family_id": "example-architecture",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrative profile only."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-choice-a",
+      "profile_version": "0.2.0",
+      "family_id": "example-architecture",
+      "status": "provisional",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates exact version pinning and provisional opt-in."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-addon-requires-a",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "allowed",
+      "decision_class": "capability",
+      "security_properties": [
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [
+        "example-choice-a@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates deterministic dependency expansion."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-addon-conflicts-a",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "allowed",
+      "decision_class": "capability",
+      "security_properties": [
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "example-choice-a@0.1.0"
+      ],
+      "notes": "Illustrates symmetric incompatibility semantics from a one-sided declaration."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-experimental-addon",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "experimental",
+      "decision_class": "experimental",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates explicit experimental opt-in."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-prohibited-addon",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "prohibited",
+      "decision_class": "capability",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates a profile that can exist historically in the catalog but can never resolve as conformant."
+    }
+  ]
+}

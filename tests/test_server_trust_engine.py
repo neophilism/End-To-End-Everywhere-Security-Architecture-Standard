@@ -14,7 +14,7 @@ class ServerTrustTests(unittest.TestCase):
                 load_json(ROOT / f"fixtures/server-trust/evidence/{name}.json"))
 
     def validate(self, p, e):
-        return engine.validate_deployment(p, e, load_json(ROOT / "profiles/catalog.json"))
+        return engine.validate_deployment(p, e, load_json(ROOT / "fixtures/profiles/development-catalog.json"))
 
     def reject(self, path, value, name="live"):
         p, e = self.pair(name); node = e
@@ -24,7 +24,7 @@ class ServerTrustTests(unittest.TestCase):
 
     def test_valid_inventory_and_deletion(self):
         for name in ("live", "deleted"): self.assertEqual(self.validate(*self.pair(name)), [])
-        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "profiles/catalog.json")), [])
+        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "fixtures/profiles/development-catalog.json")), [])
 
     def test_service_plaintext_keys_and_enrollment_are_prohibited(self):
         for field in ("application_plaintext_access", "application_key_access", "backup_recovery_key_access", "can_authorize_e2ee_devices", "logs_application_content"):

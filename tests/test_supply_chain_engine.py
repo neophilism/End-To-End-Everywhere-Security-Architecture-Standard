@@ -16,7 +16,7 @@ class SupplyChainTests(unittest.TestCase):
                 load_json(ROOT / f"fixtures/supply-chain/evidence/{name}.json"))
 
     def validate(self, p, e):
-        return engine.validate_release(p, e, load_json(ROOT / "profiles/catalog.json"))
+        return engine.validate_release(p, e, load_json(ROOT / "fixtures/profiles/development-catalog.json"))
 
     def reject(self, path, value):
         p, e = self.pair(); node = e
@@ -33,7 +33,7 @@ class SupplyChainTests(unittest.TestCase):
 
     def test_supported_sbom_profiles_and_fixtures(self):
         for name in ("spdx", "cyclonedx"): self.assertEqual(self.validate(*self.pair(name)), [])
-        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "profiles/catalog.json")), [])
+        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "fixtures/profiles/development-catalog.json")), [])
 
     def test_wrong_subject_source_builder_and_parameters(self):
         self.mutate_statement(lambda s:s["subject"][0]["digest"].update(sha256="0"*64))

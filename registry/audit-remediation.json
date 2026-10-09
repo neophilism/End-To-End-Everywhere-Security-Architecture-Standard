@@ -25,7 +25,7 @@
     {
       "id": "AUD-04",
       "title": "Illustrative catalog separation",
-      "state": "pending",
+      "state": "implemented",
       "independent_review": "pending"
     },
     {
@@ -264,5 +264,15 @@
     "outcome": "pass",
     "source_commit": "dea8f54cab9130da86a71f36de553766a978daf2"
   },
-  "downstream_rollout": "deferred-until-corrected-contracts"
+  "downstream_rollout": "deferred-until-corrected-contracts",
+  "validator_inventory": [
+    {
+      "path": "scripts/certification_attestation.py",
+      "disposition": "retained; used by signature and conformance consumers"
+    },
+    {
+      "path": "scripts/certification_attestations.py",
+      "disposition": "retained; supported CLI/import path and repository validation; not confirmed obsolete"
+    }
+  ]
 }

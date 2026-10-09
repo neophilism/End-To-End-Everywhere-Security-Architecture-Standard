@@ -31,7 +31,7 @@ class KeyVerificationEngineTests(unittest.TestCase):
         return self.load("registry/cryptographic-algorithms.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def record(self, policy_name: str, family: str) -> dict:
         return key_verification_engine.create_manual_record(

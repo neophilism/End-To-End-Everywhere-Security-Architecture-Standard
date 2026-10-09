@@ -25,7 +25,7 @@ DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 
 STANDARD_FILES = {
     "conformance_registry": "registry/conformance.json",
-    "catalog": "profiles/catalog.json",
+    "catalog": "fixtures/profiles/development-catalog.json",
     "crypto": "registry/cryptographic-algorithms.json",
     "property_registry": "registry/security-properties.json",
     "threat_registry": "registry/threat-model.json",

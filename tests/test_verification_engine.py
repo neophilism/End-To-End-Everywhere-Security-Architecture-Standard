@@ -15,7 +15,7 @@ class VerificationTests(unittest.TestCase):
                 load_json(ROOT/f"fixtures/verification/evidence/{name}.json"))
 
     def validate(self,p,e):
-        return engine.validate_assessment(p,e,load_json(ROOT/"profiles/catalog.json"))
+        return engine.validate_assessment(p,e,load_json(ROOT/"fixtures/profiles/development-catalog.json"))
 
     def reject(self,path,value):
         p,e=self.pair();node=e
@@ -25,7 +25,7 @@ class VerificationTests(unittest.TestCase):
 
     def test_all_assessment_profiles_and_negative_fixtures(self):
         for name in ("blackbox","whitebox","combined"):self.assertEqual(self.validate(*self.pair(name)),[])
-        self.assertEqual(engine.validate_repository(ROOT,load_json(ROOT/"profiles/catalog.json")),[])
+        self.assertEqual(engine.validate_repository(ROOT,load_json(ROOT/"fixtures/profiles/development-catalog.json")),[])
 
     def test_missing_or_wrong_per_profile_methods(self):
         p,e=self.pair();e["suites"]=[s for s in e["suites"] if s["method"]!="fuzz"]

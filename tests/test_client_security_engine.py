@@ -20,7 +20,7 @@ class ClientSecurityTests(unittest.TestCase):
                 self.load(f"fixtures/client-security/evidence/{name}.json"))
 
     def validate(self, policy, evidence):
-        return engine.validate_client(policy, evidence, self.load("profiles/catalog.json"))
+        return engine.validate_client(policy, evidence, self.load("fixtures/profiles/development-catalog.json"))
 
     def mutate(self, path, value, name="native"):
         p, e = self.pair(name)
@@ -31,7 +31,7 @@ class ClientSecurityTests(unittest.TestCase):
         self.assertTrue(self.validate(p, e), (name, path, value))
 
     def test_valid_profiles_and_repository_fixtures(self):
-        self.assertEqual(engine.validate_repository(ROOT, self.load("profiles/catalog.json")), [])
+        self.assertEqual(engine.validate_repository(ROOT, self.load("fixtures/profiles/development-catalog.json")), [])
         for name in ("native", "web", "verified-web"):
             self.assertEqual(self.validate(*self.pair(name)), [])
 
@@ -87,7 +87,7 @@ class ClientSecurityTests(unittest.TestCase):
         self.mutate(["runtime", "web", "claims_malicious_origin_prevention"], True, "web")
 
     def test_profile_lifecycle_and_missing_evidence(self):
-        p, e = self.pair(); catalog = self.load("profiles/catalog.json")
+        p, e = self.pair(); catalog = self.load("fixtures/profiles/development-catalog.json")
         for profile in catalog["profiles"]:
             if profile["profile_id"] == "client-native-signed": profile["status"] = "prohibited"
         self.assertTrue(engine.validate_client(p, e, catalog))

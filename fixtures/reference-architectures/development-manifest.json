@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
   "standard_version": "0.1.0-dev",
-  "catalog_profile_count": 59,
+  "catalog_profile_count": 67,
   "entries": [
     {
       "fixture_id": "profile-advisory-csaf-2-0-iso20153-0-1-0",
@@ -166,6 +166,69 @@
       "expected_solver_status": "solutions"
     },
     {
+      "fixture_id": "profile-example-addon-conflicts-a-0-1-0",
+      "profile_ref": "example-addon-conflicts-a@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-addon-requires-a-0-1-0",
+      "profile_ref": "example-addon-requires-a@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-choice-a-0-1-0",
+      "profile_ref": "example-choice-a@0.1.0",
+      "family_id": "example-architecture",
+      "profile_status": "recommended",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-choice-a-0-2-0",
+      "profile_ref": "example-choice-a@0.2.0",
+      "family_id": "example-architecture",
+      "profile_status": "provisional",
+      "disposition": "unpromoted-provisional-negative",
+      "solver_mode": "candidate",
+      "expected_solver_status": "invalid-request"
+    },
+    {
+      "fixture_id": "profile-example-choice-b-0-1-0",
+      "profile_ref": "example-choice-b@0.1.0",
+      "family_id": "example-architecture",
+      "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-example-experimental-addon-0-1-0",
+      "profile_ref": "example-experimental-addon@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "experimental",
+      "disposition": "experimental-negative",
+      "solver_mode": "candidate",
+      "expected_solver_status": "invalid-request"
+    },
+    {
+      "fixture_id": "profile-example-prohibited-addon-0-1-0",
+      "profile_ref": "example-prohibited-addon@0.1.0",
+      "family_id": "example-addons",
+      "profile_status": "prohibited",
+      "disposition": "prohibited-negative",
+      "solver_mode": "migration",
+      "expected_solver_status": "invalid-request"
+    },
+    {
       "fixture_id": "profile-formal-code-refinement-0-1-0",
       "profile_ref": "formal-code-refinement@0.1.0",
       "family_id": "formal-verification",
@@ -188,6 +251,15 @@
       "profile_ref": "formal-symbolic-protocol@0.1.0",
       "family_id": "formal-verification",
       "profile_status": "allowed",
+      "disposition": "production-positive",
+      "solver_mode": "production",
+      "expected_solver_status": "solutions"
+    },
+    {
+      "fixture_id": "profile-foundation-baseline-0-1-0",
+      "profile_ref": "foundation-baseline@0.1.0",
+      "family_id": "foundation",
+      "profile_status": "recommended",
       "disposition": "production-positive",
       "solver_mode": "production",
       "expected_solver_status": "solutions"
