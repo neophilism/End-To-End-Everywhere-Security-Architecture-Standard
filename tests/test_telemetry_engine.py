@@ -15,7 +15,7 @@ class TelemetryTests(unittest.TestCase):
                 load_json(ROOT / f"fixtures/telemetry/evidence/{name}.json"))
 
     def validate(self, p, e):
-        return engine.validate_telemetry(p, e, load_json(ROOT / "profiles/catalog.json"))
+        return engine.validate_telemetry(p, e, load_json(ROOT / "fixtures/profiles/development-catalog.json"))
 
     def reject(self, path, value, name="diagnostics", rehash=False):
         p, e = self.pair(name); node = e
@@ -26,7 +26,7 @@ class TelemetryTests(unittest.TestCase):
 
     def test_all_profiles_and_adversarial_fixtures(self):
         for name in ("none", "diagnostics", "dp-aggregate"): self.assertEqual(self.validate(*self.pair(name)), [])
-        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "profiles/catalog.json")), [])
+        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "fixtures/profiles/development-catalog.json")), [])
 
     def test_no_export_profile_rejects_collection(self):
         self.reject(["collector_enabled"], True, "none")

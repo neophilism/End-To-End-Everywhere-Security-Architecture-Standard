@@ -111,3 +111,7 @@ PR 24 introduces immutable transitive inventories, SPDX/CycloneDX SBOM evidence,
 ## Security Verification Framework
 
 PR 25 introduces black-box, white-box and combined assessment profiles with exact configuration/artifact binding, per-profile method/threat/property coverage, corpus/model evidence and bounded seeded reference security checks.
+
+## Production and development catalogs
+
+`catalog.json` contains only real architecture and process profiles. Illustrative fixtures are in `fixtures/profiles/illustrative-catalog.json`; the explicitly loaded combined `development-catalog.json` exists only to characterize legacy resolver and evidence tooling. It is not a production security-property provider. The production reference manifest excludes illustrative profiles from counts and interoperability denominators. Legacy conformance diagnostics cannot establish certification eligibility.

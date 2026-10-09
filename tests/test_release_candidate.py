@@ -91,8 +91,8 @@ class ReleaseCandidateTests(unittest.TestCase):
             x["profile_ref"] for x in fixture["entries"]
             if x["disposition"]=="production-positive"
         ]
-        self.assertEqual(len(production),63)
-        self.assertEqual(len(production)*(len(production)-1)//2,1953)
+        self.assertEqual(len(production),58)
+        self.assertEqual(len(production)*(len(production)-1)//2,1653)
 
     def test_release_surface_contains_core_candidate_layers(self):
         policy=self.load("registry/release-candidate.json")

@@ -34,7 +34,7 @@ class KeyTransparencyEngineTests(unittest.TestCase):
         return self.load("registry/key-transparency-protocols.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def policy(self, name: str) -> dict:
         return self.load(f"fixtures/transparency/policies/{name}.json")

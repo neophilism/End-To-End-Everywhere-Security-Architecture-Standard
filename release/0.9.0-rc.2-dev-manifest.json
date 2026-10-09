@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 654,
+  "file_count": 658,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -980,6 +980,16 @@
       "git_blob_sha": "983c15564d7758613b5f31ce536fec419ad641fa"
     },
     {
+      "path": "fixtures/profiles/development-catalog.json",
+      "size": 52105,
+      "git_blob_sha": "22f88145aeedd97fef2d7c0a46d06744edbeeff4"
+    },
+    {
+      "path": "fixtures/profiles/illustrative-catalog.json",
+      "size": 4527,
+      "git_blob_sha": "8c98f93d54b981fdb6a9466890b804e697f6023b"
+    },
+    {
       "path": "fixtures/profiles/invalid/bad-id.json",
       "size": 201,
       "git_blob_sha": "414a2fff7983eabfd7b63bb639750bd472838522"
@@ -1045,9 +1055,14 @@
       "git_blob_sha": "47a89a01266d15b2094f241e35f0a99bc4c565fe"
     },
     {
-      "path": "fixtures/reference-architectures/manifest.json",
+      "path": "fixtures/reference-architectures/development-manifest.json",
       "size": 22190,
       "git_blob_sha": "5d4be9b7195f854091c8207fb2dbc6a788b88e41"
+    },
+    {
+      "path": "fixtures/reference-architectures/manifest.json",
+      "size": 19579,
+      "git_blob_sha": "68d99bc642ece644e9686e7894c12d925f756df4"
     },
     {
       "path": "fixtures/research-profile-registry/valid/entry.json",
@@ -1651,13 +1666,13 @@
     },
     {
       "path": "profiles/README.md",
-      "size": 8115,
-      "git_blob_sha": "8a19a72bb0575f82bb38bb1942d08790b928090c"
+      "size": 8663,
+      "git_blob_sha": "d1d21dff6113b6996c777bd653673a9facfaf7ef"
     },
     {
       "path": "profiles/catalog.json",
-      "size": 52105,
-      "git_blob_sha": "22f88145aeedd97fef2d7c0a46d06744edbeeff4"
+      "size": 47683,
+      "git_blob_sha": "9f911ecf3f2deb1080e96cc55f6567b1b5b8bfbb"
     },
     {
       "path": "reference/observatory/postgres.sql",
@@ -1676,8 +1691,8 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 6424,
-      "git_blob_sha": "071f4714a15d22e54e671a8b24c5f118a97c3565"
+      "size": 6780,
+      "git_blob_sha": "b3dffad948ec719f708fa329ddab19978f591f85"
     },
     {
       "path": "registry/canonical-serialization.json",
@@ -2616,8 +2631,8 @@
     },
     {
       "path": "scripts/e2eesa_conformance.py",
-      "size": 18002,
-      "git_blob_sha": "ba476584335702f59ba01cf7511f22fb618ee8b0"
+      "size": 18023,
+      "git_blob_sha": "f0f761640a5c37cd002c01cc197a0e3427b5c35a"
     },
     {
       "path": "scripts/formal_verification.py",
@@ -2711,8 +2726,8 @@
     },
     {
       "path": "scripts/run_reference_security_checks.py",
-      "size": 6468,
-      "git_blob_sha": "d0991faa351aeda448503faaf170db5ca7ef07ae"
+      "size": 6489,
+      "git_blob_sha": "058f90edf2839471984ddfe980b216b2dcab5b8c"
     },
     {
       "path": "scripts/secret_storage_engine.py",
@@ -2756,8 +2771,8 @@
     },
     {
       "path": "scripts/validate_repo.py",
-      "size": 124461,
-      "git_blob_sha": "f75929977b379531bec57ca224b2470155748507"
+      "size": 124747,
+      "git_blob_sha": "db5c9110d0a3f8f25a22c8fd56c0d85adb6e558d"
     },
     {
       "path": "scripts/verification_engine.py",
@@ -3031,23 +3046,23 @@
     },
     {
       "path": "tests/test_advisory_interoperability.py",
-      "size": 12093,
-      "git_blob_sha": "cbdb476228aef6cc49b613d264f4d2acca435ad4"
+      "size": 12114,
+      "git_blob_sha": "54040160b4b417c513be711fc544a8a82e01f91a"
     },
     {
       "path": "tests/test_assurance_levels.py",
-      "size": 7153,
-      "git_blob_sha": "24acf4c9ca1a7c96c58306f5b571bc4507b68464"
+      "size": 7174,
+      "git_blob_sha": "467de9a8de42524807688090e8d698daf0070140"
     },
     {
       "path": "tests/test_attachment_encryption_engine.py",
-      "size": 11135,
-      "git_blob_sha": "62d9c016b89ff40079056f755899c9a8403e0ef1"
+      "size": 11156,
+      "git_blob_sha": "660071e068ff9672e08c3ceef7b6480b648ae79a"
     },
     {
       "path": "tests/test_backup_recovery_engine.py",
-      "size": 9803,
-      "git_blob_sha": "2ec60ae5b2a8dfb1b5e2b427e1badd75605b2ede"
+      "size": 9824,
+      "git_blob_sha": "48449c2fc9fcf221c527afe328e08c95d24ed078"
     },
     {
       "path": "tests/test_build_reference_release.py",
@@ -3061,13 +3076,13 @@
     },
     {
       "path": "tests/test_certification_attestations.py",
-      "size": 14408,
-      "git_blob_sha": "0048b92d5993f4d97298fe116fb5af2700edd65d"
+      "size": 14429,
+      "git_blob_sha": "133dcb7b8ddd30ff3915c1a6f958d4f10b5e06ed"
     },
     {
       "path": "tests/test_certification_evidence.py",
-      "size": 8356,
-      "git_blob_sha": "3798a7cf205e4ea21c923790bfdf4bf52b2b40eb"
+      "size": 8377,
+      "git_blob_sha": "a1a5ae54efb52f5d6fe50889f3e91f8b7a2269e5"
     },
     {
       "path": "tests/test_certification_lifecycle.py",
@@ -3076,13 +3091,13 @@
     },
     {
       "path": "tests/test_client_security_engine.py",
-      "size": 6081,
-      "git_blob_sha": "c863b6753f0cd13c0570ad76a4aeac2235e41d0e"
+      "size": 6144,
+      "git_blob_sha": "ae34bff99ddfcc3e38e47b25100677b860e110c3"
     },
     {
       "path": "tests/test_compatibility_solver.py",
-      "size": 16777,
-      "git_blob_sha": "33fea8b7b7510ca541a1018c3f98086b03b11c53"
+      "size": 16798,
+      "git_blob_sha": "4bbc9f16fede7871c4ba5ebe398190c7f0ff9a2f"
     },
     {
       "path": "tests/test_confidence_classification.py",
@@ -3096,13 +3111,13 @@
     },
     {
       "path": "tests/test_conformance_engine.py",
-      "size": 23254,
-      "git_blob_sha": "3447fb389f649aed36b763dce237eb7f8788ecb0"
+      "size": 23275,
+      "git_blob_sha": "b898ee22322cda0d9b680592fa997acaf704f861"
     },
     {
       "path": "tests/test_contact_discovery_engine.py",
-      "size": 8530,
-      "git_blob_sha": "d76291376615d14a99044b996246cc8045a52a98"
+      "size": 8551,
+      "git_blob_sha": "ddad119b70349c00414aa5c355f64b8cccb024eb"
     },
     {
       "path": "tests/test_crypto_registry.py",
@@ -3111,8 +3126,8 @@
     },
     {
       "path": "tests/test_deprecation_migration.py",
-      "size": 24566,
-      "git_blob_sha": "09edc010cebdfe7e3ca297e4a766a66d271e64e2"
+      "size": 24587,
+      "git_blob_sha": "e9b4df1d9e4abd467be1bde7130686185caac656"
     },
     {
       "path": "tests/test_digest_contracts.py",
@@ -3121,18 +3136,18 @@
     },
     {
       "path": "tests/test_formal_verification.py",
-      "size": 7051,
-      "git_blob_sha": "0fa0fc5f1a71cafec215942127128efd428fec58"
+      "size": 7072,
+      "git_blob_sha": "fd6dd5b748449fbdf05e73b9b8c3e4abcbd9f111"
     },
     {
       "path": "tests/test_group_e2ee_engine.py",
-      "size": 8425,
-      "git_blob_sha": "5b095a1e28502e8354d0e09044671a5388169ebb"
+      "size": 8446,
+      "git_blob_sha": "831f26fe160968bc8a9db613fe8072617d50e402"
     },
     {
       "path": "tests/test_identity_device_engine.py",
-      "size": 4925,
-      "git_blob_sha": "c249f3d9a379cb2234d5bc7bb93d308c3020e3dd"
+      "size": 4946,
+      "git_blob_sha": "3224e8d08790ad53773821048e41aecccaea732a"
     },
     {
       "path": "tests/test_integration_contracts.py",
@@ -3141,28 +3156,28 @@
     },
     {
       "path": "tests/test_interoperability_suite.py",
-      "size": 12567,
-      "git_blob_sha": "6fa86c81477fe9dffaa946b9ba4b45f56dbc475e"
+      "size": 12600,
+      "git_blob_sha": "9754076024f209ac04797bc8b9ef70b3631713b0"
     },
     {
       "path": "tests/test_key_transparency_engine.py",
-      "size": 8410,
-      "git_blob_sha": "0860f182ca7b26c0dc295957d7a1cd14c0240676"
+      "size": 8431,
+      "git_blob_sha": "4d9b184455ab6efa26b5b5cb0c52d82db867ddce"
     },
     {
       "path": "tests/test_key_verification_engine.py",
-      "size": 9223,
-      "git_blob_sha": "5a09093434c894626efd6611370757b56b8133ef"
+      "size": 9244,
+      "git_blob_sha": "bf310bac45f52d80ee7ae6c75fd73aed8f21c1ef"
     },
     {
       "path": "tests/test_metadata_privacy_engine.py",
-      "size": 8406,
-      "git_blob_sha": "80bbba6a2c1051824d469873cdbc043b9489587a"
+      "size": 8427,
+      "git_blob_sha": "489c2a2d11ae5937684af0189465aa0205d21f22"
     },
     {
       "path": "tests/test_negotiation_engine.py",
-      "size": 6162,
-      "git_blob_sha": "5d8d5dd2e0da9fbed1a98930af7d8bfa5145e8d3"
+      "size": 6183,
+      "git_blob_sha": "ad325bddb78209faf000d5ac8231b9eda8f38e66"
     },
     {
       "path": "tests/test_observatory_data_architecture.py",
@@ -3176,23 +3191,28 @@
     },
     {
       "path": "tests/test_pairwise_session_engine.py",
-      "size": 7573,
-      "git_blob_sha": "b69768abe89e63cf19c806338629a1c2f5ca4c9a"
+      "size": 7594,
+      "git_blob_sha": "31f558429764b8c823539e84c9c82c4efadae402"
+    },
+    {
+      "path": "tests/test_production_catalog.py",
+      "size": 1544,
+      "git_blob_sha": "ab6b2cd978d88fed4c76331edb6d41e572d1cabc"
     },
     {
       "path": "tests/test_profile_engine.py",
-      "size": 7980,
-      "git_blob_sha": "15ed514f4361ebb5a6c2eaeb8d3d4e85b5ed2f66"
+      "size": 8001,
+      "git_blob_sha": "1c5324df60404c8c6e9329dd0ada0becc0d74066"
     },
     {
       "path": "tests/test_real_time_media_engine.py",
-      "size": 12141,
-      "git_blob_sha": "1539cd2211d8c2256abaecca9f00b41874cd1b12"
+      "size": 12162,
+      "git_blob_sha": "97bbc39b0db7e2a24880b9d7861ba5871f8b32a4"
     },
     {
       "path": "tests/test_reference_fixtures.py",
-      "size": 13238,
-      "git_blob_sha": "2c9a49ffd29ac4eb728e10c5034d729b1d05d00c"
+      "size": 13271,
+      "git_blob_sha": "89b001ecd44c2100ac82735b6a092e633c43fba3"
     },
     {
       "path": "tests/test_reference_security_checks.py",
@@ -3202,7 +3222,7 @@
     {
       "path": "tests/test_release_candidate.py",
       "size": 6008,
-      "git_blob_sha": "faa4be1ad713c19d8b6a7c07c99d00e3f369c5ee"
+      "git_blob_sha": "2d17f01b61a200b56eacae2c0af56f22a98af789"
     },
     {
       "path": "tests/test_research_profile_registry.py",
@@ -3211,18 +3231,18 @@
     },
     {
       "path": "tests/test_research_promotion.py",
-      "size": 36626,
-      "git_blob_sha": "cd190013b87a8e14df61117f3435221e8f454fae"
+      "size": 36647,
+      "git_blob_sha": "ca778279c72198d86af9976c921eab02726d06c9"
     },
     {
       "path": "tests/test_secret_storage_engine.py",
-      "size": 10348,
-      "git_blob_sha": "81ddc50646a6464f8b032879e4dae414df560098"
+      "size": 10369,
+      "git_blob_sha": "121891b31d21b28b688c323695e8b0c38157ef15"
     },
     {
       "path": "tests/test_secure_development_engine.py",
-      "size": 4447,
-      "git_blob_sha": "1d83286471ceed53a5fcdd0497e04bdc9c62ff64"
+      "size": 4489,
+      "git_blob_sha": "9ca01037257edbecf3ef0baa7e1e68aead06fe45"
     },
     {
       "path": "tests/test_security_rationale.py",
@@ -3231,8 +3251,8 @@
     },
     {
       "path": "tests/test_server_trust_engine.py",
-      "size": 4236,
-      "git_blob_sha": "27af744ca9380bb43f60df5c32e1d6c9b369e17d"
+      "size": 4278,
+      "git_blob_sha": "5b93d7d40b83318c77c451401ee586dd309dec41"
     },
     {
       "path": "tests/test_standards_crosswalk.py",
@@ -3241,18 +3261,18 @@
     },
     {
       "path": "tests/test_supply_chain_engine.py",
-      "size": 4895,
-      "git_blob_sha": "981377f9be49f054ebe4fc143ef2b1074bec2bfc"
+      "size": 4937,
+      "git_blob_sha": "79f2e9d95c6a1324131deb4716ce3d18d05b8987"
     },
     {
       "path": "tests/test_telemetry_engine.py",
-      "size": 4935,
-      "git_blob_sha": "92114312cd36da074aeb00c55deb10995af8e618"
+      "size": 4977,
+      "git_blob_sha": "a96b373c35fcd9926888612cbf2899b092b54c65"
     },
     {
       "path": "tests/test_transport_security_engine.py",
-      "size": 11323,
-      "git_blob_sha": "bca1e3da06cf362d76cabd2366979d6340023736"
+      "size": 11344,
+      "git_blob_sha": "d208e4022f4ecc60803fd398375220663d3087f7"
     },
     {
       "path": "tests/test_validation.py",
@@ -3261,19 +3281,19 @@
     },
     {
       "path": "tests/test_verification_engine.py",
-      "size": 4608,
-      "git_blob_sha": "125f003218c0d5f40b8c1982512f0e30ab4c9b74"
+      "size": 4650,
+      "git_blob_sha": "c8731fe52d678cd3b872aaea91022fabaf96e956"
     },
     {
       "path": "tests/test_vulnerability_disclosure.py",
-      "size": 7143,
-      "git_blob_sha": "157e25a83f96260b70bbf4d42065e8adb21100a8"
+      "size": 7164,
+      "git_blob_sha": "a439db79e876629adad15339643a6088587deb74"
     },
     {
       "path": "tests/test_vulnerability_handling.py",
-      "size": 16693,
-      "git_blob_sha": "83cecf3975618cd3aa411f7c46454e520f4e5513"
+      "size": 16714,
+      "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:a047de777bbcacd591e1981c3c94f23c0ff1dbb1c53d71f89fc05581a575b478"
+  "tree_digest": "sha256:7d96b9851d244ca866c6521d15b84893a3d249f1f8eafcc6e71abf427212180c"
 }

@@ -1604,6 +1604,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     profile_catalog_path = root / "profiles/catalog.json"
     profile_catalog = load_json(profile_catalog_path) if profile_catalog_path.is_file() else {}
+    development_catalog = load_json(root / "fixtures/profiles/development-catalog.json")
     if profile_catalog:
         known_property_ids_for_catalog = {
             prop.get("id")
@@ -1742,7 +1743,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             negotiation_engine.validate_policy(
                 negotiation_policy,
                 crypto_registry_data,
-                profile_catalog,
+                development_catalog,
                 "fixtures/negotiation/policy.json",
             )
         )
@@ -1753,7 +1754,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 negotiation_policy,
                 load_json(path),
                 crypto_registry_data,
-                profile_catalog,
+                development_catalog,
                 str(path.relative_to(root)),
             )
             if result:
@@ -1768,7 +1769,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 negotiation_policy,
                 load_json(path),
                 crypto_registry_data,
-                profile_catalog,
+                development_catalog,
                 str(path.relative_to(root)),
             )
             if not result:
@@ -2742,10 +2743,12 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if isinstance(prop, dict) and isinstance(prop.get("id"), str)
     }
 
+    # Resolver fixtures are explicitly development-only and never product evidence.
+    development_catalog = load_json(root / "fixtures/profiles/development-catalog.json")
     valid_config_dir = root / "fixtures/configurations/valid"
     for path in sorted(valid_config_dir.glob("*.json")) if valid_config_dir.exists() else []:
         result = profile_engine.resolve_configuration(
-            profile_catalog,
+            development_catalog,
             load_json(path),
             known_property_ids=known_property_ids,
         )
@@ -2758,7 +2761,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     invalid_config_dir = root / "fixtures/configurations/invalid"
     for path in sorted(invalid_config_dir.glob("*.json")) if invalid_config_dir.exists() else []:
         result = profile_engine.resolve_configuration(
-            profile_catalog,
+            development_catalog,
             load_json(path),
             known_property_ids=known_property_ids,
         )
@@ -2854,7 +2857,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     errors.extend(supply_chain_engine.validate_repository(root, profile_catalog))
 
-    errors.extend(verification_engine.validate_repository(root, profile_catalog))
+    errors.extend(verification_engine.validate_repository(root, development_catalog))
 
     return errors
 

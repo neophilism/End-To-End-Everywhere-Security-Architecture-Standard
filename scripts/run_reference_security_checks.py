@@ -50,7 +50,7 @@ def run_campaign(seed=20261007, iterations=1000, root=ROOT):
     if type(seed) is not int or type(iterations) is not int or not 1 <= iterations <= 100000:
         raise ValueError("seed/iterations must be integers; iterations range is 1..100000")
     rng=random.Random(seed)
-    catalog=load_json(root/"profiles/catalog.json")
+    catalog=load_json(root/"fixtures/profiles/development-catalog.json")
     pairs=[load_pair(root,name,variant) for name,variant,validator in TARGETS]
     failures=[]; mutated=0; properties=0
     def failure(label, i, kind):

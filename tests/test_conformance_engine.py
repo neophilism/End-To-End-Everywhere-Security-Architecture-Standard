@@ -23,7 +23,7 @@ class ConformanceEngineTests(unittest.TestCase):
     def inputs(self) -> dict[str, dict]:
         return {
             "conformance_registry":self.load("registry/conformance.json"),
-            "catalog":self.load("profiles/catalog.json"),
+            "catalog":self.load("fixtures/profiles/development-catalog.json"),
             "crypto":self.load("registry/cryptographic-algorithms.json"),
             "property_registry":self.load("registry/security-properties.json"),
             "threat_registry":self.load("registry/threat-model.json"),

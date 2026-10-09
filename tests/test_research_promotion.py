@@ -35,7 +35,7 @@ class ResearchPromotionTests(unittest.TestCase):
         return self.load("registry/cryptographic-algorithms.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def candidate_entry(self) -> dict:
         entry=self.load("fixtures/research-promotion/valid/candidate-research-entry.json")
