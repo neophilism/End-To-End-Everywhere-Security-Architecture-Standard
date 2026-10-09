@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 650,
+  "file_count": 654,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -1676,8 +1676,8 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 6420,
-      "git_blob_sha": "3fc35071b8b14f246a0306a5501f9b32f9b6c183"
+      "size": 6424,
+      "git_blob_sha": "071f4714a15d22e54e671a8b24c5f118a97c3565"
     },
     {
       "path": "registry/canonical-serialization.json",
@@ -1738,6 +1738,11 @@
       "path": "registry/deprecation-migration.json",
       "size": 1004,
       "git_blob_sha": "d92e7151adb44811210a94565494510f467f2188"
+    },
+    {
+      "path": "registry/digest-contracts.json",
+      "size": 133215,
+      "git_blob_sha": "ddf249c6474e0e549823201747bf2faa0f347eed"
     },
     {
       "path": "registry/external-standards.json",
@@ -1821,8 +1826,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 29918,
-      "git_blob_sha": "b4e5d44927af5cafbe8f9d9fa5eef65d3a88dfba"
+      "size": 30494,
+      "git_blob_sha": "5aafa4ccc00b9a933507818d8cd43d240d09482f"
     },
     {
       "path": "registry/security-verification.json",
@@ -1841,8 +1846,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 21983,
-      "git_blob_sha": "9c04e2e13bab4a8cbdac208a89cb1c99e1f1abf9"
+      "size": 22209,
+      "git_blob_sha": "ffa27980cf9557eed11df92ce6e72c105256e302"
     },
     {
       "path": "registry/telemetry.json",
@@ -2605,6 +2610,11 @@
       "git_blob_sha": "1083f384918fc2eafffc83b1bbdce3e1d5215fb6"
     },
     {
+      "path": "scripts/digest_contracts.py",
+      "size": 2465,
+      "git_blob_sha": "a931dd5a5de1694d2f43249ae559c64b9921a6aa"
+    },
+    {
       "path": "scripts/e2eesa_conformance.py",
       "size": 18002,
       "git_blob_sha": "ba476584335702f59ba01cf7511f22fb618ee8b0"
@@ -2848,6 +2858,11 @@
       "path": "spec/deprecation-emergency-migration.md",
       "size": 11323,
       "git_blob_sha": "9997dbb0e694aa2dcbfcc11970da5d9405e773af"
+    },
+    {
+      "path": "spec/digest-signature-inputs.md",
+      "size": 2204,
+      "git_blob_sha": "a40bd67f54f4f1f5923789878ac5cbaed26cf8d3"
     },
     {
       "path": "spec/formal-verification-profiles.md",
@@ -3100,6 +3115,11 @@
       "git_blob_sha": "09edc010cebdfe7e3ca297e4a766a66d271e64e2"
     },
     {
+      "path": "tests/test_digest_contracts.py",
+      "size": 1603,
+      "git_blob_sha": "2939971f5abdb74d50049a0af2b64f30d96af361"
+    },
+    {
       "path": "tests/test_formal_verification.py",
       "size": 7051,
       "git_blob_sha": "0fa0fc5f1a71cafec215942127128efd428fec58"
@@ -3255,5 +3275,5 @@
       "git_blob_sha": "83cecf3975618cd3aa411f7c46454e520f4e5513"
     }
   ],
-  "tree_digest": "sha256:9fd1bee0ccd38897fbcea38b3730356e3bdbbfe01c2a1635dfd05609353ec377"
+  "tree_digest": "sha256:a047de777bbcacd591e1981c3c94f23c0ff1dbb1c53d71f89fc05581a575b478"
 }

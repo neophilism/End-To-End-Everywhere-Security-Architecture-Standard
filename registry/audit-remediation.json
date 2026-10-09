@@ -19,7 +19,7 @@
     {
       "id": "AUD-03",
       "title": "Versioned digest and signature contracts",
-      "state": "pending",
+      "state": "implemented",
       "independent_review": "pending"
     },
     {
