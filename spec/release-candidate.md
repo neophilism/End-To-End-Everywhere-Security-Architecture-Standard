@@ -87,3 +87,7 @@ The candidate status does not by itself certify any product.
 - `release/0.9.0-rc.1-manifest.json`
 - `scripts/release_candidate.py`
 - `tests/test_release_candidate.py`
+
+## Audit remediation and historical candidate preservation
+
+The rc.1 manifest and archived source bytes remain immutable. The active development manifest is a distinct artifact for rc.2 development, regenerated after each change and checked against the complete active release surface. Archived bytes are verified without extracting archive paths or requiring Git history. A development manifest is not a candidate freeze, independent review, or production certification.
