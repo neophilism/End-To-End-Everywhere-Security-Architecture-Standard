@@ -1,5 +1,7 @@
 # End To End Everywhere Security Architecture Standard (E2EESA)
 
+**Original 50-milestone development plan:** [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md). **Separate corrected audit remediation:** [docs/AUDIT_REMEDIATION_PLAN.md](docs/AUDIT_REMEDIATION_PLAN.md).
+
 E2EESA is the upstream, implementation-neutral security architecture standard for End To End Everywhere technical projects.
 
 The standard separates:
