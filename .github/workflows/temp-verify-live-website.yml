@@ -20,24 +20,24 @@ jobs:
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import vm from 'node:vm';
-          const base = 'https://end-to-end-everywhere-standard.onrender.com';
+          const sites = ['https://end-to-end-everywhere-standard.onrender.com','https://e2eesa-standards-portal.onrender.com'];
           const checks = [
-            {path:'/',type:'text/html',test:s=>s.includes('app.js?v=20261010-repair')},
+            {path:'/',type:'text/html',test:s=>s.includes('app.js?v=20261010-navigation')},
             {path:'/?view=profiles',type:'text/html',test:s=>s.includes('id="app"')},
-            {path:'/app.js?v=20261010-repair',type:'javascript',test:s=>{try{new vm.Script(s);return s.includes('There is a place for you here.')}catch{return false}}},
+            {path:'/app.js?v=20261010-navigation',type:'javascript',test:s=>{try{new vm.Script(s);return s.includes('There is a place for you here.')}catch{return false}}},
             {path:'/styles.css',type:'text/css',test:s=>s.includes('.sidebar-nav')},
             {path:'/data/standard.json',type:'json',test:s=>{try{let d=JSON.parse(s);return d.specifications.length>=50&&d.specifications.some(x=>x.url==='standards/README.html')}catch{return false}}},
             {path:'/standards/README.html',type:'text/html',test:s=>s.includes('reader-article')&&s.includes('Normative')&&s.includes('normative-language.html')},
             {path:'/standards/profile-configuration.html',type:'text/html',test:s=>s.includes('reader-article')&&s.includes('Profile and Configuration Model')}
           ];
           for(let attempt=1; attempt<=24;attempt++){
-            const outputs = await Promise.all(checks.map(async c=>{
+            const outputs = await Promise.all(sites.flatMap(base=>checks.map(async c=>{
               try{
                 const response=await fetch(base+c.path,{signal:AbortSignal.timeout(15000),headers:{'Cache-Control':'no-cache'}});
                 const body=await response.text();
-                return {path:c.path,status:response.status,ok:response.ok&&c.test(body),bytes:body.length};
-              }catch(e){return {path:c.path,status:'ERROR',ok:false,error:String(e).slice(0,160)}}
-            }));
+                return {site:base,path:c.path,status:response.status,ok:response.ok&&c.test(body),bytes:body.length};
+              }catch(e){return {site:base,path:c.path,status:'ERROR',ok:false,error:String(e).slice(0,160)}}
+            })));
             if(outputs.every(x=>x.ok)){
               console.log('LIVE SITE VERIFIED:');
               for(const x of outputs)console.log(JSON.stringify(x));
