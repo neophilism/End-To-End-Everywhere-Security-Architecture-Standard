@@ -22,9 +22,9 @@ jobs:
           import vm from 'node:vm';
           const sites = ['https://end-to-end-everywhere-standard.onrender.com','https://e2eesa-standards-portal.onrender.com'];
           const checks = [
-            {path:'/',type:'text/html',test:s=>s.includes('app.js?v=20261010-navigation')},
+            {path:'/',type:'text/html',test:s=>s.includes('app-59eec4856954bd5f.js')},
             {path:'/?view=profiles',type:'text/html',test:s=>s.includes('id="app"')},
-            {path:'/app.js?v=20261010-navigation',type:'javascript',test:s=>{try{new vm.Script(s);return s.includes('There is a place for you here.')}catch{return false}}},
+            {path:'/app-59eec4856954bd5f.js',type:'javascript',test:s=>{try{new vm.Script(s);return s.includes('There is a place for you here.')}catch{return false}}},
             {path:'/styles.css',type:'text/css',test:s=>s.includes('.sidebar-nav')},
             {path:'/data/standard.json',type:'json',test:s=>{try{let d=JSON.parse(s);return d.specifications.length>=50&&d.specifications.some(x=>x.url==='standards/README.html')}catch{return false}}},
             {path:'/standards/README.html',type:'text/html',test:s=>s.includes('reader-article')&&s.includes('Normative')&&s.includes('normative-language.html')},
