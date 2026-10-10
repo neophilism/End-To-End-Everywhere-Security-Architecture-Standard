@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "review_id": "e2eesa-0-9-independent-review",
+  "candidate": {
+    "release_version": "0.9.0-rc.1",
+    "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2",
+    "file_count": 645
+  },
+  "status": "awaiting-review",
+  "reviewers": [],
+  "findings": [],
+  "completion": {
+    "review_complete": false,
+    "completed_at": null,
+    "summary_digest": null,
+    "summary_reference": null,
+    "final_reviewed_tree_digest": null,
+    "final_reviewed_commit": null
+  }
+}
