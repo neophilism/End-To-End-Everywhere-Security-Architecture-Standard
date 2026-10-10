@@ -56,6 +56,7 @@ class IdentityRecoveryEngineTests(unittest.TestCase):
             "id": "account-service",
             "prior_state_hash": event["prior_state_hash"],
             "resulting_identity_id": event["resulting_identity_id"],
+            "resulting_state_hash": event["resulting_state_hash"],
             "observed_history_epoch": event["observed_history_epoch"],
         }]
         event["account_delay_elapsed"] = True

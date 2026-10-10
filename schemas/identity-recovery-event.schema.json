@@ -8,12 +8,13 @@
     "authorizer": {
       "type":"object",
       "additionalProperties":false,
-      "required":["type","id","prior_state_hash","resulting_identity_id","observed_history_epoch"],
+      "required":["type","id","prior_state_hash","resulting_identity_id","resulting_state_hash","observed_history_epoch"],
       "properties":{
         "type":{"enum":["retained-authority","contact","account","server","support"]},
         "id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
         "prior_state_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
         "resulting_identity_id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "resulting_state_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
         "observed_history_epoch":{"type":"integer","minimum":0}
       }
     }

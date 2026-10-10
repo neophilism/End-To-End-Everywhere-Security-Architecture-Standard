@@ -56,9 +56,9 @@ def validate_policy(policy: dict[str, Any]) -> list[str]:
     if not _id(policy.get("policy_id")):
         errors.append("recovery policy: invalid policy_id")
     mode = policy.get("mode")
-    if mode not in MODES:
+    if not isinstance(mode, str) or mode not in MODES:
         errors.append("recovery policy: unsupported mode")
-    if policy.get("trusted_history_source") not in HISTORY_SOURCES:
+    if not isinstance(policy.get("trusted_history_source"), str) or policy["trusted_history_source"] not in HISTORY_SOURCES:
         errors.append("recovery policy: unsupported trusted_history_source")
     retained = policy.get("authorized_retained_authority_ids")
     contacts = policy.get("authorized_contact_ids")
@@ -111,7 +111,7 @@ def validate_trusted_state(state: dict[str, Any]) -> list[str]:
     epoch = state.get("history_epoch")
     if not isinstance(epoch, int) or isinstance(epoch, bool) or epoch < 0:
         errors.append("trusted state: history_epoch must be a non-negative integer")
-    if state.get("history_source") not in HISTORY_SOURCES:
+    if not isinstance(state.get("history_source"), str) or state["history_source"] not in HISTORY_SOURCES:
         errors.append("trusted state: unsupported history_source")
     if not _id(state.get("freshness_proof_id")):
         errors.append("trusted state: invalid freshness_proof_id")
@@ -139,7 +139,7 @@ def validate_event(event: dict[str, Any]) -> list[str]:
     for field in ("event_id", "prior_identity_id", "resulting_identity_id", "freshness_proof_id"):
         if not _id(event.get(field)):
             errors.append(f"recovery event: invalid {field}")
-    if event.get("operation") not in OPERATIONS:
+    if not isinstance(event.get("operation"), str) or event["operation"] not in OPERATIONS:
         errors.append("recovery event: unsupported operation")
     for field in ("prior_state_hash", "resulting_state_hash"):
         if not isinstance(event.get(field), str) or not HASH_RE.fullmatch(event.get(field, "")):
@@ -154,7 +154,7 @@ def validate_event(event: dict[str, Any]) -> list[str]:
         errors.append("recovery event: verified_authorizers must be a non-empty array")
         authorizers = []
     seen: set[tuple[str, str]] = set()
-    fields = {"type", "id", "prior_state_hash", "resulting_identity_id", "observed_history_epoch"}
+    fields = {"type", "id", "prior_state_hash", "resulting_identity_id", "resulting_state_hash", "observed_history_epoch"}
     for index, authorizer in enumerate(authorizers):
         prefix = f"recovery event: verified_authorizers[{index}]"
         if not isinstance(authorizer, dict):
@@ -164,7 +164,7 @@ def validate_event(event: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix} fields must be exactly {', '.join(sorted(fields))}")
         kind = authorizer.get("type")
         aid = authorizer.get("id")
-        if kind not in AUTHORIZER_TYPES:
+        if not isinstance(kind, str) or kind not in AUTHORIZER_TYPES:
             errors.append(f"{prefix}: unsupported type")
         if not _id(aid):
             errors.append(f"{prefix}: invalid id")
@@ -177,6 +177,8 @@ def validate_event(event: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix}: invalid prior_state_hash")
         if not _id(authorizer.get("resulting_identity_id")):
             errors.append(f"{prefix}: invalid resulting_identity_id")
+        if not isinstance(authorizer.get("resulting_state_hash"), str) or not HASH_RE.fullmatch(authorizer.get("resulting_state_hash", "")):
+            errors.append(f"{prefix}: invalid resulting_state_hash")
         auth_epoch = authorizer.get("observed_history_epoch")
         if not isinstance(auth_epoch, int) or isinstance(auth_epoch, bool) or auth_epoch < 0:
             errors.append(f"{prefix}: observed_history_epoch must be non-negative")
@@ -210,6 +212,8 @@ def evaluate_recovery(
             errors.append(f"authorizer {authorizer['id']} did not bind the trusted prior state")
         if authorizer["resulting_identity_id"] != event["resulting_identity_id"]:
             errors.append(f"authorizer {authorizer['id']} did not bind the resulting identity")
+        if authorizer["resulting_state_hash"] != event["resulting_state_hash"]:
+            errors.append(f"authorizer {authorizer['id']} did not bind the resulting state")
         if authorizer["observed_history_epoch"] != trusted_state["history_epoch"]:
             errors.append(f"authorizer {authorizer['id']} used a stale history epoch")
         if authorizer["id"] in revoked:
@@ -217,6 +221,7 @@ def evaluate_recovery(
         if (
             authorizer["prior_state_hash"] == trusted_state["state_hash"]
             and authorizer["resulting_identity_id"] == event["resulting_identity_id"]
+            and authorizer["resulting_state_hash"] == event["resulting_state_hash"]
             and authorizer["observed_history_epoch"] == trusted_state["history_epoch"]
             and authorizer["id"] not in revoked
         ):

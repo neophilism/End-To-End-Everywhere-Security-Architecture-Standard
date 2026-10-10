@@ -25,9 +25,20 @@ E2EESA models three explicit development modes:
   but cannot claim continuity.
 
 Trusted history comes from an endpoint-retained view or verified key
-transparency. Every authorization binds the prior state, history epoch, and
-resulting identity. Revoked authorities, stale views, account credentials,
-support overrides, and elapsed delays do not count.
+transparency. Every authorization binds the prior state, history epoch,
+resulting identity, and exact resulting state hash. Revoked authorities, stale
+views, account credentials, support overrides, and elapsed delays do not count.
+
+The caller must verify the resulting state hash as part of each authorization;
+it must not copy an unverified event hash into the verified-authorizer record.
+The evaluator rejects a missing, malformed, or mismatched result-state binding.
+A matching identity name alone cannot authorize different resulting key state.
+Every counted contact must authorize the same result state.
+
+Enum inputs must be strings before set membership is evaluated. Malformed JSON
+arrays, objects, numbers, booleans, and null values produce structured invalid
+results rather than uncaught type errors. The CLI returns a nonzero status and
+JSON rejection without a traceback for these validation failures.
 
 No mode automatically transfers peer verification or group membership.
 Offline peers must synchronize accepted history, re-verify as required, and

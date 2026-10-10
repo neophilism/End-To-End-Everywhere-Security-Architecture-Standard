@@ -14,14 +14,16 @@
       "id": "contact-alice",
       "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "resulting_identity_id": "identity-alice-replacement",
-      "observed_history_epoch": 41
+      "observed_history_epoch": 41,
+      "resulting_state_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     },
     {
       "type": "contact",
       "id": "contact-bob",
       "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "resulting_identity_id": "identity-alice-replacement",
-      "observed_history_epoch": 41
+      "observed_history_epoch": 41,
+      "resulting_state_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     }
   ],
   "account_delay_elapsed": false
