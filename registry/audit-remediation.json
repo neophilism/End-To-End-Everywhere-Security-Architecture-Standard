@@ -49,7 +49,7 @@
     {
       "id": "AUD-08",
       "title": "Identity loss and recovery authority",
-      "state": "pending",
+      "state": "implemented",
       "independent_review": "pending"
     },
     {
@@ -209,9 +209,18 @@
     },
     {
       "id": "F04",
-      "state": "reported",
+      "state": "regression-verified",
       "source": "Claude audit v2",
-      "reproductions": []
+      "reproductions": [
+        {
+          "origin": "normative contract and reference evaluator",
+          "reference": "spec/identity-device-architecture.md#15-total-loss-recovery-authority-and-replacement"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_identity_recovery_engine.py"
+        }
+      ]
     },
     {
       "id": "F05",
