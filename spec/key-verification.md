@@ -127,6 +127,15 @@ If the digest differs:
 
 A product **MUST NOT** silently copy verification status from an obsolete subject to a new subject.
 
+A manual record already marked `invalidated` **MUST NOT** become `verified`
+merely because an earlier subject digest matches the current snapshot again.
+Restoring verified trust **MUST** create a new record from a fresh explicit
+out-of-band comparison; editing the old status field is not re-verification.
+
+The relying endpoint **MUST** durably and atomically persist an accepted
+invalidation before relying on verification for send or display decisions.
+The pure reference status evaluator does not perform that persistence.
+
 Queued or unsent protected messages whose recipient identity changed SHOULD be re-evaluated before delivery according to the pairwise/group profile and product risk policy.
 
 ## 10. Hash algorithms

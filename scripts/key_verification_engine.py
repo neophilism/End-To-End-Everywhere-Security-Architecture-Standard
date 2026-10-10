@@ -619,6 +619,13 @@ def verification_status(
             "requires_manual_reverification": False,
             "errors": errors,
         }
+    # A previous comparison stays invalidated even if its subject returns.
+    if record["status"] == "invalidated":
+        return {
+            "status": "invalidated",
+            "requires_manual_reverification": True,
+            "errors": [],
+        }
     return {
         "status": "verified",
         "requires_manual_reverification": False,
