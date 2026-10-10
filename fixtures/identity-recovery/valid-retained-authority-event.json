@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "event_id": "recover-alice-forty-two",
+  "operation": "recover-identity",
+  "prior_identity_id": "identity-alice",
+  "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observed_history_epoch": 41,
+  "resulting_identity_id": "identity-alice",
+  "resulting_state_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "freshness_proof_id": "checkpoint-forty-one",
+  "verified_authorizers": [{
+    "type": "retained-authority",
+    "id": "offline-root-one",
+    "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "resulting_identity_id": "identity-alice",
+    "observed_history_epoch": 41
+  }],
+  "account_delay_elapsed": true
+}
