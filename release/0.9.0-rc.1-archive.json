@@ -1,0 +1,9 @@
+{
+  "release_version": "0.9.0-rc.1",
+  "source_commit": "dea8f54cab9130da86a71f36de553766a978daf2",
+  "manifest_path": "release/0.9.0-rc.1-manifest.json",
+  "manifest_sha256": "85c3cb9e607c1508ae65baeda5987e4a04d8b89d25ca167d48f85983b3afd278",
+  "archive_path": "release/archive/0.9.0-rc.1.tar.gz",
+  "archive_sha256": "cf7f3a999ad35676ea732db065303bc2f61ecce655daf1cf0897f6870d4b862e",
+  "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2"
+}

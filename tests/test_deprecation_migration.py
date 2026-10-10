@@ -27,7 +27,7 @@ class DeprecationMigrationTests(unittest.TestCase):
         return self.load("registry/cryptographic-algorithms.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def plan(self, name: str) -> dict:
         plan=self.load(f"fixtures/deprecation-migration/valid/{name}-plan.json")

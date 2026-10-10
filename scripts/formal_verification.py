@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -20,8 +22,7 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def canonical_digest(value: object) -> str:
-    encoded = json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
-    return "sha256:" + hashlib.sha256(encoded).hexdigest()
+    return canonical_serialization.canonical_digest(value)
 
 
 def _parse_time(value: object, field: str, errors: list[str]) -> datetime | None:

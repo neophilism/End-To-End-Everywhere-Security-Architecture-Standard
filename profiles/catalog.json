@@ -3,24 +3,6 @@
   "standard_version": "0.1.0-dev",
   "families": [
     {
-      "family_id": "foundation",
-      "name": "Foundation",
-      "cardinality": "exactly-one",
-      "description": "Illustrative mandatory foundation family used to exercise the resolver before production architecture profiles are introduced."
-    },
-    {
-      "family_id": "example-architecture",
-      "name": "Example architecture choice",
-      "cardinality": "exactly-one",
-      "description": "Illustrative mutually exclusive architecture family demonstrating multi-option selection."
-    },
-    {
-      "family_id": "example-addons",
-      "name": "Example add-ons",
-      "cardinality": "many",
-      "description": "Illustrative independently composable capability family."
-    },
-    {
       "family_id": "identity-architecture",
       "name": "Identity and device authorization architecture",
       "cardinality": "at-most-one",
@@ -162,123 +144,6 @@
   "profiles": [
     {
       "schema_version": "0.1",
-      "profile_id": "foundation-baseline",
-      "profile_version": "0.1.0",
-      "family_id": "foundation",
-      "status": "recommended",
-      "decision_class": "invariant",
-      "security_properties": [
-        "SP-CONFIDENTIALITY",
-        "SP-INTEGRITY",
-        "SP-DOWNGRADE-RESISTANCE"
-      ],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [],
-      "notes": "Resolver fixture only; not a production cryptographic architecture."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-choice-a",
-      "profile_version": "0.1.0",
-      "family_id": "example-architecture",
-      "status": "recommended",
-      "decision_class": "profile-choice",
-      "security_properties": [
-        "SP-CONFIDENTIALITY"
-      ],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [],
-      "notes": "Illustrative profile only."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-choice-b",
-      "profile_version": "0.1.0",
-      "family_id": "example-architecture",
-      "status": "allowed",
-      "decision_class": "profile-choice",
-      "security_properties": [
-        "SP-CONFIDENTIALITY"
-      ],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [],
-      "notes": "Illustrative profile only."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-choice-a",
-      "profile_version": "0.2.0",
-      "family_id": "example-architecture",
-      "status": "provisional",
-      "decision_class": "profile-choice",
-      "security_properties": [
-        "SP-CONFIDENTIALITY",
-        "SP-KEY-CONSISTENCY"
-      ],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [],
-      "notes": "Illustrates exact version pinning and provisional opt-in."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-addon-requires-a",
-      "profile_version": "0.1.0",
-      "family_id": "example-addons",
-      "status": "allowed",
-      "decision_class": "capability",
-      "security_properties": [
-        "SP-REPLAY-RESISTANCE"
-      ],
-      "requires_profile_refs": [
-        "example-choice-a@0.1.0"
-      ],
-      "incompatible_profile_refs": [],
-      "notes": "Illustrates deterministic dependency expansion."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-addon-conflicts-a",
-      "profile_version": "0.1.0",
-      "family_id": "example-addons",
-      "status": "allowed",
-      "decision_class": "capability",
-      "security_properties": [
-        "SP-ROLLBACK-RESISTANCE"
-      ],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [
-        "example-choice-a@0.1.0"
-      ],
-      "notes": "Illustrates symmetric incompatibility semantics from a one-sided declaration."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-experimental-addon",
-      "profile_version": "0.1.0",
-      "family_id": "example-addons",
-      "status": "experimental",
-      "decision_class": "experimental",
-      "security_properties": [
-        "SP-METADATA-MINIMIZATION"
-      ],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [],
-      "notes": "Illustrates explicit experimental opt-in."
-    },
-    {
-      "schema_version": "0.1",
-      "profile_id": "example-prohibited-addon",
-      "profile_version": "0.1.0",
-      "family_id": "example-addons",
-      "status": "prohibited",
-      "decision_class": "capability",
-      "security_properties": [],
-      "requires_profile_refs": [],
-      "incompatible_profile_refs": [],
-      "notes": "Illustrates a profile that can exist historically in the catalog but can never resolve as conformant."
-    },
-    {
-      "schema_version": "0.1",
       "profile_id": "identity-account-root",
       "profile_version": "0.1.0",
       "family_id": "identity-architecture",
@@ -357,7 +222,37 @@
         "pairwise-pqxdh-spqr@0.1.0",
         "pairwise-pqxdh-triple-ratchet@0.1.0"
       ],
-      "notes": "Classical asynchronous X3DH Revision 1 initialization followed by Double Ratchet Revision 4. Does not claim post-quantum confidentiality."
+      "notes": "Classical asynchronous X3DH Revision 1 initialization followed by Double Ratchet Revision 4. Does not claim post-quantum confidentiality.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -383,7 +278,37 @@
         "pairwise-pqxdh-spqr@0.1.0",
         "pairwise-pqxdh-triple-ratchet@0.1.0"
       ],
-      "notes": "Transitional PQXDH Revision 3 initialization with classical Double Ratchet Revision 4. PQ confidentiality claims are limited by the declared quantum threat model and do not imply post-quantum authentication or post-quantum PCS."
+      "notes": "Transitional PQXDH Revision 3 initialization with classical Double Ratchet Revision 4. PQ confidentiality claims are limited by the declared quantum threat model and do not imply post-quantum authentication or post-quantum PCS.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -409,7 +334,37 @@
         "pairwise-pqxdh-double-ratchet@0.1.0",
         "pairwise-pqxdh-triple-ratchet@0.1.0"
       ],
-      "notes": "PQXDH Revision 3 followed by the Sparse Post-Quantum Ratchet with ML-KEM Braid from Double Ratchet Revision 4. Provides a pure PQ ratchet option without the classical Double Ratchet hedge."
+      "notes": "PQXDH Revision 3 followed by the Sparse Post-Quantum Ratchet with ML-KEM Braid from Double Ratchet Revision 4. Provides a pure PQ ratchet option without the classical Double Ratchet hedge.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -435,7 +390,37 @@
         "pairwise-pqxdh-double-ratchet@0.1.0",
         "pairwise-pqxdh-spqr@0.1.0"
       ],
-      "notes": "Recommended hybrid profile: PQXDH Revision 3 plus Triple Ratchet Revision 4, combining the classical Double Ratchet and SPQR/ML-KEM Braid. Does not claim post-quantum authentication because current PQXDH authentication remains classical."
+      "notes": "Recommended hybrid profile: PQXDH Revision 3 plus Triple Ratchet Revision 4, combining the classical Double Ratchet and SPQR/ML-KEM Braid. Does not claim post-quantum authentication because current PQXDH authentication remains classical.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -460,7 +445,37 @@
         "group-sender-key-aead@0.1.0",
         "group-pairwise-fanout@0.1.0"
       ],
-      "notes": "Recommended standards-based group profile using MLS 1.0 (RFC 9420), with authenticated membership epochs, forward secrecy, and post-compromise security."
+      "notes": "Recommended standards-based group profile using MLS 1.0 (RFC 9420), with authenticated membership epochs, forward secrecy, and post-compromise security.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -483,7 +498,48 @@
         "group-mls-rfc9420@0.1.0",
         "group-pairwise-fanout@0.1.0"
       ],
-      "notes": "Efficient Sender-Keys-style group profile using pairwise E2EE to distribute per-sender chain state, registered KDF/AEAD/signature algorithms, and mandatory full rotation on membership changes. Does not claim automatic PCS."
+      "notes": "Efficient Sender-Keys-style group profile using pairwise E2EE to distribute per-sender chain state, registered KDF/AEAD/signature algorithms, and mandatory full rotation on membership changes. Does not claim automatic PCS.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-GROUP-PAIRWISE-CHANNEL",
+          "scope": "same-flow",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "pairwise-e2ee"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -507,7 +563,48 @@
         "group-mls-rfc9420@0.1.0",
         "group-sender-key-aead@0.1.0"
       ],
-      "notes": "Simple O(n) group architecture that encrypts each group message independently to every current recipient device using a selected E2EESA pairwise profile; no shared group content key."
+      "notes": "Simple O(n) group architecture that encrypts each group message independently to every current recipient device using a selected E2EESA pairwise profile; no shared group content key.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-GROUP-PAIRWISE-CHANNEL",
+          "scope": "same-flow",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "pairwise-e2ee"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -524,7 +621,20 @@
       "incompatible_profile_refs": [
         "verify-device-set@0.1.0"
       ],
-      "notes": "Manual verification binds a canonical safety digest to the two client-controlled account-root public keys. Device changes authorized beneath an unchanged verified root do not automatically invalidate the root verification."
+      "notes": "Manual verification binds a canonical safety digest to the two client-controlled account-root public keys. Device changes authorized beneath an unchanged verified root do not automatically invalidate the root verification.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-ACCOUNT-ROOT-IDENTITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "profile_ref": "identity-account-root@0.1.0"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -559,7 +669,23 @@
         "kt-third-party-auditing@0.1.0",
         "kt-third-party-management@0.1.0"
       ],
-      "notes": "Single-party IETF Key Transparency deployment using durable client monitoring state plus anonymous or peer gossip/fork-detection channels."
+      "notes": "Single-party IETF Key Transparency deployment using durable client monitoring state plus anonymous or peer gossip/fork-detection channels.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-TRANSPARENCY-VERIFICATION-SUBJECT",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "key-verification"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -577,7 +703,23 @@
         "kt-contact-monitoring@0.1.0",
         "kt-third-party-management@0.1.0"
       ],
-      "notes": "Recommended stateful-client deployment using independent third-party auditor attestations, bounded auditor lag, owner monitoring, and client checkpoint continuity."
+      "notes": "Recommended stateful-client deployment using independent third-party auditor attestations, bounded auditor lag, owner monitoring, and client checkpoint continuity.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-TRANSPARENCY-VERIFICATION-SUBJECT",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "key-verification"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -595,7 +737,23 @@
         "kt-contact-monitoring@0.1.0",
         "kt-third-party-auditing@0.1.0"
       ],
-      "notes": "Recommended where clients are ephemeral or vulnerable to state loss: an independent manager operates the log while the service operator authenticates label updates and detects forks."
+      "notes": "Recommended where clients are ephemeral or vulnerable to state loss: an independent manager operates the log while the service operator authenticates label updates and detects forks.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-TRANSPARENCY-VERIFICATION-SUBJECT",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "key-verification"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -612,7 +770,23 @@
         "backup-user-secret@0.1.0",
         "backup-hardware-assisted@0.1.0"
       ],
-      "notes": "No recoverable copy of protected content or content-decryption keying material is retained outside currently authorized E2EE endpoints. Maximizes confidentiality at the cost of recoverability."
+      "notes": "No recoverable copy of protected content or content-decryption keying material is retained outside currently authorized E2EE endpoints. Maximizes confidentiality at the cost of recoverability.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -631,7 +805,23 @@
         "backup-none@0.1.0",
         "backup-hardware-assisted@0.1.0"
       ],
-      "notes": "Client-side encrypted backup with a fresh random backup data key protected by an Argon2id-hardened user-held recovery secret. Server storage alone cannot recover plaintext."
+      "notes": "Client-side encrypted backup with a fresh random backup data key protected by an Argon2id-hardened user-held recovery secret. Server storage alone cannot recover plaintext.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -650,7 +840,23 @@
         "backup-none@0.1.0",
         "backup-user-secret@0.1.0"
       ],
-      "notes": "Defense-in-depth recovery: the Argon2id user-secret envelope is additionally protected by a non-exportable hardware/HSM wrapping key and authenticated, rate-limited release path. Hardware/service compromise alone remains insufficient to decrypt the backup."
+      "notes": "Defense-in-depth recovery: the Argon2id user-secret envelope is additionally protected by a non-exportable hardware/HSM wrapping key and authenticated, rate-limited release path. Hardware/service compromise alone remains insufficient to decrypt the backup.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -773,7 +979,41 @@
       ],
       "requires_profile_refs": [],
       "incompatible_profile_refs": [],
-      "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305 recommended, AES-256-GCM-SIV allowed; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules."
+      "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305 recommended, AES-256-GCM-SIV allowed; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-AUTHENTICATED-PARENT-CHANNEL",
+          "scope": "same-flow",
+          "requires": {
+            "all_of": [
+              {
+                "any_of": [
+                  {
+                    "family_id": "pairwise-e2ee"
+                  },
+                  {
+                    "family_id": "group-e2ee"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -792,7 +1032,55 @@
       "incompatible_profile_refs": [
         "media-sframe-mls@0.1.0"
       ],
-      "notes": "RFC 9605 SFrame with a fresh sender-owned base key distributed over a pre-existing authenticated E2EE control channel. Best fit for 1:1 and smaller groups; every active sender rotates on membership changes."
+      "notes": "RFC 9605 SFrame with a fresh sender-owned base key distributed over a pre-existing authenticated E2EE control channel. Best fit for 1:1 and smaller groups; every active sender rotates on membership changes.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-AUTHENTICATED-PARENT-CHANNEL",
+          "scope": "same-flow",
+          "requires": {
+            "all_of": [
+              {
+                "any_of": [
+                  {
+                    "family_id": "pairwise-e2ee"
+                  },
+                  {
+                    "family_id": "group-e2ee"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",
@@ -814,7 +1102,37 @@
       "incompatible_profile_refs": [
         "media-sframe-sender-keys@0.1.0"
       ],
-      "notes": "RFC 9605 SFrame using its MLS exporter/KID construction over the E2EESA RFC 9420 group profile. Recommended for multiparty conferences and membership churn."
+      "notes": "RFC 9605 SFrame using its MLS exporter/KID construction over the E2EESA RFC 9420 group profile. Recommended for multiparty conferences and membership churn.",
+      "dependency_rules": [
+        {
+          "requirement_id": "DEP-CONTENT-AUTHORITY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "identity-architecture"
+              },
+              {
+                "family_id": "secret-storage"
+              }
+            ]
+          }
+        },
+        {
+          "requirement_id": "DEP-ENDPOINT-BOUNDARY",
+          "scope": "same-component",
+          "requires": {
+            "all_of": [
+              {
+                "family_id": "client-security"
+              },
+              {
+                "family_id": "transport-security"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "schema_version": "0.1",

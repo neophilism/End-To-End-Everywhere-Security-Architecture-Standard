@@ -20,7 +20,7 @@ class CompatibilitySolverTests(unittest.TestCase):
         return json.loads((ROOT / rel).read_text(encoding="utf-8"))
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def properties(self) -> dict:
         return self.load("registry/security-properties.json")

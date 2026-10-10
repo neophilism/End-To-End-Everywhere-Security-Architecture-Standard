@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.1",
+  "active_scheme": "e2eesa-jcs-integer-v1",
+  "numeric_policy": "safe integers; exact decimals as strings; no rounding",
+  "legacy_read_only_schemes": [
+    "legacy-python-ascii-v0",
+    "legacy-python-utf8-v0"
+  ],
+  "active_owners": [
+    {
+      "module": "standards_crosswalk.py",
+      "function": "canonical_digest",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "certification_attestations.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "observatory_data_architecture.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "reference_fixtures.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "conformance_engine.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "formal_verification.py",
+      "function": "canonical_digest",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "research_promotion.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "identity_device_engine.py",
+      "function": "canonical_state_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "confidence_classification.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "observatory_evidence.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "interoperability_suite.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "compatibility_solver.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "deprecation_migration.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "attachment_encryption_engine.py",
+      "function": "_canonical_json",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "key_verification_engine.py",
+      "function": "_canonical_json",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "integration_contracts.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "advisory_interoperability.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "research_profile_registry.py",
+      "function": "canonical_bytes",
+      "scheme": "e2eesa-jcs-integer-v1"
+    },
+    {
+      "module": "certification_attestation.py",
+      "function": "canonical_digest",
+      "scheme": "e2eesa-jcs-integer-v1"
+    }
+  ]
+}

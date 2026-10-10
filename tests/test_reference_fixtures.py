@@ -21,13 +21,13 @@ def load(rel: str) -> dict:
 class ReferenceFixturesTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.catalog = load("profiles/catalog.json")
+        cls.catalog = load("fixtures/profiles/development-catalog.json")
         cls.properties = load("registry/security-properties.json")
         cls.promotions = load("registry/research-promotion.json")
         cls.conformance = load("registry/conformance.json")
         cls.solver_registry = load("registry/compatibility-solver.json")
         cls.fixture_registry = load("registry/reference-fixtures.json")
-        cls.manifest = load("fixtures/reference-architectures/manifest.json")
+        cls.manifest = load("fixtures/reference-architectures/development-manifest.json")
         cls.report = reference_fixtures.evaluate_manifest(
             cls.manifest,
             fixture_registry=cls.fixture_registry,

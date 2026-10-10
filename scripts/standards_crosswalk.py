@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import canonical_serialization
+
 import argparse
 import hashlib
 import json
@@ -14,8 +16,7 @@ NORMATIVE_RE = re.compile(r"\b(MUST NOT|SHOULD NOT|MUST|SHOULD|MAY)\b")
 
 
 def canonical_digest(value):
-    data = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
-    return "sha256:" + hashlib.sha256(data).hexdigest()
+    return canonical_serialization.canonical_digest(value)
 
 
 def spec_documents(root):
@@ -169,6 +170,10 @@ def build_report(root, catalog, rules_doc):
         "requirement_count": len(records),
         "covered_requirement_count": len(records),
         "coverage_percent_basis_points": 10000 if records else 0,
+        "coverage_kind": "document-rule-projection",
+        "projected_coverage_percent_basis_points": 10000 if records else 0,
+        "individually_authored_coverage_percent_basis_points": 0,
+        "independently_reviewed_coverage_percent_basis_points": 0,
         "no_direct_analog_count": no_direct,
         "per_document_requirement_counts": dict(sorted(by_doc.items())),
         "per_organization_relation_counts": dict(sorted(by_org.items())),

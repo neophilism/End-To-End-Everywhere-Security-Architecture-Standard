@@ -177,7 +177,7 @@ class ConformanceCliTests(unittest.TestCase):
             self.assertEqual(code, e2eesa_conformance.EXIT_PASS, stderr)
             result = json.loads(stdout)
             self.assertEqual(result["verdict"], "pass", result["reasons"])
-            self.assertTrue(result["production_certification_eligible"])
+            self.assertFalse(result["production_certification_eligible"])
 
     def test_evaluate_fail_returns_one(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -319,7 +319,8 @@ class ConformanceCliTests(unittest.TestCase):
             ])
             self.assertEqual(code, 0, stderr)
             self.assertIn("verdict: PASS", stdout)
-            self.assertIn("claim_scope: production-conformance", stdout)
+            self.assertIn("claim_scope: configuration-diagnostic", stdout)
+            self.assertIn("evaluation_policy_scope: production-conformance", stdout)
 
             result["result_digest"] = "sha256:" + "9" * 64
             self.write_json(directory, "bad-result.json", result)
@@ -395,7 +396,7 @@ class ConformanceCliTests(unittest.TestCase):
             ])
             self.assertEqual(code, 0, stderr)
             self.assertIn("verdict: PASS", stdout)
-            self.assertIn("production_certification_eligible: true", stdout)
+            self.assertIn("production_certification_eligible: false", stdout)
 
     def test_missing_basis_root_is_invalid_input(self) -> None:
         stdout = StringIO()

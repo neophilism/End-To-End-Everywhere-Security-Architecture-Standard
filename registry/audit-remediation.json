@@ -1,0 +1,309 @@
+{
+  "schema_version": "0.1",
+  "audit_version": 2,
+  "audit_pdf_sha256": "74685298eace3e5b3752541a197f42bde029819033613739e0460d31643b1958",
+  "audited_commit": "dea8f54cab9130da86a71f36de553766a978daf2",
+  "upstream_packages": [
+    {
+      "id": "AUD-01",
+      "title": "Audit register and next-candidate governance",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-02",
+      "title": "Shared canonical serialization",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-03",
+      "title": "Versioned digest and signature contracts",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-04",
+      "title": "Illustrative catalog separation",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-05",
+      "title": "Component and flow applicability",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-06",
+      "title": "Scoped typed dependencies",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-07",
+      "title": "Scoped claim eligibility",
+      "state": "implemented",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-08",
+      "title": "Identity loss and recovery authority",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-09",
+      "title": "Key-change state machine",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-10",
+      "title": "Endpoint disclosure boundary",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-11",
+      "title": "Hardware recovery budgets",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-12",
+      "title": "Authenticated backup rotation",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-13",
+      "title": "Pairwise strength and operational bounds",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-14",
+      "title": "Protocol pins and binding conventions",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-15",
+      "title": "Group update and PQ claims",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-16",
+      "title": "Optional PQ MLS research",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-17",
+      "title": "Push and correlation boundaries",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-18",
+      "title": "Algorithm and version registries",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-19",
+      "title": "Parser isolation evidence",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-20",
+      "title": "Transport PKI CT and ECH",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-21",
+      "title": "Requirement analysis infrastructure",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-22",
+      "title": "Individual core requirement analysis",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-23",
+      "title": "Cross-implementation adversarial corpus",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-24",
+      "title": "SDK and legacy migration",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-25",
+      "title": "Public source-backed guidance",
+      "state": "pending",
+      "independent_review": "pending"
+    },
+    {
+      "id": "AUD-26",
+      "title": "New candidate freeze and review handoff",
+      "state": "pending",
+      "independent_review": "pending"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "state": "regression-verified",
+      "source": "Claude audit v2",
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_scoped_assessment.py"
+        }
+      ]
+    },
+    {
+      "id": "F02",
+      "state": "regression-verified",
+      "source": "Claude audit v2",
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_scoped_dependencies.py"
+        }
+      ]
+    },
+    {
+      "id": "F03",
+      "state": "regression-verified",
+      "source": "Claude audit v2",
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_production_catalog.py"
+        }
+      ]
+    },
+    {
+      "id": "F04",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F05",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F06",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F07",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F08",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F09",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F10",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F11",
+      "state": "regression-verified",
+      "source": "Claude audit v2",
+      "reproductions": [
+        {
+          "origin": "locally-reproduced against exact preserved rc.1 bytes and active tooling",
+          "reference": "release/evidence/audit-foundation-reproductions.json"
+        },
+        {
+          "origin": "regression tests",
+          "reference": "tests/test_cross_language_bytes.py"
+        }
+      ]
+    },
+    {
+      "id": "F12",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F13",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F14",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    },
+    {
+      "id": "F15",
+      "state": "reported",
+      "source": "Claude audit v2",
+      "reproductions": []
+    }
+  ],
+  "baseline_test_run": {
+    "command": "python -m unittest discover -s tests -q",
+    "tests": 834,
+    "outcome": "pass",
+    "source_commit": "dea8f54cab9130da86a71f36de553766a978daf2"
+  },
+  "downstream_rollout": "deferred-until-corrected-contracts",
+  "validator_inventory": [
+    {
+      "path": "scripts/certification_attestation.py",
+      "disposition": "retained; used by signature and conformance consumers"
+    },
+    {
+      "path": "scripts/certification_attestations.py",
+      "disposition": "retained; supported CLI/import path and repository validation; not confirmed obsolete"
+    }
+  ]
+}

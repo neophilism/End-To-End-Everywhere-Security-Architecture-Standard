@@ -21,13 +21,13 @@ def load(rel: str) -> dict:
 class InteroperabilitySuiteTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.catalog=load("profiles/catalog.json")
+        cls.catalog=load("fixtures/profiles/development-catalog.json")
         cls.properties=load("registry/security-properties.json")
         cls.promotions=load("registry/research-promotion.json")
         cls.conformance=load("registry/conformance.json")
         cls.solver_registry=load("registry/compatibility-solver.json")
         cls.fixture_registry=load("registry/reference-fixtures.json")
-        cls.fixture_manifest=load("fixtures/reference-architectures/manifest.json")
+        cls.fixture_manifest=load("fixtures/reference-architectures/development-manifest.json")
         cls.suite_registry=load("registry/interoperability-suite.json")
         cls.contract_manifest=load(
             "fixtures/interoperability/dependency-contracts.json"

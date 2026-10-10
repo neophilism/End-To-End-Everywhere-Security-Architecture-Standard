@@ -28,7 +28,7 @@ class TransportSecurityEngineTests(unittest.TestCase):
         return self.load("registry/cryptographic-algorithms.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def policy(self, name: str) -> dict:
         return self.load(f"fixtures/transport/policies/{name}.json")

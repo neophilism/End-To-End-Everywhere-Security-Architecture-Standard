@@ -11,6 +11,7 @@ import sys
 import tempfile
 from typing import Any, TextIO
 
+import canonical_serialization
 import conformance_engine
 import formal_verification
 
@@ -24,7 +25,7 @@ DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 
 STANDARD_FILES = {
     "conformance_registry": "registry/conformance.json",
-    "catalog": "profiles/catalog.json",
+    "catalog": "fixtures/profiles/development-catalog.json",
     "crypto": "registry/cryptographic-algorithms.json",
     "property_registry": "registry/security-properties.json",
     "threat_registry": "registry/threat-model.json",
@@ -69,13 +70,15 @@ def load_json(path: str | Path) -> dict[str, Any]:
     except OSError as exc:
         raise InputError(f"cannot read {file_path}: {exc}") from exc
     try:
-        value = json.loads(text, object_pairs_hook=_reject_duplicate_keys)
+        value = canonical_serialization.parse_json(text)
     except InputError:
         raise
     except json.JSONDecodeError as exc:
         raise InputError(
             f"invalid JSON in {file_path}: line {exc.lineno} column {exc.colno}: {exc.msg}"
         ) from exc
+    except ValueError as exc:
+        raise InputError(str(exc)) from exc
     if not isinstance(value, dict):
         raise InputError(f"{file_path}: top-level JSON value must be an object")
     return value
@@ -151,6 +154,8 @@ def render_result_text(result: dict[str, Any]) -> str:
     lines = [
         f"verdict: {str(result.get('verdict', 'unknown')).upper()}",
         f"claim_scope: {result.get('claim_scope')}",
+        f"evaluation_policy_scope: {result.get('evaluation_policy_scope')}",
+        f"result_class: {result.get('result_class')}",
         (
             "product: "
             f"{result.get('product_id')} {result.get('product_version')} "

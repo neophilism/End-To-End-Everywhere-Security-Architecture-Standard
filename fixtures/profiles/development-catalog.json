@@ -1,0 +1,1331 @@
+{
+  "schema_version": "0.1",
+  "standard_version": "0.1.0-dev",
+  "families": [
+    {
+      "family_id": "foundation",
+      "name": "Foundation",
+      "cardinality": "exactly-one",
+      "description": "Illustrative mandatory foundation family used to exercise the resolver before production architecture profiles are introduced."
+    },
+    {
+      "family_id": "example-architecture",
+      "name": "Example architecture choice",
+      "cardinality": "exactly-one",
+      "description": "Illustrative mutually exclusive architecture family demonstrating multi-option selection."
+    },
+    {
+      "family_id": "example-addons",
+      "name": "Example add-ons",
+      "cardinality": "many",
+      "description": "Illustrative independently composable capability family."
+    },
+    {
+      "family_id": "identity-architecture",
+      "name": "Identity and device authorization architecture",
+      "cardinality": "at-most-one",
+      "description": "Versioned alternatives for authorizing devices that can receive end-to-end protected content. Product conformance requires one when identity/device management is in scope."
+    },
+    {
+      "family_id": "pairwise-e2ee",
+      "name": "Pairwise end-to-end encryption",
+      "cardinality": "at-most-one",
+      "description": "Complete asynchronous one-to-one session profiles combining a published prekey initialization protocol with a ratcheting protocol. Product conformance requires one when pairwise E2EE is in scope."
+    },
+    {
+      "family_id": "group-e2ee",
+      "name": "Group end-to-end encryption",
+      "cardinality": "at-most-one",
+      "description": "Complete group-messaging architecture profiles for asynchronous multi-device groups. Product conformance requires one when group E2EE is in scope."
+    },
+    {
+      "family_id": "key-verification",
+      "name": "Manual key verification",
+      "cardinality": "at-most-one",
+      "description": "Versioned manual verification profiles that bind an out-of-band safety number/QR representation either to stable account-root identities or to the complete active device-key sets."
+    },
+    {
+      "family_id": "key-transparency",
+      "name": "Key transparency",
+      "cardinality": "at-most-one",
+      "description": "Versioned Key Transparency deployment profiles that detect inconsistent or rolled-back cryptographic identity-directory views."
+    },
+    {
+      "family_id": "backup-recovery",
+      "name": "Backup and recovery",
+      "cardinality": "at-most-one",
+      "description": "Mutually exclusive E2EE backup/recovery architectures covering no recoverable backup, user-secret recovery, and hardware/HSM-assisted recovery."
+    },
+    {
+      "family_id": "metadata-privacy",
+      "name": "Metadata privacy",
+      "cardinality": "at-most-one",
+      "description": "Complete metadata-privacy profiles ranging from strict collection/retention minimization through sender-hidden delivery to relay-partitioned sender-hidden submission."
+    },
+    {
+      "family_id": "contact-discovery",
+      "name": "Contact discovery",
+      "cardinality": "at-most-one",
+      "description": "Privacy-preserving discovery profiles for learning which known identifiers or exact handles correspond to discoverable E2EE users without exposing a client's address book to the service."
+    },
+    {
+      "family_id": "attachment-encryption",
+      "name": "Attachments and file encryption",
+      "cardinality": "at-most-one",
+      "description": "Chunked authenticated file-encryption architecture for E2EE attachments, including key distribution, streaming/range verification, substitution/replay resistance, and deletion semantics."
+    },
+    {
+      "family_id": "real-time-media",
+      "name": "Real-time media",
+      "cardinality": "at-most-one",
+      "description": "End-to-end encrypted real-time audio/video profiles using RFC 9605 SFrame with either sender-key distribution over an existing E2E control channel or MLS-derived conference keys."
+    },
+    {
+      "family_id": "secret-storage",
+      "name": "Secret storage and hardware protection",
+      "cardinality": "at-most-one",
+      "description": "Local protection profiles for device identity keys, protocol state, recovery material, and other E2EE secrets using OS keystores, hardware-isolated key managers, external hardware tokens, or an encrypted software fallback."
+    },
+    {
+      "family_id": "transport-security",
+      "name": "Transport security",
+      "cardinality": "at-most-one",
+      "description": "TLS 1.3 transport profiles for ordinary authenticated transport and RFC 10024 post-quantum/traditional hybrid key agreement, usable over stream TLS or QUIC without weakening application-layer E2EE."
+    },
+    {
+      "family_id": "client-security",
+      "name": "Native and web client security",
+      "cardinality": "at-most-one",
+      "description": "Native and web client security. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "server-trust",
+      "name": "Server trust minimization",
+      "cardinality": "at-most-one",
+      "description": "Server trust minimization. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "telemetry",
+      "name": "Privacy-preserving telemetry",
+      "cardinality": "at-most-one",
+      "description": "Privacy-preserving telemetry. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "secure-development",
+      "name": "Secure development standard",
+      "cardinality": "at-most-one",
+      "description": "Secure development standard. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "software-supply-chain",
+      "name": "Software supply chain",
+      "cardinality": "at-most-one",
+      "description": "Software supply chain. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "security-verification",
+      "name": "Security verification framework",
+      "cardinality": "at-most-one",
+      "description": "Security verification framework. Product conformance requires an applicable profile when this capability is in scope."
+    },
+    {
+      "family_id": "formal-verification",
+      "name": "Formal verification",
+      "cardinality": "many",
+      "description": "Complementary machine-checked proof models selected according to the claims and assurance tier."
+    },
+    {
+      "family_id": "assurance-level",
+      "name": "Assurance level",
+      "cardinality": "at-most-one",
+      "description": "Monotonic evidence-depth tier for an exact product/configuration."
+    },
+    {
+      "family_id": "vulnerability-disclosure",
+      "name": "Vulnerability disclosure timing",
+      "cardinality": "at-most-one",
+      "description": "Selectable coordinated-disclosure timing model with common reporter-protection and intake invariants."
+    },
+    {
+      "family_id": "vulnerability-prioritization",
+      "name": "Vulnerability prioritization",
+      "cardinality": "at-most-one",
+      "description": "Response-priority model for confirmed vulnerability cases."
+    },
+    {
+      "family_id": "advisory-interoperability",
+      "name": "Security advisory interoperability",
+      "cardinality": "many",
+      "description": "Machine-readable advisory export targets; multiple interoperable outputs may be emitted from one normalized advisory."
+    }
+  ],
+  "profiles": [
+    {
+      "schema_version": "0.1",
+      "profile_id": "foundation-baseline",
+      "profile_version": "0.1.0",
+      "family_id": "foundation",
+      "status": "recommended",
+      "decision_class": "invariant",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Resolver fixture only; not a production cryptographic architecture."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-choice-a",
+      "profile_version": "0.1.0",
+      "family_id": "example-architecture",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrative profile only."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-choice-b",
+      "profile_version": "0.1.0",
+      "family_id": "example-architecture",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrative profile only."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-choice-a",
+      "profile_version": "0.2.0",
+      "family_id": "example-architecture",
+      "status": "provisional",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates exact version pinning and provisional opt-in."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-addon-requires-a",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "allowed",
+      "decision_class": "capability",
+      "security_properties": [
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [
+        "example-choice-a@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates deterministic dependency expansion."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-addon-conflicts-a",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "allowed",
+      "decision_class": "capability",
+      "security_properties": [
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "example-choice-a@0.1.0"
+      ],
+      "notes": "Illustrates symmetric incompatibility semantics from a one-sided declaration."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-experimental-addon",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "experimental",
+      "decision_class": "experimental",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates explicit experimental opt-in."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "example-prohibited-addon",
+      "profile_version": "0.1.0",
+      "family_id": "example-addons",
+      "status": "prohibited",
+      "decision_class": "capability",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Illustrates a profile that can exist historically in the catalog but can never resolve as conformant."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "identity-account-root",
+      "profile_version": "0.1.0",
+      "family_id": "identity-architecture",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "identity-device-cross-signing@0.1.0",
+        "identity-threshold-quorum@0.1.0"
+      ],
+      "notes": "Stable client-controlled account cryptographic root authorizes device enrollment, rotation, and revocation."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "identity-device-cross-signing",
+      "profile_version": "0.1.0",
+      "family_id": "identity-architecture",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "identity-account-root@0.1.0",
+        "identity-threshold-quorum@0.1.0"
+      ],
+      "notes": "Existing active devices authorize device-set changes without a separate persistent account-root signing key."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "identity-threshold-quorum",
+      "profile_version": "0.1.0",
+      "family_id": "identity-architecture",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "identity-account-root@0.1.0",
+        "identity-device-cross-signing@0.1.0"
+      ],
+      "notes": "A strict majority of eligible active devices authorizes device-set changes."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-x3dh-double-ratchet",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ],
+      "notes": "Classical asynchronous X3DH Revision 1 initialization followed by Double Ratchet Revision 4. Does not claim post-quantum confidentiality."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-pqxdh-double-ratchet",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ],
+      "notes": "Transitional PQXDH Revision 3 initialization with classical Double Ratchet Revision 4. PQ confidentiality claims are limited by the declared quantum threat model and do not imply post-quantum authentication or post-quantum PCS."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-pqxdh-spqr",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ],
+      "notes": "PQXDH Revision 3 followed by the Sparse Post-Quantum Ratchet with ML-KEM Braid from Double Ratchet Revision 4. Provides a pure PQ ratchet option without the classical Double Ratchet hedge."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "pairwise-pqxdh-triple-ratchet",
+      "profile_version": "0.1.0",
+      "family_id": "pairwise-e2ee",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0"
+      ],
+      "notes": "Recommended hybrid profile: PQXDH Revision 3 plus Triple Ratchet Revision 4, combining the classical Double Ratchet and SPQR/ML-KEM Braid. Does not claim post-quantum authentication because current PQXDH authentication remains classical."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "group-mls-rfc9420",
+      "profile_version": "0.1.0",
+      "family_id": "group-e2ee",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "group-sender-key-aead@0.1.0",
+        "group-pairwise-fanout@0.1.0"
+      ],
+      "notes": "Recommended standards-based group profile using MLS 1.0 (RFC 9420), with authenticated membership epochs, forward secrecy, and post-compromise security."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "group-sender-key-aead",
+      "profile_version": "0.1.0",
+      "family_id": "group-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-FORWARD-SECRECY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "group-mls-rfc9420@0.1.0",
+        "group-pairwise-fanout@0.1.0"
+      ],
+      "notes": "Efficient Sender-Keys-style group profile using pairwise E2EE to distribute per-sender chain state, registered KDF/AEAD/signature algorithms, and mandatory full rotation on membership changes. Does not claim automatic PCS."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "group-pairwise-fanout",
+      "profile_version": "0.1.0",
+      "family_id": "group-e2ee",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-MESSAGE-AUTHENTICITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "group-mls-rfc9420@0.1.0",
+        "group-sender-key-aead@0.1.0"
+      ],
+      "notes": "Simple O(n) group architecture that encrypts each group message independently to every current recipient device using a selected E2EESA pairwise profile; no shared group content key."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verify-account-root",
+      "profile_version": "0.1.0",
+      "family_id": "key-verification",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verify-device-set@0.1.0"
+      ],
+      "notes": "Manual verification binds a canonical safety digest to the two client-controlled account-root public keys. Device changes authorized beneath an unchanged verified root do not automatically invalidate the root verification."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verify-device-set",
+      "profile_version": "0.1.0",
+      "family_id": "key-verification",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-PEER-AUTHENTICATION",
+        "SP-KEY-CONSISTENCY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verify-account-root@0.1.0"
+      ],
+      "notes": "Manual verification binds a canonical safety digest to the complete active device-key sets for both parties. Any active-device or verified key-set change invalidates the prior verification."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "kt-contact-monitoring",
+      "profile_version": "0.1.0",
+      "family_id": "key-transparency",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "kt-third-party-auditing@0.1.0",
+        "kt-third-party-management@0.1.0"
+      ],
+      "notes": "Single-party IETF Key Transparency deployment using durable client monitoring state plus anonymous or peer gossip/fork-detection channels."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "kt-third-party-auditing",
+      "profile_version": "0.1.0",
+      "family_id": "key-transparency",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "kt-contact-monitoring@0.1.0",
+        "kt-third-party-management@0.1.0"
+      ],
+      "notes": "Recommended stateful-client deployment using independent third-party auditor attestations, bounded auditor lag, owner monitoring, and client checkpoint continuity."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "kt-third-party-management",
+      "profile_version": "0.1.0",
+      "family_id": "key-transparency",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-KEY-CONSISTENCY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "kt-contact-monitoring@0.1.0",
+        "kt-third-party-auditing@0.1.0"
+      ],
+      "notes": "Recommended where clients are ephemeral or vulnerable to state loss: an independent manager operates the log while the service operator authenticates label updates and detects forks."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "backup-none",
+      "profile_version": "0.1.0",
+      "family_id": "backup-recovery",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-BACKUP-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "backup-user-secret@0.1.0",
+        "backup-hardware-assisted@0.1.0"
+      ],
+      "notes": "No recoverable copy of protected content or content-decryption keying material is retained outside currently authorized E2EE endpoints. Maximizes confidentiality at the cost of recoverability."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "backup-user-secret",
+      "profile_version": "0.1.0",
+      "family_id": "backup-recovery",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "backup-none@0.1.0",
+        "backup-hardware-assisted@0.1.0"
+      ],
+      "notes": "Client-side encrypted backup with a fresh random backup data key protected by an Argon2id-hardened user-held recovery secret. Server storage alone cannot recover plaintext."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "backup-hardware-assisted",
+      "profile_version": "0.1.0",
+      "family_id": "backup-recovery",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "backup-none@0.1.0",
+        "backup-user-secret@0.1.0"
+      ],
+      "notes": "Defense-in-depth recovery: the Argon2id user-secret envelope is additionally protected by a non-exportable hardware/HSM wrapping key and authenticated, rate-limited release path. Hardware/service compromise alone remains insufficient to decrypt the backup."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "metadata-minimized",
+      "profile_version": "0.1.0",
+      "family_id": "metadata-privacy",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "metadata-sender-hidden@0.1.0",
+        "metadata-relay-partitioned@0.1.0"
+      ],
+      "notes": "Baseline metadata-minimization profile. Collect only delivery/abuse metadata that is explicitly required, keep retention bounded, and prohibit durable social-graph construction from ordinary message delivery records."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "metadata-sender-hidden",
+      "profile_version": "0.1.0",
+      "family_id": "metadata-privacy",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "metadata-minimized@0.1.0",
+        "metadata-relay-partitioned@0.1.0"
+      ],
+      "notes": "Adds sealed-sender-style delivery so the service routes to a recipient without learning the authenticated sender identity from ordinary message submission. Network source address remains visible to the service unless another transport hides it."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "metadata-relay-partitioned",
+      "profile_version": "0.1.0",
+      "family_id": "metadata-privacy",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "metadata-minimized@0.1.0",
+        "metadata-sender-hidden@0.1.0"
+      ],
+      "notes": "Strongest E2EESA 0.1 messaging-metadata profile: sender-hidden application envelopes submitted through an independent Oblivious HTTP relay/gateway partition so the message service does not receive the client network address."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "contact-exact-handle",
+      "profile_version": "0.1.0",
+      "family_id": "contact-discovery",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "contact-voprf-directory@0.1.0",
+        "contact-attested-private-set@0.1.0"
+      ],
+      "notes": "No address-book discovery. Users connect only through exact user-supplied handles, QR codes, invite links, or equivalent discovery tokens. The service never receives the client's local contact set, but the explicit queried handle may be visible to the service."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "contact-voprf-directory",
+      "profile_version": "0.1.0",
+      "family_id": "contact-discovery",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY",
+        "SP-UNLINKABILITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "contact-exact-handle@0.1.0",
+        "contact-attested-private-set@0.1.0"
+      ],
+      "notes": "Recommended cryptographic private membership discovery using RFC 9497 VOPRF over normalized identifiers plus a versioned directory membership structure. The VOPRF server learns neither queried identifier inputs nor VOPRF outputs; online evaluation rate limits constrain enumeration."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "contact-attested-private-set",
+      "profile_version": "0.1.0",
+      "family_id": "contact-discovery",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION",
+        "SP-METADATA-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "contact-exact-handle@0.1.0",
+        "contact-voprf-directory@0.1.0"
+      ],
+      "notes": "Confidential-compute discovery in which the complete contact set is encrypted to an attested enclave/TEE that computes the intersection and returns only results. The host/service must not observe plaintext query identifiers; assurance depends on attestation, implementation review, and the declared TEE side-channel model."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "attachment-chunked-aead",
+      "profile_version": "0.1.0",
+      "family_id": "attachment-encryption",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Fresh 256-bit key per attachment; AES-256-GCM or ChaCha20-Poly1305 recommended, AES-256-GCM-SIV allowed; independently authenticated fixed-size chunks using a unique 96-bit prefix||counter nonce, an E2EE-delivered authenticated manifest, and strict no-key-in-URL/storage metadata rules."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "media-sframe-sender-keys",
+      "profile_version": "0.1.0",
+      "family_id": "real-time-media",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-FORWARD-SECRECY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "media-sframe-mls@0.1.0"
+      ],
+      "notes": "RFC 9605 SFrame with a fresh sender-owned base key distributed over a pre-existing authenticated E2EE control channel. Best fit for 1:1 and smaller groups; every active sender rotates on membership changes."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "media-sframe-mls",
+      "profile_version": "0.1.0",
+      "family_id": "real-time-media",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-REPLAY-RESISTANCE",
+        "SP-FORWARD-SECRECY",
+        "SP-POST-COMPROMISE-SECURITY"
+      ],
+      "requires_profile_refs": [
+        "group-mls-rfc9420@0.1.0"
+      ],
+      "incompatible_profile_refs": [
+        "media-sframe-sender-keys@0.1.0"
+      ],
+      "notes": "RFC 9605 SFrame using its MLS exporter/KID construction over the E2EESA RFC 9420 group profile. Recommended for multiparty conferences and membership churn."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-platform-keystore",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-hardware-isolated@0.1.0",
+        "secret-external-token@0.1.0",
+        "secret-software-vault@0.1.0"
+      ],
+      "notes": "Uses the native OS keystore/keychain to hold a non-exportable or OS-confined wrapping/private key and protects mutable E2EE secret state in an authenticated encrypted vault. Hardware backing is used when available but is not required or claimed by this profile."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-hardware-isolated",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-platform-keystore@0.1.0",
+        "secret-external-token@0.1.0",
+        "secret-software-vault@0.1.0"
+      ],
+      "notes": "Requires verified hardware-isolated non-exportable key material in Secure Enclave, StrongBox/TEE, TPM 2.0, HSM, or equivalent hardware. Secret state remains client encrypted; attestation and authorization evidence must prove the selected hardware boundary."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-external-token",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-platform-keystore@0.1.0",
+        "secret-hardware-isolated@0.1.0",
+        "secret-software-vault@0.1.0"
+      ],
+      "notes": "Uses an external hardware token/HSM exposed through PKCS #11 or an equivalent reviewed interface. The device vault is encrypted under key material that cannot be exported from the token and token removal can intentionally make local secrets unavailable."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "secret-software-vault",
+      "profile_version": "0.1.0",
+      "family_id": "secret-storage",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "secret-platform-keystore@0.1.0",
+        "secret-hardware-isolated@0.1.0",
+        "secret-external-token@0.1.0"
+      ],
+      "notes": "Fallback for platforms without a trustworthy keystore. A high-entropy generated secret or Argon2id-hardened user secret protects the local encrypted vault. This profile does not claim non-exportability or protection against a fully compromised live endpoint."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "transport-tls13-classical",
+      "profile_version": "0.1.0",
+      "family_id": "transport-security",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "transport-tls13-hybrid@0.1.0"
+      ],
+      "notes": "RFC 9846 TLS 1.3 using ephemeral traditional ECDHE groups. Suitable where hybrid PQ/T TLS is unavailable or not required. Does not claim post-quantum confidentiality."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "transport-tls13-hybrid",
+      "profile_version": "0.1.0",
+      "family_id": "transport-security",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-INTEGRITY",
+        "SP-PEER-AUTHENTICATION",
+        "SP-FORWARD-SECRECY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "transport-tls13-classical@0.1.0"
+      ],
+      "notes": "RFC 9846 TLS 1.3 with an RFC 10024 PQ/traditional hybrid group. X25519MLKEM768 is the default; P-256/ML-KEM-768 and P-384/ML-KEM-1024 are available for deployments with FIPS-oriented requirements. This profile does not by itself claim PQ authentication."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "client-native-signed",
+      "profile_version": "0.1.0",
+      "family_id": "client-security",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "client-web-hardened@0.1.0",
+        "client-web-verified-bootstrap@0.1.0"
+      ],
+      "notes": "Independently installed signed releases, authenticated update metadata, artifact-bound code transparency and native isolation."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "client-web-hardened",
+      "profile_version": "0.1.0",
+      "family_id": "client-security",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "client-native-signed@0.1.0",
+        "client-web-verified-bootstrap@0.1.0"
+      ],
+      "notes": "CSP/SRI hardened browser delivery with independent transparency monitoring; origin still controls executable code. No malicious-origin prevention claim."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "client-web-verified-bootstrap",
+      "profile_version": "0.1.0",
+      "family_id": "client-security",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-DOWNGRADE-RESISTANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "client-native-signed@0.1.0",
+        "client-web-hardened@0.1.0"
+      ],
+      "notes": "An independently installed verifier authenticates the complete web executable closure before execution and rejects unapproved releases."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "server-ciphertext-only",
+      "profile_version": "0.1.0",
+      "family_id": "server-trust",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Relays, queues, object stores, backups, KMS and subprocessors cannot decrypt application E2EE or independently authorize recipients."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-none",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-minimized-diagnostics@0.1.0",
+        "telemetry-dp-aggregate@0.1.0"
+      ],
+      "notes": "No exported telemetry or durable diagnostics; local manual debugging is separate."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-minimized-diagnostics",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-none@0.1.0",
+        "telemetry-dp-aggregate@0.1.0"
+      ],
+      "notes": "Explicit opt-in bounded diagnostic codes; no content, keys, identifiers, pseudonyms or raw crash dumps."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "telemetry-dp-aggregate",
+      "profile_version": "0.1.0",
+      "family_id": "telemetry",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "telemetry-none@0.1.0",
+        "telemetry-minimized-diagnostics@0.1.0"
+      ],
+      "notes": "Pure central-Laplace aggregate counts with user-lifetime adjacency, contribution bounds and cumulative privacy-budget evidence; collector access remains explicit."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "development-ssdf-baseline",
+      "profile_version": "0.1.0",
+      "family_id": "secure-development",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "SSDF 1.1 aligned development controls with independent review, exact-source test/scanning gates and time-bounded risk handling; no high/critical release waivers."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "supply-chain-attested-reproducible",
+      "profile_version": "0.1.0",
+      "family_id": "software-supply-chain",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY",
+        "SP-BUILD-PROVENANCE"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Complete immutable dependency inventory, validated SBOM, authenticated SLSA build provenance, isolated signing and independently reproduced release bytes."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verification-blackbox",
+      "profile_version": "0.1.0",
+      "family_id": "security-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verification-whitebox@0.1.0",
+        "verification-combined@0.1.0"
+      ],
+      "notes": "Independent external-interface/property/fuzz/adversarial assessment, without internal software or key-lifecycle proof claims."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verification-whitebox",
+      "profile_version": "0.1.0",
+      "family_id": "security-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verification-blackbox@0.1.0",
+        "verification-combined@0.1.0"
+      ],
+      "notes": "Independent source/internal-state review with property, fuzz, adversarial and bounded protocol-model evidence."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "verification-combined",
+      "profile_version": "0.1.0",
+      "family_id": "security-verification",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [
+        "SP-SOFTWARE-INTEGRITY"
+      ],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [
+        "verification-blackbox@0.1.0",
+        "verification-whitebox@0.1.0"
+      ],
+      "notes": "Combined external and internal assessment with per-profile method/threat/property coverage and no unresolved counterexamples."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "formal-symbolic-protocol",
+      "profile_version": "0.1.0",
+      "family_id": "formal-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Machine-checked symbolic protocol proof under an explicit adversary/equational model. Tool-neutral; Tamarin/ProVerif-class approaches are examples."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "formal-computational-proof",
+      "profile_version": "0.1.0",
+      "family_id": "formal-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Machine-checked computational/game-based cryptographic proof with explicit assumptions and reductions."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "formal-code-refinement",
+      "profile_version": "0.1.0",
+      "family_id": "formal-verification",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Machine-checked implementation/refinement proof binding code to a formal specification and disclosing unverified toolchain boundaries."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a1-observed",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-blackbox@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "Independent external behavior assessment."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a2-reviewed",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "Combined independent external/source assessment plus secure-development and reproducible supply-chain evidence."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a3-protocol-formal",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "A2 plus symbolic formal protocol evidence for applicable claims."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a4-implementation-formal",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0",
+        "formal-code-refinement@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "A3 plus code/refinement evidence for applicable security-critical implementation claims."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "assurance-a5-comprehensive-formal",
+      "profile_version": "0.1.0",
+      "family_id": "assurance-level",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [
+        "verification-combined@0.1.0",
+        "development-ssdf-baseline@0.1.0",
+        "supply-chain-attested-reproducible@0.1.0",
+        "formal-symbolic-protocol@0.1.0",
+        "formal-code-refinement@0.1.0",
+        "formal-computational-proof@0.1.0"
+      ],
+      "incompatible_profile_refs": [],
+      "notes": "A4 plus computational proof obligations for applicable product-specific constructions/compositions and two independent assessors."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-disclosure-risk-adaptive",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-disclosure",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Risk-tier disclosure timing with published monotonic deadlines and a 180-day maximum coordination cap."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-disclosure-fixed-90",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-disclosure",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Fixed 90-day disclosure clock with a 30-day patch-adoption window when a fix ships before day 90."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-prioritization-cvss-threat",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-prioritization",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "CVSS v4.0 technical severity plus explicit threat/environment context; active exploitation forces emergency priority."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "vulnerability-prioritization-ssvc",
+      "profile_version": "0.1.0",
+      "family_id": "vulnerability-prioritization",
+      "status": "allowed",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Versioned Stakeholder-Specific Vulnerability Categorization decision tree with recorded inputs and outcome."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "advisory-csaf-2-0-iso20153",
+      "profile_version": "0.1.0",
+      "family_id": "advisory-interoperability",
+      "status": "recommended",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Stable production interoperability profile using OASIS CSAF 2.0 as standardized by ISO/IEC 20153:2025."
+    },
+    {
+      "schema_version": "0.1",
+      "profile_id": "advisory-csaf-2-1-csd03",
+      "profile_version": "0.1.0",
+      "family_id": "advisory-interoperability",
+      "status": "provisional",
+      "decision_class": "profile-choice",
+      "security_properties": [],
+      "requires_profile_refs": [],
+      "incompatible_profile_refs": [],
+      "notes": "Provisional current-capability profile using OASIS CSAF 2.1 Committee Specification Draft 03; supports native CVSS v4, EPSS, SSVC v2, and first-known-exploitation dates."
+    }
+  ]
+}

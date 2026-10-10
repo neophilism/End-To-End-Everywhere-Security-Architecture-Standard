@@ -14,7 +14,7 @@ class DevelopmentTests(unittest.TestCase):
                 load_json(ROOT / f"fixtures/secure-development/evidence/{name}.json"))
 
     def validate(self, p, e):
-        return engine.validate_release(p, e, load_json(ROOT / "profiles/catalog.json"))
+        return engine.validate_release(p, e, load_json(ROOT / "fixtures/profiles/development-catalog.json"))
 
     def reject(self, path, value, name="clean"):
         p, e = self.pair(name); node = e
@@ -24,7 +24,7 @@ class DevelopmentTests(unittest.TestCase):
 
     def test_clean_and_fixed_release_fixtures(self):
         for name in ("clean", "remediated"): self.assertEqual(self.validate(*self.pair(name)), [])
-        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "profiles/catalog.json")), [])
+        self.assertEqual(engine.validate_repository(ROOT, load_json(ROOT / "fixtures/profiles/development-catalog.json")), [])
 
     def test_controls_are_complete_unique_and_nonwaivable(self):
         p, e = self.pair(); e["controls"].pop(); self.assertTrue(self.validate(p, e))

@@ -237,8 +237,10 @@ class ObservatoryEvidenceTests(unittest.TestCase):
     def test_canonical_subset_rejects_float_values(self) -> None:
         bundle=self.prepared()
         bundle["events"][0]["attributes"].append({"name":"confidence","value":0.9})
-        bundle["manifest_digest"]=observatory_evidence.compute_manifest_digest(bundle)
-        bundle["bundle_digest"]=observatory_evidence.compute_bundle_digest(bundle)
+        with self.assertRaises(ValueError):
+            observatory_evidence.compute_manifest_digest(bundle)
+        bundle["manifest_digest"]="sha256:" + "0" * 64
+        bundle["bundle_digest"]="sha256:" + "0" * 64
         errors=self.validate(bundle)
         self.assertTrue(any("forbids floating-point values" in e for e in errors))
 

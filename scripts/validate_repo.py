@@ -13,6 +13,10 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
+import component_inventory
+import digest_contracts
+import scoped_assessment
+
 import integration_contracts
 import standards_crosswalk
 import security_rationale
@@ -59,6 +63,19 @@ import interoperability_suite
 import e2eesa_conformance
 
 REQUIRED_PATHS = [
+    "scripts/canonical_serialization.py",
+    "scripts/digest_contracts.py",
+    "scripts/component_inventory.py",
+    "scripts/profile_dependencies.py",
+    "scripts/scoped_assessment.py",
+    "scripts/reproduce_audit_baseline.py",
+    "registry/canonical-serialization.json",
+    "registry/digest-contracts.json",
+    "registry/product-classes.json",
+    "registry/audit-remediation.json",
+    "schemas/component-inventory.schema.json",
+    "schemas/scoped-assessment-request.schema.json",
+    "schemas/scoped-assessment-result.schema.json",
     'scripts/release_candidate.py',
     'registry/release-candidate.json',
     'schemas/release-candidate.schema.json',
@@ -646,7 +663,7 @@ COMPOSITE_ID = re.compile(r"^CS-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 PROPERTY_ID = re.compile(r"^SP-[A-Z0-9]+(?:-[A-Z0-9]+)*$")
 SEMVER = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$")
 DEV_VERSION = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+-dev$")
-CANDIDATE_VERSION = re.compile(r"^0\.9\.0-rc\.[0-9]+$")
+CANDIDATE_VERSION = re.compile(r"^0\.9\.0-rc\.[0-9]+(?:-dev)?$")
 
 
 class ValidationError(Exception):
@@ -1604,6 +1621,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     profile_catalog_path = root / "profiles/catalog.json"
     profile_catalog = load_json(profile_catalog_path) if profile_catalog_path.is_file() else {}
+    development_catalog = load_json(root / "fixtures/profiles/development-catalog.json")
     if profile_catalog:
         known_property_ids_for_catalog = {
             prop.get("id")
@@ -1616,6 +1634,22 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 known_property_ids=known_property_ids_for_catalog,
             )
         )
+
+    production_families={x.get("family_id") for x in profile_catalog.get("families",[])}
+    if {"foundation","example-architecture","example-addons"} & production_families:
+        errors.append("production catalog includes illustrative providers")
+    for rule in component_inventory.product_classes(root)["classes"]:
+        required=set(rule["mandatory_families"])
+        required.update(family for value in rule["capability_families"].values() for family in value)
+        if required-production_families:errors.append("product class refers to unknown production families")
+    for contract in digest_contracts.registry(root)["contracts"]:
+        schema=load_json(root/contract["schema_path"])
+        if set(contract["included_fields"]) & set(contract["excluded_fields"]):errors.append("digest contract includes excluded fields")
+        if set(contract["included_fields"]) | set(contract["excluded_fields"]) != set(schema.get("properties",{})):
+            errors.append("digest contract field set differs from schema: "+contract["contract_id"])
+    if not errors:
+        try:scoped_assessment.standard_lock(root)
+        except ValueError as exc:errors.append(str(exc))
 
     pairwise_protocol_registry_path = root / "registry/pairwise-protocols.json"
     pairwise_protocol_registry = (
@@ -1742,7 +1776,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
             negotiation_engine.validate_policy(
                 negotiation_policy,
                 crypto_registry_data,
-                profile_catalog,
+                development_catalog,
                 "fixtures/negotiation/policy.json",
             )
         )
@@ -1753,7 +1787,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 negotiation_policy,
                 load_json(path),
                 crypto_registry_data,
-                profile_catalog,
+                development_catalog,
                 str(path.relative_to(root)),
             )
             if result:
@@ -1768,7 +1802,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 negotiation_policy,
                 load_json(path),
                 crypto_registry_data,
-                profile_catalog,
+                development_catalog,
                 str(path.relative_to(root)),
             )
             if not result:
@@ -2742,10 +2776,12 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if isinstance(prop, dict) and isinstance(prop.get("id"), str)
     }
 
+    # Resolver fixtures are explicitly development-only and never product evidence.
+    development_catalog = load_json(root / "fixtures/profiles/development-catalog.json")
     valid_config_dir = root / "fixtures/configurations/valid"
     for path in sorted(valid_config_dir.glob("*.json")) if valid_config_dir.exists() else []:
         result = profile_engine.resolve_configuration(
-            profile_catalog,
+            development_catalog,
             load_json(path),
             known_property_ids=known_property_ids,
         )
@@ -2758,7 +2794,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     invalid_config_dir = root / "fixtures/configurations/invalid"
     for path in sorted(invalid_config_dir.glob("*.json")) if invalid_config_dir.exists() else []:
         result = profile_engine.resolve_configuration(
-            profile_catalog,
+            development_catalog,
             load_json(path),
             known_property_ids=known_property_ids,
         )
@@ -2854,7 +2890,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     errors.extend(supply_chain_engine.validate_repository(root, profile_catalog))
 
-    errors.extend(verification_engine.validate_repository(root, profile_catalog))
+    errors.extend(verification_engine.validate_repository(root, development_catalog))
 
     return errors
 

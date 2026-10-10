@@ -284,3 +284,17 @@ Conditional promised properties yield indeterminate, never pass.
 ## 16. References
 
 PR 40 composes the E2EESA profile, assurance, certification, research-promotion and deprecation/migration layers established by PRs 2, 27–28 and 38–39.
+
+## Active component inventories
+
+Active `0.2` assessments MUST classify components and data flows using `registry/product-classes.json`, with source/build-bound observations and completeness evidence appropriate to the assessment tier. The inventory is an assessment input, not its own completeness proof. A mandatory family cannot be waived by a rationale or an empty inventory contradicted by observed protected flows. Unknown classes or capabilities do not receive exemptions. A public website, endpoint, relay, and intentionally authorized processor may be separate components in one product.
+
+A reusable protected-content component MAY declare explicit host obligations for the exact consuming flow; an unrelated service profile cannot discharge them. Offline vaults do not require a network solely to earn component conformance. Declared inventories without trusted assessment evidence remain unqualified for product claims.
+
+## Active assessment and evidence boundary
+
+`scoped_assessment.py` consumes the `0.2` request, an exact standard lock, and source/build-bound component inventory. The request cannot supply trusted observations, verified runtime evidence, or Candidate admission verdicts; trusted assessor adapters supply those separately after provenance/signature and assurance checks. Configuration validity, inventory support, component implementation, operation-specific protected-content claims, independent review, and deployment are separate output fields.
+
+A content property MUST be supplied by the exact flow's content-carrying family. TLS-only or process-only selections cannot provide an E2EE-content claim; pairwise PQ evidence cannot certify group traffic. Missing, stale, mismatched or mock evidence yields an indeterminate claim. Every effective provisional profile needs the exact PR38 Candidate record, passing gates, and bound entry evidence; opt-in alone is insufficient. Production rejects provisional profiles.
+
+The development basis MUST NOT yield a passing final Candidate assessment or production certification. Candidate assessment does not itself complete independent review, hardware qualification, deployment assessment or the 1.0 decision. Legacy `0.1` evaluator passes are configuration diagnostics and always have certification eligibility false.

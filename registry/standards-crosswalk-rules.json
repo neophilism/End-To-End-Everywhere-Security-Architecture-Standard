@@ -597,6 +597,16 @@
         }
       ],
       "no_direct_analog_reason": null
+    },
+    {
+      "document_path": "spec/canonical-serialization.md",
+      "relations": [],
+      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
+    },
+    {
+      "document_path": "spec/digest-signature-inputs.md",
+      "relations": [],
+      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
     }
   ]
 }

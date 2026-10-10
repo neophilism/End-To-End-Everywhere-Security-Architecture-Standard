@@ -28,7 +28,7 @@ class BackupRecoveryEngineTests(unittest.TestCase):
         return self.load("registry/cryptographic-algorithms.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def test_argon2id_is_registered_as_recommended_kdf(self) -> None:
         algorithms = {

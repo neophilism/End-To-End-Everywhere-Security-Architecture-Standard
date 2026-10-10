@@ -122,3 +122,7 @@ It does not replace:
 - `schemas/security-rationale-rules.schema.json`
 - `scripts/security_rationale.py`
 - `tests/test_security_rationale.py`
+
+## Coverage interpretation after Audit v2
+
+Document-rule projection, individually authored requirement analysis, and independently reviewed analysis are separate measures. The legacy coverage percentage denotes projection only. A projected record is not individual analysis. Nonidentical text alone does not establish substantive analysis or independent review.

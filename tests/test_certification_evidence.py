@@ -29,7 +29,7 @@ class CertificationEvidenceTests(unittest.TestCase):
         return self.load("registry/assurance-levels.json")
 
     def catalog(self) -> dict:
-        return self.load("profiles/catalog.json")
+        return self.load("fixtures/profiles/development-catalog.json")
 
     def property_ids(self) -> set[str]:
         return {x["id"] for x in self.load("registry/security-properties.json")["properties"]}
