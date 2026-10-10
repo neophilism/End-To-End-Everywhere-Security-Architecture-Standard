@@ -2,32 +2,12 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 673,
+  "file_count": 686,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
       "size": 1043,
       "git_blob_sha": "684a4b33cf31167bb4e56f965a33556165c7cc2f"
-    },
-    {
-      "path": "CONTRIBUTING.md",
-      "size": 1138,
-      "git_blob_sha": "bc88cb1b0e855d440e876f86175e7d8610d49d20"
-    },
-    {
-      "path": "README.md",
-      "size": 1978,
-      "git_blob_sha": "56c1fdc7c37d7890768989ed32160d88779e7c42"
-    },
-    {
-      "path": "SECURITY.md",
-      "size": 869,
-      "git_blob_sha": "996043f3bc5be52a9b105f53ededc129703c46c2"
-    },
-    {
-      "path": "VERSION",
-      "size": 15,
-      "git_blob_sha": "c7d557ff701c363ed5e291f4a60d0c91688c84c1"
     },
     {
       "path": "adr/0000-template.md",
@@ -233,6 +213,16 @@
       "path": "adr/0044-configuration-interop-does-not-imply-wire-interop.md",
       "size": 1692,
       "git_blob_sha": "a70b9f385bb412b167cb8a1b2ff5dae54e34287a"
+    },
+    {
+      "path": "adr/0045-recovery-authority-does-not-imply-inherited-trust.md",
+      "size": 2294,
+      "git_blob_sha": "60757bb6f173f3d1c800c21718453432bf16e597"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size": 1138,
+      "git_blob_sha": "bc88cb1b0e855d440e876f86175e7d8610d49d20"
     },
     {
       "path": "fixtures/advisory-interoperability/valid/advisory.json",
@@ -643,6 +633,41 @@
       "path": "fixtures/group/policies/sender.json",
       "size": 811,
       "git_blob_sha": "f710ee96b54e1182828083a914d4db0044c413a1"
+    },
+    {
+      "path": "fixtures/identity-recovery/contact-threshold-policy.json",
+      "size": 445,
+      "git_blob_sha": "7dcb6b13c4d4f32e3fbb240ea2271cd763ad9da1"
+    },
+    {
+      "path": "fixtures/identity-recovery/no-recovery-policy.json",
+      "size": 367,
+      "git_blob_sha": "231c506d873ec695973ff80538eb761b0b8aeb34"
+    },
+    {
+      "path": "fixtures/identity-recovery/retained-authority-policy.json",
+      "size": 407,
+      "git_blob_sha": "ba6fd9537d42e67ffa2a2f3c383f86acedd7b482"
+    },
+    {
+      "path": "fixtures/identity-recovery/trusted-local-state.json",
+      "size": 301,
+      "git_blob_sha": "8113c4f3aef1650d52f2f56a85d8fc4cedd133c0"
+    },
+    {
+      "path": "fixtures/identity-recovery/trusted-transparency-state.json",
+      "size": 322,
+      "git_blob_sha": "ad755e035ee1b906679c99327d23f6b457ee3f35"
+    },
+    {
+      "path": "fixtures/identity-recovery/valid-contact-replacement-event.json",
+      "size": 1076,
+      "git_blob_sha": "2441723e38ae3d68aafee2953e8ab85b461b4136"
+    },
+    {
+      "path": "fixtures/identity-recovery/valid-retained-authority-event.json",
+      "size": 781,
+      "git_blob_sha": "6a7dc885f63fa8c8dacdb3cb3ee0039b9791ae9f"
     },
     {
       "path": "fixtures/identity/invalid/insufficient-threshold.json",
@@ -1665,14 +1690,19 @@
       "git_blob_sha": "1c05cdaa678c1a36feed7708537fa1fd222a0a0a"
     },
     {
+      "path": "profiles/catalog.json",
+      "size": 58752,
+      "git_blob_sha": "87fac03bca714ff22e30cc3abf3260f80a8462ae"
+    },
+    {
       "path": "profiles/README.md",
       "size": 8663,
       "git_blob_sha": "d1d21dff6113b6996c777bd653673a9facfaf7ef"
     },
     {
-      "path": "profiles/catalog.json",
-      "size": 58752,
-      "git_blob_sha": "87fac03bca714ff22e30cc3abf3260f80a8462ae"
+      "path": "README.md",
+      "size": 2185,
+      "git_blob_sha": "b2ce78b0cf2a22564818a5568afd0a0a4a0c775b"
     },
     {
       "path": "reference/canonicalization/canonical.mjs",
@@ -1696,8 +1726,8 @@
     },
     {
       "path": "registry/audit-remediation.json",
-      "size": 7893,
-      "git_blob_sha": "8c2c912a95be2409936557cc46f2644643d86e8e"
+      "size": 8237,
+      "git_blob_sha": "7edcccaf664efa5ca4e5b3366aa031af63388509"
     },
     {
       "path": "registry/canonical-serialization.json",
@@ -2148,6 +2178,21 @@
       "path": "schemas/identity-policy.schema.json",
       "size": 957,
       "git_blob_sha": "96ca237d6885dd0882eb98e0bffdb4d4225354a5"
+    },
+    {
+      "path": "schemas/identity-recovery-event.schema.json",
+      "size": 1927,
+      "git_blob_sha": "c6e5ed19bbbe52bb05b6933a0c426466a4be3063"
+    },
+    {
+      "path": "schemas/identity-recovery-policy.schema.json",
+      "size": 1301,
+      "git_blob_sha": "eb51f61673ce4ad8f3ede2fc01b81db3e6edd5c9"
+    },
+    {
+      "path": "schemas/identity-recovery-trusted-state.schema.json",
+      "size": 953,
+      "git_blob_sha": "eff669be4fe89b47b8468ab53c97ab35b453f717"
     },
     {
       "path": "schemas/identity-state.schema.json",
@@ -2685,6 +2730,11 @@
       "git_blob_sha": "a3c1ac3a702979c822381577be05c6c0abbba473"
     },
     {
+      "path": "scripts/identity_recovery_engine.py",
+      "size": 14878,
+      "git_blob_sha": "33b35910b76a4e9dbfe95848186f23266bbba3d7"
+    },
+    {
       "path": "scripts/integration_contracts.py",
       "size": 10982,
       "git_blob_sha": "e5eda08f022f0eaa903ab9f1a9cfe956f8760dfb"
@@ -2840,9 +2890,9 @@
       "git_blob_sha": "4b39f68ab13b4612bec7f78c0716b7134113c1c5"
     },
     {
-      "path": "spec/README.md",
-      "size": 12447,
-      "git_blob_sha": "fed53277d1c676430b7598a67896820656a877c8"
+      "path": "SECURITY.md",
+      "size": 869,
+      "git_blob_sha": "996043f3bc5be52a9b105f53ededc129703c46c2"
     },
     {
       "path": "spec/advisory-interoperability.md",
@@ -2941,8 +2991,8 @@
     },
     {
       "path": "spec/identity-device-architecture.md",
-      "size": 5946,
-      "git_blob_sha": "42707c8ea565f436b327ae6845e8dbd01886193b"
+      "size": 8495,
+      "git_blob_sha": "3f95b679c88616442b7fa75365fb6070cc8812bc"
     },
     {
       "path": "spec/integration-contracts.md",
@@ -3003,6 +3053,11 @@
       "path": "spec/profile-configuration.md",
       "size": 8630,
       "git_blob_sha": "9dfe2aee0e8c56e756bcf9dd44a30fe17859ad44"
+    },
+    {
+      "path": "spec/README.md",
+      "size": 12447,
+      "git_blob_sha": "fed53277d1c676430b7598a67896820656a877c8"
     },
     {
       "path": "spec/real-time-media.md",
@@ -3215,6 +3270,11 @@
       "git_blob_sha": "3224e8d08790ad53773821048e41aecccaea732a"
     },
     {
+      "path": "tests/test_identity_recovery_engine.py",
+      "size": 5798,
+      "git_blob_sha": "b127e66def0a3e7dbd94394f607d12da04cf734c"
+    },
+    {
       "path": "tests/test_integration_contracts.py",
       "size": 8514,
       "git_blob_sha": "ade607f2c1a2ec4cce4288dbc3bb01c9d654bc38"
@@ -3368,7 +3428,12 @@
       "path": "tests/test_vulnerability_handling.py",
       "size": 16714,
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
+    },
+    {
+      "path": "VERSION",
+      "size": 15,
+      "git_blob_sha": "c7d557ff701c363ed5e291f4a60d0c91688c84c1"
     }
   ],
-  "tree_digest": "sha256:cb5511657ab264113dda8c38c1ebf3d5d51c705400de730eaa3763c58c2891f6"
+  "tree_digest": "sha256:198116f220f1599344da7df40615218dd95a9b4890f9a581e3b57cb6a8394ccc"
 }
