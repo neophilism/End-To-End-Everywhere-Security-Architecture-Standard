@@ -7,6 +7,7 @@ import { readFile, readdir, mkdir, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import { renderMarkdown, escapeHtml } from "./markdown.mjs";
+import {createHash} from "node:crypto";
 const root=resolve(import.meta.dirname,"..");
 const read=async p=>readFile(join(root,p),"utf8");
 const catalog=JSON.parse(await read("profiles/catalog.json"));
@@ -64,3 +65,17 @@ for (const name of names) {
   await writeFile(join(docsDir, name.slice(0,-3) + ".html"), document, "utf8");
 }
 console.log("Published", names.length, "fully readable specification pages.");
+
+
+// Avoid CDN and browser cache ambiguity. The generated HTML always points to
+// a filename derived from the *actual* JavaScript bytes, never a query-string
+// cache buster which some CDNs may ignore.
+const appSource=await read("website/app.js");
+const hash=createHash("sha256").update(appSource,"utf8").digest("hex").slice(0,16);
+const appAsset="app-"+hash+".js";
+await writeFile(join(root,"website",appAsset),appSource,"utf8");
+const template=await read("website/index.html");
+const scriptSrc=/src="\.\/(?:app\.js(?:\?[^"]*)?|app-[a-f0-9]{16}\.js)"/;
+if(!scriptSrc.test(template))throw Error("Index must reference the source app.js script");
+await writeFile(join(root,"website","index.html"),template.replace(scriptSrc,'src="./'+appAsset+'"'),"utf8");
+console.log("Published content-addressed JavaScript bundle:",appAsset);
