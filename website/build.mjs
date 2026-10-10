@@ -75,7 +75,7 @@ const hash=createHash("sha256").update(appSource,"utf8").digest("hex").slice(0,1
 const appAsset="app-"+hash+".js";
 await writeFile(join(root,"website",appAsset),appSource,"utf8");
 const template=await read("website/index.html");
-const scriptSrc=/src="\.\/app\.js(?:\?[^"]*)?"/;
+const scriptSrc=/src="\.\/(?:app\.js(?:\?[^"]*)?|app-[a-f0-9]{16}\.js)"/;
 if(!scriptSrc.test(template))throw Error("Index must reference the source app.js script");
 await writeFile(join(root,"website","index.html"),template.replace(scriptSrc,'src="./'+appAsset+'"'),"utf8");
 console.log("Published content-addressed JavaScript bundle:",appAsset);
