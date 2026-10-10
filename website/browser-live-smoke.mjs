@@ -39,6 +39,15 @@ try{
   await phone.locator('.sidebar.open [data-nav="library"]').click();
   await phone.locator(".doc-card").first().waitFor();
   console.log("Mobile menu and library navigation passed.");
+  const preview=await browser.newPage({viewport:{width:1320,height:850}});
+  preview.on("pageerror",error=>errors.push(error.message));
+  await preview.goto("https://e2eesa-standards-portal.onrender.com/",{waitUntil:"domcontentloaded",timeout:45000});
+  await preview.locator(".hero h1").waitFor({timeout:20000});
+  await preview.locator('.sidebar [data-nav="library"]').click();
+  await preview.locator(".doc-card").first().waitFor();
+  await preview.locator(".doc-card").first().click();
+  await preview.locator(".reader-article h1").first().waitFor({timeout:20000});
+  console.log("Legacy preview URL: homepage, library navigation and full-document reading passed.");
   assert.deepEqual(errors,[],"Live page threw browser exceptions");
   console.log("LIVE BROWSER ACCEPTANCE PASSED.");
 }finally{await browser.close()}
