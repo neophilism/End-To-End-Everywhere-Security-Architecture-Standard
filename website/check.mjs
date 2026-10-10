@@ -15,6 +15,11 @@ import { Script } from "node:vm";
 const browserScript=await readFile(new URL("./app.js",import.meta.url),"utf8");
 new Script(browserScript,{filename:"website/app.js"});
 const index=await readFile(new URL("./index.html",import.meta.url),"utf8");
+const builtAsset=index.match(/<script type="module" src="\.\/(app-[a-f0-9]{16}\.js)"><\/script>/);
+if(!builtAsset)throw Error("Published HTML does not point to a unique content-hashed script");
+const browserAsset=await readFile(new URL("./"+builtAsset[1],import.meta.url),"utf8");
+if(browserAsset!==browserScript)throw Error("Published script does not match the current validated source");
+
 if(!index.includes('data-route="profiles"')||!index.includes('standards/README.html'))throw Error("Accessible navigation or static fallback missing");
 for(const doc of data.specifications) {
   if (!doc.url || !/^standards\/[a-z0-9-]+\.html$/i.test(doc.url)) throw Error("Invalid local document URL: "+doc.path);
