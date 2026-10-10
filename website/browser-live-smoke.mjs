@@ -40,9 +40,17 @@ try{
   await phone.locator(".doc-card").first().waitFor();
   console.log("Mobile menu and library navigation passed.");
   const preview=await browser.newPage({viewport:{width:1320,height:850}});
-  preview.on("pageerror",error=>errors.push(error.message));
-  await preview.goto("https://e2eesa-standards-portal.onrender.com/",{waitUntil:"domcontentloaded",timeout:45000});
-  await preview.locator(".hero h1").waitFor({timeout:20000});
+  preview.on("pageerror",error=>{errors.push(error.message);console.log("PREVIEW PAGE ERROR:",error.stack)});
+  preview.on("console",message=>{if(message.type()==="error")console.log("PREVIEW CONSOLE ERROR:",message.text())});
+  preview.on("requestfailed",request=>console.log("PREVIEW REQUEST FAILED:",request.url(),request.failure()?.errorText));
+  const previewResponse=await preview.goto("https://e2eesa-standards-portal.onrender.com/",{waitUntil:"domcontentloaded",timeout:45000});
+  console.log("PREVIEW NAVIGATION:",previewResponse?.status(),preview.url());
+  try{await preview.locator(".hero h1").waitFor({timeout:9000})}catch(err){
+    console.log("PREVIEW DOCUMENT BODY:",(await preview.locator("body").innerText()).slice(0,2500));
+    console.log("PREVIEW APP:",(await preview.locator("#app").innerHTML()).slice(0,1800));
+    console.log("PREVIEW RESOURCES:",JSON.stringify(await preview.evaluate(()=>performance.getEntriesByType("resource").map(x=>x.name))));
+    throw err;
+  }
   await preview.locator('.sidebar [data-nav="library"]').click();
   await preview.locator(".doc-card").first().waitFor();
   await preview.locator(".doc-card").first().click();
