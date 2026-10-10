@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 688,
+  "file_count": 689,
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -2761,8 +2761,8 @@
     },
     {
       "path": "scripts/key_verification_engine.py",
-      "size": 24730,
-      "git_blob_sha": "56e7c88e2b0ef96b726caef603d2960319d49950"
+      "size": 24989,
+      "git_blob_sha": "bb07d15886822668708a722511155e73c69d4dbc"
     },
     {
       "path": "scripts/metadata_privacy_engine.py",
@@ -3016,8 +3016,8 @@
     },
     {
       "path": "spec/key-verification.md",
-      "size": 8629,
-      "git_blob_sha": "d1134beeb179f30662ce238e6b02f9aceb1d4860"
+      "size": 9156,
+      "git_blob_sha": "ebe47589981d0cf221cba2fd8fcdf7f392f167b2"
     },
     {
       "path": "spec/metadata-privacy.md",
@@ -3310,6 +3310,11 @@
       "git_blob_sha": "bf310bac45f52d80ee7ae6c75fd73aed8f21c1ef"
     },
     {
+      "path": "tests/test_key_verification_invalidation.py",
+      "size": 5400,
+      "git_blob_sha": "80ddfadaefbba7ea56f1fbc19f758b2e5a096d10"
+    },
+    {
       "path": "tests/test_metadata_privacy_engine.py",
       "size": 8427,
       "git_blob_sha": "489c2a2d11ae5937684af0189465aa0205d21f22"
@@ -3445,5 +3450,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:a0e3e60d99c42d8ffe7d1038c398b0ed7689f5fc10f541e4feeedf30313ea38d"
+  "tree_digest": "sha256:15671093f0be60f069ef5092ddf2cce98a176f4366b6eab2e0dedf554a65df54"
 }
