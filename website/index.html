@@ -11,23 +11,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="./app.js"></script>
+  <script type="module" src="./app.js?v=20261010-repair"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="shell">
     <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand" href="./" data-nav="home" aria-label="End-to-End Everywhere home">
+      <a class="brand" href="./" data-route="home" data-nav="home" aria-label="End-to-End Everywhere home">
         <span class="brand-symbol" aria-hidden="true"><span>e</span><i></i><span>e</span></span>
         <span class="brand-title">end to end<br><b>everywhere.</b></span>
       </a>
       <div class="sidebar-caption">THE STANDARD, SIMPLIFIED</div>
       <nav id="nav" class="sidebar-nav" aria-label="Explore">
-        <a href="?view=home" data-nav="home" class="nav-link active"><span class="nav-icon" aria-hidden="true">⌂</span> Overview</a>
-        <a href="?view=guide" data-nav="guide" class="nav-link"><span class="nav-icon" aria-hidden="true">◇</span> Find your path</a>
-        <a href="?view=profiles" data-nav="profiles" class="nav-link"><span class="nav-icon" aria-hidden="true">▦</span> Explore profiles</a>
-        <a href="?view=library" data-nav="library" class="nav-link"><span class="nav-icon" aria-hidden="true">≡</span> Standards library</a>
-        <a href="?view=about" data-nav="about" class="nav-link"><span class="nav-icon" aria-hidden="true">◎</span> How this works</a>
+        <a href="?view=home" data-route="home" data-nav="home" class="nav-link active"><span class="nav-icon" aria-hidden="true">⌂</span> Overview</a>
+        <a href="?view=guide" data-route="guide" data-nav="guide" class="nav-link"><span class="nav-icon" aria-hidden="true">◇</span> Find your path</a>
+        <a href="?view=profiles" data-route="profiles" data-nav="profiles" class="nav-link"><span class="nav-icon" aria-hidden="true">▦</span> Explore profiles</a>
+        <a href="?view=library" data-route="library" data-nav="library" class="nav-link"><span class="nav-icon" aria-hidden="true">≡</span> Standards library</a>
+        <a href="?view=about" data-route="about" data-nav="about" class="nav-link"><span class="nav-icon" aria-hidden="true">◎</span> How this works</a>
       </nav>
       <div class="sidebar-bottom">
         <div class="sidebar-note">
@@ -56,8 +56,10 @@
         <main id="app">
           <div class="loading-state" role="status">
             <div class="loading-glyph">e <span>↔</span> e</div>
-            <h1>Opening the standard</h1>
-            <p>Preparing the source-backed guide to secure architecture.</p>
+            <h1>Explore the E2EESA security standard</h1>
+            <p>Opening the searchable architecture guide and specification library.</p>
+            <p><a href="./standards/README.html">Read the full standard directly →</a></p>
+            <noscript><p>JavaScript is disabled, but every specification is readable at the link above.</p></noscript>
           </div>
         </main>
         <footer class="site-footer">
