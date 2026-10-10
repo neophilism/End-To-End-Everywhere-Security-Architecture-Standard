@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "identity_id": "identity-alice",
+  "state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "history_epoch": 41,
+  "history_source": "retained-local-view",
+  "freshness_proof_id": "local-view-forty-one",
+  "revoked_authority_ids": []
+}

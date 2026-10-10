@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "contact-threshold-development",
+  "mode": "preauthorized-contact-threshold",
+  "trusted_history_source": "retained-local-view",
+  "authorized_retained_authority_ids": [],
+  "authorized_contact_ids": ["contact-alice", "contact-bob", "contact-carol"],
+  "contact_threshold": 2,
+  "allow_peer_verification_transfer": false,
+  "allow_group_membership_transfer": false,
+  "maturity": "development-only"
+}

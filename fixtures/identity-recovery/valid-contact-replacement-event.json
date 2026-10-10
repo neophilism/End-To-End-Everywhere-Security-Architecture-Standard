@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "event_id": "replace-alice-forty-two",
+  "operation": "create-replacement",
+  "prior_identity_id": "identity-alice",
+  "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observed_history_epoch": 41,
+  "resulting_identity_id": "identity-alice-replacement",
+  "resulting_state_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "freshness_proof_id": "local-view-forty-one",
+  "verified_authorizers": [
+    {
+      "type": "contact",
+      "id": "contact-alice",
+      "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "resulting_identity_id": "identity-alice-replacement",
+      "observed_history_epoch": 41
+    },
+    {
+      "type": "contact",
+      "id": "contact-bob",
+      "prior_state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "resulting_identity_id": "identity-alice-replacement",
+      "observed_history_epoch": 41
+    }
+  ],
+  "account_delay_elapsed": false
+}

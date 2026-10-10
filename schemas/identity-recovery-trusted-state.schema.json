@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/identity-recovery-trusted-state.schema.json",
+  "title": "E2EESA trusted identity history input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","identity_id","state_hash","history_epoch","history_source","freshness_proof_id","revoked_authority_ids"],
+  "properties": {
+    "schema_version": {"const":"0.1"},
+    "identity_id": {"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "state_hash": {"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "history_epoch": {"type":"integer","minimum":0},
+    "history_source": {"enum":["retained-local-view","key-transparency-proof"]},
+    "freshness_proof_id": {"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "revoked_authority_ids": {"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}}
+  }
+}
