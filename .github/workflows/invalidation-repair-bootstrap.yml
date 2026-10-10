@@ -27,7 +27,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import hashlib
           import json
           import os
           from pathlib import Path
@@ -39,12 +38,14 @@ jobs:
           sys.path.insert(0, str(root / 'scripts'))
           import release_candidate
 
+          # Isolated test selection must not depend on an earlier test's imports.
+          test_env = dict(os.environ, PYTHONPATH=str(root / 'scripts'))
           engine_path = root / 'scripts/key_verification_engine.py'
           spec_path = root / 'spec/key-verification.md'
           assert release_candidate.git_blob_sha(engine_path.read_bytes()) == '56e7c88e2b0ef96b726caef603d2960319d49950'
           assert release_candidate.git_blob_sha(spec_path.read_bytes()) == 'd1134beeb179f30662ce238e6b02f9aceb1d4860'
           command = [sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_key_verification_invalidation.py', '-v']
-          baseline = subprocess.run(command, capture_output=True, text=True, timeout=60)
+          baseline = subprocess.run(command, capture_output=True, text=True, timeout=60, env=test_env)
           print('BASELINE OUTPUT\n' + baseline.stdout + baseline.stderr)
           assert baseline.returncode == 1 and 'FAILED (failures=4)' in baseline.stderr, 'Expected four invalidation regression failures and no infrastructure errors'
 
@@ -79,7 +80,7 @@ jobs:
 
           completed = subprocess.run(
               [sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_key_verification*.py', '-v'],
-              capture_output=True, text=True, timeout=60,
+              capture_output=True, text=True, timeout=60, env=test_env,
           )
           print('REPAIRED OUTPUT\n' + completed.stdout + completed.stderr)
           assert completed.returncode == 0, 'Repaired key-verification tests must all pass'
