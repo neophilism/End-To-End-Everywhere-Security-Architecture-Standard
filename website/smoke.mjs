@@ -58,6 +58,8 @@ assert.match(visit("?view=profile&id="+encodeURIComponent(sample.profile_id+"@"+
 const library=visit("?view=library");
 assert.match(library, /standards\/.+\.html/, "Library must link to in-site specification pages");
 assert.doesNotMatch(library,/Read on GitHub/, "Library must be readable without navigating to GitHub");
+assert.doesNotMatch(library,/class="doc-card"[^>]*target="_blank"/, "First-party library documents must open in the same tab");
+assert.doesNotMatch(visit("?view=profile&id="+encodeURIComponent(sample.profile_id+"@"+sample.profile_version)),/href="\.\/standards\/[^"]+" target="_blank"/,"Related specification links must remain on-site");
 assert.match(visit("?view=about"), /One standard/, "About page missing");
 const handlers=docEvents.get("click") || [];
 visit("?view=home");
