@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "identity_id": "identity-alice",
+  "state_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "history_epoch": 41,
+  "history_source": "key-transparency-proof",
+  "freshness_proof_id": "checkpoint-forty-one",
+  "revoked_authority_ids": ["offline-root-old"]
+}

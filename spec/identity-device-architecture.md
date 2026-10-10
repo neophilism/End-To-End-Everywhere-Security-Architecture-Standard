@@ -89,3 +89,52 @@ Password reset, support intervention, administrative action, email access, or te
 ## 14. Conformance
 
 A conforming implementation **MUST** exactly version-pin one supported identity architecture profile when identity/device management is in scope, enforce the common invariants, fail closed on unknown data, reject server-only recipient authorization, and demonstrate valid and invalid enrollment, rotation, and revocation cases.
+
+## 15. Total loss, recovery authority, and replacement
+
+Loss of every active device does not make a service account, support operator,
+password reset, elapsed waiting period, or server-supplied predecessor link into
+cryptographic authority. Products **MUST** select and disclose one of these
+development contracts:
+
+1. **No recovery.** The old cryptographic identity cannot be recovered. A new
+   identity is unlinked and begins unverified.
+2. **Retained authority.** A separately protected, pre-authorized,
+   high-entropy authority may authorize fresh device state only when it binds
+   the exact trusted prior-state hash, resulting identity, and fresh history
+   epoch.
+3. **Pre-authorized contact threshold.** A threshold of contacts recorded
+   before loss may authorize a *replacement identity*. This does not prove
+   control of the old identity and does not preserve its verified status.
+
+A server-supplied history is untrusted unless the endpoint validates it against
+a retained local view or the selected key-transparency mechanism. Revoked
+authority and stale, missing, forked, or concurrent history **MUST** fail closed.
+A delay is policy friction, not proof of authority.
+
+## 16. Non-transferable trust and membership
+
+Recovery and replacement events **MUST NOT** automatically transfer peer
+verification or group membership. Peers need an explicit, visible
+re-verification decision, and groups need a fresh authenticated enrollment
+under their membership policy. Queued content and newly protected content
+**MUST NOT** be sent to the recovered or replacement endpoint until the
+applicable authorization and membership transitions are accepted.
+
+Revocation can protect new content after participants synchronize accepted
+history. It does not establish immediate global propagation, deletion from
+offline devices, or erasure of plaintext and keys already copied.
+
+## 17. Machine-readable AUD-08 contract
+
+`schemas/identity-recovery-policy.schema.json`,
+`schemas/identity-recovery-trusted-state.schema.json`, and
+`schemas/identity-recovery-event.schema.json` define closed inputs. The
+reference evaluator in `scripts/identity_recovery_engine.py` rejects account
+takeover, support override, stale state, revoked authority, threshold failure,
+and cross-result substitution.
+
+These mechanisms remain `development-only` and their results carry
+`production_eligible=false` until the relevant designs and implementations
+receive independent review. Registry presence and passing fixtures are not
+claims that a new recovery protocol is mature.

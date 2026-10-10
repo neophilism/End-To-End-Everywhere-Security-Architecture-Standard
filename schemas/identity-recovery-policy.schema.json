@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/identity-recovery-policy.schema.json",
+  "title": "E2EESA identity recovery authority policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","policy_id","mode","trusted_history_source","authorized_retained_authority_ids","authorized_contact_ids","contact_threshold","allow_peer_verification_transfer","allow_group_membership_transfer","maturity"],
+  "properties": {
+    "schema_version": {"const":"0.1"},
+    "policy_id": {"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "mode": {"enum":["no-recovery","retained-authority","preauthorized-contact-threshold"]},
+    "trusted_history_source": {"enum":["retained-local-view","key-transparency-proof"]},
+    "authorized_retained_authority_ids": {"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "authorized_contact_ids": {"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+    "contact_threshold": {"type":"integer","minimum":0},
+    "allow_peer_verification_transfer": {"const":false},
+    "allow_group_membership_transfer": {"const":false},
+    "maturity": {"const":"development-only"}
+  }
+}

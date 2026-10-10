@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "policy_id": "no-recovery-policy",
+  "mode": "no-recovery",
+  "trusted_history_source": "retained-local-view",
+  "authorized_retained_authority_ids": [],
+  "authorized_contact_ids": [],
+  "contact_threshold": 0,
+  "allow_peer_verification_transfer": false,
+  "allow_group_membership_transfer": false,
+  "maturity": "development-only"
+}
