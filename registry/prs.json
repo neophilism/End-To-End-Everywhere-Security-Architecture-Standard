@@ -1,0 +1,1429 @@
+{
+  "schemaVersion": 1,
+  "repository": "neophilism/End-To-End-Everywhere-Security-Architecture-Standard",
+  "roadmapVersion": 1,
+  "planVerified": true,
+  "plannedPrCount": 76,
+  "observedAt": "2026-10-11T17:39:39.000Z",
+  "units": [
+    {
+      "id": "E2EESA-01",
+      "title": "Repository foundation",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-02",
+      "title": "Normative terminology",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-03",
+      "title": "Unified threat model",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-04",
+      "title": "Security properties and invariants",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-05",
+      "title": "Multi-option profile and configuration resolver",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-06",
+      "title": "Cryptographic algorithm/suite registry",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-07",
+      "title": "Downgrade-resistant negotiation",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-08",
+      "title": "Identity and device architecture",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-09",
+      "title": "Pairwise E2EE messaging profiles",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-10",
+      "title": "Group messaging and membership profiles",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-11",
+      "title": "Key verification",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-12",
+      "title": "Key transparency",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-13",
+      "title": "Backup and recovery profiles",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-14",
+      "title": "Metadata privacy",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-15",
+      "title": "Contact discovery",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-16",
+      "title": "Attachments and file encryption",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-17",
+      "title": "Real-time media protection",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-18",
+      "title": "Secret storage and hardware protection",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-19",
+      "title": "Transport security",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-20",
+      "title": "Native and web client security",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-21",
+      "title": "Server trust minimization",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-22",
+      "title": "Privacy-preserving telemetry",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-23",
+      "title": "Secure-development standard",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-24",
+      "title": "Software supply-chain standard",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-25",
+      "title": "Security verification framework",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-26",
+      "title": "Formal verification profiles",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-27",
+      "title": "Open E2EE assurance levels",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-28",
+      "title": "Certification evidence model",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-29",
+      "title": "Certification lifecycle",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-30",
+      "title": "Certification attestations",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-31",
+      "title": "Vulnerability disclosure profiles",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-32",
+      "title": "Vulnerability handling",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-33",
+      "title": "Advisory interoperability",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-34",
+      "title": "Observatory evidence model",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-35",
+      "title": "Observatory data architecture",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-36",
+      "title": "Confidence and classification model",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-37",
+      "title": "Research profile registry",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-38",
+      "title": "Research-to-production promotion gate",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-39",
+      "title": "Deprecation and emergency migration",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-40",
+      "title": "Conformance engine",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-41",
+      "title": "Conformance CLI",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-42",
+      "title": "Compatibility solver",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-43",
+      "title": "Reference fixtures",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-44",
+      "title": "Cross-profile interoperability",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-45",
+      "title": "Six-project integration contracts",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-46",
+      "title": "Standards crosswalk",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-47",
+      "title": "Security rationale corpus",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-48",
+      "title": "E2EESA 0.9 candidate",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-49",
+      "title": "Independent expert-review fixes",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "E2EESA-50",
+      "title": "E2EESA 1.0 release",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "AUD-01",
+      "title": "Audit register, claim containment, and next-candidate governance",
+      "origin": "addition",
+      "prs": [
+        52
+      ]
+    },
+    {
+      "id": "AUD-02",
+      "title": "Single canonical serialization contract and implementation",
+      "origin": "addition",
+      "prs": [
+        53
+      ]
+    },
+    {
+      "id": "AUD-03",
+      "title": "Versioned digest and signature-input contracts",
+      "origin": "addition",
+      "prs": [
+        54
+      ]
+    },
+    {
+      "id": "AUD-04",
+      "title": "Separate production profiles from illustrative fixtures",
+      "origin": "addition",
+      "prs": [
+        55
+      ]
+    },
+    {
+      "id": "AUD-05",
+      "title": "Composable product classes, roles, and protected-data inventories [OPTIONS]",
+      "origin": "addition",
+      "prs": [
+        56
+      ]
+    },
+    {
+      "id": "AUD-06",
+      "title": "Scope-aware exact, family, AND, and OR dependencies [OPTIONS]",
+      "origin": "addition",
+      "prs": [
+        57
+      ]
+    },
+    {
+      "id": "AUD-07",
+      "title": "Scoped security claims and production-conformance eligibility",
+      "origin": "addition",
+      "prs": [
+        58
+      ]
+    },
+    {
+      "id": "AUD-08",
+      "title": "Identity loss, recovery authority, and replacement identities [OPTIONS]",
+      "origin": "addition",
+      "prs": [
+        62
+      ]
+    },
+    {
+      "id": "AUD-09",
+      "title": "Key-change visibility and send/reverification state machine [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-10",
+      "title": "Endpoint export boundary and explicit disclosure paths",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-11",
+      "title": "Hardware recovery attempt budgets and attestation evidence [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-12",
+      "title": "Recovery credential rotation and retained-copy semantics",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-13",
+      "title": "Pairwise operational bounds and explicit strength policies [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-14",
+      "title": "External protocol pins and PQXDH binding interoperability",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-15",
+      "title": "Group update cadence and flow-specific quantum/PCS claims [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-16",
+      "title": "Optional research track: pinned PQ/hybrid MLS profiles [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-17",
+      "title": "Push-provider and response-correlation metadata models [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-18",
+      "title": "Algorithm, external-standard, and version identity registry repair [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-19",
+      "title": "Parser isolation and client security boundary evidence [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-20",
+      "title": "Transport, external PKI, CT, and ECH profiles [OPTIONS]",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-21",
+      "title": "Requirement-level traceability infrastructure",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-22",
+      "title": "Core requirement-by-requirement analysis",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-23",
+      "title": "Cross-implementation corpus and adversarial composition tests",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-24",
+      "title": "SDK/integration contract and migration package",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-25",
+      "title": "Source-backed public standards portal and assessor guidance",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "AUD-26",
+      "title": "New candidate freeze and independent-review handoff",
+      "origin": "addition",
+      "prs": []
+    }
+  ],
+  "pullRequests": [
+    {
+      "id": 4813187747,
+      "number": 63,
+      "title": "AUD-09.1: preserve invalidated verification until fresh comparison",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/63",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-10T17:38:39.000Z",
+      "updatedAt": "2026-10-10T17:43:33.000Z",
+      "closedAt": "2026-10-10T17:43:33.000Z",
+      "mergedAt": "2026-10-10T17:43:33.000Z",
+      "headSha": "37a979dcb9ab4104564d1400631b7281014a4bb0",
+      "baseRef": "main",
+      "mergeCommitSha": "ddfbd40c47d13890ebb81ea91c81fe329417058e"
+    },
+    {
+      "id": 4812560984,
+      "number": 62,
+      "title": "AUD-08: define identity loss and recovery authority",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/62",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-10T16:03:34.000Z",
+      "updatedAt": "2026-10-10T17:33:41.000Z",
+      "closedAt": "2026-10-10T17:33:41.000Z",
+      "mergedAt": "2026-10-10T17:33:41.000Z",
+      "headSha": "71ebd65e5f76f15deb8f571d47541deb8397b71f",
+      "baseRef": "main",
+      "mergeCommitSha": "30a2a91e2369d5703823b6721d5460b171c3b540"
+    },
+    {
+      "id": 4811313683,
+      "number": 61,
+      "title": "Fix stale preview JavaScript with content-addressed assets",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/61",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-10T12:49:15.000Z",
+      "updatedAt": "2026-10-10T12:49:52.000Z",
+      "closedAt": "2026-10-10T12:49:52.000Z",
+      "mergedAt": "2026-10-10T12:49:52.000Z",
+      "headSha": "23c1b12d556612d2124ea78483b8066d9e7bea82",
+      "baseRef": "main",
+      "mergeCommitSha": "0864e1f2542e48d95212ecd9884f37e1774c3b6e"
+    },
+    {
+      "id": 4811268813,
+      "number": 60,
+      "title": "Keep standards documents and search results in the current browser tab",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/60",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-10T12:42:31.000Z",
+      "updatedAt": "2026-10-10T12:43:50.000Z",
+      "closedAt": "2026-10-10T12:43:50.000Z",
+      "mergedAt": "2026-10-10T12:43:50.000Z",
+      "headSha": "d764864c5855b217fa401705e40fe4eb27572978",
+      "baseRef": "main",
+      "mergeCommitSha": "e639fdab3dac26f24c55e7bf21a9b63b8e454241"
+    },
+    {
+      "id": 4811244442,
+      "number": 59,
+      "title": "Fix broken public standards website and publish readable source-backed specifications",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/59",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-10T12:38:15.000Z",
+      "updatedAt": "2026-10-10T12:38:58.000Z",
+      "closedAt": "2026-10-10T12:38:58.000Z",
+      "mergedAt": "2026-10-10T12:38:58.000Z",
+      "headSha": "42aa29c49e18bb338927c67abb412512fef1ff43",
+      "baseRef": "main",
+      "mergeCommitSha": "2acec43940a99e0c0edd9067a90374d3a71a6033"
+    },
+    {
+      "id": 4807096349,
+      "number": 58,
+      "title": "AUD-07: Separate scoped assessments from configuration diagnostics",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/58",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:50:36.000Z",
+      "updatedAt": "2026-10-09T23:53:37.000Z",
+      "closedAt": "2026-10-09T23:53:37.000Z",
+      "mergedAt": "2026-10-09T23:53:37.000Z",
+      "headSha": "1765e813581e2d60c204d92943c62e61bc4a85a4",
+      "baseRef": "main",
+      "mergeCommitSha": "cef6052bdb3bcf45ca0bd3e29d18a519d8f041e0"
+    },
+    {
+      "id": 4807094241,
+      "number": 57,
+      "title": "AUD-06: Enforce typed dependencies at the consuming component and flow",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/57",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:50:17.000Z",
+      "updatedAt": "2026-10-09T23:53:26.000Z",
+      "closedAt": "2026-10-09T23:53:25.000Z",
+      "mergedAt": "2026-10-09T23:53:25.000Z",
+      "headSha": "563e4c1bb8f52b339584f251fd557a6b59a15cce",
+      "baseRef": "main",
+      "mergeCommitSha": "cb84a02c604cd71ee64b27af0e74380fb307f9ab"
+    },
+    {
+      "id": 4807091176,
+      "number": 56,
+      "title": "AUD-05: Bind applicability to component, flow and build evidence",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/56",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:49:50.000Z",
+      "updatedAt": "2026-10-09T23:53:14.000Z",
+      "closedAt": "2026-10-09T23:53:14.000Z",
+      "mergedAt": "2026-10-09T23:53:14.000Z",
+      "headSha": "54cfd4d251f38952d230498bd1cebe8dea43773d",
+      "baseRef": "main",
+      "mergeCommitSha": "e3848f0ede28d5cedc543108a9a5f35318ec047b"
+    },
+    {
+      "id": 4807089183,
+      "number": 55,
+      "title": "AUD-04: Separate illustrative profiles from the production catalog",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/55",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:49:31.000Z",
+      "updatedAt": "2026-10-09T23:53:03.000Z",
+      "closedAt": "2026-10-09T23:53:03.000Z",
+      "mergedAt": "2026-10-09T23:53:03.000Z",
+      "headSha": "f6ade68272481fda89a41ed9fb3e544e16403ed1",
+      "baseRef": "main",
+      "mergeCommitSha": "67d3653d9dd8af46f6bfbda454a951ec56df64f1"
+    },
+    {
+      "id": 4807085974,
+      "number": 54,
+      "title": "AUD-03: Define exact versioned digest and signature inputs",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/54",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:48:59.000Z",
+      "updatedAt": "2026-10-09T23:52:52.000Z",
+      "closedAt": "2026-10-09T23:52:51.000Z",
+      "mergedAt": "2026-10-09T23:52:51.000Z",
+      "headSha": "f3eb4faf7b5ef680e631af3ffc50d39469194be8",
+      "baseRef": "main",
+      "mergeCommitSha": "a5fa147db09772f3dadc55c9ca54f241a45525bc"
+    },
+    {
+      "id": 4807084565,
+      "number": 53,
+      "title": "AUD-02: Share strict canonical bytes and preserve historical encodings",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/53",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:48:43.000Z",
+      "updatedAt": "2026-10-09T23:52:01.000Z",
+      "closedAt": "2026-10-09T23:52:01.000Z",
+      "mergedAt": "2026-10-09T23:52:00.000Z",
+      "headSha": "1aef193e4789b466f2b0ab833c193cb7f35a4a8f",
+      "baseRef": "main",
+      "mergeCommitSha": "38b24f6c1f12695f8922a0395f3281551c406d71"
+    },
+    {
+      "id": 4807079939,
+      "number": 52,
+      "title": "AUD-01: Preserve rc.1 and open audit remediation development",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/52",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T23:47:54.000Z",
+      "updatedAt": "2026-10-09T23:51:26.000Z",
+      "closedAt": "2026-10-09T23:51:26.000Z",
+      "mergedAt": "2026-10-09T23:51:26.000Z",
+      "headSha": "456f6c412d5244b28a2e3097d94896ca4dc1e6de",
+      "baseRef": "main",
+      "mergeCommitSha": "d1ac7676151fb5e2acce2a820a3b2223c7d887ec"
+    },
+    {
+      "id": 4787759405,
+      "number": 51,
+      "title": "Launch source-backed public E2EESA standards portal",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/51",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T13:46:21.000Z",
+      "updatedAt": "2026-10-08T13:48:56.000Z",
+      "closedAt": "2026-10-08T13:48:56.000Z",
+      "mergedAt": "2026-10-08T13:48:56.000Z",
+      "headSha": "333d0914d40a95be9a49db1d96f29b36e5efb2cb",
+      "baseRef": "main",
+      "mergeCommitSha": "dea8f54cab9130da86a71f36de553766a978daf2"
+    },
+    {
+      "id": 4787167614,
+      "number": 50,
+      "title": "PR 50: E2EESA 1.0 release readiness and promotion",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/50",
+      "state": "open",
+      "draft": true,
+      "createdAt": "2026-10-08T12:59:36.000Z",
+      "updatedAt": "2026-10-08T13:39:57.000Z",
+      "closedAt": null,
+      "mergedAt": null,
+      "headSha": "d314d0f145aa6b44969588b80041b7c613af11ef",
+      "baseRef": "pr-49-independent-expert-review-fixes",
+      "mergeCommitSha": "4f23429b0ecae644e67826a39f447305ddcf2bf8"
+    },
+    {
+      "id": 4782759880,
+      "number": 49,
+      "title": "PR 49: Independent expert review fixes",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/49",
+      "state": "open",
+      "draft": true,
+      "createdAt": "2026-10-08T06:26:53.000Z",
+      "updatedAt": "2026-10-08T13:35:34.000Z",
+      "closedAt": null,
+      "mergedAt": null,
+      "headSha": "6477870d972fcfb6c3c9e3d4a8fea86edf0dde05",
+      "baseRef": "main",
+      "mergeCommitSha": "f9a6e68b4788854c25c87df7d3d4a42a37ffc68c"
+    },
+    {
+      "id": 4782718274,
+      "number": 48,
+      "title": "PR 48: E2EESA 0.9 candidate",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/48",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T06:22:30.000Z",
+      "updatedAt": "2026-10-08T06:24:32.000Z",
+      "closedAt": "2026-10-08T06:24:32.000Z",
+      "mergedAt": "2026-10-08T06:24:32.000Z",
+      "headSha": "1085c39b548df0a21057c8ee34e9a74b4d9ef4a0",
+      "baseRef": "main",
+      "mergeCommitSha": "51ff1dd4b846b326bc4c835c642ef710933bbdb8"
+    },
+    {
+      "id": 4782648211,
+      "number": 47,
+      "title": "PR 47: Security rationale corpus",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/47",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T06:14:40.000Z",
+      "updatedAt": "2026-10-08T06:15:40.000Z",
+      "closedAt": "2026-10-08T06:15:40.000Z",
+      "mergedAt": "2026-10-08T06:15:40.000Z",
+      "headSha": "1778ac2679595b5957f8adfb393492523b0ef602",
+      "baseRef": "main",
+      "mergeCommitSha": "8346daf8c21db722c9a46ac4c22b0e321e691fcf"
+    },
+    {
+      "id": 4782609876,
+      "number": 46,
+      "title": "PR 46: Complete standards crosswalk",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/46",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T06:10:19.000Z",
+      "updatedAt": "2026-10-08T06:11:56.000Z",
+      "closedAt": "2026-10-08T06:11:56.000Z",
+      "mergedAt": "2026-10-08T06:11:56.000Z",
+      "headSha": "274e6195774696911248ecfdaafd00c1e12164b3",
+      "baseRef": "main",
+      "mergeCommitSha": "6343e0d889ec41e88e805a3a889d377aff5a39b8"
+    },
+    {
+      "id": 4782547761,
+      "number": 45,
+      "title": "PR 45: Six-project integration contracts",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/45",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T06:03:08.000Z",
+      "updatedAt": "2026-10-08T06:04:53.000Z",
+      "closedAt": "2026-10-08T06:04:53.000Z",
+      "mergedAt": "2026-10-08T06:04:53.000Z",
+      "headSha": "74434f091084db4d9ac0692f23476636d3780856",
+      "baseRef": "main",
+      "mergeCommitSha": "f785f4802940bc581703bcfcdb917b5db181b03b"
+    },
+    {
+      "id": 4782013394,
+      "number": 44,
+      "title": "PR 44: Cross-profile interoperability suite",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/44",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:57:27.000Z",
+      "updatedAt": "2026-10-08T05:00:02.000Z",
+      "closedAt": "2026-10-08T05:00:02.000Z",
+      "mergedAt": "2026-10-08T05:00:02.000Z",
+      "headSha": "ecbf67f446cc42469f4a58a9ec616dc4c6593aea",
+      "baseRef": "main",
+      "mergeCommitSha": "56d565eca8b9bc5dd414579cf1ced6bfc3f68efa"
+    },
+    {
+      "id": 4781973972,
+      "number": 43,
+      "title": "PR 43: Reference fixtures",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/43",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:52:25.000Z",
+      "updatedAt": "2026-10-08T04:55:22.000Z",
+      "closedAt": "2026-10-08T04:55:22.000Z",
+      "mergedAt": "2026-10-08T04:55:22.000Z",
+      "headSha": "e89067fd6f2853c0259a666b65c74974be505e1e",
+      "baseRef": "main",
+      "mergeCommitSha": "060196502c47c8fa0296e0f77d5fb86df7b36a93"
+    },
+    {
+      "id": 4781934848,
+      "number": 42,
+      "title": "PR 42: Compatibility and configuration solver",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/42",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:47:29.000Z",
+      "updatedAt": "2026-10-08T04:55:03.000Z",
+      "closedAt": "2026-10-08T04:55:03.000Z",
+      "mergedAt": "2026-10-08T04:55:03.000Z",
+      "headSha": "303a8197259b86abde775ce913dad23f62b99f24",
+      "baseRef": "main",
+      "mergeCommitSha": "9fd18d898424db9b3037ba5a63f73f95236d1465"
+    },
+    {
+      "id": 4781875328,
+      "number": 41,
+      "title": "PR 41: Conformance CLI",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/41",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:40:06.000Z",
+      "updatedAt": "2026-10-08T04:42:10.000Z",
+      "closedAt": "2026-10-08T04:42:10.000Z",
+      "mergedAt": "2026-10-08T04:42:10.000Z",
+      "headSha": "a8cf23efbb4e811a74c856aaf90ae611d0393b24",
+      "baseRef": "main",
+      "mergeCommitSha": "291ad019ac37c038ccb213061be6410a5937c5c2"
+    },
+    {
+      "id": 4781839061,
+      "number": 40,
+      "title": "PR 40: Conformance engine",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/40",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:35:34.000Z",
+      "updatedAt": "2026-10-08T04:41:36.000Z",
+      "closedAt": "2026-10-08T04:41:36.000Z",
+      "mergedAt": "2026-10-08T04:41:36.000Z",
+      "headSha": "8ca716139f4e73e5c4b72ecfeeab925cbe5edc36",
+      "baseRef": "main",
+      "mergeCommitSha": "37dc9c7ebc44e6362602c3c11e20a11b14c5e16c"
+    },
+    {
+      "id": 4781763286,
+      "number": 39,
+      "title": "PR 39: Deprecation and emergency migration",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/39",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:26:00.000Z",
+      "updatedAt": "2026-10-08T04:27:55.000Z",
+      "closedAt": "2026-10-08T04:27:55.000Z",
+      "mergedAt": "2026-10-08T04:27:55.000Z",
+      "headSha": "2c341ac23bf338643c360992ec1cc8f7fffd705a",
+      "baseRef": "main",
+      "mergeCommitSha": "1bad3569bd2eebaa8409848cda0ed2d403d7e72e"
+    },
+    {
+      "id": 4781694176,
+      "number": 38,
+      "title": "PR 38: Research to production promotion gates",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/38",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:17:03.000Z",
+      "updatedAt": "2026-10-08T04:19:58.000Z",
+      "closedAt": "2026-10-08T04:19:58.000Z",
+      "mergedAt": "2026-10-08T04:19:58.000Z",
+      "headSha": "6507f0b8883c98960e36ac8437af54726a641a72",
+      "baseRef": "main",
+      "mergeCommitSha": "fe01825a4056c318f441e786532b14de45c4b55d"
+    },
+    {
+      "id": 4781593320,
+      "number": 37,
+      "title": "PR 37: Research profile registry",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/37",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T04:03:50.000Z",
+      "updatedAt": "2026-10-08T04:08:10.000Z",
+      "closedAt": "2026-10-08T04:08:10.000Z",
+      "mergedAt": "2026-10-08T04:08:10.000Z",
+      "headSha": "75f069ad06f0cd922555c5d14acc53a1b80a741b",
+      "baseRef": "main",
+      "mergeCommitSha": "04601dde93376f25345816e7594e9c580479ea4d"
+    },
+    {
+      "id": 4781550122,
+      "number": 36,
+      "title": "PR 36: Confidence and classification model",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/36",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T03:57:56.000Z",
+      "updatedAt": "2026-10-08T03:58:36.000Z",
+      "closedAt": "2026-10-08T03:58:35.000Z",
+      "mergedAt": "2026-10-08T03:58:35.000Z",
+      "headSha": "938059fa16205ae32602b53ed8e50afdb3e332cd",
+      "baseRef": "main",
+      "mergeCommitSha": "aa56488f6c48ee474687ce65391a145f4661a9b9"
+    },
+    {
+      "id": 4781511003,
+      "number": 35,
+      "title": "PR 35: Observatory data architecture",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/35",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T03:52:14.000Z",
+      "updatedAt": "2026-10-08T03:53:58.000Z",
+      "closedAt": "2026-10-08T03:53:58.000Z",
+      "mergedAt": "2026-10-08T03:53:58.000Z",
+      "headSha": "83c24ab4b99d54f1cb457c3ddcd81b0f2ab8ae74",
+      "baseRef": "main",
+      "mergeCommitSha": "863b8ba0d4cbb615273ea55f1a14d49a87da88f5"
+    },
+    {
+      "id": 4781471355,
+      "number": 34,
+      "title": "PR 34: Observatory evidence model",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/34",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T03:45:54.000Z",
+      "updatedAt": "2026-10-08T03:53:43.000Z",
+      "closedAt": "2026-10-08T03:53:43.000Z",
+      "mergedAt": "2026-10-08T03:53:43.000Z",
+      "headSha": "f20d5aa161b08670ca373df3df706f22383a6310",
+      "baseRef": "main",
+      "mergeCommitSha": "5e9e0196ca4968a506753eb86994d097f99f8cd1"
+    },
+    {
+      "id": 4781440107,
+      "number": 33,
+      "title": "PR 33: Advisory interoperability",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/33",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T03:41:07.000Z",
+      "updatedAt": "2026-10-08T03:43:13.000Z",
+      "closedAt": "2026-10-08T03:43:13.000Z",
+      "mergedAt": "2026-10-08T03:43:13.000Z",
+      "headSha": "4d320abaf7ee9d68af55ed854ae3978ab9149693",
+      "baseRef": "main",
+      "mergeCommitSha": "603fc5b3aabce1fd96ef7447644f82f3c9e498dd"
+    },
+    {
+      "id": 4781253334,
+      "number": 32,
+      "title": "PR 32: Vulnerability handling",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/32",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T03:12:31.000Z",
+      "updatedAt": "2026-10-08T03:15:38.000Z",
+      "closedAt": "2026-10-08T03:15:37.000Z",
+      "mergedAt": "2026-10-08T03:15:37.000Z",
+      "headSha": "3f5fce7a1bfd2751d3488c448e92a2ea01c3190a",
+      "baseRef": "main",
+      "mergeCommitSha": "820eead84e7333c7337d598403ac6394d0a87c60"
+    },
+    {
+      "id": 4781179697,
+      "number": 31,
+      "title": "PR 31: Vulnerability disclosure profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/31",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T03:01:27.000Z",
+      "updatedAt": "2026-10-08T03:15:20.000Z",
+      "closedAt": "2026-10-08T03:15:20.000Z",
+      "mergedAt": "2026-10-08T03:15:20.000Z",
+      "headSha": "d069c58438f35245fef659523a00801854f74014",
+      "baseRef": "main",
+      "mergeCommitSha": "70ac47d3d52da4c2bd082dfbe37f01975050f045"
+    },
+    {
+      "id": 4781135758,
+      "number": 30,
+      "title": "PR 30: Signed certification attestations",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/30",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T02:54:42.000Z",
+      "updatedAt": "2026-10-08T03:14:14.000Z",
+      "closedAt": "2026-10-08T03:14:14.000Z",
+      "mergedAt": "2026-10-08T03:14:14.000Z",
+      "headSha": "a81f02800b264d584516a46f9deffda99fe6eaea",
+      "baseRef": "main",
+      "mergeCommitSha": "98811060de1ecef86ff92d7b4cdef534a6f5c6d0"
+    },
+    {
+      "id": 4780793231,
+      "number": 29,
+      "title": "PR 29: Event-sourced certification lifecycle",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/29",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T02:03:45.000Z",
+      "updatedAt": "2026-10-08T02:22:32.000Z",
+      "closedAt": "2026-10-08T02:22:32.000Z",
+      "mergedAt": "2026-10-08T02:22:31.000Z",
+      "headSha": "4b824373b5e9a246e2578853709eb9fe42941b99",
+      "baseRef": "main",
+      "mergeCommitSha": "71d70e4b5bfbf92d33f679bc4a85977cbed614a4"
+    },
+    {
+      "id": 4780482689,
+      "number": 28,
+      "title": "PR 28: Certification evidence model",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/28",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T01:20:43.000Z",
+      "updatedAt": "2026-10-08T01:54:29.000Z",
+      "closedAt": "2026-10-08T01:54:29.000Z",
+      "mergedAt": "2026-10-08T01:54:29.000Z",
+      "headSha": "d25e415853e6f06e45df0d7ecab4c0ff35c9a31e",
+      "baseRef": "main",
+      "mergeCommitSha": "f9901b9fb9cb40114a4251ff6dd9cabfacade327"
+    },
+    {
+      "id": 4780414307,
+      "number": 27,
+      "title": "PR 27: Monotonic assurance levels",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/27",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T01:10:33.000Z",
+      "updatedAt": "2026-10-08T01:54:16.000Z",
+      "closedAt": "2026-10-08T01:54:15.000Z",
+      "mergedAt": "2026-10-08T01:54:15.000Z",
+      "headSha": "9e10104a7d017efcedc3994026c9acfc1253a1af",
+      "baseRef": "main",
+      "mergeCommitSha": "86a6102287a04a6eb80f1857ae1e6657e506788e"
+    },
+    {
+      "id": 4780356775,
+      "number": 26,
+      "title": "PR 26: Formal verification profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/26",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-08T01:02:00.000Z",
+      "updatedAt": "2026-10-08T01:06:14.000Z",
+      "closedAt": "2026-10-08T01:06:14.000Z",
+      "mergedAt": "2026-10-08T01:06:14.000Z",
+      "headSha": "5fdaccfcce798fd06dc3238260d7f894e9278b2c",
+      "baseRef": "main",
+      "mergeCommitSha": "8668ba998e3c8933d5e33184275077f97548a77c"
+    },
+    {
+      "id": 4779652842,
+      "number": 25,
+      "title": "PR 25: Security verification framework and seeded reference checks",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/25",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T23:19:20.000Z",
+      "updatedAt": "2026-10-07T23:59:29.000Z",
+      "closedAt": "2026-10-07T23:59:29.000Z",
+      "mergedAt": "2026-10-07T23:59:29.000Z",
+      "headSha": "7f65e9433e3ed2840492f7b1494245a1190cc835",
+      "baseRef": "main",
+      "mergeCommitSha": "09f484debb6e4c0d6035bb9b4e888df7c2cc3db6"
+    },
+    {
+      "id": 4779595635,
+      "number": 24,
+      "title": "PR 24: Software supply chain and reproducible reference releases",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/24",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T23:11:48.000Z",
+      "updatedAt": "2026-10-07T23:59:18.000Z",
+      "closedAt": "2026-10-07T23:59:17.000Z",
+      "mergedAt": "2026-10-07T23:59:17.000Z",
+      "headSha": "951fb935978c11275cfb8a7f007f3fda61bdbdfc",
+      "baseRef": "main",
+      "mergeCommitSha": "0c53966acf5f9e999d054f4ade3fed1404be27c6"
+    },
+    {
+      "id": 4779524255,
+      "number": 23,
+      "title": "PR 23: Secure development standard",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/23",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T23:02:29.000Z",
+      "updatedAt": "2026-10-07T23:03:03.000Z",
+      "closedAt": "2026-10-07T23:03:03.000Z",
+      "mergedAt": "2026-10-07T23:03:03.000Z",
+      "headSha": "b0d4c2f903fcaa7b66b8222fbdf01028f771561c",
+      "baseRef": "pr-22-privacy-preserving-telemetry",
+      "mergeCommitSha": "239e5016e3d62e5f8e92f9cc9097c6ce0b8e5580"
+    },
+    {
+      "id": 4779493434,
+      "number": 22,
+      "title": "PR 22: Privacy-preserving telemetry profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/22",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T22:58:17.000Z",
+      "updatedAt": "2026-10-07T23:03:00.000Z",
+      "closedAt": "2026-10-07T23:03:00.000Z",
+      "mergedAt": "2026-10-07T23:03:00.000Z",
+      "headSha": "94057e2414f525204404a5b417e9e56f20c6c68f",
+      "baseRef": "pr-21-server-trust-minimization",
+      "mergeCommitSha": "5ab601f8fc6774dfb832bbfdae548dca01aa62d4"
+    },
+    {
+      "id": 4779457432,
+      "number": 21,
+      "title": "PR 21: Server trust minimization",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/21",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T22:53:51.000Z",
+      "updatedAt": "2026-10-07T23:02:58.000Z",
+      "closedAt": "2026-10-07T23:02:58.000Z",
+      "mergedAt": "2026-10-07T23:02:57.000Z",
+      "headSha": "8acf331d6181046858fa0cbe774bcb3844093db1",
+      "baseRef": "pr-20-native-web-client-security",
+      "mergeCommitSha": "7448c48cc09b01ce2ad0ce90f04db260f0a18972"
+    },
+    {
+      "id": 4779428584,
+      "number": 20,
+      "title": "PR 20: Native and web client security profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/20",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T22:50:09.000Z",
+      "updatedAt": "2026-10-07T23:02:55.000Z",
+      "closedAt": "2026-10-07T23:02:55.000Z",
+      "mergedAt": "2026-10-07T23:02:55.000Z",
+      "headSha": "2264f112ed487b684afc56bd9615dfba4a04bbcb",
+      "baseRef": "main",
+      "mergeCommitSha": "3e64a1fad0123a880843f50c6a36c0d36a034845"
+    },
+    {
+      "id": 4778493423,
+      "number": 19,
+      "title": "PR 19: Transport security profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/19",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T21:07:08.000Z",
+      "updatedAt": "2026-10-07T21:36:18.000Z",
+      "closedAt": "2026-10-07T21:36:18.000Z",
+      "mergedAt": "2026-10-07T21:36:18.000Z",
+      "headSha": "fbdf5b2b7aa291b420e7fba541a910a743adfc5d",
+      "baseRef": "main",
+      "mergeCommitSha": "696387f7c36a6a8523c805ff7bc6ce64fd902287"
+    },
+    {
+      "id": 4777858467,
+      "number": 18,
+      "title": "PR 18: Secret storage and hardware protection",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/18",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T20:06:40.000Z",
+      "updatedAt": "2026-10-07T20:47:51.000Z",
+      "closedAt": "2026-10-07T20:47:51.000Z",
+      "mergedAt": "2026-10-07T20:47:50.000Z",
+      "headSha": "51efadd4b6a9961552f2b0e75e2258c8e6051a47",
+      "baseRef": "main",
+      "mergeCommitSha": "3984a6f0254ba98849e2fd8704ab4bffcff01c55"
+    },
+    {
+      "id": 4777699261,
+      "number": 17,
+      "title": "PR 17: Real-time media",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/17",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T19:51:57.000Z",
+      "updatedAt": "2026-10-07T19:59:34.000Z",
+      "closedAt": "2026-10-07T19:59:34.000Z",
+      "mergedAt": "2026-10-07T19:59:34.000Z",
+      "headSha": "3fa6dc95ccc386f5048d3ecdb3113754a38c03af",
+      "baseRef": "main",
+      "mergeCommitSha": "0a35a716971b6d20e60ac1d482e4791bdec734bf"
+    },
+    {
+      "id": 4777399031,
+      "number": 16,
+      "title": "PR 16: Attachments and file encryption",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/16",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T19:23:35.000Z",
+      "updatedAt": "2026-10-07T19:44:48.000Z",
+      "closedAt": "2026-10-07T19:44:48.000Z",
+      "mergedAt": "2026-10-07T19:44:48.000Z",
+      "headSha": "99891be76df3a89fea096ed5145123fa33f04706",
+      "baseRef": "main",
+      "mergeCommitSha": "1cf8e1e76b98be6c9bea7e29311a5da17bdf6a2b"
+    },
+    {
+      "id": 4777052990,
+      "number": 15,
+      "title": "PR 15: Contact discovery profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/15",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T18:52:54.000Z",
+      "updatedAt": "2026-10-07T19:12:16.000Z",
+      "closedAt": "2026-10-07T19:12:16.000Z",
+      "mergedAt": "2026-10-07T19:12:16.000Z",
+      "headSha": "df381fb4775f542b4c207c8281f392c53cd67ef4",
+      "baseRef": "main",
+      "mergeCommitSha": "835c56ddac64df881ffab5adac4f7d7bfbec8b49"
+    },
+    {
+      "id": 4775412722,
+      "number": 14,
+      "title": "PR 14: Metadata privacy profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/14",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T16:21:36.000Z",
+      "updatedAt": "2026-10-07T16:41:02.000Z",
+      "closedAt": "2026-10-07T16:41:02.000Z",
+      "mergedAt": "2026-10-07T16:41:02.000Z",
+      "headSha": "3910e84655b6b653286ef329eeffcaa11d67afa5",
+      "baseRef": "main",
+      "mergeCommitSha": "8ddb44b2a3e7af0c24c05da2dc5676a11566701c"
+    },
+    {
+      "id": 4775204757,
+      "number": 13,
+      "title": "PR 13: Backup and recovery profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/13",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T16:02:49.000Z",
+      "updatedAt": "2026-10-07T16:13:16.000Z",
+      "closedAt": "2026-10-07T16:13:16.000Z",
+      "mergedAt": "2026-10-07T16:13:16.000Z",
+      "headSha": "3de3b53f3bfbc628257765ee5ef9f0ed2c9d5ba2",
+      "baseRef": "main",
+      "mergeCommitSha": "87194d2a547f1a157e5bfedb61ccc9e35341d21b"
+    },
+    {
+      "id": 4774627986,
+      "number": 12,
+      "title": "PR 12: Key transparency",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/12",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-07T15:17:41.000Z",
+      "updatedAt": "2026-10-07T15:55:38.000Z",
+      "closedAt": "2026-10-07T15:55:38.000Z",
+      "mergedAt": "2026-10-07T15:55:38.000Z",
+      "headSha": "ad3d0fd873a8409dce3069d38305f339d2e69f17",
+      "baseRef": "main",
+      "mergeCommitSha": "e3ffc765a151499039563237a92ab0396f8d6a40"
+    },
+    {
+      "id": 4765390211,
+      "number": 11,
+      "title": "PR 11: Key verification",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/11",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T22:33:44.000Z",
+      "updatedAt": "2026-10-06T22:51:30.000Z",
+      "closedAt": "2026-10-06T22:51:30.000Z",
+      "mergedAt": "2026-10-06T22:51:30.000Z",
+      "headSha": "6ba126a85cacd1914080ae8f51cac059b3ae09b4",
+      "baseRef": "main",
+      "mergeCommitSha": "ef0290f46cb81ba40b8ce936080932e958b8f547"
+    },
+    {
+      "id": 4765235463,
+      "number": 10,
+      "title": "PR 10: Group E2EE profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/10",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T22:13:50.000Z",
+      "updatedAt": "2026-10-06T22:28:18.000Z",
+      "closedAt": "2026-10-06T22:28:18.000Z",
+      "mergedAt": "2026-10-06T22:28:18.000Z",
+      "headSha": "0b0230f2a6e821e2bf54c8242e7cf935875d5732",
+      "baseRef": "main",
+      "mergeCommitSha": "582f984dfb79cd0fa16f5a57b096d187cc788d70"
+    },
+    {
+      "id": 4764907075,
+      "number": 9,
+      "title": "PR 9: Pairwise E2EE profiles",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/9",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T21:34:39.000Z",
+      "updatedAt": "2026-10-06T22:05:33.000Z",
+      "closedAt": "2026-10-06T22:05:33.000Z",
+      "mergedAt": "2026-10-06T22:05:33.000Z",
+      "headSha": "903cf62877bc50f3ccde2e385df397e2b2e41af9",
+      "baseRef": "main",
+      "mergeCommitSha": "6b5e3ac7dd182c5731d7bcb8b203973509cf9f2e"
+    },
+    {
+      "id": 4762726452,
+      "number": 8,
+      "title": "PR 8: Identity and device architecture",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/8",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T18:02:20.000Z",
+      "updatedAt": "2026-10-06T20:25:54.000Z",
+      "closedAt": "2026-10-06T20:25:54.000Z",
+      "mergedAt": "2026-10-06T20:25:54.000Z",
+      "headSha": "d256de7d5475f83ff3b6270224c89559bad69ec0",
+      "baseRef": "main",
+      "mergeCommitSha": "f941d0285b712640c72ce25ee574471ea0045f73"
+    },
+    {
+      "id": 4762039052,
+      "number": 7,
+      "title": "PR 7: Downgrade and negotiation defense",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/7",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T17:00:02.000Z",
+      "updatedAt": "2026-10-06T17:11:37.000Z",
+      "closedAt": "2026-10-06T17:11:37.000Z",
+      "mergedAt": "2026-10-06T17:11:37.000Z",
+      "headSha": "c9e83f1963e1029efb1b952a94dd5cb451d3fbaf",
+      "baseRef": "main",
+      "mergeCommitSha": "5037b5f494690f6674849e224ab065670ca7e9a3"
+    },
+    {
+      "id": 4761845972,
+      "number": 6,
+      "title": "PR 6: Cryptographic registry and lifecycle",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/6",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T16:42:19.000Z",
+      "updatedAt": "2026-10-06T16:51:58.000Z",
+      "closedAt": "2026-10-06T16:51:58.000Z",
+      "mergedAt": "2026-10-06T16:51:58.000Z",
+      "headSha": "8002d1f61e3c7163ede72c774dd22eda6064d5ed",
+      "baseRef": "main",
+      "mergeCommitSha": "09593d35e4c0c2f4c27d135ff7b200b588a4621b"
+    },
+    {
+      "id": 4761453643,
+      "number": 5,
+      "title": "PR 5: Profile and configuration engine",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/5",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T16:06:58.000Z",
+      "updatedAt": "2026-10-06T16:09:48.000Z",
+      "closedAt": "2026-10-06T16:09:48.000Z",
+      "mergedAt": "2026-10-06T16:09:48.000Z",
+      "headSha": "47499d4eede4adc253cbf073fa91938d26e9babf",
+      "baseRef": "main",
+      "mergeCommitSha": "ca151cbb7bfcdd333ecf52770eb9b2fb5f1a095e"
+    },
+    {
+      "id": 4761297199,
+      "number": 4,
+      "title": "PR 4: Security properties model",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/4",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T15:54:31.000Z",
+      "updatedAt": "2026-10-06T15:58:44.000Z",
+      "closedAt": "2026-10-06T15:58:43.000Z",
+      "mergedAt": "2026-10-06T15:58:43.000Z",
+      "headSha": "94ebea9a63fb2242a55686a2821527501cb98f4b",
+      "baseRef": "main",
+      "mergeCommitSha": "96d457ab596ae4a6fc77a1fbe5439659df2a6295"
+    },
+    {
+      "id": 4761156086,
+      "number": 3,
+      "title": "PR 3: Unified threat model",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/3",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T15:42:34.000Z",
+      "updatedAt": "2026-10-06T15:44:57.000Z",
+      "closedAt": "2026-10-06T15:44:57.000Z",
+      "mergedAt": "2026-10-06T15:44:57.000Z",
+      "headSha": "9c08e22ce858e97bc6c23a6638a40b0e58eb2f9a",
+      "baseRef": "main",
+      "mergeCommitSha": "876d79b24cab7e4609b30b7890824e9d8d3d2c7c"
+    },
+    {
+      "id": 4760969785,
+      "number": 2,
+      "title": "PR 2: Normative language and terminology",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/2",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T15:27:31.000Z",
+      "updatedAt": "2026-10-06T15:36:37.000Z",
+      "closedAt": "2026-10-06T15:36:36.000Z",
+      "mergedAt": "2026-10-06T15:36:36.000Z",
+      "headSha": "4ab1332e5a33817e00ec9ba91eee2b116ff1bd51",
+      "baseRef": "main",
+      "mergeCommitSha": "8a74a808f5032b729b6ef298a61617cea82e41df"
+    },
+    {
+      "id": 4760871008,
+      "number": 1,
+      "title": "PR 1: Repository foundation",
+      "url": "https://github.com/neophilism/End-To-End-Everywhere-Security-Architecture-Standard/pull/1",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-06T15:20:19.000Z",
+      "updatedAt": "2026-10-06T15:22:00.000Z",
+      "closedAt": "2026-10-06T15:22:00.000Z",
+      "mergedAt": "2026-10-06T15:22:00.000Z",
+      "headSha": "073cb59de56cfb137644784e99ad20cde3081dd8",
+      "baseRef": "main",
+      "mergeCommitSha": "e929019181116035b37f69ecad66ebecc7a9592d"
+    }
+  ]
+}
