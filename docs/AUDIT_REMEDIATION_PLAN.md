@@ -1,3 +1,5 @@
+> **Canonical upstream planned-work and PR registry:** [`registry/roadmap.json`](../registry/roadmap.json). Preserve this detailed security plan below; add PRs and update total progress only in the canonical registry.
+
 # E2EESA Audit Remediation: Development Plan and PR Register - Version 2
 
 Date: 9 October 2026
