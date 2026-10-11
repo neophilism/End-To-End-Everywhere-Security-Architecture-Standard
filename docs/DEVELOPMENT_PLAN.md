@@ -1,3 +1,5 @@
+> **Canonical upstream planned-work and PR registry:** [`registry/roadmap.json`](../registry/roadmap.json). Preserve this detailed security plan below; add PRs and update total progress only in the canonical registry.
+
 # End-To-End Everywhere Security Architecture Standard — complete original 50-PR development plan
 
 **Recovery basis:** original October 6, 2026, **50-milestone E2EESA** plan from the prior design conversation, cross-checked against the standard's actual `spec/`, `schemas/`, `adr/`, `fixtures/` and recent audit remediation. Original numbered titles have been recovered. Expanded implementation/acceptance notes here are synthesis, not verbatim recovered chat.
