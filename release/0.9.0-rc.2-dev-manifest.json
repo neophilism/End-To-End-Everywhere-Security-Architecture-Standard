@@ -2,8 +2,13 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 689,
+  "file_count": 693,
   "files": [
+    {
+      "path": ".github/workflows/e2eesa-status.yml",
+      "size": 686,
+      "git_blob_sha": "68eb620cceebf29798f16386013ac61749e1de0c"
+    },
     {
       "path": ".github/workflows/validate.yml",
       "size": 1043,
@@ -16,8 +21,8 @@
     },
     {
       "path": "README.md",
-      "size": 2185,
-      "git_blob_sha": "b2ce78b0cf2a22564818a5568afd0a0a4a0c775b"
+      "size": 2738,
+      "git_blob_sha": "fe1df7c78091a5692518482c43df111d22ff0219"
     },
     {
       "path": "SECURITY.md",
@@ -1855,6 +1860,11 @@
       "git_blob_sha": "ca8767a6fdf1ad481b38894781ea48b4d9620ba1"
     },
     {
+      "path": "registry/prs.json",
+      "size": 50282,
+      "git_blob_sha": "8fa65f27149a8a6124a11d6c0665664fae1bca2b"
+    },
+    {
       "path": "registry/real-time-media.json",
       "size": 2255,
       "git_blob_sha": "329315974b6439667e19fca8d5bfc46755fe8cc7"
@@ -1873,6 +1883,11 @@
       "path": "registry/research-promotion.json",
       "size": 5711,
       "git_blob_sha": "6edae962d6e78659618d2e5d14abf750d3014a9b"
+    },
+    {
+      "path": "registry/roadmap.json",
+      "size": 9725,
+      "git_blob_sha": "dd80c677f85f6fe8554f8bea6c4f2e5120ac52f6"
     },
     {
       "path": "registry/secret-storage-mechanisms.json",
@@ -2880,6 +2895,11 @@
       "git_blob_sha": "878a3f027c154af202ba6ff8916c805ffa716724"
     },
     {
+      "path": "scripts/validate_e2eesa_status.py",
+      "size": 7457,
+      "git_blob_sha": "42057c0eaa93ca40f945aa46f7c7c0bf85932ca9"
+    },
+    {
       "path": "scripts/validate_repo.py",
       "size": 126550,
       "git_blob_sha": "2d3d4b68b64144fe69bf74660b195b25bda0238d"
@@ -3450,5 +3470,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:15671093f0be60f069ef5092ddf2cce98a176f4366b6eab2e0dedf554a65df54"
+  "tree_digest": "sha256:b788471fc6eaeb011d9ba6585ad9364cea3be7aaf0e1dd59a9bff951856c701e"
 }
