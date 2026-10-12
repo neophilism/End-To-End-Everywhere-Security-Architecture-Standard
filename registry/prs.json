@@ -10,301 +10,401 @@
       "id": "E2EESA-01",
       "title": "Repository foundation",
       "origin": "original",
-      "prs": []
+      "prs": [
+        1
+      ]
     },
     {
       "id": "E2EESA-02",
       "title": "Normative terminology",
       "origin": "original",
-      "prs": []
+      "prs": [
+        2
+      ]
     },
     {
       "id": "E2EESA-03",
       "title": "Unified threat model",
       "origin": "original",
-      "prs": []
+      "prs": [
+        3
+      ]
     },
     {
       "id": "E2EESA-04",
       "title": "Security properties and invariants",
       "origin": "original",
-      "prs": []
+      "prs": [
+        4
+      ]
     },
     {
       "id": "E2EESA-05",
       "title": "Multi-option profile and configuration resolver",
       "origin": "original",
-      "prs": []
+      "prs": [
+        5
+      ]
     },
     {
       "id": "E2EESA-06",
       "title": "Cryptographic algorithm/suite registry",
       "origin": "original",
-      "prs": []
+      "prs": [
+        6
+      ]
     },
     {
       "id": "E2EESA-07",
       "title": "Downgrade-resistant negotiation",
       "origin": "original",
-      "prs": []
+      "prs": [
+        7
+      ]
     },
     {
       "id": "E2EESA-08",
       "title": "Identity and device architecture",
       "origin": "original",
-      "prs": []
+      "prs": [
+        8
+      ]
     },
     {
       "id": "E2EESA-09",
       "title": "Pairwise E2EE messaging profiles",
       "origin": "original",
-      "prs": []
+      "prs": [
+        9
+      ]
     },
     {
       "id": "E2EESA-10",
       "title": "Group messaging and membership profiles",
       "origin": "original",
-      "prs": []
+      "prs": [
+        10
+      ]
     },
     {
       "id": "E2EESA-11",
       "title": "Key verification",
       "origin": "original",
-      "prs": []
+      "prs": [
+        11
+      ]
     },
     {
       "id": "E2EESA-12",
       "title": "Key transparency",
       "origin": "original",
-      "prs": []
+      "prs": [
+        12
+      ]
     },
     {
       "id": "E2EESA-13",
       "title": "Backup and recovery profiles",
       "origin": "original",
-      "prs": []
+      "prs": [
+        13
+      ]
     },
     {
       "id": "E2EESA-14",
       "title": "Metadata privacy",
       "origin": "original",
-      "prs": []
+      "prs": [
+        14
+      ]
     },
     {
       "id": "E2EESA-15",
       "title": "Contact discovery",
       "origin": "original",
-      "prs": []
+      "prs": [
+        15
+      ]
     },
     {
       "id": "E2EESA-16",
       "title": "Attachments and file encryption",
       "origin": "original",
-      "prs": []
+      "prs": [
+        16
+      ]
     },
     {
       "id": "E2EESA-17",
       "title": "Real-time media protection",
       "origin": "original",
-      "prs": []
+      "prs": [
+        17
+      ]
     },
     {
       "id": "E2EESA-18",
       "title": "Secret storage and hardware protection",
       "origin": "original",
-      "prs": []
+      "prs": [
+        18
+      ]
     },
     {
       "id": "E2EESA-19",
       "title": "Transport security",
       "origin": "original",
-      "prs": []
+      "prs": [
+        19
+      ]
     },
     {
       "id": "E2EESA-20",
       "title": "Native and web client security",
       "origin": "original",
-      "prs": []
+      "prs": [
+        20
+      ]
     },
     {
       "id": "E2EESA-21",
       "title": "Server trust minimization",
       "origin": "original",
-      "prs": []
+      "prs": [
+        21
+      ]
     },
     {
       "id": "E2EESA-22",
       "title": "Privacy-preserving telemetry",
       "origin": "original",
-      "prs": []
+      "prs": [
+        22
+      ]
     },
     {
       "id": "E2EESA-23",
       "title": "Secure-development standard",
       "origin": "original",
-      "prs": []
+      "prs": [
+        23
+      ]
     },
     {
       "id": "E2EESA-24",
       "title": "Software supply-chain standard",
       "origin": "original",
-      "prs": []
+      "prs": [
+        24
+      ]
     },
     {
       "id": "E2EESA-25",
       "title": "Security verification framework",
       "origin": "original",
-      "prs": []
+      "prs": [
+        25
+      ]
     },
     {
       "id": "E2EESA-26",
       "title": "Formal verification profiles",
       "origin": "original",
-      "prs": []
+      "prs": [
+        26
+      ]
     },
     {
       "id": "E2EESA-27",
       "title": "Open E2EE assurance levels",
       "origin": "original",
-      "prs": []
+      "prs": [
+        27
+      ]
     },
     {
       "id": "E2EESA-28",
       "title": "Certification evidence model",
       "origin": "original",
-      "prs": []
+      "prs": [
+        28
+      ]
     },
     {
       "id": "E2EESA-29",
       "title": "Certification lifecycle",
       "origin": "original",
-      "prs": []
+      "prs": [
+        29
+      ]
     },
     {
       "id": "E2EESA-30",
       "title": "Certification attestations",
       "origin": "original",
-      "prs": []
+      "prs": [
+        30
+      ]
     },
     {
       "id": "E2EESA-31",
       "title": "Vulnerability disclosure profiles",
       "origin": "original",
-      "prs": []
+      "prs": [
+        31
+      ]
     },
     {
       "id": "E2EESA-32",
       "title": "Vulnerability handling",
       "origin": "original",
-      "prs": []
+      "prs": [
+        32
+      ]
     },
     {
       "id": "E2EESA-33",
       "title": "Advisory interoperability",
       "origin": "original",
-      "prs": []
+      "prs": [
+        33
+      ]
     },
     {
       "id": "E2EESA-34",
       "title": "Observatory evidence model",
       "origin": "original",
-      "prs": []
+      "prs": [
+        34
+      ]
     },
     {
       "id": "E2EESA-35",
       "title": "Observatory data architecture",
       "origin": "original",
-      "prs": []
+      "prs": [
+        35
+      ]
     },
     {
       "id": "E2EESA-36",
       "title": "Confidence and classification model",
       "origin": "original",
-      "prs": []
+      "prs": [
+        36
+      ]
     },
     {
       "id": "E2EESA-37",
       "title": "Research profile registry",
       "origin": "original",
-      "prs": []
+      "prs": [
+        37
+      ]
     },
     {
       "id": "E2EESA-38",
       "title": "Research-to-production promotion gate",
       "origin": "original",
-      "prs": []
+      "prs": [
+        38
+      ]
     },
     {
       "id": "E2EESA-39",
       "title": "Deprecation and emergency migration",
       "origin": "original",
-      "prs": []
+      "prs": [
+        39
+      ]
     },
     {
       "id": "E2EESA-40",
       "title": "Conformance engine",
       "origin": "original",
-      "prs": []
+      "prs": [
+        40
+      ]
     },
     {
       "id": "E2EESA-41",
       "title": "Conformance CLI",
       "origin": "original",
-      "prs": []
+      "prs": [
+        41
+      ]
     },
     {
       "id": "E2EESA-42",
       "title": "Compatibility solver",
       "origin": "original",
-      "prs": []
+      "prs": [
+        42
+      ]
     },
     {
       "id": "E2EESA-43",
       "title": "Reference fixtures",
       "origin": "original",
-      "prs": []
+      "prs": [
+        43
+      ]
     },
     {
       "id": "E2EESA-44",
       "title": "Cross-profile interoperability",
       "origin": "original",
-      "prs": []
+      "prs": [
+        44
+      ]
     },
     {
       "id": "E2EESA-45",
       "title": "Six-project integration contracts",
       "origin": "original",
-      "prs": []
+      "prs": [
+        45
+      ]
     },
     {
       "id": "E2EESA-46",
       "title": "Standards crosswalk",
       "origin": "original",
-      "prs": []
+      "prs": [
+        46
+      ]
     },
     {
       "id": "E2EESA-47",
       "title": "Security rationale corpus",
       "origin": "original",
-      "prs": []
+      "prs": [
+        47
+      ]
     },
     {
       "id": "E2EESA-48",
       "title": "E2EESA 0.9 candidate",
       "origin": "original",
-      "prs": []
+      "prs": [
+        48
+      ]
     },
     {
       "id": "E2EESA-49",
       "title": "Independent expert-review fixes",
       "origin": "original",
-      "prs": []
+      "prs": [
+        49
+      ]
     },
     {
       "id": "E2EESA-50",
       "title": "E2EESA 1.0 release",
       "origin": "original",
-      "prs": []
+      "prs": [
+        50
+      ]
     },
     {
       "id": "AUD-01",
