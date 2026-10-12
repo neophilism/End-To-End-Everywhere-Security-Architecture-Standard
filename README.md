@@ -35,3 +35,7 @@ Security-sensitive changes are made through reviewed pull requests. Controversia
 Development toward `0.9.0-rc.2` is addressing Audit v2. The original `0.9.0-rc.1` bytes and manifest remain archived and verified on every check. The current development tree is not a frozen candidate or a production certification basis. Legacy evaluator passes establish configuration consistency only. Independent expert review and the 1.0 decision remain separate gates.
 
 The ordered work and evidence states are in `registry/audit-remediation.json`. Downstream adoption follows the corrected component and data-flow contracts.
+
+## End-to-End Everywhere progress
+
+The canonical [security/e2eesa-status.json](security/e2eesa-status.json) records standard implementation, complete testing and independent expert review separately. Engine Room reads it automatically from GitHub. All initial stages are pending; existing profile locks and approved decisions remain authoritative. Read [adoption and independent-account instructions](docs/E2EESA_ADOPTION.md), and run `python3 scripts/validate_e2eesa_status.py`. Record validation does not establish product security or certification.
