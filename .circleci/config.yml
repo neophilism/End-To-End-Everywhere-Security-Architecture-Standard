@@ -1,0 +1,33 @@
+version: 2.1
+
+# Specification invariants, cross-language canonical bytes and seeded adversarial checks.
+jobs:
+  specification-reference:
+    docker:
+      - image: cimg/python:3.13
+    resource_class: medium
+    steps:
+      - checkout
+      - run:
+          name: Install Node for cross-language reference comparison
+          command: sudo apt-get update && sudo apt-get install -y nodejs
+      - run: python3 scripts/validate_repo.py
+      - run: python3 scripts/release_candidate.py
+      - run: python3 -m unittest discover -s tests -v
+      - run: python3 -m unittest discover -s tests -p test_cross_language_bytes.py -v
+      - run:
+          name: Seeded adversarial security reference tests
+          command: python3 scripts/run_reference_security_checks.py --seed 20261007 --iterations 1000
+  security-status-record:
+    docker:
+      - image: cimg/python:3.12
+    resource_class: small
+    steps:
+      - checkout
+      - run: python3 scripts/validate_e2eesa_status.py
+
+workflows:
+  complete-specification-checks:
+    jobs:
+      - specification-reference
+      - security-status-record
