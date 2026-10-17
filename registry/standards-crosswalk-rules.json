@@ -216,6 +216,22 @@
       "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
     },
     {
+      "document_path": "spec/endpoint-export-boundary.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Privacy, authorization and system boundary controls inform protected information-flow policy; E2EESA scopes recipient encryption separately."
+        },
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Key management guidance supports exact recipient-key selection and maintaining separation of endpoint secrets from service-controlled encryption."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
       "document_path": "spec/formal-verification-profiles.md",
       "relations": [],
       "no_direct_analog_reason": "E2EESA composes proof methods into project-specific assurance profiles; no single external standard defines the same profile structure."

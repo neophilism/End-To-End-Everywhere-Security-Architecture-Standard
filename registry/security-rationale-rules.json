@@ -314,6 +314,27 @@
       ]
     },
     {
+      "document_path": "spec/endpoint-export-boundary.md",
+      "rationale": "Exact recipient, ciphertext and metadata boundaries prevent service or provider-side exfiltration of plaintext-derived artifacts and stop implicit recipient expansion while retaining narrowly scoped consented publication.",
+      "threat_ids": [
+        "TM-SERVICE-READ",
+        "TM-SERVICE-ACTIVE",
+        "TM-METADATA",
+        "TM-INSIDER"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-CONFIDENTIALITY",
+        "SP-METADATA-MINIMIZATION"
+      ],
+      "evidence_expectations": [
+        "observed-egress-report",
+        "data-flow-inventory-evidence",
+        "explicit-disclosure-authorization-evidence",
+        "recipient-cryptographic-binding-evidence"
+      ]
+    },
+    {
       "document_path": "spec/formal-verification-profiles.md",
       "rationale": "Formal-verification requirements prevent proof claims from exceeding the actual model, assumptions, code linkage, or properties proven.",
       "threat_ids": [

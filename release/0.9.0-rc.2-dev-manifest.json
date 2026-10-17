@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 700,
+  "file_count": 705,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -1921,8 +1921,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 31346,
-      "git_blob_sha": "66de6fce94f20be3a214ce634fd5676084a37a23"
+      "size": 32156,
+      "git_blob_sha": "42ecdd91f1d86ae9052661c11424ea6eb2440aff"
     },
     {
       "path": "registry/security-verification.json",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 22558,
-      "git_blob_sha": "11689df0c35665ecf0e5301e0f55c070249cf31b"
+      "size": 23240,
+      "git_blob_sha": "fbd022a70f2360bee24e41c31927e6a5acc8a6e4"
     },
     {
       "path": "registry/telemetry.json",
@@ -2168,6 +2168,16 @@
       "path": "schemas/deprecation-migration-registry.schema.json",
       "size": 1426,
       "git_blob_sha": "a822d0c567e6b74f957c8fb19d25b275f0c39e5e"
+    },
+    {
+      "path": "schemas/endpoint-egress-event.schema.json",
+      "size": 3094,
+      "git_blob_sha": "33981cd824665be9d4cbf884af743124ea0e00e8"
+    },
+    {
+      "path": "schemas/endpoint-egress-policy.schema.json",
+      "size": 4584,
+      "git_blob_sha": "438cd97b647a805907fa621dd6d586e3c39ac1e6"
     },
     {
       "path": "schemas/external-standards.schema.json",
@@ -2755,6 +2765,11 @@
       "git_blob_sha": "24a621056aea4748ab6c9d108ae7b633dbc33b9e"
     },
     {
+      "path": "scripts/endpoint_egress_engine.py",
+      "size": 13918,
+      "git_blob_sha": "33dd53cf527caddac8323de6ca7d5398369c893f"
+    },
+    {
       "path": "scripts/formal_verification.py",
       "size": 16820,
       "git_blob_sha": "44df709d0dce7ae66bbbbafaa2672211e52d56e3"
@@ -3035,6 +3050,11 @@
       "git_blob_sha": "a40bd67f54f4f1f5923789878ac5cbaed26cf8d3"
     },
     {
+      "path": "spec/endpoint-export-boundary.md",
+      "size": 3215,
+      "git_blob_sha": "f5c193dda14d076e72864151c7b078ed48b57565"
+    },
+    {
       "path": "spec/formal-verification-profiles.md",
       "size": 9695,
       "git_blob_sha": "1a1e8610fe371d9eabc2e6bf392295b6e9f37dc6"
@@ -3310,6 +3330,11 @@
       "git_blob_sha": "2939971f5abdb74d50049a0af2b64f30d96af361"
     },
     {
+      "path": "tests/test_endpoint_egress_engine.py",
+      "size": 9216,
+      "git_blob_sha": "fa7859019e7c71ede8e5a76c447d8442ae982d62"
+    },
+    {
       "path": "tests/test_formal_verification.py",
       "size": 7072,
       "git_blob_sha": "fd6dd5b748449fbdf05e73b9b8c3e4abcbd9f111"
@@ -3505,5 +3530,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:69057cafa7768da7a714064dea1e052659a7a4322d517be0af4f33b7d605ad49"
+  "tree_digest": "sha256:52bad0c44cf41add5e49eb76156082a2aadc2cf071d6598bb9448cb771d783c1"
 }

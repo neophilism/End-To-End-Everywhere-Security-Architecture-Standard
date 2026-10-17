@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/endpoint-egress-event.schema.json",
+  "title": "E2EESA AUD-10 observed endpoint egress event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "flow_id",
+    "phase",
+    "output_kind",
+    "content_ids",
+    "destination_id",
+    "recipient_id",
+    "recipient_key_fingerprint",
+    "e2ee_profile_ref",
+    "encryption_scope",
+    "metadata_fields",
+    "authorization_id",
+    "purpose_id",
+    "event_epoch"
+  ],
+  "properties": {
+    "event_id": {
+      "$ref": "#/$defs/id"
+    },
+    "flow_id": {
+      "$ref": "#/$defs/id"
+    },
+    "phase": {
+      "enum": [
+        "success",
+        "failure",
+        "crash",
+        "retry",
+        "analytics",
+        "background",
+        "user-action"
+      ]
+    },
+    "output_kind": {
+      "enum": [
+        "plaintext",
+        "classifier",
+        "embedding",
+        "content-hash",
+        "preview",
+        "search-index",
+        "diagnostic",
+        "telemetry",
+        "provider-api-call",
+        "ciphertext",
+        "protocol-metadata",
+        "public-data"
+      ]
+    },
+    "content_ids": {
+      "$ref": "#/$defs/ids"
+    },
+    "destination_id": {
+      "$ref": "#/$defs/id"
+    },
+    "recipient_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/id"
+        }
+      ]
+    },
+    "recipient_key_fingerprint": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/hash"
+        }
+      ]
+    },
+    "e2ee_profile_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/profile"
+        }
+      ]
+    },
+    "encryption_scope": {
+      "enum": [
+        "none",
+        "e2ee-recipient",
+        "provider-key"
+      ]
+    },
+    "metadata_fields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/metadata"
+      }
+    },
+    "authorization_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/id"
+        }
+      ]
+    },
+    "purpose_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/id"
+        }
+      ]
+    },
+    "event_epoch": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "minItems": 1
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "profile": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "metadata": {
+      "type": "string",
+      "enum": [
+        "ciphertext-size",
+        "packet-count",
+        "delivery-time",
+        "routing-token",
+        "encrypted-content-length"
+      ]
+    }
+  }
+}
