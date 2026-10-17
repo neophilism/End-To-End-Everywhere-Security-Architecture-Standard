@@ -253,6 +253,22 @@
       "no_direct_analog_reason": null
     },
     {
+      "document_path": "spec/hardware-recovery-attempt-budgets.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Recovery key authorization and lifecycle management provide context, while hardware attempt-budget rules remain E2EESA-specific."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Security and access-control policies contextualize authenticated recovery and rollback-resistant service enforcement."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
       "document_path": "spec/identity-device-architecture.md",
       "relations": [
         {

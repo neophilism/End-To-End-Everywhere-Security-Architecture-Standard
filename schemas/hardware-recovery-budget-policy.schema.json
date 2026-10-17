@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/hardware-recovery-budget-policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "E2EESA AUD-11 hardware recovery budget policy",
+  "required": [
+    "schema_version",
+    "policy_id",
+    "budget_id",
+    "secret_class",
+    "maximum_attempts",
+    "authority_mode",
+    "hardware_id",
+    "approved_code_measurement",
+    "approved_policy_digest",
+    "replica_ids",
+    "authenticated_initiators",
+    "reset_authority_ids"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "policy_id": {
+      "$ref": "#/$defs/id"
+    },
+    "budget_id": {
+      "$ref": "#/$defs/id"
+    },
+    "secret_class": {
+      "enum": [
+        "user-chosen-low-entropy",
+        "generated-high-entropy"
+      ]
+    },
+    "maximum_attempts": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "authority_mode": {
+      "enum": [
+        "single-hardware-counter",
+        "shared-monotonic-counter"
+      ]
+    },
+    "hardware_id": {
+      "$ref": "#/$defs/id"
+    },
+    "approved_code_measurement": {
+      "$ref": "#/$defs/digest"
+    },
+    "approved_policy_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "replica_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "minItems": 1
+    },
+    "authenticated_initiators": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "minItems": 1
+    },
+    "reset_authority_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    }
+  }
+}

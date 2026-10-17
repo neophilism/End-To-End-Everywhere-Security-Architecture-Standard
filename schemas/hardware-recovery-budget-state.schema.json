@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/hardware-recovery-budget-state.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "E2EESA AUD-11 monotonic reference budget state",
+  "required": [
+    "schema_version",
+    "policy_id",
+    "budget_id",
+    "epoch",
+    "attempts_used",
+    "counter",
+    "replica_ids"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "policy_id": {
+      "$ref": "#/$defs/id"
+    },
+    "budget_id": {
+      "$ref": "#/$defs/id"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "attempts_used": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "counter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "replica_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    }
+  }
+}

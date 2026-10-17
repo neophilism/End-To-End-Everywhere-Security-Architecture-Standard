@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 705,
+  "file_count": 711,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -1921,8 +1921,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 32156,
-      "git_blob_sha": "42ecdd91f1d86ae9052661c11424ea6eb2440aff"
+      "size": 33102,
+      "git_blob_sha": "11aa37bb34b37cd6dc7470a28ccc74c2360fd1dc"
     },
     {
       "path": "registry/security-verification.json",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 23240,
-      "git_blob_sha": "fbd022a70f2360bee24e41c31927e6a5acc8a6e4"
+      "size": 23891,
+      "git_blob_sha": "69eaee724e2f2e723f925f62e0683ae557647b6b"
     },
     {
       "path": "registry/telemetry.json",
@@ -2218,6 +2218,21 @@
       "path": "schemas/group-protocol-registry.schema.json",
       "size": 1896,
       "git_blob_sha": "75b354a36a122e9167b19499e9291b8bf578ac1a"
+    },
+    {
+      "path": "schemas/hardware-recovery-budget-policy.schema.json",
+      "size": 2067,
+      "git_blob_sha": "84d6611953f2e833776fac974a4dda6151f7a615"
+    },
+    {
+      "path": "schemas/hardware-recovery-budget-receipt.schema.json",
+      "size": 2451,
+      "git_blob_sha": "83a4245ca366042749226b482260a23d4308110b"
+    },
+    {
+      "path": "schemas/hardware-recovery-budget-state.schema.json",
+      "size": 1267,
+      "git_blob_sha": "ca771e678254ae000e24ad987364c93503989d46"
     },
     {
       "path": "schemas/identity-event.schema.json",
@@ -2855,6 +2870,11 @@
       "git_blob_sha": "4172d010a2eb6aace31b8b554a776b85fbdc0ae6"
     },
     {
+      "path": "scripts/recovery_attempt_budget.py",
+      "size": 8758,
+      "git_blob_sha": "e26ff9b5efe4fb294be1f11d3bf7cb6b0c0fd6f1"
+    },
+    {
       "path": "scripts/reference_fixtures.py",
       "size": 16402,
       "git_blob_sha": "dde2713fbf4e2cf2f71e13560d37c6ed3e728a09"
@@ -3063,6 +3083,11 @@
       "path": "spec/group-e2ee.md",
       "size": 11799,
       "git_blob_sha": "23796a1239109f90e53c96843f46022223ef6e8b"
+    },
+    {
+      "path": "spec/hardware-recovery-attempt-budgets.md",
+      "size": 3934,
+      "git_blob_sha": "38dc91149789fd1b1aec1eb29dea6fb6bca2f3d8"
     },
     {
       "path": "spec/identity-device-architecture.md",
@@ -3435,6 +3460,11 @@
       "git_blob_sha": "97bbc39b0db7e2a24880b9d7861ba5871f8b32a4"
     },
     {
+      "path": "tests/test_recovery_attempt_budget.py",
+      "size": 7633,
+      "git_blob_sha": "40b17003a89deb3b77fad048e3c496a9856e5350"
+    },
+    {
       "path": "tests/test_reference_fixtures.py",
       "size": 13271,
       "git_blob_sha": "89b001ecd44c2100ac82735b6a092e633c43fba3"
@@ -3530,5 +3560,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:52bad0c44cf41add5e49eb76156082a2aadc2cf071d6598bb9448cb771d783c1"
+  "tree_digest": "sha256:d1a20bac26e5c11cb5731a2f2c3e28899577972bb31a4287d9941ea9d599f570"
 }
