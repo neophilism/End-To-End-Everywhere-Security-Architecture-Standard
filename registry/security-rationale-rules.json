@@ -373,6 +373,31 @@
       ]
     },
     {
+      "document_path": "spec/hardware-recovery-attempt-budgets.md",
+      "rationale": "Recovery budget requirements prevent password guessing via replayed snapshots, readded replicas, unsupported HSM measurements, or unauthorized service bypasses, without mistaking registry fields for actual hardware attestation.",
+      "threat_ids": [
+        "TM-BACKUP",
+        "TM-RECOVERY",
+        "TM-ROLLBACK",
+        "TM-CREDENTIAL"
+      ],
+      "composite_scenario_ids": [
+        "CS-BACKUP-CREDENTIAL"
+      ],
+      "security_property_ids": [
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-ROLLBACK-RESISTANCE",
+        "SP-AUTHORIZATION-INTEGRITY"
+      ],
+      "evidence_expectations": [
+        "hardware-attestation-chain-evidence",
+        "nonrollbackable-counter-evidence",
+        "cross-replica-concurrency-evidence",
+        "authenticated-attempt-reservation-evidence",
+        "reset-authority-evidence"
+      ]
+    },
+    {
       "document_path": "spec/identity-device-architecture.md",
       "rationale": "Device authorization rules prevent unauthorized enrollment, stale-device access, and server-side substitution of cryptographic identities.",
       "threat_ids": [

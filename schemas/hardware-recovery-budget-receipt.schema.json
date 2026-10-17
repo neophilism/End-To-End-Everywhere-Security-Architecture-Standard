@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/hardware-recovery-budget-receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "E2EESA AUD-11 evidence reference and attempt request",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hardware_id",
+        "code_measurement",
+        "policy_digest",
+        "replica_id",
+        "epoch",
+        "counter",
+        "attestation_evidence_ref"
+      ],
+      "properties": {
+        "hardware_id": {
+          "$ref": "#/$defs/id"
+        },
+        "code_measurement": {
+          "$ref": "#/$defs/digest"
+        },
+        "policy_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "replica_id": {
+          "$ref": "#/$defs/id"
+        },
+        "epoch": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "counter": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attestation_evidence_ref": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operation",
+        "initiator_id",
+        "authentication_evidence_ref",
+        "replica_id",
+        "reset_authority_id",
+        "reset_evidence_ref"
+      ],
+      "properties": {
+        "operation": {
+          "enum": [
+            "guess",
+            "reset"
+          ]
+        },
+        "initiator_id": {
+          "$ref": "#/$defs/id"
+        },
+        "authentication_evidence_ref": {
+          "$ref": "#/$defs/id"
+        },
+        "replica_id": {
+          "$ref": "#/$defs/id"
+        },
+        "reset_authority_id": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/id"
+            }
+          ]
+        },
+        "reset_evidence_ref": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/id"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    }
+  }
+}
