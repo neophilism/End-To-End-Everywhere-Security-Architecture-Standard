@@ -1921,8 +1921,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 30494,
-      "git_blob_sha": "5aafa4ccc00b9a933507818d8cd43d240d09482f"
+      "size": 31346,
+      "git_blob_sha": "66de6fce94f20be3a214ce634fd5676084a37a23"
     },
     {
       "path": "registry/security-verification.json",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 22209,
-      "git_blob_sha": "ffa27980cf9557eed11df92ce6e72c105256e302"
+      "size": 22558,
+      "git_blob_sha": "11689df0c35665ecf0e5301e0f55c070249cf31b"
     },
     {
       "path": "registry/telemetry.json",
@@ -3505,5 +3505,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:9932a840d0741adaf473bff6d11ef417792a54ae8ff93d7fb6da9e38c4b238a2"
+  "tree_digest": "sha256:69057cafa7768da7a714064dea1e052659a7a4322d517be0af4f33b7d605ad49"
 }
