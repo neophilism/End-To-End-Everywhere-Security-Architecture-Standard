@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 733,
+  "file_count": 734,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2746,8 +2746,8 @@
     },
     {
       "path": "scripts/backup_recovery_engine.py",
-      "size": 27453,
-      "git_blob_sha": "761f97ff110c1280db05b18a29f3e4c262c85374"
+      "size": 27524,
+      "git_blob_sha": "73a2f32b6c3150c855f122495db53b9e8f635d69"
     },
     {
       "path": "scripts/build_reference_release.py",
@@ -3365,6 +3365,11 @@
       "git_blob_sha": "48449c2fc9fcf221c527afe328e08c95d24ed078"
     },
     {
+      "path": "tests/test_backup_strict_generation_types.py",
+      "size": 2773,
+      "git_blob_sha": "81ce7e8a0bde880c5269be3fd9caf944d465701a"
+    },
+    {
       "path": "tests/test_build_reference_release.py",
       "size": 2933,
       "git_blob_sha": "f5dc1404da50415ee8b0e089d61baaaea87a206b"
@@ -3670,5 +3675,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:f12c85b7803f629510d6aed6ea9bd74dbc302b90c2c3d8421fc0250cd28be16e"
+  "tree_digest": "sha256:fa127afa74c54ae22ccfad5e7ecba11a08cf1fa0e397209afb68f449121d8c49"
 }
