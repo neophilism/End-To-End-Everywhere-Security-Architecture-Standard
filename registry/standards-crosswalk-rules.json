@@ -466,6 +466,17 @@
       "no_direct_analog_reason": null
     },
     {
+      "document_path": "spec/push-provider-privacy.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Information-flow controls and privacy risk analysis inform push provider metadata minimization and authorization; they do not certify recipient anonymity."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
       "document_path": "spec/real-time-media.md",
       "relations": [
         {

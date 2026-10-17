@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/push-provider-observation.schema.json",
+  "title": "E2EESA AUD-17 observed push boundary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation_id",
+    "provider_id",
+    "app_scope_id",
+    "token_digest",
+    "mode",
+    "outer_fields",
+    "payload_class",
+    "payload_length_bytes",
+    "recipient_id",
+    "recipient_key_fingerprint",
+    "encryption_profile_ref",
+    "provider_can_decrypt",
+    "send_epoch",
+    "response_epoch",
+    "batch_count"
+  ],
+  "properties": {
+    "observation_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "provider_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "app_scope_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "token_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "mode": {
+      "enum": [
+        "wake-only",
+        "opaque-encrypted-payload"
+      ]
+    },
+    "outer_fields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "payload_class": {
+      "enum": [
+        "empty",
+        "endpoint-ciphertext",
+        "plaintext"
+      ]
+    },
+    "payload_length_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "recipient_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "recipient_key_fingerprint": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      ]
+    },
+    "encryption_profile_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      ]
+    },
+    "provider_can_decrypt": {
+      "type": "boolean"
+    },
+    "send_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "response_epoch": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        }
+      ]
+    },
+    "batch_count": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        }
+      ]
+    }
+  }
+}
