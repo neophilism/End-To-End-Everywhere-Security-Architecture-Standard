@@ -27,6 +27,9 @@ jobs:
       - name: Validate 0.9 candidate freeze
         run: python scripts/release_candidate.py
 
+      - name: Validate requirement analysis provenance
+        run: python scripts/requirement_analysis.py
+
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
 
