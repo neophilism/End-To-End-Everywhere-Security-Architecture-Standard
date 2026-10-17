@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 697,
+  "file_count": 700,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2785,6 +2785,11 @@
       "git_blob_sha": "2076260fcc2d8fb2ba4076f016d2cf441cfd346f"
     },
     {
+      "path": "scripts/key_change_state_machine.py",
+      "size": 15701,
+      "git_blob_sha": "22060391c740aa5e8acbf52a6d7b55bd84060b3e"
+    },
+    {
       "path": "scripts/key_transparency_engine.py",
       "size": 25543,
       "git_blob_sha": "7cc01fad04b42719a4dddbecc268f8b19c2df4f5"
@@ -3048,6 +3053,11 @@
       "path": "spec/integration-contracts.md",
       "size": 8763,
       "git_blob_sha": "bf6d68e58ae19c9544478e539f6f03e400792abe"
+    },
+    {
+      "path": "spec/key-change-state-machine.md",
+      "size": 3378,
+      "git_blob_sha": "885afe7b9fe23adf05e837f425144905001cd4fd"
     },
     {
       "path": "spec/key-transparency.md",
@@ -3340,6 +3350,11 @@
       "git_blob_sha": "9754076024f209ac04797bc8b9ef70b3631713b0"
     },
     {
+      "path": "tests/test_key_change_state_machine.py",
+      "size": 7192,
+      "git_blob_sha": "4e648610049d164e9e0f35b0402142fe1ba4583f"
+    },
+    {
       "path": "tests/test_key_transparency_engine.py",
       "size": 8431,
       "git_blob_sha": "4d9b184455ab6efa26b5b5cb0c52d82db867ddce"
@@ -3490,5 +3505,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:8a1da84fc3e02f649dba99d8d84a3bde375576679ef64dda675dae49ec47810b"
+  "tree_digest": "sha256:f9d309cb67309a5d0bb3cc99b709a94fede3ca41e950b71120faa8fc1ebd9c24"
 }
