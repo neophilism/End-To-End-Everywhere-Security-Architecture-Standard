@@ -354,7 +354,8 @@ def validate_envelope(
         errors.append(f"{source}: generation must be positive")
     if envelope.get("content_aead_algorithm_id") != policy.get("content_aead_algorithm_id"):
         errors.append(f"{source}: content AEAD does not match policy")
-    if envelope.get("backup_data_key_random_bits", 0) < 256:
+    key_bits = envelope.get("backup_data_key_random_bits")
+    if type(key_bits) is not int or key_bits < 256:
         errors.append(f"{source}: backup data key must contain at least 256 random bits")
     if envelope.get("backup_data_key_reused") is not False:
         errors.append(f"{source}: backup data key reuse is prohibited")
@@ -364,7 +365,8 @@ def validate_envelope(
         errors.append(f"{source}: manifest must bind identity and backup generation")
     if not isinstance(envelope.get("manifest_digest"), str) or not HEX_RE.fullmatch(envelope.get("manifest_digest", "")):
         errors.append(f"{source}: invalid manifest_digest")
-    if not isinstance(envelope.get("ciphertext_chunk_count"), int) or envelope.get("ciphertext_chunk_count") < 1:
+    chunk_count = envelope.get("ciphertext_chunk_count")
+    if type(chunk_count) is not int or chunk_count < 1:
         errors.append(f"{source}: ciphertext_chunk_count must be positive")
     if envelope.get("server_plaintext_access") is not False:
         errors.append(f"{source}: service must not have backup plaintext")
@@ -424,7 +426,8 @@ def validate_generation_transition(
         errors.append(f"{source}: profile_ref changed between generations")
     prev_gen = previous.get("generation")
     cur_gen = current.get("generation")
-    if not isinstance(prev_gen, int) or not isinstance(cur_gen, int) or cur_gen != prev_gen + 1:
+    if (type(prev_gen) is not int or type(cur_gen) is not int
+            or prev_gen < 1 or cur_gen != prev_gen + 1):
         errors.append(f"{source}: generation must advance by exactly one")
     if current.get("backup_data_key_id") == previous.get("backup_data_key_id"):
         errors.append(f"{source}: each generation requires a fresh backup data key")
