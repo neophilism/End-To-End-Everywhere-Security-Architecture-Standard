@@ -89,9 +89,13 @@ class ProtectedEgressGateTests(unittest.TestCase):
             "inventory":self.inventory,"claims":[],
             "trusted_egress_evidence":self.evidence,"request_digest":"",
         }
-        r["request_digest"]=assess.request_digest(r)
-        self.assertEqual(assess.evaluate(r)["verdict"],"fail")
-        self.assertIn("assessment request fields mismatch",assess.evaluate(r)["errors"])
+        with self.assertRaisesRegex(ValueError, "unknown contract fields"):
+            assess.request_digest(r)
+        # The application cannot sign an unsupported request with trusted fields.
+        r["request_digest"]="sha256:"+"0"*64
+        result=assess.evaluate(r)
+        self.assertEqual(result["verdict"],"fail")
+        self.assertIn("assessment request fields mismatch",result["errors"])
 
     def test_protected_content_claim_without_egress_remains_indeterminate(self):
         from test_scoped_assessment import ScopedAssessmentTests

@@ -3611,8 +3611,8 @@
     },
     {
       "path": "tests/test_scoped_egress_assurance.py",
-      "size": 5230,
-      "git_blob_sha": "00e605ae52f67272c2a4ac0d32fe36386d931278"
+      "size": 5427,
+      "git_blob_sha": "8236abf29a7fd96ecf721ce53b604daa3bfa2460"
     },
     {
       "path": "tests/test_secret_storage_engine.py",
@@ -3675,5 +3675,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:fa127afa74c54ae22ccfad5e7ecba11a08cf1fa0e397209afb68f449121d8c49"
+  "tree_digest": "sha256:68975ba73f88c487c42ebab4dda288abce92bdbd98d695a9c8712c7fb49dee29"
 }
