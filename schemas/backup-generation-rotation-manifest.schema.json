@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/backup-generation-rotation-manifest.schema.json",
+  "title": "E2EESA AUD-12 backup generation metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "identity_id",
+    "profile_ref",
+    "backup_id",
+    "generation",
+    "recovery_credential_epoch",
+    "bdek_id",
+    "bdek_commitment",
+    "encrypted_content_digest",
+    "inner_recovery_wrap_digest",
+    "argon2_salt_digest",
+    "content_aead_algorithm_id"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "identity_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "enum": [
+        "backup-user-secret@0.1.0",
+        "backup-hardware-assisted@0.1.0"
+      ]
+    },
+    "backup_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "recovery_credential_epoch": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "bdek_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "bdek_commitment": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "encrypted_content_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "inner_recovery_wrap_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "argon2_salt_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "content_aead_algorithm_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/backup-generation-rotation-authorization.schema.json",
+  "title": "E2EESA AUD-12 identity-bound transition authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "old_generation_digest",
+    "new_generation_digest",
+    "authorization_context_digest",
+    "verified_identity_authority_evidence_ref"
+  ],
+  "properties": {
+    "old_generation_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "new_generation_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "authorization_context_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "verified_identity_authority_evidence_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    }
+  }
+}

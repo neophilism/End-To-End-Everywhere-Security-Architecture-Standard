@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/backup-generation-rotation-evidence.schema.json",
+  "title": "E2EESA AUD-12 externally verified crypto-test references",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fresh_bdek_generation_evidence_ref",
+    "independent_distinct_key_check_ref",
+    "new_ciphertext_aead_test_ref",
+    "new_credential_decryption_test_ref",
+    "old_credential_rejection_test_ref",
+    "old_snapshots_may_remain_decryptable",
+    "generated_bdek_random_bits",
+    "hardware_budget_release_evidence_ref"
+  ],
+  "properties": {
+    "fresh_bdek_generation_evidence_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "independent_distinct_key_check_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "new_ciphertext_aead_test_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "new_credential_decryption_test_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "old_credential_rejection_test_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "old_snapshots_may_remain_decryptable": {
+      "const": true
+    },
+    "generated_bdek_random_bits": {
+      "type": "integer",
+      "minimum": 256
+    },
+    "hardware_budget_release_evidence_ref": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    }
+  }
+}

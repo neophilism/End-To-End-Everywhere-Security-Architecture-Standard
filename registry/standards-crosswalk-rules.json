@@ -51,6 +51,22 @@
       "no_direct_analog_reason": null
     },
     {
+      "document_path": "spec/backup-generation-rotation.md",
+      "relations": [
+        {
+          "standard_id": "NIST-SP800-57P1R5",
+          "relation": "contextual",
+          "scope_note": "Cryptographic key generation and lifecycle rotation guidance informs the explicit fresh backup-key and wrapped-secret transitions."
+        },
+        {
+          "standard_id": "NIST-SP800-53R5",
+          "relation": "contextual",
+          "scope_note": "Authorization and audit controls contextualize credential rotation, authenticated generation rollback protection and retained historic copy disclosure."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
       "document_path": "spec/backup-recovery.md",
       "relations": [
         {
