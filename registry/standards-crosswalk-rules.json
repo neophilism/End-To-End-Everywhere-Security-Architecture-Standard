@@ -412,6 +412,22 @@
       "no_direct_analog_reason": null
     },
     {
+      "document_path": "spec/pairwise-prekey-lifecycle.md",
+      "relations": [
+        {
+          "standard_id": "IETF-BCP201",
+          "relation": "contextual",
+          "scope_note": "Cryptographic agility and explicit algorithm transitions support fail-closed pinned prekey use."
+        },
+        {
+          "standard_id": "NIST-FIPS203",
+          "relation": "contextual",
+          "scope_note": "FIPS 203 defines ML-KEM parameter sets, which are selected per protocol role without implying current PQXDH post-quantum authentication."
+        }
+      ],
+      "no_direct_analog_reason": null
+    },
+    {
       "document_path": "spec/privacy-preserving-telemetry.md",
       "relations": [
         {

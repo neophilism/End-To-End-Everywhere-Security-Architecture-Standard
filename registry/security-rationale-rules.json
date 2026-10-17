@@ -640,6 +640,29 @@
       ]
     },
     {
+      "document_path": "spec/pairwise-prekey-lifecycle.md",
+      "rationale": "Bounded signed-prekey age, authenticated identity, selected PQ role, clock uncertainty and private-key retirement prevent stale, stripped or substituted initialization keys and unsupported exposure-window claims.",
+      "threat_ids": [
+        "TM-NET-ACTIVE",
+        "TM-SERVICE-ACTIVE",
+        "TM-QUANTUM-HARVEST",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-FORWARD-SECRECY",
+        "SP-DOWNGRADE-RESISTANCE",
+        "SP-PQ-CONFIDENTIALITY"
+      ],
+      "evidence_expectations": [
+        "actual-prekey-signature-evidence",
+        "endpoint-expiry-rejection-evidence",
+        "prekey-private-key-erasure-evidence",
+        "pq-kem-parameter-pin-evidence",
+        "offline-availability-evidence"
+      ]
+    },
+    {
       "document_path": "spec/privacy-preserving-telemetry.md",
       "rationale": "Telemetry requirements prevent diagnostics from silently becoming a new metadata or content exfiltration channel.",
       "threat_ids": [
