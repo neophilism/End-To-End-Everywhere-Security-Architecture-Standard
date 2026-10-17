@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/push-provider-policy.schema.json",
+  "title": "E2EESA AUD-17 push-provider privacy policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "provider_id",
+    "app_scope_id",
+    "endpoint_recipient_id",
+    "endpoint_key_fingerprint",
+    "encryption_profile_ref",
+    "mode",
+    "allowed_outer_fields",
+    "response_mode",
+    "minimum_response_delay_seconds",
+    "minimum_response_batch_size"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "provider_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "app_scope_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "endpoint_recipient_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "endpoint_key_fingerprint": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "encryption_profile_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "mode": {
+      "enum": [
+        "wake-only",
+        "opaque-encrypted-payload"
+      ]
+    },
+    "allowed_outer_fields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "push-token",
+          "ttl",
+          "priority",
+          "ciphertext-size",
+          "routing-class"
+        ]
+      }
+    },
+    "response_mode": {
+      "enum": [
+        "no-receipt",
+        "bounded-delay",
+        "batch"
+      ]
+    },
+    "minimum_response_delay_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minimum_response_batch_size": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

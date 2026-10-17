@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 727,
+  "file_count": 732,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -1926,8 +1926,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 35877,
-      "git_blob_sha": "010e554218df2b99aee85716db9ce3c62a13efa7"
+      "size": 36759,
+      "git_blob_sha": "a8ebf6fd07e3eaa9ea3455f1a20f99ab18c8aba9"
     },
     {
       "path": "registry/security-verification.json",
@@ -1946,8 +1946,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 25567,
-      "git_blob_sha": "38714e4b38ecc2d457790d8102cf179235d991b6"
+      "size": 25985,
+      "git_blob_sha": "9e820dc17506c8ddf79d8d942b221cacad687cf7"
     },
     {
       "path": "registry/telemetry.json",
@@ -2450,6 +2450,16 @@
       "git_blob_sha": "b1589c2a64608418766f652f7cd4ed283f9debdf"
     },
     {
+      "path": "schemas/push-provider-observation.schema.json",
+      "size": 2463,
+      "git_blob_sha": "33630cb75075078b0a4c31ba6ede0c876437979e"
+    },
+    {
+      "path": "schemas/push-provider-policy.schema.json",
+      "size": 1943,
+      "git_blob_sha": "31a2fc6c0f5c5db19d9c0eac12c6c0350aec9ba2"
+    },
+    {
       "path": "schemas/real-time-media-frame-evidence.schema.json",
       "size": 2204,
       "git_blob_sha": "d3bfd967dc9e7a82821b3b525f67d760bdab8a11"
@@ -2910,6 +2920,11 @@
       "git_blob_sha": "3887f1fac31ef53a8991f8e8d7f327ccc2d1e13e"
     },
     {
+      "path": "scripts/push_metadata_engine.py",
+      "size": 9011,
+      "git_blob_sha": "a69d43c6322039d8d78793f4275eea1329d5ffea"
+    },
+    {
       "path": "scripts/real_time_media_engine.py",
       "size": 28673,
       "git_blob_sha": "4172d010a2eb6aace31b8b554a776b85fbdc0ae6"
@@ -3218,6 +3233,11 @@
       "path": "spec/profile-configuration.md",
       "size": 8630,
       "git_blob_sha": "9dfe2aee0e8c56e756bcf9dd44a30fe17859ad44"
+    },
+    {
+      "path": "spec/push-provider-privacy.md",
+      "size": 3140,
+      "git_blob_sha": "9fe2b2e8ed83fa9c621c9837ffadb24b946d376d"
     },
     {
       "path": "spec/real-time-media.md",
@@ -3530,6 +3550,11 @@
       "git_blob_sha": "1c5324df60404c8c6e9329dd0ada0becc0d74066"
     },
     {
+      "path": "tests/test_push_metadata_engine.py",
+      "size": 7205,
+      "git_blob_sha": "18629eee74c51ba186570ae4e2236bf9f0ee2469"
+    },
+    {
       "path": "tests/test_real_time_media_engine.py",
       "size": 12162,
       "git_blob_sha": "97bbc39b0db7e2a24880b9d7861ba5871f8b32a4"
@@ -3640,5 +3665,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:8042565343f1e7f8f8db46e956ce849455c3f26354620819ecb2b50cf0a122ae"
+  "tree_digest": "sha256:59133477f8880a833e23cbdeb2658095fee9d6d070f6ce75db4f5ecc4e8a197d"
 }
