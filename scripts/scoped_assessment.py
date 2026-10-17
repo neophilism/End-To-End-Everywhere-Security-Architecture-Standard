@@ -41,6 +41,53 @@ def candidate_admission_complete(admission, ref, profile, verified_evidence):
         if evidence.get('profile_digest')!=profile_digest or evidence.get('promotion_record_digest')!=admission['record_digest'] or not evidence.get('provenance_reference'):return False
     return True
 
+EGRESS_PHASES = {'success', 'failure', 'crash', 'retry', 'analytics', 'background', 'user-action'}
+
+def complete_protected_egress_assessment(record, inventory, flow_id, now):
+    """Only consume an assessor-verified source/build-bound observation record.
+
+    A caller MUST obtain this record through an authenticated trusted assessor
+    adapter after independently checking the referenced actual packet/export
+    captures and the completeness of instrumented outbound paths. Self-reported
+    JSON and a passing reference-policy test do not satisfy that contract.
+    """
+    if not isinstance(record, dict):
+        return False
+    try:
+        if record['provider_kind'] != 'real-provider' or record['result'] != 'pass':
+            return False
+        if (record['source_digest'] != inventory['source_digest']
+                or record['artifact_digest'] != inventory['artifact_digest']
+                or record['flow_id'] != flow_id):
+            return False
+        if (parse_time(record['verified_at']) > now
+                or now > parse_time(record['valid_until'])):
+            return False
+        phases = record['covered_phases']
+        if (not isinstance(phases, list)
+                or len(phases) != len(set(phases))
+                or set(phases) != EGRESS_PHASES):
+            return False
+        if record['egress_completeness_verified'] is not True:
+            return False
+        if record['content_derivation_paths_tested'] is not True:
+            return False
+        if record['recipient_key_isolation_tested'] is not True:
+            return False
+        if record['metadata_egress_tested'] is not True:
+            return False
+        if record['explicit_consent_scopes_tested'] is not True:
+            return False
+        if not all(isinstance(record[x], str) and record[x] for x in (
+            'provenance_reference', 'packet_capture_reference',
+            'egress_policy_digest', 'flow_inventory_evidence_reference',
+            'negative_path_test_reference')):
+            return False
+        return bool(component_inventory.DIGEST.fullmatch(record['egress_policy_digest']))
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def evaluate(request, *, root=ROOT, trusted_observations=None, verified_evidence=None, candidate_admissions=None):
     """Evidence/admissions are validated outputs of trusted assessor adapters.
 
@@ -115,6 +162,11 @@ def evaluate(request, *, root=ROOT, trusted_observations=None, verified_evidence
                     bound=isinstance(e,dict) and e['source_digest']==inventory['source_digest'] and e['artifact_digest']==inventory['artifact_digest'] and e['flow_id']==claim['flow_id'] and e['claim_domain']==claim['claim_domain'] and claim['property_id'] in e['property_ids'] and set(claim['profile_refs']).issubset(e['profile_refs']) and set(claim['threat_ids']).issubset(e['threat_ids']) and e['provider_kind']=='real-provider' and e['result']=='pass' and parse_time(e['verified_at'])<=now<=parse_time(e['valid_until']) and e['content_digest'] and e['provenance_reference']
                 except (KeyError,TypeError,ValueError):bound=False
                 if not bound:status='indeterminate';reasons.append(ref+': missing, stale, mock or mismatched evidence')
+            if claim['claim_domain']=='protected-content' and request['policy']!='configuration':
+                egress=verified_evidence.get('egress:'+claim['flow_id'])
+                if not complete_protected_egress_assessment(egress, inventory, claim['flow_id'], now):
+                    status='indeterminate'
+                    reasons.append('complete source/build-bound protected egress assessment is missing or unverified')
         claims.append({**claim,'status':status,'reasons':reasons})
     result_class='configuration' if request['policy']=='configuration' else 'protected-content' if any(x.get('claim_domain')=='protected-content' for x in request['claims'] if isinstance(x,dict)) else 'process' if iv['valid'] and all(x['product_class']=='development-process-only' for x in inventory['components']) else 'component'
     policy=load(root/'registry/release-candidate.json')
