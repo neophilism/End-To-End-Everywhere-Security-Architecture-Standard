@@ -492,6 +492,11 @@
       "no_direct_analog_reason": "The E2EESA release-candidate freeze, manifest, and review-gate process are project-specific release governance with no single direct external standard analogue."
     },
     {
+      "document_path": "spec/requirement-analysis-provenance.md",
+      "relations": [],
+      "no_direct_analog_reason": "Individually authored requirement rationale coverage and independently authenticated reviewer-state classification form a project-specific evidence-governance contract; no single direct external standard defines this exact E2EESA mapping."
+    },
+    {
       "document_path": "spec/research-production-promotion.md",
       "relations": [
         {

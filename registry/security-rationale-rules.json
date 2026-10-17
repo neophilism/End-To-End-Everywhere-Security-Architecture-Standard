@@ -786,6 +786,27 @@
       ]
     },
     {
+      "document_path": "spec/requirement-analysis-provenance.md",
+      "rationale": "Individually authored requirement analysis, versioned dependency bindings and genuinely authenticated review provenance prevent projected coverage inflation, orphaned exceptions, stale assessment claims and unsupported certification assertions.",
+      "threat_ids": [
+        "TM-SERVICE-ACTIVE",
+        "TM-ROLLBACK",
+        "TM-SUPPLY-CHAIN"
+      ],
+      "composite_scenario_ids": [],
+      "security_property_ids": [
+        "SP-INTEGRITY",
+        "SP-BUILD-PROVENANCE",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "normative-requirement-analysis-evidence",
+        "context-version-digest-evidence",
+        "authenticated-review-provenance-evidence",
+        "dependency-staleness-negative-test"
+      ]
+    },
+    {
       "document_path": "spec/research-production-promotion.md",
       "rationale": "Promotion gates require independent evidence before experimental work can become a production option or default.",
       "threat_ids": [

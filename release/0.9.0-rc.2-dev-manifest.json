@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 722,
+  "file_count": 727,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -11,8 +11,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "size": 1043,
-      "git_blob_sha": "684a4b33cf31167bb4e56f965a33556165c7cc2f"
+      "size": 1151,
+      "git_blob_sha": "f4cecc17123d86f61d07948784f969dc525a8963"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -1890,6 +1890,11 @@
       "git_blob_sha": "62a3eb6d70db97aa7ff6e9c953cdd90f696e00be"
     },
     {
+      "path": "registry/requirement-analyses.json",
+      "size": 78,
+      "git_blob_sha": "fec27329ac9a5ab459fac4fa87a87db86c5982ca"
+    },
+    {
       "path": "registry/research-profile-registry.json",
       "size": 555,
       "git_blob_sha": "451da4e02df8fe91ac4f2f0baef8de0ce9112eb9"
@@ -1921,8 +1926,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 35024,
-      "git_blob_sha": "f4a66de226b62bff8ec2f564cff5c63f729a59bf"
+      "size": 35877,
+      "git_blob_sha": "010e554218df2b99aee85716db9ce3c62a13efa7"
     },
     {
       "path": "registry/security-verification.json",
@@ -1941,8 +1946,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 25191,
-      "git_blob_sha": "b9d6feb3b1bad3b8e3f210b46143e272e0e58b4c"
+      "size": 25567,
+      "git_blob_sha": "38714e4b38ecc2d457790d8102cf179235d991b6"
     },
     {
       "path": "registry/telemetry.json",
@@ -2510,6 +2515,11 @@
       "git_blob_sha": "86a038eb32ecd9c67f9479558f88d32f014b6587"
     },
     {
+      "path": "schemas/requirement-analysis-registry.schema.json",
+      "size": 3958,
+      "git_blob_sha": "6958290ef3001034dbf794c71f040db9313c3b7b"
+    },
+    {
       "path": "schemas/research-profile-entry.schema.json",
       "size": 10055,
       "git_blob_sha": "5bfad472142677230f42dab5a4e2aa390f7074eb"
@@ -2925,6 +2935,11 @@
       "git_blob_sha": "596450b90ad3ec7eb984fe95a61ae1ac0e919106"
     },
     {
+      "path": "scripts/requirement_analysis.py",
+      "size": 11300,
+      "git_blob_sha": "fa7bfb592173af20037070509ccaecaff180d0c9"
+    },
+    {
       "path": "scripts/research_profile_registry.py",
       "size": 26073,
       "git_blob_sha": "8c4c494d570263f9ca32f066ccc65f7579f8b552"
@@ -3218,6 +3233,11 @@
       "path": "spec/release-candidate.md",
       "size": 3986,
       "git_blob_sha": "5555868c331aec94d4b31478c7da447001cb2150"
+    },
+    {
+      "path": "spec/requirement-analysis-provenance.md",
+      "size": 2731,
+      "git_blob_sha": "a7b18774bd713f59933a2f91c3374daa8b2ab96d"
     },
     {
       "path": "spec/research-production-promotion.md",
@@ -3535,6 +3555,11 @@
       "git_blob_sha": "744be9921e42eedff2f156575cadcb1cfadbbb4d"
     },
     {
+      "path": "tests/test_requirement_analysis.py",
+      "size": 6241,
+      "git_blob_sha": "6b7ab570377ebf3d90a684d4d07fcfe9d1d62789"
+    },
+    {
       "path": "tests/test_research_profile_registry.py",
       "size": 15472,
       "git_blob_sha": "2a00a1afb76ad8b7ac4ce44a9568667d19d34c81"
@@ -3615,5 +3640,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:e756acf73b604c09eb044ce8b69fa6a0a329627c496500beec516957c02b147f"
+  "tree_digest": "sha256:8042565343f1e7f8f8db46e956ce849455c3f26354620819ecb2b50cf0a122ae"
 }
