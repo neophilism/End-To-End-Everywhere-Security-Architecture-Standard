@@ -35,3 +35,7 @@ and queued-message handling that never silently re-encrypts to a changed recipie
 Actual endpoint integration, persistence/race behavior, accessibility and independent
 security review require their own evidence. No production or conformance claim is
 created by this reference-engine correction.
+
+## AUD-09.2: reference change-state evaluator and notice contracts
+
+PR #68 adds a fail-closed, event-hash-chained reference journal with explicit send policies, changed-recipient queue pinning, verified and unverified change notices, and tests. Completion of AUD-09 still requires real endpoint durability and independent monotonic anchors, trusted classification evidence, final dispatch serialization, real UI accessibility and concurrency testing. These are not satisfied by pure reference evaluation.

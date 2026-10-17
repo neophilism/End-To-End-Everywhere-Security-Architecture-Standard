@@ -67,6 +67,11 @@
       "no_direct_analog_reason": null
     },
     {
+      "document_path": "spec/canonical-serialization.md",
+      "relations": [],
+      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
+    },
+    {
       "document_path": "spec/certification-attestations.md",
       "relations": [
         {
@@ -206,6 +211,11 @@
       "no_direct_analog_reason": null
     },
     {
+      "document_path": "spec/digest-signature-inputs.md",
+      "relations": [],
+      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
+    },
+    {
       "document_path": "spec/formal-verification-profiles.md",
       "relations": [],
       "no_direct_analog_reason": "E2EESA composes proof methods into project-specific assurance profiles; no single external standard defines the same profile structure."
@@ -246,6 +256,11 @@
       "document_path": "spec/integration-contracts.md",
       "relations": [],
       "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
+    },
+    {
+      "document_path": "spec/key-change-state-machine.md",
+      "relations": [],
+      "no_direct_analog_reason": "The E2EESA identity-change notice, send-policy, and ordered local trust-journal contract is specific to this standard; external cryptographic identity specifications provide contextual inputs but no direct full analog."
     },
     {
       "document_path": "spec/key-transparency.md",
@@ -597,16 +612,6 @@
         }
       ],
       "no_direct_analog_reason": null
-    },
-    {
-      "document_path": "spec/canonical-serialization.md",
-      "relations": [],
-      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
-    },
-    {
-      "document_path": "spec/digest-signature-inputs.md",
-      "relations": [],
-      "no_direct_analog_reason": "The six-project artifact handoff contract is specific to the End To End Everywhere architecture."
     }
   ]
 }
