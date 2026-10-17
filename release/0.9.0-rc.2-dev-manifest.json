@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 711,
+  "file_count": 716,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -1921,8 +1921,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 33102,
-      "git_blob_sha": "11aa37bb34b37cd6dc7470a28ccc74c2360fd1dc"
+      "size": 33981,
+      "git_blob_sha": "462373b9414b558f82e64f0666cef66d2919a8a3"
     },
     {
       "path": "registry/security-verification.json",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 23891,
-      "git_blob_sha": "69eaee724e2f2e723f925f62e0683ae557647b6b"
+      "size": 24511,
+      "git_blob_sha": "1cbaa78d471f83ec8f272454b33ff63ce30cf67f"
     },
     {
       "path": "registry/telemetry.json",
@@ -2405,6 +2405,16 @@
       "git_blob_sha": "2192a8cf21f991380f931edd0afc35ec9c71ccf0"
     },
     {
+      "path": "schemas/pairwise-prekey-bundle-evidence.schema.json",
+      "size": 3128,
+      "git_blob_sha": "df8918c6ef3fb0423322d88e8bcb6153b0534fdd"
+    },
+    {
+      "path": "schemas/pairwise-prekey-lifecycle-policy.schema.json",
+      "size": 2170,
+      "git_blob_sha": "57a5fe60c6e139ae798a1d1ee56fdadb444abf66"
+    },
+    {
       "path": "schemas/pairwise-protocol-registry.schema.json",
       "size": 1787,
       "git_blob_sha": "115c41de64010e3f924f710b5fa6877abbcd8d44"
@@ -2850,6 +2860,11 @@
       "git_blob_sha": "7fed66af29b29062164f74c8dacd8da9ea84bc51"
     },
     {
+      "path": "scripts/pairwise_prekey_lifecycle.py",
+      "size": 9931,
+      "git_blob_sha": "489fcb82b6c3a79f9213c8c339485d062818d033"
+    },
+    {
       "path": "scripts/pairwise_session_engine.py",
       "size": 27541,
       "git_blob_sha": "d817259b7688f6e33441bc99462c25427329c923"
@@ -3150,6 +3165,11 @@
       "git_blob_sha": "179c7c0b8a03a1628acdef043a2c6cdbed950dd9"
     },
     {
+      "path": "spec/pairwise-prekey-lifecycle.md",
+      "size": 3827,
+      "git_blob_sha": "6d8c66c39d5757b77ffeeb2a2b3023adb20fb42f"
+    },
+    {
       "path": "spec/privacy-preserving-telemetry.md",
       "size": 6023,
       "git_blob_sha": "183307d97054b4b1958b98fc3c3848a27dabd24e"
@@ -3440,6 +3460,11 @@
       "git_blob_sha": "dd8bd16b6ad0cdb35867867b8377e5c571f35d44"
     },
     {
+      "path": "tests/test_pairwise_prekey_lifecycle.py",
+      "size": 8726,
+      "git_blob_sha": "b8c1e29cf5bcb062955589316b1dc1c0085bdcc7"
+    },
+    {
       "path": "tests/test_pairwise_session_engine.py",
       "size": 7594,
       "git_blob_sha": "31f558429764b8c823539e84c9c82c4efadae402"
@@ -3560,5 +3585,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:d1a20bac26e5c11cb5731a2f2c3e28899577972bb31a4287d9941ea9d599f570"
+  "tree_digest": "sha256:76669b17ab2347bc1a1f9f01e5f7bd571b0f29e23883ebfe3f98b92e41b21c82"
 }

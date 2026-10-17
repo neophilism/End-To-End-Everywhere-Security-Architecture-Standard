@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/pairwise-prekey-bundle-evidence.schema.json",
+  "title": "E2EESA AUD-13 prekey bundle observation",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "profile_ref": {
+      "enum": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ]
+    },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "authorized_recipient_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "signature_evidence_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "recipient_authorization_evidence_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "trusted_time_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "clock_uncertainty_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "signed_prekey_published_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "signed_prekey_expires_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "signed_prekey_verified": {
+      "type": "boolean"
+    },
+    "one_time_prekey_available": {
+      "type": "boolean"
+    },
+    "one_time_prekey_consumed": {
+      "type": "boolean"
+    },
+    "available_one_time_stock": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "pq_kem_algorithm_id": {
+      "enum": [
+        null,
+        "ALG-ML-KEM-512",
+        "ALG-ML-KEM-768",
+        "ALG-ML-KEM-1024"
+      ]
+    },
+    "pq_signed_prekey_present": {
+      "type": "boolean"
+    },
+    "pq_signed_prekey_verified": {
+      "type": "boolean"
+    },
+    "pq_one_time_prekey_available": {
+      "type": "boolean"
+    },
+    "pq_one_time_prekey_consumed": {
+      "type": "boolean"
+    },
+    "available_pq_one_time_stock": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_resort_pq_prekey_used": {
+      "type": "boolean"
+    },
+    "prior_signed_prekey_retired_epoch": {
+      "type": [
+        "null",
+        "integer"
+      ],
+      "minimum": 0
+    },
+    "prior_private_key_deleted_epoch": {
+      "type": [
+        "null",
+        "integer"
+      ],
+      "minimum": 0
+    }
+  },
+  "required": [
+    "profile_ref",
+    "bundle_id",
+    "authorized_recipient_id",
+    "signature_evidence_ref",
+    "recipient_authorization_evidence_ref",
+    "trusted_time_epoch",
+    "clock_uncertainty_seconds",
+    "signed_prekey_published_epoch",
+    "signed_prekey_expires_epoch",
+    "signed_prekey_verified",
+    "one_time_prekey_available",
+    "one_time_prekey_consumed",
+    "available_one_time_stock",
+    "pq_kem_algorithm_id",
+    "pq_signed_prekey_present",
+    "pq_signed_prekey_verified",
+    "pq_one_time_prekey_available",
+    "pq_one_time_prekey_consumed",
+    "available_pq_one_time_stock",
+    "last_resort_pq_prekey_used",
+    "prior_signed_prekey_retired_epoch",
+    "prior_private_key_deleted_epoch"
+  ]
+}

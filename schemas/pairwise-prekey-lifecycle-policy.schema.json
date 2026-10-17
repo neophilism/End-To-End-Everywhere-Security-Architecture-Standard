@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/pairwise-prekey-lifecycle-policy.schema.json",
+  "title": "E2EESA AUD-13 bounded prekey lifecycle policy",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "pairwise_profile_ref": {
+      "enum": [
+        "pairwise-x3dh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-double-ratchet@0.1.0",
+        "pairwise-pqxdh-spqr@0.1.0",
+        "pairwise-pqxdh-triple-ratchet@0.1.0"
+      ]
+    },
+    "pq_kem_algorithm_id": {
+      "enum": [
+        null,
+        "ALG-ML-KEM-512",
+        "ALG-ML-KEM-768",
+        "ALG-ML-KEM-1024"
+      ]
+    },
+    "pq_strength_policy": {
+      "enum": [
+        "not-applicable",
+        "recommended",
+        "constrained-interop-exception"
+      ]
+    },
+    "strength_exception_reason": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "recommended_signed_prekey_lifetime_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 604800
+    },
+    "maximum_signed_prekey_lifetime_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2592000
+    },
+    "private_key_deletion_grace_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 604800
+    },
+    "clock_uncertainty_limit_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 86400
+    },
+    "minimum_one_time_prekey_stock": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minimum_pq_one_time_prekey_stock": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "policy_id",
+    "pairwise_profile_ref",
+    "pq_kem_algorithm_id",
+    "pq_strength_policy",
+    "strength_exception_reason",
+    "recommended_signed_prekey_lifetime_seconds",
+    "maximum_signed_prekey_lifetime_seconds",
+    "private_key_deletion_grace_seconds",
+    "clock_uncertainty_limit_seconds",
+    "minimum_one_time_prekey_stock",
+    "minimum_pq_one_time_prekey_stock"
+  ]
+}
