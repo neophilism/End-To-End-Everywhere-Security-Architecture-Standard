@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 716,
+  "file_count": 722,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -1921,8 +1921,8 @@
     },
     {
       "path": "registry/security-rationale-rules.json",
-      "size": 33981,
-      "git_blob_sha": "462373b9414b558f82e64f0666cef66d2919a8a3"
+      "size": 35024,
+      "git_blob_sha": "f4a66de226b62bff8ec2f564cff5c63f729a59bf"
     },
     {
       "path": "registry/security-verification.json",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "registry/standards-crosswalk-rules.json",
-      "size": 24511,
-      "git_blob_sha": "1cbaa78d471f83ec8f272454b33ff63ce30cf67f"
+      "size": 25191,
+      "git_blob_sha": "b9d6feb3b1bad3b8e3f210b46143e272e0e58b4c"
     },
     {
       "path": "registry/telemetry.json",
@@ -2018,6 +2018,21 @@
       "path": "schemas/backup-envelope-evidence.schema.json",
       "size": 2857,
       "git_blob_sha": "684208cb14f62ca383adbfcc389c5b88843f52bb"
+    },
+    {
+      "path": "schemas/backup-generation-rotation-authorization.schema.json",
+      "size": 908,
+      "git_blob_sha": "20f65dd8e75effc4a19073f3cd525abb1529a2aa"
+    },
+    {
+      "path": "schemas/backup-generation-rotation-evidence.schema.json",
+      "size": 1628,
+      "git_blob_sha": "a299b1e0fc3f553171b286df1fec1a4d77a417cc"
+    },
+    {
+      "path": "schemas/backup-generation-rotation-manifest.schema.json",
+      "size": 1745,
+      "git_blob_sha": "745e6b0c3615d3ad2af9e50f097bbeef2e84b110"
     },
     {
       "path": "schemas/backup-recovery-policy.schema.json",
@@ -2705,6 +2720,11 @@
       "git_blob_sha": "c44b388dab3b2bbe5b185d6dd6482ffc748a3edd"
     },
     {
+      "path": "scripts/backup_generation_rotation.py",
+      "size": 7306,
+      "git_blob_sha": "58caf5567079afb80735e3c320045fbb245de345"
+    },
+    {
       "path": "scripts/backup_recovery_engine.py",
       "size": 27453,
       "git_blob_sha": "761f97ff110c1280db05b18a29f3e4c262c85374"
@@ -3015,6 +3035,11 @@
       "git_blob_sha": "762129bcf1c81cb4cd8fe66069c11afd80d282b7"
     },
     {
+      "path": "spec/backup-generation-rotation.md",
+      "size": 3693,
+      "git_blob_sha": "6bbfc1c54c1cbffc9919509ccd884d6792c1ea92"
+    },
+    {
       "path": "spec/backup-recovery.md",
       "size": 10998,
       "git_blob_sha": "d74f6aef5a361f0b90d05de91af499fbb6911d2e"
@@ -3288,6 +3313,11 @@
       "path": "tests/test_audit_reproductions.py",
       "size": 484,
       "git_blob_sha": "2db123d4a198f5e718b58d69ed3abd1c2da0ea07"
+    },
+    {
+      "path": "tests/test_backup_generation_rotation.py",
+      "size": 6831,
+      "git_blob_sha": "16409217595eda2e60759d74e72410dda2595715"
     },
     {
       "path": "tests/test_backup_recovery_engine.py",
@@ -3585,5 +3615,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:76669b17ab2347bc1a1f9f01e5f7bd571b0f29e23883ebfe3f98b92e41b21c82"
+  "tree_digest": "sha256:e756acf73b604c09eb044ce8b69fa6a0a329627c496500beec516957c02b147f"
 }

@@ -57,6 +57,32 @@
       ]
     },
     {
+      "document_path": "spec/backup-generation-rotation.md",
+      "rationale": "Source-bound authenticated credential transitions and genuinely fresh backup keys prevent salt-only rotations, stale replayed generations and service-controlled recovery credential substitution, while preserving explicit limitations for retained historical encrypted copies.",
+      "threat_ids": [
+        "TM-BACKUP",
+        "TM-RECOVERY",
+        "TM-CREDENTIAL",
+        "TM-ROLLBACK"
+      ],
+      "composite_scenario_ids": [
+        "CS-BACKUP-CREDENTIAL"
+      ],
+      "security_property_ids": [
+        "SP-BACKUP-CONFIDENTIALITY",
+        "SP-RECOVERY-CONFIDENTIALITY",
+        "SP-AUTHORIZATION-INTEGRITY",
+        "SP-ROLLBACK-RESISTANCE"
+      ],
+      "evidence_expectations": [
+        "device-authority-signature-evidence",
+        "new-bdek-randomness-and-distinctness-evidence",
+        "new-aead-cryptographic-test-evidence",
+        "old-secret-rejection-evidence",
+        "independent-generation-checkpoint-evidence"
+      ]
+    },
+    {
       "document_path": "spec/backup-recovery.md",
       "rationale": "Backup and recovery requirements prevent recovery channels from becoming a weaker alternate path to plaintext or unauthorized device access.",
       "threat_ids": [
