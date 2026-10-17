@@ -21,3 +21,10 @@ Public-data services and authorized business processing **MUST** be classified a
 ## Assessment limits
 
 The reference evaluator at \`scripts/endpoint_egress_engine.py\` validates structured *observations*, not raw memory, network packets, embeddings, filesystem exports, provider account controls, or actual ciphertext. Actual host instrumentation **MUST** prove each observation has the declared destination, real key recipient and data origin; implementation must commit checks at the final egress boundary. A malicious caller can forge labels, timestamps, authorization references, or reported destinations. No conformance should be claimed based solely on the reference evaluator. Negative cases at \`tests/test_endpoint_egress_engine.py\` demonstrate the policy boundaries, including provider-key encryption, undeclared metadata, recipient relabeling, unsafe background export, and unauthorized content selection.
+
+
+## Active assessment enforcement
+
+A protected-content implementation claim **MUST** remain indeterminate until a trusted assessor has accepted independently verified and source/build-bound egress observations covering all expected success, failure, crash, retry, analytics, background and explicit-user-action paths. The observations **MUST** establish actual recipient key isolation, metadata exposure and narrowly authenticated disclosure scope; structural policy validity alone does not satisfy this gate. The assessor's validated evidence is separate from applicant-supplied configuration and **MUST NOT** be forged by a request field.
+
+The reference \`scripts/scoped_assessment.py\` now requires such a separately trusted record for protected-content claims. This is a fail-closed evidence gate, not evidence that a deployment has actually been observed.

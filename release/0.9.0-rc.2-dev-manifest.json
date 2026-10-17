@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 732,
+  "file_count": 733,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2971,8 +2971,8 @@
     },
     {
       "path": "scripts/scoped_assessment.py",
-      "size": 12194,
-      "git_blob_sha": "287d0edaea04c80f934c30cce5f4724e0946b538"
+      "size": 14826,
+      "git_blob_sha": "75a70955cb77c7ba223caa46c0cd8709199eab1b"
     },
     {
       "path": "scripts/secret_storage_engine.py",
@@ -3141,8 +3141,8 @@
     },
     {
       "path": "spec/endpoint-export-boundary.md",
-      "size": 3215,
-      "git_blob_sha": "f5c193dda14d076e72864151c7b078ed48b57565"
+      "size": 4077,
+      "git_blob_sha": "8818cc69159af94af9d5ef92c568f0fee9456889"
     },
     {
       "path": "spec/formal-verification-profiles.md",
@@ -3605,6 +3605,11 @@
       "git_blob_sha": "d08b6043b2fbfd10d4bac640945c2ce4851cfb1b"
     },
     {
+      "path": "tests/test_scoped_egress_assurance.py",
+      "size": 5427,
+      "git_blob_sha": "8236abf29a7fd96ecf721ce53b604daa3bfa2460"
+    },
+    {
       "path": "tests/test_secret_storage_engine.py",
       "size": 10369,
       "git_blob_sha": "121891b31d21b28b688c323695e8b0c38157ef15"
@@ -3665,5 +3670,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:59133477f8880a833e23cbdeb2658095fee9d6d070f6ce75db4f5ecc4e8a197d"
+  "tree_digest": "sha256:e5f38da51b365660571fd49285f7bcff5dc22776c337f4ddbb5c01f4ef829ad9"
 }
