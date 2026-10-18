@@ -101,3 +101,10 @@ A validator MUST reject:
 - deprecated or prohibited entries lacking a recorded status reason.
 
 The registry MUST remain machine-readable and versioned so conformance artifacts can record the exact algorithm universe against which they were evaluated.
+
+
+## 11. Versioned hybrid construction property boundaries (AUD-18)
+
+A suite's lifecycle status describes allowed use. It does not automatically establish the cryptographic robustness of an arbitrary hybrid combination. A construction-specific "one secure component is sufficient for confidentiality" argument MUST identify the exact reviewed combiner, transcript binding, security property, threat scope, independent implementation and downgrade assumptions. The argument MUST NOT be generalized into post-quantum authentication or other unrelated properties.
+
+The RFC 10024 groups used with RFC 9954 TLS hybrid composition are explicit **named** constructions. The reference checker in scripts/hybrid_construction_claims.py assesses exact declaration consistency under independent transcript anchors; it does not verify signatures, key exchange, actual combiner security or production deployment. Unknown groups, mixed revisions, disallowed components and unsupported scope MUST fail closed.
