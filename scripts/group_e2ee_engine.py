@@ -661,7 +661,8 @@ def validate_message_checkpoint(
     sender = checkpoint.get("sender_device_id")
     if not isinstance(sender, str) or sender not in member_set:
         errors.append(f"{source}: sender must be a current member")
-    expected_recipients = member_set - {sender}
+    # Reject malformed senders above; never hash arbitrary untrusted JSON.
+    expected_recipients = member_set - ({sender} if isinstance(sender, str) else set())
     if set(recipients) != expected_recipients:
         errors.append(f"{source}: recipients must equal all current members except sender")
     max_devices = policy.get("max_group_devices")
