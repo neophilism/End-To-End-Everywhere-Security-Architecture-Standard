@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/legacy-migration-record.schema.json",
+  "title": "AUD-24 source-preserving legacy E2EESA migration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_standard_basis",
+    "target_standard_basis",
+    "source_serialization_scheme",
+    "target_serialization_scheme",
+    "source_artifact_digest",
+    "new_artifact_digest",
+    "migration_mode",
+    "source_signed_bytes_preserved",
+    "historical_signature_verified_on_original_bytes",
+    "source_identity_root",
+    "target_identity_root",
+    "identity_authority_transition",
+    "fresh_peer_comparison_required",
+    "reenrollment_explicitly_authorized",
+    "source_evidence_class",
+    "target_evidence_class",
+    "migration_test_report_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "source_standard_basis": {
+      "const": "0.9.0-rc.1"
+    },
+    "target_standard_basis": {
+      "const": "0.9.0-rc.2-dev"
+    },
+    "source_serialization_scheme": {
+      "enum": [
+        "legacy-python-ascii-v0",
+        "legacy-python-utf8-v0"
+      ]
+    },
+    "target_serialization_scheme": {
+      "const": "e2eesa-jcs-integer-v1"
+    },
+    "source_artifact_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "new_artifact_digest": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      ]
+    },
+    "migration_mode": {
+      "enum": [
+        "verify-historical-only",
+        "derive-new-record-preserve-history"
+      ]
+    },
+    "source_signed_bytes_preserved": {
+      "const": true
+    },
+    "historical_signature_verified_on_original_bytes": {
+      "const": true
+    },
+    "source_identity_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_identity_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identity_authority_transition": {
+      "enum": [
+        "retained-root",
+        "replacement-identity"
+      ]
+    },
+    "fresh_peer_comparison_required": {
+      "type": "boolean"
+    },
+    "reenrollment_explicitly_authorized": {
+      "type": "boolean"
+    },
+    "source_evidence_class": {
+      "enum": [
+        "historical-signed-artifact",
+        "historical-unsigned-artifact"
+      ]
+    },
+    "target_evidence_class": {
+      "enum": [
+        "historical-verification-only",
+        "unassessed-development-derived"
+      ]
+    },
+    "migration_test_report_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}
