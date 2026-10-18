@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 733,
+  "file_count": 734,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -13,26 +13,6 @@
       "path": ".github/workflows/validate.yml",
       "size": 1151,
       "git_blob_sha": "f4cecc17123d86f61d07948784f969dc525a8963"
-    },
-    {
-      "path": "CONTRIBUTING.md",
-      "size": 1138,
-      "git_blob_sha": "bc88cb1b0e855d440e876f86175e7d8610d49d20"
-    },
-    {
-      "path": "README.md",
-      "size": 2738,
-      "git_blob_sha": "fe1df7c78091a5692518482c43df111d22ff0219"
-    },
-    {
-      "path": "SECURITY.md",
-      "size": 869,
-      "git_blob_sha": "996043f3bc5be52a9b105f53ededc129703c46c2"
-    },
-    {
-      "path": "VERSION",
-      "size": 15,
-      "git_blob_sha": "c7d557ff701c363ed5e291f4a60d0c91688c84c1"
     },
     {
       "path": "adr/0000-template.md",
@@ -243,6 +223,11 @@
       "path": "adr/0045-recovery-authority-does-not-imply-inherited-trust.md",
       "size": 3004,
       "git_blob_sha": "e51b922fe54a40b18ad709ce4aad7116aa61982e"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size": 1138,
+      "git_blob_sha": "bc88cb1b0e855d440e876f86175e7d8610d49d20"
     },
     {
       "path": "fixtures/advisory-interoperability/valid/advisory.json",
@@ -1710,14 +1695,19 @@
       "git_blob_sha": "1c05cdaa678c1a36feed7708537fa1fd222a0a0a"
     },
     {
+      "path": "profiles/catalog.json",
+      "size": 58752,
+      "git_blob_sha": "87fac03bca714ff22e30cc3abf3260f80a8462ae"
+    },
+    {
       "path": "profiles/README.md",
       "size": 8663,
       "git_blob_sha": "d1d21dff6113b6996c777bd653673a9facfaf7ef"
     },
     {
-      "path": "profiles/catalog.json",
-      "size": 58752,
-      "git_blob_sha": "87fac03bca714ff22e30cc3abf3260f80a8462ae"
+      "path": "README.md",
+      "size": 2738,
+      "git_blob_sha": "fe1df7c78091a5692518482c43df111d22ff0219"
     },
     {
       "path": "reference/canonicalization/canonical.mjs",
@@ -1728,11 +1718,6 @@
       "path": "reference/observatory/postgres.sql",
       "size": 9863,
       "git_blob_sha": "79e66aa58c3105e96da8c3babb4d31404f20d652"
-    },
-    {
-      "path": "registry/PR_FORMAT.md",
-      "size": 1855,
-      "git_blob_sha": "ce4225133c7c957cde395ec75b2120f2be46c954"
     },
     {
       "path": "registry/advisory-interoperability.json",
@@ -1858,6 +1843,11 @@
       "path": "registry/pairwise-protocols.json",
       "size": 5685,
       "git_blob_sha": "ba086904b1612765e7366021571d8d38f73c04d6"
+    },
+    {
+      "path": "registry/PR_FORMAT.md",
+      "size": 1855,
+      "git_blob_sha": "ce4225133c7c957cde395ec75b2120f2be46c954"
     },
     {
       "path": "registry/pr-contract.mjs",
@@ -2746,8 +2736,8 @@
     },
     {
       "path": "scripts/backup_recovery_engine.py",
-      "size": 27453,
-      "git_blob_sha": "761f97ff110c1280db05b18a29f3e4c262c85374"
+      "size": 27524,
+      "git_blob_sha": "73a2f32b6c3150c855f122495db53b9e8f635d69"
     },
     {
       "path": "scripts/build_reference_release.py",
@@ -3015,11 +3005,6 @@
       "git_blob_sha": "878a3f027c154af202ba6ff8916c805ffa716724"
     },
     {
-      "path": "scripts/validate-pr-registry.mjs",
-      "size": 870,
-      "git_blob_sha": "2d7d068e7d6abda9ffcea499f1618937df6a6c3b"
-    },
-    {
       "path": "scripts/validate_e2eesa_status.py",
       "size": 7457,
       "git_blob_sha": "42057c0eaa93ca40f945aa46f7c7c0bf85932ca9"
@@ -3028,6 +3013,11 @@
       "path": "scripts/validate_repo.py",
       "size": 126550,
       "git_blob_sha": "2d3d4b68b64144fe69bf74660b195b25bda0238d"
+    },
+    {
+      "path": "scripts/validate-pr-registry.mjs",
+      "size": 870,
+      "git_blob_sha": "2d7d068e7d6abda9ffcea499f1618937df6a6c3b"
     },
     {
       "path": "scripts/verification_engine.py",
@@ -3045,9 +3035,9 @@
       "git_blob_sha": "4b39f68ab13b4612bec7f78c0716b7134113c1c5"
     },
     {
-      "path": "spec/README.md",
-      "size": 12447,
-      "git_blob_sha": "fed53277d1c676430b7598a67896820656a877c8"
+      "path": "SECURITY.md",
+      "size": 869,
+      "git_blob_sha": "996043f3bc5be52a9b105f53ededc129703c46c2"
     },
     {
       "path": "spec/advisory-interoperability.md",
@@ -3240,6 +3230,11 @@
       "git_blob_sha": "9fe2b2e8ed83fa9c621c9837ffadb24b946d376d"
     },
     {
+      "path": "spec/README.md",
+      "size": 12447,
+      "git_blob_sha": "fed53277d1c676430b7598a67896820656a877c8"
+    },
+    {
       "path": "spec/real-time-media.md",
       "size": 11877,
       "git_blob_sha": "e139b96459fe532f937c91458850a12e176ca617"
@@ -3363,6 +3358,11 @@
       "path": "tests/test_backup_recovery_engine.py",
       "size": 9824,
       "git_blob_sha": "48449c2fc9fcf221c527afe328e08c95d24ed078"
+    },
+    {
+      "path": "tests/test_backup_strict_generation_types.py",
+      "size": 2773,
+      "git_blob_sha": "81ce7e8a0bde880c5269be3fd9caf944d465701a"
     },
     {
       "path": "tests/test_build_reference_release.py",
@@ -3668,7 +3668,12 @@
       "path": "tests/test_vulnerability_handling.py",
       "size": 16714,
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
+    },
+    {
+      "path": "VERSION",
+      "size": 15,
+      "git_blob_sha": "c7d557ff701c363ed5e291f4a60d0c91688c84c1"
     }
   ],
-  "tree_digest": "sha256:e5f38da51b365660571fd49285f7bcff5dc22776c337f4ddbb5c01f4ef829ad9"
+  "tree_digest": "sha256:7601df7b3880081db98628d7239d9b927fef522d52a3e56e949f71749fc7ac9b"
 }

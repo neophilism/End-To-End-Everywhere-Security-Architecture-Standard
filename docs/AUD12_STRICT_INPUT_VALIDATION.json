@@ -1,0 +1,10 @@
+{
+  "scope": "AUD-12.2",
+  "changes": [
+    "Refuse boolean, fractional, string, object and missing entropy-bit values without throwing during validation.",
+    "Require strictly positive integer chunk counts, excluding Python booleans.",
+    "Require strictly positive integer consecutive generation numbers, excluding booleans."
+  ],
+  "evidence": "tests/test_backup_strict_generation_types.py",
+  "limits": "Structural validation does not establish actual cryptographic entropy, authenticated generation transitions, hardware attestation, or key separation."
+}
