@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 743,
+  "file_count": 746,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2450,6 +2450,11 @@
       "git_blob_sha": "115c41de64010e3f924f710b5fa6877abbcd8d44"
     },
     {
+      "path": "schemas/pki-ech-evidence.schema.json",
+      "size": 2105,
+      "git_blob_sha": "280fd90b3e225bc8201c8cc365b791c5cd52b19d"
+    },
+    {
       "path": "schemas/profile-catalog.schema.json",
       "size": 1482,
       "git_blob_sha": "57961172502617789a71583d6da9d329647b75a8"
@@ -2930,6 +2935,11 @@
       "git_blob_sha": "d817259b7688f6e33441bc99462c25427329c923"
     },
     {
+      "path": "scripts/pki_ech_policy.py",
+      "size": 6535,
+      "git_blob_sha": "8c9a2e276df2e95c31d0d0d2420d5b501a97929d"
+    },
+    {
       "path": "scripts/pqxdh_binding_contract.py",
       "size": 5795,
       "git_blob_sha": "f90330ea9995090823ece7a4ec79dd7d86d9df1e"
@@ -3346,8 +3356,8 @@
     },
     {
       "path": "spec/transport-security.md",
-      "size": 11008,
-      "git_blob_sha": "a82ba68836642ff7d5633b839216b998b3bd8884"
+      "size": 12511,
+      "git_blob_sha": "8ec2af24ff07e51843d14eee13ea2f34c1c7148e"
     },
     {
       "path": "spec/vulnerability-disclosure-profiles.md",
@@ -3585,6 +3595,11 @@
       "git_blob_sha": "31f558429764b8c823539e84c9c82c4efadae402"
     },
     {
+      "path": "tests/test_pki_ech_policy.py",
+      "size": 3858,
+      "git_blob_sha": "194ee120bee8f187d77f686bbd2ee566d66ea96a"
+    },
+    {
       "path": "tests/test_pqxdh_binding_contract.py",
       "size": 6124,
       "git_blob_sha": "081f75b68334c0eaba53299c42c2d8679562deb4"
@@ -3720,5 +3735,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:22536cb38d4d8966195014d82f7baeda51c6a188afb80e22f3312fa08571d0db"
+  "tree_digest": "sha256:974bdcce46dea95a65dd66df280fdeef73ca852097080eeb3a0aa5b1b7c8f5d2"
 }
