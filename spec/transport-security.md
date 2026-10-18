@@ -257,3 +257,12 @@ A conforming handshake MUST demonstrate:
 14. fail-closed hybrid downgrade behavior;
 15. no unsupported PQ-authentication claim; and
 16. preservation of a separate application E2EE layer.
+
+
+## 21. Scope-aware Certificate Transparency and ECH acceptance (AUD-20)
+
+Certificate-path validity and RFC 9525 application service reference-identifier verification MUST be evaluated independently. A successful chain without a matching typed service identifier fails; Common Name fallback MUST NOT substitute. When the selected public-Web PKI platform requires Certificate Transparency, its applicable platform enforcement result MUST pass. Private trust anchors do not automatically inherit the public-Web CT policy; applications may choose additional independently justified requirements.
+
+RFC 9849 Encrypted ClientHello offered, accepted, rejected, retried and authenticated disable states are distinct. Products that require ECH MUST reject unprotected fallback. A rejected ECH handshake is not license for an on-path actor to silently disable ECH: any permitted retry or disable uses the authenticated public-name path and the protocol's state-machine requirements. Required ECH does not become optional after mere network failure.
+
+ECH does not guarantee concealment of DNS/IP metadata, timing, outer ClientHello fields, or full anonymity. Its privacy scope MUST be described accurately. scripts/pki_ech_policy.py only checks reference declarations against independently supplied platform observation anchors. It does not prove deployed TLS certificate path validation, actual CT enforcement, or cryptographically verified ECH acceptance; these require platform tests and independent evidence.

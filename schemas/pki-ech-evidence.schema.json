@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/pki-ech-evidence.schema.json",
+  "title": "AUD-20 PKI/CT/ECH platform-assessment evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "service_name",
+    "tls_version",
+    "platform_observation_digest",
+    "certificate_chain_valid",
+    "certificate_time_valid",
+    "reference_identifier_valid",
+    "common_name_fallback_used",
+    "ct_applicable",
+    "platform_ct_enforced",
+    "platform_ct_valid",
+    "ech_offered",
+    "ech_accepted",
+    "ech_rejected",
+    "ech_rejection_authenticated_for_public_name",
+    "ech_retry_authenticated_and_accepted",
+    "plain_fallback_used",
+    "dns_observable",
+    "ip_observable",
+    "timing_observable"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "service_name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "tls_version": {
+      "const": "TLS1.3"
+    },
+    "platform_observation_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "certificate_chain_valid": {
+      "type": "boolean"
+    },
+    "certificate_time_valid": {
+      "type": "boolean"
+    },
+    "reference_identifier_valid": {
+      "type": "boolean"
+    },
+    "common_name_fallback_used": {
+      "type": "boolean"
+    },
+    "ct_applicable": {
+      "type": "boolean"
+    },
+    "platform_ct_enforced": {
+      "type": "boolean"
+    },
+    "platform_ct_valid": {
+      "type": "boolean"
+    },
+    "ech_offered": {
+      "type": "boolean"
+    },
+    "ech_accepted": {
+      "type": "boolean"
+    },
+    "ech_rejected": {
+      "type": "boolean"
+    },
+    "ech_rejection_authenticated_for_public_name": {
+      "type": "boolean"
+    },
+    "ech_retry_authenticated_and_accepted": {
+      "type": "boolean"
+    },
+    "plain_fallback_used": {
+      "type": "boolean"
+    },
+    "dns_observable": {
+      "type": "boolean"
+    },
+    "ip_observable": {
+      "type": "boolean"
+    },
+    "timing_observable": {
+      "type": "boolean"
+    }
+  }
+}
