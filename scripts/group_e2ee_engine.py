@@ -170,9 +170,9 @@ def validate_protocol_registry(
             errors.append(f"{prefix}: duplicate protocol id: {protocol_id}")
         else:
             protocol_ids.add(protocol_id)
-        if item.get("status") not in ALL_STATUSES:
+        if not isinstance(item.get("status"), str) or item.get("status") not in ALL_STATUSES:
             errors.append(f"{prefix}: invalid status")
-        if item.get("architecture") not in {
+        if not isinstance(item.get("architecture"), str) or item.get("architecture") not in {
             "tree-group-key-agreement",
             "sender-key",
             "pairwise-fanout",
@@ -220,7 +220,7 @@ def validate_protocol_registry(
             errors.append(f"{prefix}: duplicate MLS cipher suite id: {suite_id}")
         else:
             suite_ids.add(suite_id)
-        if item.get("status") not in ALL_STATUSES:
+        if not isinstance(item.get("status"), str) or item.get("status") not in ALL_STATUSES:
             errors.append(f"{prefix}: invalid status")
 
     if "0x0001" not in suite_ids:
@@ -294,8 +294,8 @@ def validate_policy(
         errors.append(f"{source}: invalid policy_id")
 
     profile_ref = policy.get("profile_ref")
-    binding = PROFILE_BINDINGS.get(profile_ref)
-    profile = _profile_index(profile_catalog).get(profile_ref)
+    binding = PROFILE_BINDINGS.get(profile_ref) if isinstance(profile_ref, str) else None
+    profile = _profile_index(profile_catalog).get(profile_ref) if isinstance(profile_ref, str) else None
     if binding is None:
         errors.append(f"{source}: unsupported profile_ref: {profile_ref}")
     elif profile is None:
@@ -308,7 +308,8 @@ def validate_policy(
 
     if binding is not None and policy.get("protocol_id") != binding["protocol_id"]:
         errors.append(f"{source}: protocol_id does not match selected group profile")
-    protocol = _protocol_index(group_registry).get(policy.get("protocol_id"))
+    protocol_id = policy.get("protocol_id")
+    protocol = _protocol_index(group_registry).get(protocol_id) if isinstance(protocol_id, str) else None
     if protocol is None:
         errors.append(f"{source}: unknown protocol_id")
     elif protocol.get("status") == "prohibited":
@@ -338,7 +339,7 @@ def validate_policy(
     profiles = _profile_index(profile_catalog)
 
     if architecture == "mls":
-        suite = _mls_suite_index(group_registry).get(mls_suite)
+        suite = _mls_suite_index(group_registry).get(mls_suite) if isinstance(mls_suite, str) else None
         if suite is None:
             errors.append(f"{source}: MLS profile requires a registered mls_cipher_suite_id")
         elif suite.get("status") == "prohibited":
@@ -416,6 +417,8 @@ def validate_membership_event(
     source: str = "group membership event",
 ) -> list[str]:
     errors: list[str] = []
+    if not isinstance(event, dict):
+        return [f"{source}: membership event must be an object"]
     required = {
         "schema_version",
         "event_id",
@@ -486,10 +489,16 @@ def validate_membership_event(
         if not _unique_string_list(event.get(field), allow_empty=allow_empty):
             errors.append(f"{source}: {field} must be a unique string array")
 
-    previous = set(event.get("previous_member_device_ids", []))
-    added = set(event.get("added_member_device_ids", []))
-    removed = set(event.get("removed_member_device_ids", []))
-    new_members = set(event.get("new_member_device_ids", []))
+    def safe_members(field: str) -> set[str]:
+        values = event.get(field)
+        if not isinstance(values, list):
+            return set()
+        return {value for value in values if isinstance(value, str)}
+
+    previous = safe_members("previous_member_device_ids")
+    added = safe_members("added_member_device_ids")
+    removed = safe_members("removed_member_device_ids")
+    new_members = safe_members("new_member_device_ids")
 
     if not added and not removed:
         errors.append(f"{source}: membership transition must add or remove at least one device")
@@ -520,8 +529,9 @@ def validate_membership_event(
             continue
         auth_type = authorizer.get("type")
         auth_id = authorizer.get("id")
-        if auth_type not in {"device", "server"}:
+        if not isinstance(auth_type, str) or auth_type not in {"device", "server"}:
             errors.append(f"{prefix}: invalid authorizer type")
+            continue
         if not isinstance(auth_id, str) or not ID_RE.fullmatch(auth_id):
             errors.append(f"{prefix}: invalid authorizer id")
             continue
@@ -546,7 +556,8 @@ def validate_membership_event(
     if event.get("removed_members_new_epoch_access") is not False:
         errors.append(f"{source}: removed devices must not receive new-epoch access")
 
-    architecture = PROFILE_BINDINGS.get(policy.get("profile_ref"), {}).get("architecture")
+    profile_ref = policy.get("profile_ref")
+    architecture = PROFILE_BINDINGS.get(profile_ref, {}).get("architecture") if isinstance(profile_ref, str) else None
     if architecture == "mls":
         if event.get("mls_commit_authenticated") is not True:
             errors.append(f"{source}: MLS membership change requires authenticated Commit")
@@ -596,6 +607,8 @@ def validate_message_checkpoint(
     source: str = "group message checkpoint",
 ) -> list[str]:
     errors: list[str] = []
+    if not isinstance(checkpoint, dict):
+        return [f"{source}: message checkpoint must be an object"]
     required = {
         "schema_version",
         "group_id",
@@ -646,7 +659,7 @@ def validate_message_checkpoint(
 
     member_set = set(members)
     sender = checkpoint.get("sender_device_id")
-    if sender not in member_set:
+    if not isinstance(sender, str) or sender not in member_set:
         errors.append(f"{source}: sender must be a current member")
     expected_recipients = member_set - {sender}
     if set(recipients) != expected_recipients:
@@ -678,7 +691,8 @@ def validate_message_checkpoint(
     ):
         errors.append(f"{source}: skipped_sender_message_keys_retained must be non-negative")
 
-    architecture = PROFILE_BINDINGS.get(policy.get("profile_ref"), {}).get("architecture")
+    profile_ref = policy.get("profile_ref")
+    architecture = PROFILE_BINDINGS.get(profile_ref, {}).get("architecture") if isinstance(profile_ref, str) else None
     if architecture == "mls":
         if ciphertext_count != 1:
             errors.append(f"{source}: MLS group message must use one group ciphertext")
@@ -751,14 +765,17 @@ def validate_group_case(
     if not errors:
         errors.extend(validate_membership_event(policy, membership_event))
         errors.extend(validate_message_checkpoint(policy, checkpoint))
-        if membership_event.get("group_id") != checkpoint.get("group_id"):
-            errors.append("group evidence: membership event and message group_id values differ")
-        if membership_event.get("new_epoch") != checkpoint.get("epoch"):
-            errors.append("group evidence: message checkpoint must use the membership event new_epoch")
-        if set(membership_event.get("new_member_device_ids", [])) != set(
-            checkpoint.get("current_member_device_ids", [])
-        ):
-            errors.append("group evidence: message membership does not match accepted new membership")
+        # Never inspect nested data after validation has identified malformed
+        # or unhashable member identifiers; invalid inputs must fail closed.
+        if not errors:
+            if membership_event.get("group_id") != checkpoint.get("group_id"):
+                errors.append("group evidence: membership event and message group_id values differ")
+            if membership_event.get("new_epoch") != checkpoint.get("epoch"):
+                errors.append("group evidence: message checkpoint must use the membership event new_epoch")
+            if set(membership_event.get("new_member_device_ids", [])) != set(
+                checkpoint.get("current_member_device_ids", [])
+            ):
+                errors.append("group evidence: message membership does not match accepted new membership")
     return sorted(set(errors))
 
 
