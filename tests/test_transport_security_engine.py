@@ -62,6 +62,17 @@ class TransportSecurityEngineTests(unittest.TestCase):
         self.assertEqual(groups["SecP256r1MLKEM768"]["iana_value"], 4587)
         self.assertEqual(groups["SecP384r1MLKEM1024"]["iana_value"], 4589)
 
+    def test_malformed_registry_container_types_fail_closed(self) -> None:
+        self.assertTrue(transport_security_engine.validate_registry([]))
+        for field in ("groups", "cipher_suites", "obsoleted_groups"):
+            for bad in (None, "not-an-array", {"id": "wrong-container"}):
+                with self.subTest(field=field, bad=bad):
+                    registry = self.registry()
+                    registry[field] = bad
+                    errors = transport_security_engine.validate_registry(registry)
+                    self.assertTrue(errors)
+                    self.assertTrue(any(field in e or "incomplete" in e for e in errors))
+
     def test_two_transport_profiles_are_registered(self) -> None:
         refs = {
             f"{p['profile_id']}@{p['profile_version']}"
