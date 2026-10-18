@@ -96,6 +96,11 @@ class MigrationContractTests(unittest.TestCase):
         c[0]["new_artifact_digest"]=c[0]["source_artifact_digest"]
         self.assertFalse(m.assess(*c)["consistent"])
 
+    def test_unsigned_legacy_cannot_claim_original_signature_verification(self):
+        c=self.base()
+        c[0]["source_evidence_class"]="historical-unsigned-artifact"
+        self.assertFalse(m.assess(*c)["consistent"])
+
     def test_malformed_json_shape_and_flags_fail_closed(self):
         c=self.base();c[0]["migration_mode"]=[]
         self.assertFalse(m.assess(*c)["consistent"])
