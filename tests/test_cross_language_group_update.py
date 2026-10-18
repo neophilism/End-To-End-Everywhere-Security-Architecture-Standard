@@ -59,7 +59,7 @@ class CrossRuntimeGroupUpdate(unittest.TestCase):
         )
 
     def test_node_rejects_invalid_member_list(self):
-        for malformed in ([],["alice","alice"],[{"id":"alice"}],[""]:
+        for malformed in ([], ["alice","alice"], [{"id":"alice"}], [""]):
             with self.assertRaises(subprocess.CalledProcessError):
                 self.node("members",malformed)
 
