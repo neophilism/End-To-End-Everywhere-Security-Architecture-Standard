@@ -332,3 +332,12 @@ Validation fails on:
 - `schemas/integration-envelope.schema.json`
 - `scripts/integration_contracts.py`
 - `tests/test_integration_contracts.py`
+
+
+## 16. Source-preserving legacy-to-development migration contract (AUD-24)
+
+A downstream consumer transitioning from the immutable 0.9.0-rc.1 release basis to a later development contract MUST retain exact original signed bytes, source basis and verifier scheme. An active canonicalization change MUST NOT silently reinterpret old signatures, rename authority or rewrite historical attestations. A derived record must have a separate identity/digest, explicitly scoped implementation status and provenance to the unchanged original.
+
+A changed account root is replacement identity, never silent inheritance of peer verification. Endpoint enrollment, identity authorization and peer re-verification require their own real cryptographic proofs and local state transitions. Migration controls MUST reject unsupported source/target bases and unknown serialization schemes.
+
+scripts/migration_conformance.py checks a narrow versioned reference declaration with independent source-verifier and authority anchors. It does not verify actual signatures, decrypt historical artifacts, enroll devices or certify a downstream SDK. Scope and incomplete deployment requirements are in docs/AUD24_IMPLEMENTATION_STATUS.md.

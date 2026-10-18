@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/group-applied-update-receipt.schema.json",
+  "title": "E2EESA AUD-15 applied group transition evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "group_id",
+    "profile_ref",
+    "previous_epoch",
+    "applied_epoch",
+    "operation_kind",
+    "commit_status",
+    "prior_state_digest",
+    "applied_state_digest",
+    "membership_digest",
+    "authorizer_evidence_ref",
+    "transition_proof_ref",
+    "commit_digest",
+    "claims_post_quantum_group_confidentiality"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "group_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_ref": {
+      "enum": [
+        "group-mls-rfc9420@0.1.0",
+        "group-sender-key-aead@0.1.0",
+        "group-pairwise-fanout@0.1.0"
+      ]
+    },
+    "previous_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "applied_epoch": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "operation_kind": {
+      "enum": [
+        "mls-applied-commit",
+        "sender-state-rotation",
+        "pairwise-membership-update"
+      ]
+    },
+    "commit_status": {
+      "const": "applied"
+    },
+    "prior_state_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "applied_state_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "membership_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "authorizer_evidence_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "transition_proof_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "commit_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "claims_post_quantum_group_confidentiality": {
+      "const": false
+    }
+  }
+}
