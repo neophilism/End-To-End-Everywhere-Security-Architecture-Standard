@@ -2366,8 +2366,8 @@
     },
     {
       "path": "schemas/legacy-migration-record.schema.json",
-      "size": 2710,
-      "git_blob_sha": "89195624b1b0defcd895dfdd943f4e4062db5a3b"
+      "size": 2653,
+      "git_blob_sha": "58273aa51b66eb3f403d9d60d4c30a26f177ec52"
     },
     {
       "path": "schemas/metadata-delivery-evidence.schema.json",
@@ -2921,8 +2921,8 @@
     },
     {
       "path": "scripts/migration_conformance.py",
-      "size": 5455,
-      "git_blob_sha": "e08a94314dbb783c18daf6cdc19b1609b7af78b1"
+      "size": 5580,
+      "git_blob_sha": "360c1de0c8d71ba5eee9b2d97a435edc679ba47b"
     },
     {
       "path": "scripts/negotiation_engine.py",
@@ -3591,8 +3591,8 @@
     },
     {
       "path": "tests/test_migration_conformance.py",
-      "size": 4885,
-      "git_blob_sha": "6ab99c4ce5a9dd958b7f899112a04b10f1311042"
+      "size": 5111,
+      "git_blob_sha": "b3c15aa3349e039c99b55199e340ca828263bae6"
     },
     {
       "path": "tests/test_negotiation_engine.py",
@@ -3760,5 +3760,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:ddfaf48ffc352b0fa70cffe48851c30332d61c4a0651f2526295f13993678007"
+  "tree_digest": "sha256:6245e7b8463a01c9b4ab2ddeb7bb7d6c8e67991c83ccac99c3b4254512e7ff4b"
 }
