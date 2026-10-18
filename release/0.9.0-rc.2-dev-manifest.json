@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 736,
+  "file_count": 737,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2841,8 +2841,8 @@
     },
     {
       "path": "scripts/group_e2ee_engine.py",
-      "size": 34161,
-      "git_blob_sha": "b2f9615054cce7bf13446e944f47d2fa99af7637"
+      "size": 35448,
+      "git_blob_sha": "0d35c5890ccfbd7fbc5a73fb2502d24d9df634de"
     },
     {
       "path": "scripts/identity_device_engine.py",
@@ -3470,6 +3470,11 @@
       "git_blob_sha": "831f26fe160968bc8a9db613fe8072617d50e402"
     },
     {
+      "path": "tests/test_group_malformed_evidence.py",
+      "size": 4283,
+      "git_blob_sha": "e88ba5cbcc6e132583d15c9ae18226d04136cf78"
+    },
+    {
       "path": "tests/test_identity_device_engine.py",
       "size": 4946,
       "git_blob_sha": "3224e8d08790ad53773821048e41aecccaea732a"
@@ -3685,5 +3690,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:febb8bc566292a12a80e8549519441ac5d3c4e1948d0112e21964715a29aa508"
+  "tree_digest": "sha256:dd6b9a9a908c9ff29b88b4070673c0de40628c473aa1943dd380ce5d78a47854"
 }
