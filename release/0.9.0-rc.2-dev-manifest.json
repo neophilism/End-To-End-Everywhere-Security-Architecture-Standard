@@ -2841,8 +2841,8 @@
     },
     {
       "path": "scripts/group_e2ee_engine.py",
-      "size": 35333,
-      "git_blob_sha": "2e8bbdc24b21f9990d1807c99415919f39b13356"
+      "size": 35448,
+      "git_blob_sha": "0d35c5890ccfbd7fbc5a73fb2502d24d9df634de"
     },
     {
       "path": "scripts/identity_device_engine.py",
@@ -3690,5 +3690,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:c07eb287403eaa136c4aa3d2108e5738ad2cb9b90ca3356c8b06333f14ae090a"
+  "tree_digest": "sha256:dd6b9a9a908c9ff29b88b4070673c0de40628c473aa1943dd380ce5d78a47854"
 }
