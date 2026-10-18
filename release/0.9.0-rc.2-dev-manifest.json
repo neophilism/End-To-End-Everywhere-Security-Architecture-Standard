@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 748,
+  "file_count": 751,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2365,6 +2365,11 @@
       "git_blob_sha": "a82238e427a67823f449564895b1ab345abf7f5d"
     },
     {
+      "path": "schemas/legacy-migration-record.schema.json",
+      "size": 2710,
+      "git_blob_sha": "89195624b1b0defcd895dfdd943f4e4062db5a3b"
+    },
+    {
       "path": "schemas/metadata-delivery-evidence.schema.json",
       "size": 3261,
       "git_blob_sha": "145e69a803719c651d4b9fc43ecea26ad8dfca59"
@@ -2915,6 +2920,11 @@
       "git_blob_sha": "2775836b57bccac4a9cc4947c97fab17c44c3dc7"
     },
     {
+      "path": "scripts/migration_conformance.py",
+      "size": 5455,
+      "git_blob_sha": "e08a94314dbb783c18daf6cdc19b1609b7af78b1"
+    },
+    {
       "path": "scripts/negotiation_engine.py",
       "size": 12890,
       "git_blob_sha": "d490b283f3c6170260dc3e6f972347bc0238edbf"
@@ -3206,8 +3216,8 @@
     },
     {
       "path": "spec/integration-contracts.md",
-      "size": 8763,
-      "git_blob_sha": "bf6d68e58ae19c9544478e539f6f03e400792abe"
+      "size": 9973,
+      "git_blob_sha": "9b80b80c69211cdf7616e320e96d0f4ba29d0492"
     },
     {
       "path": "spec/key-change-state-machine.md",
@@ -3580,6 +3590,11 @@
       "git_blob_sha": "489c2a2d11ae5937684af0189465aa0205d21f22"
     },
     {
+      "path": "tests/test_migration_conformance.py",
+      "size": 4885,
+      "git_blob_sha": "6ab99c4ce5a9dd958b7f899112a04b10f1311042"
+    },
+    {
       "path": "tests/test_negotiation_engine.py",
       "size": 6183,
       "git_blob_sha": "ad325bddb78209faf000d5ac8231b9eda8f38e66"
@@ -3745,5 +3760,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:da94c2e4ef3efe908483cc6f0e6ac09790b2b48348464e195c9e2af5925c50f6"
+  "tree_digest": "sha256:ddfaf48ffc352b0fa70cffe48851c30332d61c4a0651f2526295f13993678007"
 }
