@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 740,
+  "file_count": 743,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -2260,6 +2260,11 @@
       "git_blob_sha": "ca771e678254ae000e24ad987364c93503989d46"
     },
     {
+      "path": "schemas/hybrid-construction-claim.schema.json",
+      "size": 1869,
+      "git_blob_sha": "b935dcce2c8a301816417ec7094109e85c25750b"
+    },
+    {
       "path": "schemas/identity-event.schema.json",
       "size": 1658,
       "git_blob_sha": "42d1854eadd33bbcf5c34673a60bac6d3813a117"
@@ -2855,6 +2860,11 @@
       "git_blob_sha": "0d35c5890ccfbd7fbc5a73fb2502d24d9df634de"
     },
     {
+      "path": "scripts/hybrid_construction_claims.py",
+      "size": 4846,
+      "git_blob_sha": "0c7aa9ffda5c356b4a16fe40f8d1664f68f51de4"
+    },
+    {
       "path": "scripts/identity_device_engine.py",
       "size": 26726,
       "git_blob_sha": "a3c1ac3a702979c822381577be05c6c0abbba473"
@@ -3141,8 +3151,8 @@
     },
     {
       "path": "spec/cryptographic-registry.md",
-      "size": 4772,
-      "git_blob_sha": "c1e3020566581a6d5a7995ee9e62a42928b2c5dc"
+      "size": 5766,
+      "git_blob_sha": "2c11fcbf64e2add03135f55ae7331f1f304f10f8"
     },
     {
       "path": "spec/deprecation-emergency-migration.md",
@@ -3490,6 +3500,11 @@
       "git_blob_sha": "e88ba5cbcc6e132583d15c9ae18226d04136cf78"
     },
     {
+      "path": "tests/test_hybrid_construction_claims.py",
+      "size": 4541,
+      "git_blob_sha": "c65bd81a2cadaa79ad050d2ac97e9e49d8e7d8f7"
+    },
+    {
       "path": "tests/test_identity_device_engine.py",
       "size": 4946,
       "git_blob_sha": "3224e8d08790ad53773821048e41aecccaea732a"
@@ -3705,5 +3720,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:288897ddbf3022149fe1c6e8e43668c6f5ffae62cee9f2602435cfc9cee6b82a"
+  "tree_digest": "sha256:22536cb38d4d8966195014d82f7baeda51c6a188afb80e22f3312fa08571d0db"
 }
