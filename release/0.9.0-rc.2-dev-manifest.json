@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 746,
+  "file_count": 748,
   "files": [
     {
       "path": ".github/workflows/e2eesa-status.yml",
@@ -1723,6 +1723,11 @@
       "path": "reference/canonicalization/canonical.mjs",
       "size": 2555,
       "git_blob_sha": "7daa0b7ed549900bdde55795fd366fa0da32400b"
+    },
+    {
+      "path": "reference/canonicalization/group-update.mjs",
+      "size": 1207,
+      "git_blob_sha": "cf88fe969bc4e23b3e1a0fe0e1cc4d88e95641b1"
     },
     {
       "path": "reference/observatory/postgres.sql",
@@ -3470,6 +3475,11 @@
       "git_blob_sha": "2fab5547f1905bcdd6ace84a5cfd7911541aa78a"
     },
     {
+      "path": "tests/test_cross_language_group_update.py",
+      "size": 2821,
+      "git_blob_sha": "315e44d76eb5e7468a4428b05894ef79d4b24786"
+    },
+    {
       "path": "tests/test_crypto_registry.py",
       "size": 3233,
       "git_blob_sha": "04eb27b0e8db423b6b44bc4a4b95a568406ceb31"
@@ -3735,5 +3745,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:974bdcce46dea95a65dd66df280fdeef73ca852097080eeb3a0aa5b1b7c8f5d2"
+  "tree_digest": "sha256:da94c2e4ef3efe908483cc6f0e6ac09790b2b48348464e195c9e2af5925c50f6"
 }
