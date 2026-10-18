@@ -210,3 +210,12 @@ MLS evidence additionally **MUST** demonstrate Commit authentication, the E2EESA
 Sender-key evidence additionally **MUST** demonstrate complete sender-key rotation on membership change, authenticated pairwise redistribution, one-way chain advancement, used message-key deletion, signature verification, and skipped-key bounds.
 
 Pairwise-fanout evidence additionally **MUST** demonstrate one valid pairwise ciphertext per current recipient device.
+
+
+## 16. Applied-update receipt and group quantum-claim boundary (AUD-15)
+
+A proposal, staged sender-key rotation, queued update, or unauthenticated event is not an **applied** cryptographic epoch change. For a protected send, the relying endpoint MUST derive recipients and epoch from the latest *independently accepted, authenticated* transition. An applied update MUST bind its prior state, resulting keyed state, authorization evidence, exact membership, commit identity and new epoch to a nonrollbackable local anchor. Successful MLS parsing and a stated UpdatePath are not substitutes for confirming the Commit actually applied.
+
+The versioned reference evaluator `scripts/group_applied_update.py` checks applied-transition receipt consistency and current message membership for MLS, Sender Key and pairwise fanout. It rejects proposed/uncommitted changes and a return to old or unchanged key state masquerading as a new secure epoch. The host MUST independently verify cryptographic signatures, authenticated Commit/UpdatePath, sender-state rotation, durable epoch storage and actual send ordering. Its structural result is not proof of these properties.
+
+An implementation of MLS 1.0 or classical sender-key group protection MUST NOT claim group post-quantum confidentiality by borrowing a PQXDH property from unrelated pairwise traffic. Pairwise fanout MAY report the actual evaluated security of **each** exact recipient session, but MUST NOT silently generalize those results to a complete group-level post-quantum claim. Group PQ claims require a distinct reviewed group construction and coverage of every content key path.
