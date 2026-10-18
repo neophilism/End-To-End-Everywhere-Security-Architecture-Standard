@@ -69,6 +69,8 @@ def validate_registry(
     source: str = "transport security registry",
 ) -> list[str]:
     errors: list[str] = []
+    if not isinstance(registry, dict):
+        return [f"{source}: registry must be an object"]
     required = {
         "schema_version","registry_version","standard_version","tls_protocol",
         "transport_modes","cipher_suites","groups","obsoleted_groups",
@@ -98,7 +100,7 @@ def validate_registry(
     if not isinstance(groups, list):
         errors.append(f"{source}: groups must be an array")
         groups = []
-    by_group = _group_index(registry)
+    by_group = _group_index({"groups": groups})
     expected_groups = {
         "X25519": ("traditional", 29),
         "secp256r1": ("traditional", 23),
@@ -125,16 +127,20 @@ def validate_registry(
     if not isinstance(ciphers, list):
         errors.append(f"{source}: cipher_suites must be an array")
         ciphers = []
-    by_cipher = _cipher_index(registry)
+    by_cipher = _cipher_index({"cipher_suites": ciphers})
     if set(by_cipher) != TLS13_CIPHER_SUITES:
         errors.append(f"{source}: TLS 1.3 cipher-suite registry is incomplete")
     for cipher in by_cipher.values():
         if cipher.get("specification") != "RFC 9846":
             errors.append(f"{source}: TLS cipher suite must pin RFC 9846")
 
+    obsoleted_groups = registry.get("obsoleted_groups")
+    if not isinstance(obsoleted_groups, list):
+        errors.append(f"{source}: obsoleted_groups must be an array")
+        obsoleted_groups = []
     obsolete = {
         item.get("id"): item
-        for item in registry.get("obsoleted_groups", [])
+        for item in obsoleted_groups
         if isinstance(item, dict)
     }
     if obsolete.get("X25519Kyber768Draft00", {}).get("replacement") != "X25519MLKEM768":
