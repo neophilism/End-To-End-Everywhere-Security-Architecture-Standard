@@ -73,7 +73,7 @@ def validate_manifest(m: Any) -> list[str]:
     for field in ("identity_id", "backup_id", "bdek_id", "content_aead_algorithm_id"):
         if not _id(m[field]):
             errors.append("invalid " + field)
-    if m["profile_ref"] not in MODES:
+    if not isinstance(m["profile_ref"], str) or m["profile_ref"] not in MODES:
         errors.append("not a server-hosted recoverable backup profile")
     for field in ("generation", "recovery_credential_epoch"):
         if type(m[field]) is not int or m[field] < 1:
