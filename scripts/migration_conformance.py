@@ -58,7 +58,9 @@ def assess(record: dict[str,Any], trusted: dict[str,Any]) -> dict[str,Any]:
             return result(False,"verify-only-cannot-create-new-attestation")
     elif not isinstance(new,str) or not DIGEST.fullmatch(new) or new==record["source_artifact_digest"]:
         return result(False,"derived-record-must-be-distinct")
-    if record["source_evidence_class"] not in ("historical-signed-artifact","historical-unsigned-artifact"):
+    # The record explicitly claims an original cryptographic signature check.
+    # Unsigned source records need a separate versioned verification-only contract.
+    if record["source_evidence_class"] != "historical-signed-artifact":
         return result(False,"invalid-source-evidence-class")
     if not isinstance(record["source_identity_root"],str) or not record["source_identity_root"]:
         return result(False,"missing-source-authority")
