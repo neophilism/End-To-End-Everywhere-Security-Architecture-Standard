@@ -3476,8 +3476,8 @@
     },
     {
       "path": "tests/test_cross_language_group_update.py",
-      "size": 2821,
-      "git_blob_sha": "315e44d76eb5e7468a4428b05894ef79d4b24786"
+      "size": 2825,
+      "git_blob_sha": "6aa27ba28bce366331b4ef9c3e58befbb3267e59"
     },
     {
       "path": "tests/test_crypto_registry.py",
@@ -3745,5 +3745,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:da94c2e4ef3efe908483cc6f0e6ac09790b2b48348464e195c9e2af5925c50f6"
+  "tree_digest": "sha256:133e2e22898f83b30527ad4da0a0f46a612b39ed01e478bf287588c6b6b9e8f7"
 }
