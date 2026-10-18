@@ -34,6 +34,8 @@ def _string_list(value: Any, *, min_items: int = 1) -> bool:
 
 def validate_registry(data: dict, source: str = "<cryptographic-registry>") -> list[str]:
     errors: list[str] = []
+    if not isinstance(data, dict):
+        return [f"{source}: registry must be an object"]
     allowed_top = {"schema_version", "registry_version", "standard_version", "algorithms", "suites"}
     extras = sorted(set(data) - allowed_top)
     if extras:
@@ -90,19 +92,19 @@ def validate_registry(data: dict, source: str = "<cryptographic-registry>") -> l
             seen_algorithm_names.add(name.casefold())
 
         category = algorithm.get("category")
-        if category not in VALID_CATEGORIES:
+        if not isinstance(category, str) or category not in VALID_CATEGORIES:
             errors.append(f"{prefix}: invalid category: {category}")
 
         status = algorithm.get("status")
-        if status not in VALID_STATUSES:
+        if not isinstance(status, str) or status not in VALID_STATUSES:
             errors.append(f"{prefix}: invalid status: {status}")
-        if status in {"deprecated", "prohibited"} and (
+        if isinstance(status, str) and status in {"deprecated", "prohibited"} and (
             not isinstance(algorithm.get("status_reason"), str) or not algorithm["status_reason"].strip()
         ):
             errors.append(f"{prefix}: {status} algorithm requires status_reason")
 
         pq_characteristic = algorithm.get("pq_characteristic")
-        if pq_characteristic not in VALID_PQ_CHARACTERISTICS:
+        if not isinstance(pq_characteristic, str) or pq_characteristic not in VALID_PQ_CHARACTERISTICS:
             errors.append(f"{prefix}: invalid pq_characteristic: {pq_characteristic}")
 
         if not isinstance(algorithm.get("specification"), str) or not algorithm["specification"].strip():
@@ -145,7 +147,7 @@ def validate_registry(data: dict, source: str = "<cryptographic-registry>") -> l
             seen_suite_ids.add(suite_id)
 
         status = suite.get("status")
-        if status not in VALID_STATUSES:
+        if not isinstance(status, str) or status not in VALID_STATUSES:
             errors.append(f"{prefix}: invalid status: {status}")
 
         algorithm_ids = suite.get("algorithm_ids")
@@ -165,10 +167,10 @@ def validate_registry(data: dict, source: str = "<cryptographic-registry>") -> l
             member_status = algorithm.get("status")
             if member_status == "prohibited":
                 errors.append(f"{prefix}: suite references prohibited algorithm: {algorithm_id}")
-            if member_status in VALID_STATUSES:
+            if isinstance(member_status, str) and member_status in VALID_STATUSES:
                 member_statuses.append(member_status)
 
-        if status in STATUS_RANK and member_statuses:
+        if isinstance(status, str) and status in STATUS_RANK and member_statuses:
             weakest_rank = max(STATUS_RANK[item] for item in member_statuses)
             if STATUS_RANK[status] < weakest_rank:
                 errors.append(f"{prefix}: suite status is stronger than one or more component statuses")

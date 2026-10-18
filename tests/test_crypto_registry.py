@@ -24,6 +24,21 @@ class CryptographicRegistryTests(unittest.TestCase):
     def test_registry_passes(self) -> None:
         self.assertEqual(crypto_registry.validate_registry(self.registry()), [])
 
+    def test_malformed_registry_metadata_fails_closed_without_type_error(self) -> None:
+        self.assertTrue(crypto_registry.validate_registry([]))
+        for section, field in (
+            ("algorithms", "category"),
+            ("algorithms", "status"),
+            ("algorithms", "pq_characteristic"),
+            ("suites", "status"),
+        ):
+            for invalid in ([], {}, ["allowed"], {"unexpected": True}):
+                with self.subTest(section=section, field=field, invalid=invalid):
+                    data = self.registry()
+                    data[section][0][field] = invalid
+                    errors = crypto_registry.validate_registry(data)
+                    self.assertTrue(errors)
+
     def test_duplicate_algorithm_id_fails(self) -> None:
         data = self.registry()
         duplicate = copy.deepcopy(data["algorithms"][0])
