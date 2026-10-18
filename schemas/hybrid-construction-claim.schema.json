@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e2eesa.example/schemas/hybrid-construction-claim.schema.json",
+  "title": "AUD-18 exact hybrid transport property declaration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_ref",
+    "negotiated_group_id",
+    "traditional_algorithm_id",
+    "pq_kem_algorithm_id",
+    "protocol_specification",
+    "combiner_specification",
+    "negotiated_tls_version",
+    "hybrid_transcript_sha256",
+    "traditional_secret_integrated",
+    "pq_secret_integrated",
+    "downgrade_rejected",
+    "claimed_property_id",
+    "combiner_property_scope"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "profile_ref": {
+      "const": "transport-tls13-hybrid@0.1.0"
+    },
+    "negotiated_group_id": {
+      "enum": [
+        "X25519MLKEM768",
+        "SecP256r1MLKEM768",
+        "SecP384r1MLKEM1024"
+      ]
+    },
+    "traditional_algorithm_id": {
+      "enum": [
+        "ALG-X25519",
+        "ALG-ECDH-P256",
+        "ALG-ECDH-P384"
+      ]
+    },
+    "pq_kem_algorithm_id": {
+      "enum": [
+        "ALG-ML-KEM-768",
+        "ALG-ML-KEM-1024"
+      ]
+    },
+    "protocol_specification": {
+      "const": "RFC 10024"
+    },
+    "combiner_specification": {
+      "const": "RFC 9954"
+    },
+    "negotiated_tls_version": {
+      "const": "TLS1.3"
+    },
+    "hybrid_transcript_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "traditional_secret_integrated": {
+      "const": true
+    },
+    "pq_secret_integrated": {
+      "const": true
+    },
+    "downgrade_rejected": {
+      "const": true
+    },
+    "claimed_property_id": {
+      "const": "SP-PQ-CONFIDENTIALITY"
+    },
+    "combiner_property_scope": {
+      "const": "construction-specific-confidentiality"
+    }
+  }
+}
