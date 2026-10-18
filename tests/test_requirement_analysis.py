@@ -46,6 +46,23 @@ class RequirementAnalysisTests(unittest.TestCase):
                                 authenticated_review=verifier,
                                 document_rationales={"spec/example.md": "Broad document rationale."})
 
+    def test_malformed_unhashable_references_fail_closed(self):
+        for bad in ([], {}, ["nested"]):
+            with self.subTest(requirement=bad):
+                doc = copy.deepcopy(self.doc)
+                doc["records"][0]["requirement_id"] = bad
+                result = self.inspect(doc)
+                self.assertTrue(result["errors"])
+                self.assertEqual(result["authored"], 0)
+            with self.subTest(dependency=bad):
+                doc = copy.deepcopy(self.doc)
+                doc["records"][0]["dependencies"] = [
+                    {"logical_id": "E2EESA-R-00001", "kind": bad}
+                ]
+                result = self.inspect(doc)
+                self.assertTrue(result["errors"])
+                self.assertEqual(result["authored"], 0)
+
     def test_only_individually_authored_records_count(self):
         r = self.inspect()
         self.assertEqual(r["errors"], [])

@@ -154,7 +154,8 @@ def check_analyses(
         if not isinstance(row, dict) or set(row) != FIELDS:
             continue
         rid = row["requirement_id"]
-        if rid not in req_by_id or row["logical_id"] not in logical:
+        if (not isinstance(rid, str) or not isinstance(row["logical_id"], str)
+                or rid not in req_by_id or row["logical_id"] not in logical):
             continue
         prefix = f"analysis records[{index}]"
         dependencies = row["dependencies"]
@@ -169,7 +170,8 @@ def check_analyses(
             target = dep["logical_id"]
             kind = dep["kind"]
             if (not isinstance(target, str) or target not in logical
-                    or target == row["logical_id"] or kind not in DEPENDENCIES):
+                    or target == row["logical_id"] or not isinstance(kind, str)
+                    or kind not in DEPENDENCIES):
                 errors.append(prefix + ": unresolved or invalid typed dependency")
                 continue
             key = (target, kind)
