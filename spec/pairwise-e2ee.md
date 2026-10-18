@@ -188,3 +188,10 @@ Conformance evidence **MUST** demonstrate at least:
 11. presence of the exact classical/PQ ratchet components required by the selected profile.
 
 The machine-readable reference validator checks these semantic invariants. It does not replace cryptographic implementation tests, protocol test vectors, formal verification, or independent security review.
+
+
+## 16. AUD-14 exact PQXDH wire-binding contract (development)
+
+The published PQXDH Revision 3 associated data is the concatenation of the encoded initiator and responder elliptic-curve identity keys. Where a KEM does not incorporate its public key into the ciphertext/shared-secret binding, the PQXDH specification conditionally requires the encoded recipient PQ public key to be appended. The E2EESA-pinned ML-KEM parameter sets do incorporate their public key into their secret construction; therefore `pqxdh-r3-published-ad@0.1.0` does **not** append another field. Adding unconditional PQ public-key associated data to an existing profile would silently change its wire format and is prohibited. A new convention requires a new reviewed, explicitly versioned profile with separate mixed-version and mutation tests.
+
+The E2EESA reference checker `scripts/pqxdh_binding_contract.py` requires exact PQXDH R3, and for SPQR/Triple Ratchet additionally the ML-KEM Braid Revision 1 (last updated 2025-09-26). It computes the canonical published associated-data bytes and detects mismatched or substituted encoded identity keys, PQ prekeys and encapsulation ciphertexts against independently supplied digest anchors. This is a **structural** assertion only: inputs MUST have already been authenticated through real signature/KEM/protocol implementations. Refer to `docs/AUD14_IMPLEMENTATION_STATUS.md` for uncompleted source-snapshot pin, cryptographic vectors and real interoperability gates. A structural reference pass MUST NOT be asserted as interoperable or cryptographically verified.
