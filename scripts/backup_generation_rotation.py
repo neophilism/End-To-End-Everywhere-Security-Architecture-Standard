@@ -16,6 +16,7 @@ from canonical_serialization import canonical_bytes
 ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 HASH = re.compile(r"^sha256:[0-9a-f]{64}$")
 MODES = {"backup-user-secret@0.1.0", "backup-hardware-assisted@0.1.0"}
+MAX_CANONICAL_INTEGER = 2**53 - 1
 GEN_FIELDS = {
     "schema_version", "identity_id", "profile_ref", "backup_id", "generation",
     "recovery_credential_epoch", "bdek_id", "bdek_commitment",
@@ -73,10 +74,10 @@ def validate_manifest(m: Any) -> list[str]:
     for field in ("identity_id", "backup_id", "bdek_id", "content_aead_algorithm_id"):
         if not _id(m[field]):
             errors.append("invalid " + field)
-    if m["profile_ref"] not in MODES:
+    if not isinstance(m["profile_ref"], str) or m["profile_ref"] not in MODES:
         errors.append("not a server-hosted recoverable backup profile")
     for field in ("generation", "recovery_credential_epoch"):
-        if type(m[field]) is not int or m[field] < 1:
+        if type(m[field]) is not int or not 1 <= m[field] <= MAX_CANONICAL_INTEGER:
             errors.append("invalid " + field)
     for field in ("bdek_commitment", "encrypted_content_digest",
                   "inner_recovery_wrap_digest", "argon2_salt_digest"):

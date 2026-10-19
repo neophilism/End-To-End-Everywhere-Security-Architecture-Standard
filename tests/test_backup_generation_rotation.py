@@ -65,6 +65,33 @@ class AuthenticatedRotationTests(unittest.TestCase):
         self.assertFalse(r["cryptographic_testing_verified"])
         self.assertIn("verify-old-credential-cannot-decrypt-new-ciphertext", r["required_external_checks"])
 
+    def test_malformed_profile_ref_is_denied_without_exception(self):
+        for invalid in (None, [], {}, ["backup-user-secret@0.1.0"], 42):
+            with self.subTest(value=invalid):
+                candidate = copy.deepcopy(self.old)
+                candidate["profile_ref"] = invalid
+                self.assertIn("not a server-hosted recoverable backup profile",
+                              g.validate_manifest(candidate))
+                decision = g.evaluate_transition(candidate, self.new,
+                                                 self.auth(), self.evidence,
+                                                 trusted_previous_digest=g.manifest_digest(self.old))
+                self.assertFalse(decision["policy_consistent"])
+                self.assertFalse(decision["release_ready"])
+
+    def test_generation_values_outside_canonical_integer_range_are_denied(self):
+        for field in ("generation", "recovery_credential_epoch"):
+            for invalid in (True, 2**53, 2**1024):
+                with self.subTest(field=field, value=invalid):
+                    candidate = copy.deepcopy(self.old)
+                    candidate[field] = invalid
+                    self.assertIn("invalid " + field, g.validate_manifest(candidate))
+                    result = g.evaluate_transition(
+                        candidate, self.new, self.auth(), self.evidence,
+                        trusted_previous_digest=g.manifest_digest(self.old)
+                    )
+                    self.assertFalse(result["policy_consistent"])
+                    self.assertFalse(result["release_ready"])
+
     def test_salt_only_change_is_not_rotation(self):
         x = copy.deepcopy(self.old)
         x["argon2_salt_digest"] = h("8")
