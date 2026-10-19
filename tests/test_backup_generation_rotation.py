@@ -78,6 +78,20 @@ class AuthenticatedRotationTests(unittest.TestCase):
                 self.assertFalse(decision["policy_consistent"])
                 self.assertFalse(decision["release_ready"])
 
+    def test_generation_values_outside_canonical_integer_range_are_denied(self):
+        for field in ("generation", "recovery_credential_epoch"):
+            for invalid in (True, 2**53, 2**1024):
+                with self.subTest(field=field, value=invalid):
+                    candidate = copy.deepcopy(self.old)
+                    candidate[field] = invalid
+                    self.assertIn("invalid " + field, g.validate_manifest(candidate))
+                    result = g.evaluate_transition(
+                        candidate, self.new, self.auth(), self.evidence,
+                        trusted_previous_digest=g.manifest_digest(self.old)
+                    )
+                    self.assertFalse(result["policy_consistent"])
+                    self.assertFalse(result["release_ready"])
+
     def test_salt_only_change_is_not_rotation(self):
         x = copy.deepcopy(self.old)
         x["argon2_salt_digest"] = h("8")
