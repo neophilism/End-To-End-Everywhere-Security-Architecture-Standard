@@ -1,0 +1,21 @@
+{
+  "candidate": {
+    "release_version": "0.9.0-rc.1",
+    "tree_digest": "sha256:9d546433dde60d3157e2adb3d9c630dbc36fd92c551083f5f5189491370ce2a2",
+    "file_count": 645
+  },
+  "finding_id": "E2EESA-REVIEW-REPLACE-ME",
+  "reviewer_id": "REPLACE-ME",
+  "severity": "high",
+  "title": "REPLACE-ME",
+  "analysis": "Explain the technical problem, violated assumption/property, and why it matters.",
+  "failure_scenario": "Describe a concrete attack, failure mode, false-positive conformance path, or assurance failure when applicable.",
+  "affected_requirement_ids": [],
+  "affected_paths": [],
+  "recommendation": "Describe the recommended correction and any acceptable alternatives.",
+  "supporting_references": [],
+  "status": "open",
+  "disposition_rationale": null,
+  "fix_reference": null,
+  "reviewer_acceptance": null
+}
