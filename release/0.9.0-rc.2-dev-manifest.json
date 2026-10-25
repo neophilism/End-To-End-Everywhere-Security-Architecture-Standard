@@ -2,8 +2,13 @@
   "schema_version": "0.1",
   "release_version": "0.9.0-rc.2-dev",
   "basis_standard_version": "0.1.0-dev",
-  "file_count": 736,
+  "file_count": 737,
   "files": [
+    {
+      "path": ".github/workflows/deployment-monitor-contract.yml",
+      "size": 327,
+      "git_blob_sha": "acba9316f2468cb5f60ffada9f03da0f6bd91609"
+    },
     {
       "path": ".github/workflows/e2eesa-status.yml",
       "size": 686,
@@ -3685,5 +3690,5 @@
       "git_blob_sha": "d9bdee577379699279bb46a759601eec34364dde"
     }
   ],
-  "tree_digest": "sha256:ef5c3b4efeb89b17928399fb01bc29694bfa3ac5d65b39b819cf6097641f3a71"
+  "tree_digest": "sha256:1409bbba09274852f68a530614f17aaecafa680b7b9fe490d0fd4391a4e721f6"
 }
